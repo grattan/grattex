@@ -122,6 +122,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 
 
 % Big boxes -- over the whole page
+% It is recommended to surround this with an \afterpage{% 
 \newenvironment{bigbox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
 \begin{smallboxfloat}
 \begin{mdframed}[style=GrattanFrameBox]%
@@ -170,6 +171,9 @@ singlelinecheck=false}
 \captionsetup{font={small,color=theGrey}}
 \caption*{#2}
 }
+
+% New user friendly (less typing) \Caption?
+\newcommend{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
 \newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
 \newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
