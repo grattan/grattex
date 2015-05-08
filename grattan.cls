@@ -286,15 +286,10 @@ left=2.75cm,right=2.75cm
 % Furthermore, optional arguments are required: they appear in Chapter 
 % heading pages. Leaving them out will reset the titles on pages with 
 % \chapter{}
-\lehead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}
-{\mytitle}}
-\lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{
-\mytitle}}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 
-2015}}]{\textcolor{theGrey}{\normalfont Grattan 
-Institute 2015}}
-\ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{
-\thepage}}
+\lehead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
+\lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
+\ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
