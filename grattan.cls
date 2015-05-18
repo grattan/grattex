@@ -288,7 +288,7 @@ left=2.75cm,right=2.75cm
 % \chapter{}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
