@@ -402,6 +402,15 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 \RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=true, autocite=footnote]{biblatex}
 \renewcommand*{\bibfont}{\raggedright}
 \DeclareLanguageMapping{british}{british-apa}
+
+
+%% Bibliography formatting
+% separating entries
+\setlength\bibitemsep{1.5\itemsep}
+% format bibliography
+\renewcommand*{\bibfont}{\small}
+
+%% Citation tweaking
 \DeclareFieldFormat{titlecase}{#1}
 \setlength\bibhang{.5in}
 \renewcommand*{\bibnamedash}{%
