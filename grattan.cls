@@ -76,6 +76,8 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \RequirePackage{cleveref}
 \RequirePackage{bookmark}
 
+% Make url formatting the same
+\urlstyle{same}
 
 \DeclareCaptionFont{Orange}{\color{Orange}}
 \DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
