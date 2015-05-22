@@ -362,7 +362,7 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
   \textbf{\textcolor{theGrey}{Senior Affiliates}}\\[3pt]
   {\footnotesize
   EY\\[3pt]
-  GE Australia and New Zealand\\[3pt]
+  PwC\\[3pt]
   Stockland\\[3pt]
   The Scanlon Foundation\\[3pt]
   Wesfarmers
@@ -370,8 +370,9 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
   \textbf{\textcolor{theGrey}{Affiliates}}\\[3pt]
   {\footnotesize
   Ashurst\\[3pt]
+  Corrs\\[3pt]
   Deloitte\\[3pt]
-  Lend Lease\\[3pt]
+  Jacobs\\[3pt]
   Mercy Health\\[3pt]
   Sinclair Knight Merz\\[3pt]
   Urbis\\[3pt]
