@@ -183,6 +183,7 @@ singlelinecheck=false}
 \setkomafont{disposition}{\bfseries\color{Orange}}
 \addtokomafont{chapter}{\Large}
 \addtokomafont{section}{\normalsize}
+\addtokomafont{subsection}{\normalsize}
 
 % Spacing
 \RedeclareSectionCommand[
