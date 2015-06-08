@@ -184,26 +184,7 @@ singlelinecheck=false}
 \addtokomafont{chapter}{\Large}
 \addtokomafont{section}{\normalsize}
 \addtokomafont{subsection}{\normalsize}
-
-% Spacing
-\RedeclareSectionCommand[
-  beforeskip=-1sp,
-  afterskip=2\baselineskip]{chapter}
-\RedeclareSectionCommand[
-  beforeskip=-\baselineskip,
-  afterskip=.5\baselineskip]{section}
-\RedeclareSectionCommand[
-  beforeskip=-.75\baselineskip,
-  afterskip=.5\baselineskip]{subsection}
-\RedeclareSectionCommand[
-  beforeskip=-.5\baselineskip,
-  afterskip=.25\baselineskip]{subsubsection}
-\RedeclareSectionCommand[
-  beforeskip=.5\baselineskip,
-  afterskip=-1em]{paragraph}
-\RedeclareSectionCommand[
-  beforeskip=-.5\baselineskip,
-  afterskip=-1em]{subparagraph}
+\addtokomafont{subsubsection}{\sffamily\normalsize}
 
 % Spacing
 \RedeclareSectionCommand[
@@ -214,10 +195,10 @@ singlelinecheck=false}
   afterskip=1sp]{section}
 \RedeclareSectionCommand[
   beforeskip=-.75\baselineskip,
-  afterskip=.5\baselineskip]{subsection}
+  afterskip=1sp]{subsection}
 \RedeclareSectionCommand[
   beforeskip=-.5\baselineskip,
-  afterskip=.25\baselineskip]{subsubsection}
+  afterskip=1sp]{subsubsection}
 \RedeclareSectionCommand[
   beforeskip=.5\baselineskip,
   afterskip=-1em]{paragraph}
