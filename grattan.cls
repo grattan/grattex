@@ -135,6 +135,21 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{mdframed}\end{smallboxfloat}\twocolumn}
 
+% dbl floats
+\newenvironment{bigbox*}[2]{%
+  \setlength{\currentparskip}{\parskip}
+  \@dblfloat{smallboxfloat}%
+  \begin{mdframed}[style=GrattanFrameBox]
+  \setlength{\columnsep}{10mm}
+  \begin{multicols}{2}
+  \setlength{\parskip}{\currentparskip}% restore the value
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \caption{#1}\label{#2}%
+}{%
+  \end{multicols}\end{mdframed}
+  \end@dblfloat
+}
+ 
 \newenvironment{ultrabox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
 \begin{smallboxfloat}
 \pagecolor{OrangeBackground}
