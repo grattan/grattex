@@ -74,7 +74,6 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 % }
 \RequirePackage[colorlinks,colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue]{hyperref}
 \RequirePackage{cleveref}
-\RequirePackage{bookmark}
 
 % Make url formatting the same
 \urlstyle{same}
@@ -84,11 +83,9 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \captionsetup{justification=nohyphen, singlelinecheck=false}
 
 % Boxes
-\crefname{smallboxfloat}{Box}{Boxes}
-\Crefname{smallboxfloat}{Box}{Boxes}
-\newfloat{smallboxfloat}{p}{frm}[chapter]
-\floatname{smallboxfloat}{Box}
-%\DeclareFloatingEnvironment[fileext=frm,name=Box]{smallboxfloat}
+\crefname{boxe}{Box}{Boxes}
+\Crefname{boxe}{Box}{Boxes}
+\DeclareFloatingEnvironment{boxe}
 \mdfdefinestyle{GrattanFrameBox}{%
     linecolor=Orange,
     nobreak=true, % prevents page breaking
@@ -114,33 +111,33 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 % The smallbox is a box intended for onecolumn.
 \newenvironment{smallbox}[2]{%
 \setlength{\currentparskip}{\parskip}% save the value
-\begin{smallboxfloat}
+\begin{boxe}
 \vfill
 \begin{mdframed}[style=GrattanFrameBox]%
  \setlength{\parskip}{\currentparskip}% restore the value
  \captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
  \caption{#1}\label{#2}
  \vspace{-1.5ex}
-}{\end{mdframed}\vfill\end{smallboxfloat}}  
+}{\end{mdframed}\vfill\end{boxe}}  
 
 
 
 % Big boxes -- over the whole page
 % It is recommended to surround this with an \afterpage{% 
 \newenvironment{bigbox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
-\begin{smallboxfloat}
+\begin{boxe}
 \begin{mdframed}[style=GrattanFrameBox]%
 \setlength{\columnsep}{10mm}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
  \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
  \caption{#1}\label{#2}%
- } {\end{multicols}\end{mdframed}\end{smallboxfloat}\twocolumn}
+ } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
 % dbl floats
 \newenvironment{bigbox*}[2]{%
   \setlength{\currentparskip}{\parskip}
-  \@dblfloat{smallboxfloat}%
+  \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
   \setlength{\columnsep}{10mm}
   \begin{multicols}{2}
@@ -153,7 +150,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 }
  
 \newenvironment{ultrabox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
-\begin{smallboxfloat}
+\begin{boxe}
 \pagecolor{OrangeBackground}
 \begin{mdframed}[style=GrattanFrameBoxUltra]%
 \setlength{\columnsep}{10mm}
@@ -162,7 +159,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \setlength{\parskip}{\currentparskip}% restore the value
  \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
  \caption{#1}\label{#2}%
- } {\end{multicols}\end{minipage}\end{mdframed}\end{smallboxfloat}%
+ } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
  
  
@@ -493,7 +490,7 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 \end{multicols}
 \clearpage
 \listoffigures
-\listof{smallboxfloat}{Boxes}
+\listofboxes
 \twocolumn%
 }
 
