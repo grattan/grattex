@@ -86,7 +86,9 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 % Boxes
 \crefname{smallboxfloat}{Box}{Boxes}
 \Crefname{smallboxfloat}{Box}{Boxes}
-\DeclareFloatingEnvironment[fileext=frm,name=Box]{smallboxfloat}
+\newfloat{smallboxfloat}{p}{frm}[chapter]
+\floatname{smallboxfloat}{Box}
+%\DeclareFloatingEnvironment[fileext=frm,name=Box]{smallboxfloat}
 \mdfdefinestyle{GrattanFrameBox}{%
     linecolor=Orange,
     nobreak=true, % prevents page breaking
@@ -195,18 +197,18 @@ singlelinecheck=false}
 \newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
 \newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
 
-\setkomafont{disposition}{\bfseries\color{Orange}}
-\addtokomafont{chapter}{\Large}
-\addtokomafont{section}{\normalsize}
-\addtokomafont{subsection}{\normalsize}
-\addtokomafont{subsubsection}{\sffamily\normalsize}
+\setkomafont{disposition}{\color{Orange}}
+\addtokomafont{chapter}{\bfseries\Large}
+\addtokomafont{section}{\bfseries\normalsize}
+\addtokomafont{subsection}{\bfseries\normalsize}
+\addtokomafont{subsubsection}{\normalsize}
 
 % Spacing
 \RedeclareSectionCommand[
   beforeskip=1.5\baselineskip,
-  afterskip=2\baselineskip]{chapter}
+  afterskip=1.5\baselineskip]{chapter}
 \RedeclareSectionCommand[
-  beforeskip=4pt,
+  beforeskip=0.5\baselineskip,
   afterskip=1sp]{section}
 \RedeclareSectionCommand[
   beforeskip=-.75\baselineskip,
@@ -239,7 +241,7 @@ singlelinecheck=false}
 left=2.75cm,right=2.75cm
 ]{geometry}
   %\addtolength{\columnwidth}{50pt}
-  \setlength{\columnsep}{10mm}  
+  \setlength{\columnsep}{20mm}  
   %\addtolength{\columnwidth}{0.2\columnwidth}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
@@ -274,6 +276,9 @@ left=2.75cm,right=2.75cm
 %  Headers and footers
 %% ---------------------------------
 \RequirePackage[headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
+
+\addtolength{\textheight}{40pt}
+\addtolength{\footskip}{-10pt}
 
 \clearscrheadings
 \clearscrplain
@@ -399,7 +404,7 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 % Bibliography
 \RequirePackage[british]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=true, autocite=footnote]{biblatex}
+\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote]{biblatex}
 \renewcommand*{\bibfont}{\raggedright}
 \DeclareLanguageMapping{british}{british-apa}
 
@@ -486,6 +491,9 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 \columnbreak
 \tableofcontents
 \end{multicols}
+\clearpage
+\listoffigures
+\listof{smallboxfloat}{Boxes}
 \twocolumn%
 }
 
