@@ -85,7 +85,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 % Boxes
 \crefname{boxe}{Box}{Boxes}
 \Crefname{boxe}{Box}{Boxes}
-\DeclareFloatingEnvironment{boxe}
+\DeclareFloatingEnvironment[listname={List of boxes}, name = {Box}]{boxe}
 \mdfdefinestyle{GrattanFrameBox}{%
     linecolor=Orange,
     nobreak=true, % prevents page breaking
