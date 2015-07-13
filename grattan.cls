@@ -162,10 +162,6 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
  } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
  
- % Figures at top should be flush
-\setlength{\@fptop}{0pt}
-%
- 
 % Captions in general
 \DeclareCaptionFont{theGrey}{\color{theGrey}}
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}}
@@ -175,9 +171,8 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 
 \newcommand{\captionwithunits}[2]{%
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
-singlelinecheck=false}
+singlelinecheck=false,position=top,skip=0pt}
 \caption{#1}
-\vspace{-11pt}
 \captionsetup{font={small,color=theGrey}}
 \caption*{#2}
 }
