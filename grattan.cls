@@ -19,11 +19,15 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
 % needs to be switched off for copying and pasting
-\RequirePackage[activate={true,nocompatibility},final,expansion,tracking=true,kerning=true, spacing=false,selected=true,letterspace=-4]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,expansion,tracking=true,kerning=true, spacing=false,selected=true, letterspace=-20]{microtype}
+
+\SetExtraSpacing{ font = * / * / * / * / * }{. = {100,100,100},}
+
 % Arial font looks a little bit spaced. One way to do it is to adjust the letterspace 
 % option to microtype.  Another is to adjust the spaceskip
-% \spaceskip=1.5\fontdimen2\font plus 1.5\fontdimen3\font
-% minus 1.5\fontdimen4\font
+% large
+% \spaceskip=1.5\fontdimen2\font plus 1.5\fontdimen3\font minus 1.5\fontdimen4\font
+\spaceskip=1.2\fontdimen2\font plus 1.2\fontdimen3\font minus 1.2\fontdimen4\font
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
@@ -162,6 +166,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
  } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
  
+
 % Captions in general
 \DeclareCaptionFont{theGrey}{\color{theGrey}}
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}}
@@ -173,6 +178,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
 singlelinecheck=false,position=top,skip=0pt}
 \caption{#1}
+%\vspace{-11pt}
 \captionsetup{font={small,color=theGrey}}
 \caption*{#2}
 }
@@ -236,7 +242,7 @@ singlelinecheck=false}
 left=2.75cm,right=2.75cm
 ]{geometry}
   %\addtolength{\columnwidth}{50pt}
-  \setlength{\columnsep}{20mm}  
+  \setlength{\columnsep}{15mm}  
   %\addtolength{\columnwidth}{0.2\columnwidth}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
@@ -279,7 +285,9 @@ left=2.75cm,right=2.75cm
 \clearscrplain
 \clearscrheadfoot
 % -------
-
+% Heads and footers
+%
+\newcommand{\classification}{}
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
 % Furthermore, optional arguments are required: they appear in Chapter 
@@ -287,7 +295,10 @@ left=2.75cm,right=2.75cm
 % \chapter{}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
+\cehead[\classification]{\classification}
+\cohead[\classification]{\classification}
 \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
+\cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
@@ -298,14 +309,25 @@ left=2.75cm,right=2.75cm
 \pagestyle{scrheadings}
 
 %% Title pages
+%% For a full picture:
+% \RequirePackage{eso-pic}
+% \newcommand\BackgroundPic{%
+% \put(0,0){%
+% \parbox[b][\paperheight]{\paperwidth}{%
+% \vfill
+% \centering
+% % Amend
+% \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
+% \vfill
+% }}}
+
+%% For a logo only:
 \RequirePackage{eso-pic}
 \newcommand\BackgroundPic{%
 \put(0,0){%
 \parbox[b][\paperheight]{\paperwidth}{%
-\vfill
-\centering
-\includegraphics[width=\paperwidth,height=\paperheight,%
-keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
+\hfill
+%\includegraphics[width=0.2\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
 \vfill
 }}}
 
@@ -323,12 +345,35 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
   {}% <success>
   {}% <failure>
 
+
+\newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
+\raggedleft % Right-align all text
+\vfill
+\phantom{.}%\vspace*{\baselineskip}
+\hfill 
+\includegraphics[width=0.225\paperwidth,keepaspectratio, trim = 0 0 5mm 0,clip]{./FrontPage/GrattanSVGLogo}
+\vspace{30pt}
+\vfil % Whitespace at the top of the page
+
+{\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
+%% This is a working paper.
+{\Large {Grattan Insitute Working Paper}}\\[2\baselineskip] % Tagline or further description
+
+{\LARGE \myauthor}
+
+\vfill% Whitespace at the bottom of the page
+\endgroup}
+  
 \AtBeginDocument{%
+\let\mytitle\@title
+\let\myauthor\@author
 % TitlePage
+\onecolumn
 \AddToShipoutPicture*{\BackgroundPic}
-  \maketitle
-  \let\mytitle\@title
+\titleTH
 \ClearShipoutPicture
+\clearpage
+\twocolumn
 \lsstyle
 %
 % Following page.
@@ -340,7 +385,7 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
   \begin{center}
   \includegraphics[width=4cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
   \includegraphics[width=3.5cm]{./logos/Vic_Gov_Logo.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip\vfil
+  \includegraphics[width=3.5cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
   \includegraphics[width=3.5cm]{./logos/Bhp.pdf}
   \end{center}
   \columnbreak
@@ -377,7 +422,12 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
   }
   \end{multicols}
   \end{minipage} 
+  \vfill
+  \phantom{.}
+  \eject
+  %\subsection*{Grattan Institute Support}
   \input{Acknowledgements}
+  \twocolumn
 }
 
 % Table of contentss
@@ -394,6 +444,14 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 \newenvironment{overview}%
   {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{Overview}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
+  
+\newenvironment{summary}%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{Summary}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
+  
+\newenvironment{onepager}[1]%  
+  {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{#1}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
 
 
 % Bibliography
@@ -409,6 +467,7 @@ keepaspectratio]{./FrontPage/FrontPagePicture.pdf}%
 \setlength\bibitemsep{1.5\itemsep}
 % format bibliography
 \renewcommand*{\bibfont}{\small}
+\DeclareFieldFormat{url}{\url{#1}}
 
 %% Citation tweaking
 \DeclareFieldFormat{titlecase}{#1}
