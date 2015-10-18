@@ -547,6 +547,8 @@ left=2.75cm,right=2.75cm
 \end{multicols}
 \clearpage
 \listoffigures
+% This is necessary for the box list to actually appear
+\setcounter{tocdepth}{2}
 \listofboxes
 \twocolumn%
 }
