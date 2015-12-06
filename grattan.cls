@@ -276,7 +276,7 @@ left=2.75cm,right=2.75cm
 %% ---------------------------------
 %  Headers and footers
 %% ---------------------------------
-\RequirePackage[headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
+\RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
 
 \addtolength{\textheight}{40pt}
 \addtolength{\footskip}{-10pt}
@@ -303,9 +303,7 @@ left=2.75cm,right=2.75cm
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
-\setheadsepline{1pt}
-\setfootsepline{1pt}
-%\setheadtopline{0pt}  
+
 \pagestyle{scrheadings}
 
 %% Title pages
