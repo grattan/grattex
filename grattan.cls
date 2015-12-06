@@ -113,16 +113,16 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
     }
     
 % The smallbox is a box intended for onecolumn.
-\newenvironment{smallbox}[2]{%
+\newenvironment{smallbox}[3][p]{%
 \setlength{\currentparskip}{\parskip}% save the value
-\begin{boxe}
+\begin{boxe}[#1]
 \vfill
 \begin{mdframed}[style=GrattanFrameBox]%
- \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
- \caption{#1}\label{#2}
- \vspace{-1.5ex}
-}{\end{mdframed}\vfill\end{boxe}}  
+\setlength{\parskip}{\currentparskip}% restore the value
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
+\caption{#2}\label{#3}
+\vspace{-1.5ex}
+}{\end{mdframed}\vfill\end{boxe}} 
 
 
 
