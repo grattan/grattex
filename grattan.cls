@@ -63,7 +63,8 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
-\RequirePackage{uarial}
+%\RequirePackage{uarial}
+\RequirePackage[scaled]{helvet}
   \renewcommand{\familydefault}{\sfdefault}
 
 \RequirePackage[framemethod=TikZ]{mdframed}
@@ -305,30 +306,40 @@ left=2.75cm,right=2.75cm
 \setkomafont{footsepline}{\color{Orange}}
 
 \pagestyle{scrheadings}
-
-%% Title pages
-%% For a full picture:
-% \RequirePackage{eso-pic}
-% \newcommand\BackgroundPic{%
-% \put(0,0){%
-% \parbox[b][\paperheight]{\paperwidth}{%
-% \vfill
-% \centering
-% % Amend
-% \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
-% \vfill
-% }}}
-
-%% For a logo only:
 \RequirePackage{eso-pic}
-\newcommand\BackgroundPic{%
-\put(0,0){%
-\parbox[b][\paperheight]{\paperwidth}{%
-\hfill
-%\includegraphics[width=0.2\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
-\vfill
-}}}
+%% Title pages
+\newtoggle{makefullpicture}
+\togglefalse{makefullpicture}
 
+\DeclareOption{fullpicture}{
+  \toggletrue{makefullpicture}
+}
+
+%% For a full picture:
+\iftoggle{makefullpicture}{
+	\newcommand\BackgroundPic{%
+	\put(0,0){%
+	\parbox[b][\paperheight]{\paperwidth}{%
+	\vfill
+	\centering
+	% Amend
+	%\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
+	\vfill
+	}}}
+
+}{
+%% For a logo only:
+	\newcommand\BackgroundPic{%
+	\put(0,0){%
+	\parbox[b][\paperheight]{\paperwidth}{%
+	\hfill
+	% // Do nothing
+	% \includegraphics[width=0.2\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
+	\vfill
+	}}}
+}
+
+\ProcessOptions\relax
 
 \RequirePackage{epstopdf}
 \newcommand{\logoskip}{\par\vspace{16pt}}
@@ -346,10 +357,9 @@ left=2.75cm,right=2.75cm
 
 \newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
 \raggedleft % Right-align all text
-\vfill
-\phantom{.}%\vspace*{\baselineskip}
-\hfill 
-\includegraphics[width=0.225\paperwidth,keepaspectratio, trim = 0 0 5mm 0,clip]{./FrontPage/GrattanSVGLogo}
+\vfil
+\phantom{.}\hfill 
+\includegraphics[width=0.225\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
 
@@ -363,16 +373,16 @@ left=2.75cm,right=2.75cm
 \endgroup}
   
 \AtBeginDocument{%
+\lsstyle
 \let\mytitle\@title
 \let\myauthor\@author
 % TitlePage
 \onecolumn
 \AddToShipoutPicture*{\BackgroundPic}
-\titleTH
+\phantom{.}\hfill\titleTH
 \ClearShipoutPicture
 \clearpage
 \twocolumn
-\lsstyle
 %
 % Following page.
   \subsection*{Grattan Institute Support}
