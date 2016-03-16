@@ -2,7 +2,7 @@
 \ProvidesClass{grattan}[2015/02/27 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[a4paper,11pt,titlepage,headings=big,chapterprefix=false,headsepline,
-parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
+parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{acronym}
@@ -18,16 +18,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \RequirePackage{float}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
-% needs to be switched off for copying and pasting
-\RequirePackage[activate={true,nocompatibility},final,expansion,tracking=true,kerning=true, spacing=false,selected=true, letterspace=-20]{microtype}
-
-\SetExtraSpacing{ font = * / * / * / * / * }{. = {100,100,100},}
-
-% Arial font looks a little bit spaced. One way to do it is to adjust the letterspace 
-% option to microtype.  Another is to adjust the spaceskip
-% large
-% \spaceskip=1.5\fontdimen2\font plus 1.5\fontdimen3\font minus 1.5\fontdimen4\font
-\spaceskip=1.2\fontdimen2\font plus 1.2\fontdimen3\font minus 1.2\fontdimen4\font
+\RequirePackage[activate=true, expansion, final, kerning=true, spacing=true]{microtype}
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
@@ -373,7 +364,6 @@ left=2.75cm,right=2.75cm
 \endgroup}
   
 \AtBeginDocument{%
-\lsstyle
 \let\mytitle\@title
 \let\myauthor\@author
 % TitlePage
@@ -449,8 +439,8 @@ left=2.75cm,right=2.75cm
 % We define a new environment that take as its contents the text of the 
 % overview, placing it with a chapter* heading 'Overview' all on the same
 % page. 
-\newenvironment{overview}%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{Overview}\begin{multicols}{2}}%
+\newenvironment{overview}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{Overview}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
@@ -560,6 +550,5 @@ left=2.75cm,right=2.75cm
 \listofboxes
 \twocolumn%
 }
-
 
 
