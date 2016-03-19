@@ -103,6 +103,8 @@ singlelinecheck=false}
 % New user friendly (less typing) \Caption?
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
+\RequirePackage{biblatex}
+
 \newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
 \newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
 
