@@ -50,10 +50,6 @@ parskip=half-,numbers=noenddot]{scrreprt}
 % Headers and footers
 \RequirePackage[headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
 
-\addtolength{\textheight}{44pt}
-\addtolength{\footskip}{-12pt}
-\addtolength{\textfloatsep}{-6pt}
-
 \clearscrheadings
 \clearscrplain
 \clearscrheadfoot
