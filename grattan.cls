@@ -289,7 +289,7 @@ left=2.75cm,right=2.75cm
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
