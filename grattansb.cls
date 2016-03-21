@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{grattansb}[2016/03/20 Small books of the Grattan Institute, Melbourne]
 
-\LoadClass[b5paper,11pt,headings=big,chapterprefix=false,headsepline,
+\LoadClass[b5paper, 11pt,headings=big,chapterprefix=false,headsepline,
 parskip=half-,numbers=noenddot]{scrreprt}
 
 \RequirePackage{xcolor}
@@ -11,10 +11,15 @@ parskip=half-,numbers=noenddot]{scrreprt}
 \RequirePackage{varioref}
 \RequirePackage[colorlinks,colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=black]{hyperref}
 \RequirePackage{cleveref}
+% Make url formatting the same
+\urlstyle{same}
+
 \RequirePackage{booktabs}
 
 % Must be after cleveref
-\RequirePackage{geometry}
+\RequirePackage[headheight=22pt, tmargin=0mm, includehead]{geometry}
+
+
 
 % ------
 % Grattan colors
@@ -102,7 +107,18 @@ singlelinecheck=false}
 \RequirePackage{biblatex}
 
 \newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
-\newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
+\newlength{\noteswidth}
+\newlength{\LengthOfNotes}
+\newcommand{\notes}[1]{\makebox[\textwidth][l]{%
+\setlength{\noteswidth}{\textwidth}%
+\settowidth{\LengthOfNotes}{\footnotesize\textit{Notes:}}%
+\addtolength{\noteswidth}{-2\LengthOfNotes}%
+\addtolength{\noteswidth}{0\tabcolsep}%
+\footnotesize%
+\begin{tabular}{p{\LengthOfNotes}p{\noteswidth}}
+\textit{Notes:}&\textit{#1}
+\end{tabular}
+}}
 
 % Spacing
 \RedeclareSectionCommand[
