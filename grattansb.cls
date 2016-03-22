@@ -53,7 +53,8 @@ parskip=half-,numbers=noenddot]{scrreprt}
 
 % ------
 % Headers and footers
-\RequirePackage[headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
+% Headers and footers
+\RequirePackage[headwidth=paper:\the\textwidth/2-\the\paperwidth/2:\the\textwidth/2-\the\paperwidth/2, headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
 
 \clearscrheadings
 \clearscrplain
