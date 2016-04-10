@@ -18,12 +18,13 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{float}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
-\RequirePackage[activate=true, expansion, final, kerning=true, spacing=true]{microtype}
+\RequirePackage{microtype}
 %% defaults are far too flamboyant. Indeed, zero protrusion with the 
 %% Helvetica font appears to be protruding slightly (even though it 
 %% is simply flush with the box).
 %% encoding = T1 as in \usepackage[T1]{fontenc}
-\SetProtrusion{encoding = T1}{\textendash = {-25,}, \textemdash = {-25,}}
+\LoadMicrotypeFile{microtype}
+\SetProtrusion[load = default]{encoding = *}{\textendash = {-25,}, \textemdash = {-25,}}
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
