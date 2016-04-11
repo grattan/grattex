@@ -23,8 +23,14 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 %% Helvetica font appears to be protruding slightly (even though it 
 %% is simply flush with the box).
 %% encoding = T1 as in \usepackage[T1]{fontenc}
-\LoadMicrotypeFile{microtype}
-\SetProtrusion[load = default]{encoding = *}{\textendash = {-25,}, \textemdash = {-25,}}
+\SetProtrusion
+   [ name     = T1-phv,      % the name is optional
+     load     = T1-default ] % first load `T1-default` settings
+   { encoding = T1,
+     family   = phv }        % use for Helvetica family
+   {
+     \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
+   }
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
