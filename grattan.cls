@@ -346,7 +346,7 @@ left=2.75cm,right=2.75cm
 \ProcessOptions\relax
 
 \RequirePackage{epstopdf}
-\newcommand{\logoskip}{\par\vspace{16pt}}
+\newcommand{\logoskip}{\par\vspace{38pt}}
 \newcommand{\includegraphicsmaybe}[1]{\IfFileExists{#1}{\includegraphics{#1}}{\includegraphics{dummy.pdf}}}
 \newcommand{\noimage}{%
   \setlength{\fboxsep}{-\fboxrule}%
@@ -392,12 +392,13 @@ left=2.75cm,right=2.75cm
   %\begin{minipage}[t][0.7\textheight][t]{\columnwidth}
   \begin{minipage}{\columnwidth}
   \begin{multicols}{2}
-  \textbf{\textcolor{theGrey}{Founding members}}\logoskip
+  \textbf{\textcolor{theGrey}{Founding members}}\par%\logoskip
+  %\vspace*{-5pt}
   \begin{center}
-  \includegraphics[width=4cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/Vic_Gov_Logo.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/Bhp.pdf}
+  \includegraphics[width=4.0cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/Vic_Gov_Logo.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/Bhp.pdf}
   \end{center}
   \columnbreak
   
@@ -405,7 +406,7 @@ left=2.75cm,right=2.75cm
   
   {\footnotesize Higher Education}
   \begin{center}
-  \includegraphics[width=2.5cm]{./logos/TMF_logo_green.eps}
+  \includegraphics[width=3.25cm]{./logos/TMF_logo_green.eps}
   \end{center}
   \textbf{\textcolor{theGrey}{Affiliate Partners}}\\[3pt]
   {\footnotesize%
