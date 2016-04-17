@@ -124,7 +124,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \vfill
 \begin{mdframed}[style=GrattanFrameBox]%
 \setlength{\parskip}{\currentparskip}% restore the value
-\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
+\captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
 \caption{#2}\label{#3}
 \vspace{-1.5ex}
 }{\end{mdframed}\vfill\end{boxe}} 
@@ -139,7 +139,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \setlength{\columnsep}{10mm}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
@@ -151,7 +151,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
   \setlength{\columnsep}{10mm}
   \begin{multicols}{2}
   \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
 }{%
   \end{multicols}\end{mdframed}
@@ -166,7 +166,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \begin{minipage}[t][\textheight][t]{\textwidth} % textheight
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
