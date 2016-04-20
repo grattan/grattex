@@ -461,6 +461,10 @@ left=2.75cm,right=2.75cm
   {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\phantom{Overview}}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
+\newenvironment{recommendations}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{Recommendations}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
+  
 \newenvironment{summary}%
   {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{Summary}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
