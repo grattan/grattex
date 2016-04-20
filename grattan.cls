@@ -462,7 +462,7 @@ left=2.75cm,right=2.75cm
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{recommendations}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{Recommendations}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\textcolor{DarkOrange}{Recommendations}}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
