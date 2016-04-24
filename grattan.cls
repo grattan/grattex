@@ -2,7 +2,7 @@
 \ProvidesClass{grattan}[2015/02/27 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[a4paper,11pt,titlepage,headings=big,chapterprefix=false,headsepline,
-parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
+parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{acronym}
@@ -18,19 +18,23 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \RequirePackage{float}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
-% needs to be switched off for copying and pasting
-\RequirePackage[activate={true,nocompatibility},final,expansion,tracking=true,kerning=true, spacing=false,selected=true, letterspace=-20]{microtype}
-
-\SetExtraSpacing{ font = * / * / * / * / * }{. = {100,100,100},}
-
-% Arial font looks a little bit spaced. One way to do it is to adjust the letterspace 
-% option to microtype.  Another is to adjust the spaceskip
-% large
-% \spaceskip=1.5\fontdimen2\font plus 1.5\fontdimen3\font minus 1.5\fontdimen4\font
-\spaceskip=1.2\fontdimen2\font plus 1.2\fontdimen3\font minus 1.2\fontdimen4\font
+\RequirePackage{microtype}
+%% defaults are far too flamboyant. Indeed, zero protrusion with the 
+%% Helvetica font appears to be protruding slightly (even though it 
+%% is simply flush with the box).
+%% encoding = T1 as in \usepackage[T1]{fontenc}
+\SetProtrusion
+   [ name     = T1-phv,      % the name is optional
+     load     = T1-default ] % first load `T1-default` settings
+   { encoding = T1,
+     family   = phv }        % use for Helvetica family
+   {
+     \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
+   }
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
+\definecolor{DarkOrange}{HTML}{D4582A}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
@@ -120,7 +124,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \vfill
 \begin{mdframed}[style=GrattanFrameBox]%
 \setlength{\parskip}{\currentparskip}% restore the value
-\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
+\captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
 \caption{#2}\label{#3}
 \vspace{-1.5ex}
 }{\end{mdframed}\vfill\end{boxe}} 
@@ -135,7 +139,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \setlength{\columnsep}{10mm}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
@@ -147,7 +151,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
   \setlength{\columnsep}{10mm}
   \begin{multicols}{2}
   \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
 }{%
   \end{multicols}\end{mdframed}
@@ -162,7 +166,7 @@ parskip=half-,twocolumn,landscape,numbers=noenddot]{scrreprt}
 \begin{minipage}[t][\textheight][t]{\textwidth} % textheight
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
@@ -298,7 +302,7 @@ left=2.75cm,right=2.75cm
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2015\phantom{\Large X}}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
@@ -342,7 +346,7 @@ left=2.75cm,right=2.75cm
 \ProcessOptions\relax
 
 \RequirePackage{epstopdf}
-\newcommand{\logoskip}{\par\vspace{16pt}}
+\newcommand{\logoskip}{\par\vspace{38pt}}
 \newcommand{\includegraphicsmaybe}[1]{\IfFileExists{#1}{\includegraphics{#1}}{\includegraphics{dummy.pdf}}}
 \newcommand{\noimage}{%
   \setlength{\fboxsep}{-\fboxrule}%
@@ -373,7 +377,6 @@ left=2.75cm,right=2.75cm
 \endgroup}
   
 \AtBeginDocument{%
-\lsstyle
 \let\mytitle\@title
 \let\myauthor\@author
 % TitlePage
@@ -389,12 +392,13 @@ left=2.75cm,right=2.75cm
   %\begin{minipage}[t][0.7\textheight][t]{\columnwidth}
   \begin{minipage}{\columnwidth}
   \begin{multicols}{2}
-  \textbf{\textcolor{theGrey}{Founding members}}\logoskip
+  \textbf{\textcolor{theGrey}{Founding members}}\par%\logoskip
+  %\vspace*{-5pt}
   \begin{center}
-  \includegraphics[width=4cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/Vic_Gov_Logo.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
-  \includegraphics[width=3.5cm]{./logos/Bhp.pdf}
+  \includegraphics[width=4.0cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/Vic_Gov_Logo.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
+  \includegraphics[width=3.60cm]{./logos/Bhp.pdf}
   \end{center}
   \columnbreak
   
@@ -402,7 +406,7 @@ left=2.75cm,right=2.75cm
   
   {\footnotesize Higher Education}
   \begin{center}
-  \includegraphics[width=2.5cm]{./logos/TMF_logo_green.eps}
+  \includegraphics[width=3.25cm]{./logos/TMF_logo_green.eps}
   \end{center}
   \textbf{\textcolor{theGrey}{Affiliate Partners}}\\[3pt]
   {\footnotesize%
@@ -449,8 +453,16 @@ left=2.75cm,right=2.75cm
 % We define a new environment that take as its contents the text of the 
 % overview, placing it with a chapter* heading 'Overview' all on the same
 % page. 
-\newenvironment{overview}%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{Overview}\begin{multicols}{2}}%
+\newenvironment{overview}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{Overview}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
+  
+\newenvironment{overview*}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\phantom{Overview}}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
+  
+\newenvironment{recommendations}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\textcolor{DarkOrange}{Recommendations}}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
@@ -560,6 +572,5 @@ left=2.75cm,right=2.75cm
 \listofboxes
 \twocolumn%
 }
-
 
 
