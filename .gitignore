@@ -43,3 +43,6 @@ Temporary Items
 .apdisk
 .Rproj.user
 .Rproj
+*.Rproj
+
+.Rhistory
