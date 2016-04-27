@@ -17,7 +17,7 @@ parskip=half-,numbers=noenddot]{scrreprt}
 \RequirePackage{booktabs}
 
 % Must be after cleveref
-\RequirePackage[headheight=22pt, tmargin=0mm, includehead]{geometry}
+\RequirePackage[bottom=3.5cm]{geometry}
 
 
 
@@ -53,8 +53,32 @@ parskip=half-,numbers=noenddot]{scrreprt}
 
 % ------
 % Headers and footers
-% Headers and footers
-\RequirePackage[headwidth=paper:\the\textwidth/2-\the\paperwidth/2:\the\textwidth/2-\the\paperwidth/2, headsepline,plainheadsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
+\usepackage[headsepline,headwidth=page,footsepline,footwidth=page]{scrlayer-scrpage}
+
+
+\ForEachLayerOfPageStyle*{scrheadings}{%
+  \ifstrstart{#1}{scrheadings.head}{%
+    \ModifyLayer[hoffset=0pt,width=\paperwidth]{#1}%
+  }{}%
+}
+\ForEachLayerOfPageStyle*{plain.scrheadings}{%
+  \ifstrstart{#1}{plain.scrheadings.head}{
+    \ModifyLayer[hoffset=0pt,width=\paperwidth]{#1}%
+  }{}%
+}
+
+\ForEachLayerOfPageStyle*{scrheadings}{%
+  \ifstrstart{#1}{scrheadings.foot}{%
+    \ModifyLayer[hoffset=0pt,width=\paperwidth]{#1}%
+  }{}%
+}
+\ForEachLayerOfPageStyle*{plain.scrheadings}{%
+  \ifstrstart{#1}{plain.scrheadings.foot}{
+    \ModifyLayer[hoffset=0pt,width=\paperwidth]{#1}%
+  }{}%
+}
+
+
 
 \clearscrheadings
 \clearscrplain
@@ -67,7 +91,8 @@ parskip=half-,numbers=noenddot]{scrreprt}
 % \cohead[\classification]{\classification}
 % \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}
 % \cfoot[\classification]{\classification}
-\ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
+
+\cfoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
@@ -140,3 +165,4 @@ singlelinecheck=false}
 \RedeclareSectionCommand[
   beforeskip=-.5\baselineskip,
   afterskip=-1em]{subparagraph}
+  
