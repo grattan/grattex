@@ -17,12 +17,11 @@ language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\ttfamily,
 texcsstyle=*\color{blue},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
-% keywordsprefix={\\},
 moredelim = [is][\slshape\color{violet}]{@@}{@@},
-keywordstyle=\color{blue},
 classoffset=1,
 morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
 classoffset=0
@@ -418,15 +417,16 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Before you insert a figure, you need to create your image. This can either be done directly through a scripting language (like R or python), through \LaTeX\ directly (as through Ti\textit{k}Z), or through an external program. Your file should be a pdf, though almost all image types are supported. If you are going through an external program, ensure the file is moved to the atlas directory of your report. This directory should be placed in the same directory as your \verb=.tex= file. The directory should be called something evocative, like \verb=figure=, as it is in this manual.
   
   Once the image is ready, use the following structure to insert a figure.
-  \begin{verbatim}
+  \begin{lstlisting}
    \begin{figure}
-    \Caption{<main caption>}{<secondary caption/y-axis label>}{<cross-reference key>}
-    \includegraphics[width=\columnwidth]{figure/image-name.pdf}
-    \notes{<Notes of the chart>}
+    \Caption{@@<main caption>@@}%
+    {@@<secondary caption/y-axis label>@@}{@@<cross-reference key>@@}
+    \includegraphics[width=\columnwidth]{figure/@@image-filename@@}
+    \notes{@@<Notes of the chart>@@}
     
-    \source{<Source information>}
+    \source{@@<Source information>@@}
    \end{figure}
-  \end{verbatim}
+  \end{lstlisting}
   
   \subsubsection{Tables}
   Tables are tricky in \LaTeX. Use the \verb=tabularx= environment
