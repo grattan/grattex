@@ -103,18 +103,29 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
     innerleftmargin=11pt,
     backgroundcolor=OrangeBackground
     }
+
+% The verysmallbox is intended to be a fraction of one column.
+\newenvironment{verysmallbox}[3][htb]{%
+\setlength{\currentparskip}{\parskip}% save the value
+\begin{boxe}[#1]
+\begin{mdframed}[style=GrattanFrameBox]%
+\setlength{\parskip}{\currentparskip} % restore the value
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
+\caption{#2}\label{#3}
+\vspace{-1.5ex}
+}{\end{mdframed}\end{boxe}} 
     
 % The smallbox is a box intended for onecolumn.
 \newenvironment{smallbox}[3][p]{%
 \setlength{\currentparskip}{\parskip}% save the value
 \begin{boxe}[#1]
-\vfill
+\begin{minipage}[\textheight]{\linewidth}
 \begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\parskip}{\currentparskip}% restore the value
+\setlength{\parskip}{\currentparskip} % restore the value
 \captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=justified,singlelinecheck=false}
 \caption{#2}\label{#3}
 \vspace{-1.5ex}
-}{\end{mdframed}\vfill\end{boxe}} 
+}{\end{mdframed}\end{minipage}\end{boxe}} 
 
 
 
