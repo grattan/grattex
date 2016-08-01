@@ -200,8 +200,21 @@ singlelinecheck=false}
 % New user friendly (less typing) \Caption?
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
-\newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
-\newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
+\newcommand*{\source}[1]{%
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Source:\ #1}
+}
+\newcommand*{\notes}[1]{%
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Notes:\ #1}
+}
+
+\newcommand*{\noteswithsource}[2]{%
+\ifundef{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Notes:\ #1}
+\caption*{Source:\ #2}
+}
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
