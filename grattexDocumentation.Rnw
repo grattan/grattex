@@ -60,11 +60,12 @@ classoffset=0
 
 \usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
 
-\title{{\textrm{Using \LaTeX\ at Grattan}}}
-\author{Hugh Parsonage}
+\title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
+\author{Hugh Griffith Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
 \newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
 
 % From scrartcl.cls lines 3687--3701
 \makeatletter
@@ -115,7 +116,7 @@ Whereas an illustrative version of the following, where the author is offered a 
 \end{lstlisting}
 
 
-Coloured text is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting).
+Coloured text is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
 
 \newpage
  \section{Some principles for erstwhile MS Word users}
@@ -445,6 +446,17 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{verbatim}
   The \verb=<alignment parameters>= determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. Use the double-backslash \verb=\\= to move to the next row and the ampersand \verb=&= to move to the next column. Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
+  \subsection*{More advanced} 
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{rp{10cm}}
+  \toprule
+  \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
+  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across $n$th columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+
   
   \begin{lstlisting}
     \newcommand{\tblHead}[2][c]{\bfseries\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
@@ -568,7 +580,32 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
   \section{pdflink errors}
   Use \verb=\nocite{*}= and delete all auxiliary files to escape the error.
-  
+  \part{Notes for the typesetter}
+  \section{Moving floats}
+  \begin{enumerate}
+  \item If the author would prefer a float  (figure, table, or box) to be placed in a different location in the document, you as the typesetter must first understand why the output routine has placed the figure where it has. 
+  \item If it is clear that the output routine has averted a substantial typographic sin by placing the figure there, the author should be told of this
+  \item Otherwise, the first step is to move the errant float forward or backward one or two paragraphs as required, noting that the order in which floats of the same type (\eg~figure) occur in the source file is preserved in the final document.
+  \item Next consider, in the following order:
+  \begin{enumerate} 
+  \item providing the options \lstinline![htb]! as required to the float environment
+  \item providing the same options to the errant float's predecessor
+  \item providing the same options to both the errant float and its predecessor
+  \end{enumerate}
+  \item At this point, if the figure remains steadfast, you have encountered a very unusual situtation, and I would encourage you to accept the result.  
+  \item Otherwise: you should consider rewording captions or the surrounding text.
+  \item Next consider the use of \lstinline!\FloatBarrier!
+  \item Then consider the option \verb=!=.
+  \item As an emergency measure, you can manually place the figure using the option \verb=H=.
+  \item As a last resort, consider using primitive \TeX{} to manually place the figure with respect to the page. This should be the very last step in a publication. 
+  \end{enumerate}
+
+  \section{Bad page break}
+  Consider using:
+  \begin{enumerate}
+  \item \lstinline!\pagebreak[0]! where you think is a good/better place for line breaking:
+  \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where $n$ is an integer multiple of $1/4$. 
+  \end{enumerate}
 
 
 
