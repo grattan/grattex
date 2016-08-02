@@ -19,6 +19,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
 \RequirePackage[activate=true, expansion, final, kerning=true, spacing=true]{microtype}
+\microtypecontext{spacing=nonfrench}
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
@@ -41,8 +42,8 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{colortbl}
 \RequirePackage{array}
 \RequirePackage{tablefootnote} % for footnotes within tables
-\newcommand{\myhline}{\noalign{\global\arrayrulewidth1pt}\hline
-                      \noalign{\global\arrayrulewidth1pt}}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
 
 
 \RequirePackage{graphicx}
@@ -198,8 +199,24 @@ singlelinecheck=false}
 % New user friendly (less typing) \Caption?
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
-\newcommand{\source}[1]{\footnotesize\textit{Source:~#1}}
-\newcommand{\notes}[1]{\footnotesize\textit{Notes:~#1}}
+\newcommand*{\source}[1]{%
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Source:\ #1}
+}
+\newcommand*{\notes}[1]{%
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Notes:\ #1}
+}
+
+\newcommand*{\noteswithsource}[2]{%
+\ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
+\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\caption*{Notes:\ #1}
+\caption*{Source:\ #2}
+}
+
+\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}}
+
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
