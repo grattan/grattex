@@ -1,0 +1,674 @@
+\documentclass[a4paper,11pt]{scrartcl}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{makeidx}
+  \makeindex
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[left=4cm, right=4cm]{geometry}
+\usepackage[scale=1.1]{ebgaramond}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{Orange}{HTML}{F68B33}
+\definecolor{DarkOrange}{HTML}{D4582A}
+\usepackage{bold-extra}
+\lstset{
+language=[LaTeX]TeX,
+basicstyle=\ttfamily,
+commentstyle=\ttfamily,
+texcsstyle=*\color{blue},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource},
+columns=flexible,
+breaklines=true,
+backgroundcolor=\color{black!5},
+moredelim = [is][\slshape\color{violet}]{@@}{@@},
+classoffset=1,
+morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
+classoffset=0
+}
+\usepackage{fancyvrb}
+\newcommand{\nverb}[1]{
+\begin{Verbatim}
+ #1
+\end{Verbatim}
+
+}
+
+
+\usepackage{upquote}  % for ``
+\usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
+\captionsetup[table]{belowskip=5pt}
+
+\usepackage{titlesec}     % for customizing sections
+% customize section
+\titleformat{\section}%
+  {\Large\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+\titleformat{\subsection}%
+  {\large\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesubsection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+\titleformat{\subsubsection}%
+  {\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesubsubsection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+
+
+\usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
+
+\title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
+\author{Hugh Griffith Parsonage}
+
+\newcommand{\defi}[1]{\textbf{\textsf{#1}}}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+
+% From scrartcl.cls lines 3687--3701
+\makeatletter
+\newcommand\addsubsec{\SecDef\@addsubsec\@saddsubsec}
+\newcommand*{\@addsubsec}{}
+\def\@addsubsec[#1]#2{%
+  \edef\reserved@aa{%
+    \unexpanded{%
+      \subsection[{#1}]{#2}%
+      \c@secnumdepth=
+    }\the\c@secnumdepth\relax
+  }%
+  \c@secnumdepth=\numexpr \subsectionnumdepth-1\relax
+  \reserved@aa
+}
+\newcommand*{\@saddsubsec}[1]{%
+  \subsection*{#1}\addsubsecmark{}%
+}
+\makeatother
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+% \subsection*{Interpreting code examples}
+% \addcontentsline{toc}{subsection}{Interpreting code examples}
+\addsubsec{Interpreting code examples}
+Example code are written using a listing:
+\begin{lstlisting}
+LaTeX code with some \markup.  
+\begin{environment}
+
+\end{environment}
+\end{lstlisting}
+or inline: \lstinline!\TeX{}!.
+
+Code examples can be, for want of better terms, \emph{complete} or \emph{illustrative}. \defi{Complete} code means the code should be copied-and-pasted directly into the input file without modification, whereas \defi{illustrative} code should be modified based on the desired output. For example, if an author wishes to increase the gap between columns in the overview by 2\,mm, the code excerpt is complete. The author should copy and paste the following, placing it before \lstinline!\begin{overview}!:
+\begin{lstlisting}
+\newlength{\overviewextra}
+\setlength{\overviewextra}{2mm}
+\addtolength{\columnsep}{\overviewextra}
+\end{lstlisting}
+Whereas an illustrative version of the following, where the author is offered a choice for the gap between columns, the option is coloured violet, slanted, and delimited with chevrons:
+\begin{lstlisting}
+\newlength{\overviewextra}
+\setlength{\overviewextra}{@@<extra column width>@@}
+\addtolength{\columnsep}{\overviewextra}
+\end{lstlisting}
+
+
+Coloured text is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
+
+\newpage
+ \section{Some principles for erstwhile MS Word users}
+ Learning \LaTeX{} as an MS Word user is a frustrating, confusing, rewarding, and ecstatic experience.  There are some principles that are inviolate for novices.
+ \begin{enumerate}
+  \item Don't worry about the appearance of your document as your write. Write what you mean. MS Word is a What You See Is What You Get editor. \LaTeX\ is a What You See Is What You \emph{Mean}.
+  \item \LaTeX\ takes an author's input and sets out the document's appearance using the author's raw input, the author's advice about how the document should look, and a set of parameters and algorithms that govern tradeoffs concerning document appearance. 
+  \item The \verb=grattan.cls= template is designed so that authors do not have to make any layout or typographic decisions.
+  \item \LaTeX\ is a butler, not a robot. It may not do exactly as you say, but it will do what you mean. When it doesn't, it either means 
+  \begin{itemize}
+   \item You given it a nonsensical instruction
+   \item Your instruction contradicts another instruction
+   \item Your instruction contravenes good typographic design, as it sees fit
+  \end{itemize}
+
+  \item \LaTeX\ is a butler, not a slave: it is a partner in document preparation. In general, your responsibilities should not overlap: you decide the content and it decides the form. Where your responsibilities do overlap, you should seek to \emph{advise} \LaTeX, not to \emph{order} it. Further, you should be as gentle as possible with your advice. Only forcefully advise when the document will not require amendments and you are sure \LaTeX\ is wrong. 
+  \item Don't manually position figures, tables, or boxes. Let them float in the document. It is nearly certain that the initial placement will be odd. As long you have used a \verb=figure=, \verb=table= or \verb=*box= environment, they will float into good positions. For errant figures, tables, or boxes, wait until the document is completely finished before advising positions.
+  \item Don't do any of the following:
+  \begin{enumerate}
+   \item Insert horizontal or vertical whitespace, including manual line-breaks (except in tables)
+   \item page- or column-breaking
+  \end{enumerate}
+  \item Do not ignore errors (\emph{i.e.}~things that prevent compilation). Any errors which you can't resolve in less than 60 seconds should be referred to Cameron Chisholm or Hugh Parsonage. Preferably attach what you think caused the error.
+  \item 
+
+  \item Beware special characters. 
+  \begin{table}[h]
+   \centering
+   \begin{tabular}{ll}
+   \toprule
+   \textbf{When you want this \dots} & \textbf{\dots type this.} \\
+   \midrule
+   %
+   \$ & \verb=\$= \\
+   \% & \verb=\%= \\
+   `` & \verb=``= (button above \verb=Tab=) \\
+   '' & \verb=''= \\
+   -- (en-dash) & \verb=--=  \\
+   --- (em-dash) & \verb=---=  \\
+   \bottomrule   
+  \end{tabular}
+  \end{table}
+
+  
+
+
+  \item The grattan class file assumes your input is encoded in \texttt{utf8}. Avoid copying from MS Word to \verb=.tex= files. Otherwise, special characters above will creep in silently. If you must, use \verb=pandoc=.
+  \item Use \verb= % = for comments.
+ \end{enumerate}
+ \section{Basics of \textrm{\LaTeX}}
+ \subsection{Compilation}
+ The process of \LaTeX\ is basically:
+ \begin{enumerate}
+  \item Start with a plain text file with the file extension \verb=.tex= in a directory/folder
+  \item Run the \verb=pdflatex= program on that file. That is, type 
+  \begin{lstlisting}
+    cd path/to/your/directory
+  \end{lstlisting}
+  and then 
+  \begin{lstlisting}
+    pdflatex file.tex
+  \end{lstlisting}
+  in cmd (Windows) or Terminal (Linux or Mac).
+  \item The program returns a pdf file or an error.
+ \end{enumerate}
+ In Overleaf these occur in the background.
+
+ 
+ \subsection{Commands and environments}
+ \subsubsection{Commands}
+ A \defi{command} starts with a backslash \verb=\= followed by one or more charaters. A {command} may have zero or more mandatory arguments and zero or more optional arguments. For example:
+ \begin{table}[H]
+ \raggedright
+ \renewcommand{\arraystretch}{1.4}
+ \newlength{\tabularxlength}
+ \setlength{\tabularxlength}{\linewidth}
+ \addtolength{\tabularxlength}{0.5\paperwidth}
+ \addtolength{\tabularxlength}{-0.5\linewidth}
+ \caption{Examples of commands and their arguments}
+  \makebox[\textwidth][l]{%
+  \begin{tabularx}{\tabularxlength}{lp{2.5cm}X}
+    \toprule
+    \textbf{\textsf{Command}} & \textbf{\textsf{Arguments}} & \textbf{\textsf{Description}} \\ 
+    \midrule
+    \verb=\$= & 0 mandatory\newline 0 optional & \textbf{Prints} the \$\ sign\\
+    \verb=\textbf= & 1 mandatory\newline 0 optional & Prints its argument in boldface. \\
+    \verb=\\= & 0 mandatory\newline 1 optional & Forces a linebreak, with optional extra space \\
+    \verb=\footcite= & 1 mandatory\newline 2 optional & Cites its mandatory argument, with optional pre- or post-notes (such as page numbers) \\
+    \verb=\footcites= & $n$ mandatory\newline $2n + 2$ optional & Multiple footcites \\
+    \bottomrule
+  \end{tabularx}
+  }
+ \end{table}
+ \clearpage
+ \subsubsection{Environments}
+ An \defi{environment} looks like
+\begin{lstlisting}
+  \begin{environment}
+   ...
+  \end{environment}
+\end{lstlisting}
+It may have mandatory or optional arguments, which occur immediately after \verb=\begin{environment}=.  
+
+ \begin{table}[h]
+ \raggedright
+ \renewcommand{\arraystretch}{1.4}
+ \setlength{\tabularxlength}{\linewidth}
+ \addtolength{\tabularxlength}{0.5\paperwidth}
+ \addtolength{\tabularxlength}{-0.5\linewidth}
+ \caption{Examples of environments}
+  \makebox[\textwidth][l]{%
+  \begin{tabularx}{\tabularxlength}{lp{2.5cm}X}
+    \toprule
+    \textbf{\textsf{Environment}} & \textbf{\textsf{Arguments}} & \textbf{\textsf{Description}} \\ 
+    \midrule
+    \verb=document= & none & The contents of the document. \\
+    \verb=figure= & 1 optional & Creates a section of a document which ``floats'' above the body of the text. Captions and cross-reference labels within a \verb=figure= environment will refer to the figure. \\ 
+    %
+    \verb=quote= & none & Used to designate a long quote with additional margin. \\
+    %
+    \verb=smallbox= & 2 mandatory, 1 optional & Creates a box, limited to one column. The first argument is optional and specifies the position of the box. The second argument is mandatory and specifies the title of the box, the third argument is also mandatory and specifies the cross-reference label of the box. \\ 
+    \bottomrule
+  \end{tabularx}
+  }
+  \end{table}
+  %
+  \section{Writing a report}
+  \subsection{The preamble}
+  The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything after \verb=\begin{document}=. 
+  
+  In every \LaTeX\ document, you must have 
+  \begin{enumerate}
+   \item The \emph{command} \verb=\documentclass= and a valid document class. In our case, use 
+   \begin{lstlisting}
+\documentclass{grattan}
+   \end{lstlisting}
+   \item A \verb=document= environment.
+  \end{enumerate}
+  That is, every \LaTeX\ document must have the following three lines.
+  \begin{lstlisting}
+\documentclass{@@<style>@@}
+  
+\begin{document}
+  
+\end{document}
+  \end{lstlisting}
+  \subsubsection{Grattan-specific preamble}
+  The \verb=grattan= package will not compile without additional lines of code. Your preamble must have the following lines.
+  \begin{lstlisting}
+   \documentclass{grattan}
+   
+   \title{<Title of the report>}
+   \author{<Authors>}
+   
+   \addbibresource{bibliography.bib}
+  \end{lstlisting}
+  \subsubsection{Other requirements}
+  The \verb=.tex= file must be in a directory containing:
+  \begin{enumerate}
+   \item The \verb=grattan.cls= file, which creates the document according to the Grattan template.
+   \item The \verb=bibliography.bib= file, containing your bibliography database.
+   \item The folder \verb=FrontPage= which must contain:
+   \begin{enumerate}
+    \item A file \verb=FrontPagePicture=
+   \end{enumerate}
+   \item The folder \verb=logos= which must contain:
+    \begin{verbatim}
+    aus-gov-logo-stacked-black-eps-converted-to.pdf
+    aus-gov-logo-stacked-black.eps
+    Bhp.pdf
+    TMF_logo_black.eps
+    TMF_logo_green-eps-converted-to.pdf
+    TMF_logo_green.eps
+    UOM-Pos3D_S_Sm.jpg
+    UOM-Pos_S_PMS-eps-converted-to.pdf
+    UOM-Pos_S_PMS.eps
+    UOM-Rev_H_PMS-eps-converted-to.pdf
+    UOM-Rev_H_PMS.eps
+    UOM-Rev_S_PMS-eps-converted-to.pdf
+    UOM-Rev_S_PMS.eps
+    Vic_Gov_Logo-eps-converted-to.pdf
+    Vic_Gov_Logo.eps
+    \end{verbatim}
+
+
+  \end{enumerate}
+
+
+
+  
+  \subsection{Frontmatter}
+  \subsubsection{Overview / Summary / Preface}
+  Use \index{overview}
+  \begin{lstlisting}
+   \begin{overview}[-35pt]
+    ...
+   \end{overview}
+  \end{lstlisting}
+  for your overview. The \lstinline![-35pt]! is a fudge factor that adjusts the position of the title to vertically balance the overview on the page. It may be abolished in future versions. 
+  
+  You can also use \verb=\begin{summary}= as required. If you want to change the name of the frontmatter, ask us --- it is straight-forward to amend.
+
+  \subsubsection{Contents page(s)}
+  Write \index{contentspage}
+  \begin{lstlisting}
+   \contentspage
+  \end{lstlisting}
+  After the \verb=overview= environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
+  
+  \subsection{Body text}
+  \subsubsection{Sectioning}
+  To start a new chapter, write \index{chapter} \index{section}
+  \begin{lstlisting}
+   \chapter{<chapter title>}
+  \end{lstlisting}
+  Similarly, 
+  \begin{lstlisting}
+   \section{<section title>}
+   \subsection{<subsection title>}
+   \subsubsection{<subsubsection title>}
+  \end{lstlisting}
+  Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
+  
+  To start an appendix, type \index{appendix}.
+  \begin{lstlisting}
+   \appendix
+  \end{lstlisting}
+  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{<appendix title>}! to title the appendices.
+  
+  For example:
+  \begin{lstlisting}
+  \documentclass{grattan}
+  
+  \title{Brief report}
+  \author{Me}
+  
+  \begin{document}
+  
+  \begin{overview}
+  In this report, we found all is well.
+  \end{overview}
+  \contentspage
+  \chapter{Australia is fine}
+  Australia is fine.
+  \section{How do we know this}
+  Grattan analysis of ABS (2016).
+  \subsection{Limitations of analysis}
+  Our analysis is wrong.
+  
+  \chapter{Options for reform}
+  Tidy desk.
+  \appendix
+  \chapter{International comparisons}
+  \end{document}
+  \end{lstlisting}
+  
+  \subsection{Boldface, italics}
+  In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
+  
+  That said, you can use \lstinline!\textbf{<text>}! to make \lstinline!text! boldface and \lstinline!\textit{<text>}! to make \lstinline!text! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
+  
+  \subsection{Paragraphs}
+  Use a blank line to mark a new paragraph. Thus
+  \begin{center}
+  \begin{minipage}{\textwidth}
+  \begin{lstlisting}
+   A well-designed GST reform package could support economic growth, make the tax and transfer system more progressive and give state and Commonwealth governments more budgetary options.
+
+   Proposals to extend or broaden Australia's 10 per cent goods and services tax (GST) have been perennial. Current governments face many challenges, such as funding growing healthcare costs, reducing deficits, and cutting inefficient taxes. A higher GST could fund any of these initiatives -- although perhaps not all of them. 
+  \end{lstlisting}
+  \end{minipage}
+  \end{center}
+
+  
+  \subsection{Numbered / bulleted lists}
+  Use \verb=enumerate= and \verb=itemize= \index{enumerate}\index{itemize}
+  \begin{lstlisting}
+   \begin{enumerate}
+    \item First numbered item
+    \item Second numbered item 
+    \begin{enumerate}
+     \item First item in a nested list
+    \end{enumerate}
+    \item Third numbered item
+   \end{enumerate}
+
+   \begin{itemize}
+     \item First bulleted item 
+     \item Second bulleted item 
+     \begin{itemize}
+      \item First nested bulleted item.
+     \end{itemize}
+   \end{itemize}
+  \end{lstlisting}
+
+  
+  \subsection{Floats}
+  \subsubsection{Figures}
+  Before you insert a figure, you need to create your image. This can either be done directly through a scripting language (like R or python), through \LaTeX\ directly (as through Ti\textit{k}Z), or through an external program. Your file should be a pdf, though almost all image types are supported. If you are going through an external program, ensure the file is moved to the atlas directory of your report. This directory should be placed in the same directory as your \verb=.tex= file. The directory should be called something evocative, like \verb=figure=, as it is in this manual.
+  
+  Once the image is ready, use the following structure to insert a figure.
+  \begin{lstlisting}
+   \begin{figure}
+    \Caption{@@<main caption>@@}%
+    {@@<secondary caption/y-axis label>@@}{@@<cross-reference key>@@}
+    \includegraphics[width=\columnwidth]{figure/@@image-filename@@}
+    \notes{@@<Notes of the chart>@@}
+    
+    \source{@@<Source information>@@}
+   \end{figure}
+  \end{lstlisting}
+  
+  \subsubsection{Tables}
+  Tables are tricky in \LaTeX. Use the \verb=tabularx= environment
+  
+  \begin{verbatim}
+   \begin{tabularx}{\columnwidth}{<alignment parameters>}
+    \toprule
+    Header1 & Header2 & Header3 \\
+    \midrule 
+    First row & First row & First row \\
+    Second row & Second row & Second row \\
+    ...
+    Last row & Last row & Last row
+    \bottomrule
+   \end{tabularx}
+  \end{verbatim}
+  The \verb=<alignment parameters>= determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. Use the double-backslash \verb=\\= to move to the next row and the ampersand \verb=&= to move to the next column. Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
+
+  \subsection*{More advanced} 
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{rp{10cm}}
+  \toprule
+  \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
+  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across $n$th columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+
+  
+  \begin{lstlisting}
+    \newcommand{\tblHead}[2][c]{\bfseries\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+    \newcommand{\tblHeadR}[2][c]{\bfseries\begin{tabular}[#1]{@{}>{\raggedleft}p{\linewidth}@{}}#2\end{tabular}}
+    
+    \begin{table}
+    \caption{Budgetary impact of income tax rate changes}\label{tbl:tax_cuts}
+    \begin{tabularx}{\columnwidth}{lr>{\raggedleft\arraybackslash}X}
+    \toprule
+    \tblHead{Tax bracket} & \tblHead{Current tax rate} & \tblHeadR{Budgetary impact of 1 percentage point change (2015-16)}\\
+    \midrule
+    \$0-\$18,200 & 0\% & \\
+    \$18,201 - \$37,000 & 19\% & \$1.9\\
+    \$37,001 - \$80,000 & 32.5\% & \$2.3\\
+    \$80,001 - \$180,000& 37\% & \$1.3\\
+    \$180,001 + & 45\% & \$0.7\\
+    \bottomrule
+    \end{tabularx}
+
+    \notes{Excludes Temporary Budget Repair Levy (2\%\ for those earning over \$180,000 until 2016-17)}
+
+    \source{Grattan analysis ATO 2\%\ sample file (2013). See \url{https://grattan.shinyapps.io/Changing_income_taxes/Forty_three_app.Rmd}}
+    \end{table}
+  \end{lstlisting}
+  \subsection{Boxes}
+  \subsubsection{smallbox}\index{smallbox}\index{boxes!smallbox}
+  Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
+
+  \begin{lstlisting}
+   \begin{smallbox}{<title of the box>}{box:<cross-ref key>}
+    <contents of the box>
+   \end{smallbox}
+
+  \end{lstlisting}
+  
+  \subsubsection{bigbox*} \index{bigbox*}\index{boxes!bigbox*}
+  Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
+
+  When you have a figure in a big box, you must use 
+  \begin{verbatim}
+   \begin{figure}[H] 
+    ...
+   \end{figure}
+  \end{verbatim}
+  to insert a figure.
+  
+  Note the \verb=[H]= which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
+  
+  \subsection{Footnotes and referencing}
+  Use the command \verb=\footnote= to mark a footnote. Use \verb=\textcite= within a footnote.
+  
+  \subsubsection{\texttt{bibliography.bib}}
+  The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
+  \begin{verbatim}
+   @type{<key>,
+    author={<author name>},
+    title={<title>},
+    year={<year>}
+   }
+  \end{verbatim}
+  There are several elements to a bibliography:
+  \begin{enumerate}
+   \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
+   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as I will show below).
+   \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
+   
+  \end{enumerate}
+  
+  \subsubsection{Citations}
+  Use \verb=\footcite{key}= to cite an entry in the database. The citation will appear in a footnote. Use \verb=\footcite{key1}{key2}= to cite multiple entries in the same footnote.
+  
+  Use \verb=\footcite[][18--24]{<key>}= to add a page reference (in this case, pages 18--24) as a postnote the citation. 
+  
+  Use \verb=\textcite{<key>}= to cite a key if you don't want in a footnote. Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
+  
+  \section{More advanced macros}
+  \subsection{New commands}
+  Use \verb=\newcommand= to create a new command. 
+  \begin{lstlisting}
+   \newcommand{<command name>}{<what the command does>}
+   \newcommand{<command name>}[number of arguments]{<what the command does as a function of #>}
+  \end{lstlisting}
+  For example,
+  \begin{lstlisting}
+   \newcommand{\eg}{\emph{e.g.}}
+  \end{lstlisting}
+  Creates a newcommand \verb=\eg= which prints \emph{e.g.} when it is called. Another one I often use is:
+  \begin{lstlisting}
+   \newcommand{\gao}{Grattan analysis of}
+  \end{lstlisting}
+  Slightly more advanced is
+  \begin{lstlisting}
+   \newcommand{\defi}[1]{\textbf{#1}\index{#1}}
+  \end{lstlisting}
+  This makes the argument of \verb=\defi= bold and places it in the index. 
+  
+  \section{Compiling a final document}
+  \subsection{Citations and references}
+  \begin{enumerate}
+    \item If your file is called \lstinline!YourReport.tex!
+    \begin{lstlisting}
+    texify --pdf --clean YourReport.tex
+    \end{lstlisting}
+    \item Update bibliography
+    \begin{lstlisting}
+    biber YourReport
+    \end{lstlisting}
+    Note that you should not provide the extension for \lstinline!biber!.
+    \item Re-run:
+    \begin{lstlisting}
+    texify --pdf --clean YourReport.tex
+    \end{lstlisting}
+  \end{enumerate}
+
+  \section{Known bugs in the \texttt{grattan.cls} file}
+  \subsection{Big boxes}
+  \subsubsection{Caption baseline does not match matching column baseline}
+  Solved: \url{http://tex.stackexchange.com/questions/305450/align-caption-baseline-in-second-column-with-baseline-of-first-column}
+  \subsection{Footnotes in big boxes extend across the entire page}
+  
+  
+  \section{pdflink errors}
+  Use \verb=\nocite{*}= and delete all auxiliary files to escape the error.
+  \part{Notes for the typesetter}
+  \section{Moving floats}
+  \begin{enumerate}
+  \item If the author would prefer a float  (figure, table, or box) to be placed in a different location in the document, you as the typesetter must first understand why the output routine has placed the figure where it has. 
+  \item If it is clear that the output routine has averted a substantial typographic sin by placing the figure there, the author should be told of this
+  \item Otherwise, the first step is to move the errant float forward or backward one or two paragraphs as required, noting that the order in which floats of the same type (\eg~figure) occur in the source file is preserved in the final document.
+  \item Next consider, in the following order:
+  \begin{enumerate} 
+  \item providing the options \lstinline![htb]! as required to the float environment
+  \item providing the same options to the errant float's predecessor
+  \item providing the same options to both the errant float and its predecessor
+  \end{enumerate}
+  \item At this point, if the figure remains steadfast, you have encountered a very unusual situtation, and I would encourage you to accept the result.  
+  \item Otherwise: you should consider rewording captions or the surrounding text.
+  \item Next consider the use of \lstinline!\FloatBarrier!
+  \item Then consider the option \verb=!=.
+  \item As an emergency measure, you can manually place the figure using the option \verb=H=.
+  \item As a last resort, consider using primitive \TeX{} to manually place the figure with respect to the page. This should be the very last step in a publication. 
+  \end{enumerate}
+
+  \section{Bad page break}
+  Consider using:
+  \begin{enumerate}
+  \item \lstinline!\pagebreak[0]! where you think is a good/better place for line breaking:
+  \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where $n$ is an integer multiple of $1/4$. 
+  \end{enumerate}
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+
+ 
+\printindex
+\end{document}

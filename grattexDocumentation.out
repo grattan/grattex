@@ -1,0 +1,40 @@
+\BOOKMARK [2][-]{subsection*.1}{Interpreting code examples}{}% 1
+\BOOKMARK [1][-]{section.1}{Some principles for erstwhile MS Word users}{}% 2
+\BOOKMARK [1][-]{section.2}{Basics of LaTeX}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Compilation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Commands and environments}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Commands}{subsection.2.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Environments}{subsection.2.2}% 7
+\BOOKMARK [1][-]{section.3}{Writing a report}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{The preamble}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Grattan-specific preamble}{subsection.3.1}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Other requirements}{subsection.3.1}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Frontmatter}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Overview / Summary / Preface}{subsection.3.2}% 13
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Contents page\(s\)}{subsection.3.2}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Body text}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Sectioning}{subsection.3.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{Boldface, italics}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.5}{Paragraphs}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.6}{Numbered / bulleted lists}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.7}{Floats}{section.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Figures}{subsection.3.7}% 21
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Tables}{subsection.3.7}% 22
+\BOOKMARK [2][-]{subsection.3.8}{Boxes}{section.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.8.1}{smallbox}{subsection.3.8}% 24
+\BOOKMARK [3][-]{subsubsection.3.8.2}{bigbox*}{subsection.3.8}% 25
+\BOOKMARK [2][-]{subsection.3.9}{Footnotes and referencing}{section.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.9.1}{bibliography.bib}{subsection.3.9}% 27
+\BOOKMARK [3][-]{subsubsection.3.9.2}{Citations}{subsection.3.9}% 28
+\BOOKMARK [1][-]{section.4}{More advanced macros}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{New commands}{section.4}% 30
+\BOOKMARK [1][-]{section.5}{Compiling a final document}{}% 31
+\BOOKMARK [2][-]{subsection.5.1}{Citations and references}{section.5}% 32
+\BOOKMARK [1][-]{section.6}{Known bugs in the grattan.cls file}{}% 33
+\BOOKMARK [2][-]{subsection.6.1}{Big boxes}{section.6}% 34
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Caption baseline does not match matching column baseline}{subsection.6.1}% 35
+\BOOKMARK [2][-]{subsection.6.2}{Footnotes in big boxes extend across the entire page}{section.6}% 36
+\BOOKMARK [1][-]{section.7}{pdflink errors}{}% 37
+\BOOKMARK [-1][-]{part.1}{Notes for the typesetter}{}% 38
+\BOOKMARK [0][-]{section.8}{Moving floats}{part.1}% 39
+\BOOKMARK [1][-]{section.9}{Bad page break}{section.8}% 40
