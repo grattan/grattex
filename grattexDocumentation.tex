@@ -21,6 +21,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -189,7 +190,7 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
    \item page- or column-breaking
   \end{enumerate}
   \item Do not ignore errors (\emph{i.e.}~things that prevent compilation). Any errors which you can't resolve in less than 60 seconds should be referred to Cameron Chisholm or Hugh Parsonage. Preferably attach what you think caused the error.
-  \item 
+  \item Take note of warnings from time to time. Warnings relating to bibliographies should be fixed immediately. Other warnings are typically just hints that manual intervention may improve the layout -- resolving them can be deferred.
 
   \item Beware special characters. 
   \begin{table}[h]
@@ -231,7 +232,6 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
   in cmd (Windows) or Terminal (Linux or Mac).
   \item The program returns a pdf file or an error.
  \end{enumerate}
- In Overleaf these occur in the background.
 
  
  \subsection{Commands and environments}
@@ -282,7 +282,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \textbf{\textsf{Environment}} & \textbf{\textsf{Arguments}} & \textbf{\textsf{Description}} \\ 
     \midrule
     \verb=document= & none & The contents of the document. \\
-    \verb=figure= & 1 optional & Creates a section of a document which ``floats'' above the body of the text. Captions and cross-reference labels within a \verb=figure= environment will refer to the figure. \\ 
+    \verb=figure= & 1 optional & Creates a section of a document which ``floats'' above the body of the text. Captions and cross-reference labels within a \verb=figure= environment will refer to the figure. The optional argument restricts the placement of the figure on the page. \\ 
     %
     \verb=quote= & none & Used to designate a long quote with additional margin. \\
     %
@@ -479,10 +479,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   
   \subsubsection{Tables}
-  Tables are tricky in \LaTeX. Use the \verb=tabularx= environment
+  Tables are tricky in \LaTeX. Use the \verb=tabularx= environment for a table with a specific width. Let \lstinline!\columnwidth! be the table's width.
   
-  \begin{verbatim}
-   \begin{tabularx}{\columnwidth}{<alignment parameters>}
+  \begin{lstlisting}
+   \begin{tabularx}{\columnwidth}{@@<alignment parameters>@@}
     \toprule
     Header1 & Header2 & Header3 \\
     \midrule 
@@ -492,18 +492,20 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     Last row & Last row & Last row
     \bottomrule
    \end{tabularx}
-  \end{verbatim}
-  The \verb=<alignment parameters>= determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. Use the double-backslash \verb=\\= to move to the next row and the ampersand \verb=&= to move to the next column. Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
+  \end{lstlisting}
+  The \lstinline!@@<alignment parameters>! determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. Use the double-backslash \verb=\\= to move to the next row and the ampersand \verb=&= to move to the next column. Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
   \subsection*{More advanced} 
   \begin{table}[H]
   \centering
-  \begin{tabular}{rp{10cm}}
+  %\makebox[\textwidth]{%
+  \begin{tabular}{rp{9cm}}
   \toprule
   \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
   \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across $n$th columns with horizontal alignment \lstinline!@@<al.>@@! \\
   \bottomrule
-  \end{tabular}
+  \end{tabular}%
+  %}%
   \end{table}
 
   
@@ -628,12 +630,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
   
   \section{pdflink errors}
-  Use \verb=\nocite{*}= and delete all auxiliary files to escape the error.
+  Use \lstinline!\nocite{*}! and delete all auxiliary files to escape the error.
   \part{Notes for the typesetter}
   \section{Moving floats}
   \begin{enumerate}
   \item If the author would prefer a float  (figure, table, or box) to be placed in a different location in the document, you as the typesetter must first understand why the output routine has placed the figure where it has. 
-  \item If it is clear that the output routine has averted a substantial typographic sin by placing the figure there, the author should be told of this
+  \item If it is clear that the output routine has averted a substantial typographic sin by placing the figure there, the author should be told of this.
   \item Otherwise, the first step is to move the errant float forward or backward one or two paragraphs as required, noting that the order in which floats of the same type (\eg~figure) occur in the source file is preserved in the final document.
   \item Next consider, in the following order:
   \begin{enumerate} 
@@ -652,8 +654,26 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \section{Bad page break}
   Consider using:
   \begin{enumerate}
-  \item \lstinline!\pagebreak[0]! where you think is a good/better place for line breaking:
+  \item \lstinline!\pagebreak[0]! at a good/better place for line breaking:
   \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where $n$ is an integer multiple of $1/4$. 
+  \end{enumerate}
+
+  \section{Excessive whitespace between paragraphs}
+  This occurs 
+  \begin{enumerate}
+  \item Reposition floats if useful.
+  \item Use \lstinline!\oneraggedpage!:
+  \begin{lstlisting}
+% one page ragged bottom
+\makeatletter
+\newcommand{\oneraggedpage}{\let\mytextbottom\@textbottom
+  \let\mytexttop\@texttop
+  \raggedbottom
+  \afterpage{%
+  \global\let\@textbottom\mytextbottom
+  \global\let\@texttop\mytexttop}}
+  \end{lstlisting}
+  \item Finally, use \lstinline!\raggedbottom! on the entire document. Review.
   \end{enumerate}
 
 

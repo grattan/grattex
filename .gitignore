@@ -46,3 +46,9 @@ Temporary Items
 *.Rproj
 
 .Rhistory
+*.aux
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.toc
