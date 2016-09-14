@@ -19,16 +19,18 @@ output: html_document
 5. Run the installation file.
 6. Restart your computer.
 7. Update your installation of LaTeX.
-8. Open up a command prompt (Windows) or terminal (iOS / Linux) and type `tex null\bye` then hit Enter/Return. The output should be something like
+8. Open up a command prompt (Windows) or terminal (iOS / Linux) and type `tex foo\bye` then hit Enter/Return. The output should be something like
 
     ```
     This is TeX, Version 3.14159265 < distribution >
     < path to your install > 
     No pages of output.
-    Transcript written on null.log.
+    Transcript written on foo.log.
     ```
     
-    If the above is not returned in the console, your installation is faulty. 
+    If the above is not returned in the console, your installation is faulty. In particular, if you get something like `'tex' is not recognized as a command`, then TeX is not available on your system path (likely because you had other programs open during the installation phase).
+
+
     
     ### Github
     
@@ -51,4 +53,19 @@ output: html_document
     d. Restart Sublime Text 3.
 9. Restart your computer.
 
+
+    ### Script builder
 9. 
+
+```
+"windows" : {
+			"script_commands": [
+				"Rscript -e knitr::knit('$file_name')",
+				"pdflatex -draftmode",
+				"biber",
+				"pdflatex -draftmode",
+				"pdflatex -interaction=nonstopmode"
+			]
+		},
+
+```
