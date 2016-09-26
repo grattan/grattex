@@ -21,6 +21,7 @@ Note: Installing LaTeX requires administrative privileges on your machine.
 5. Run the installation file.
 6. Restart your computer.
 7. Update your installation of LaTeX. See http://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution for the most up-to-date reference for your particular distribution.
+7. Update your installation again. Continue to update your installation until you are told there is nothing to update. (You must update parts of your distribution before other parts can be detected as out-of-date.)
 8. Open up a command prompt (Windows) or terminal (iOS / Linux) and type `tex foo\bye` then hit Enter/Return. The output should be something like
 
     ```
