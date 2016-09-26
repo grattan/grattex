@@ -5,6 +5,8 @@ date: "2 July 2016"
 output: html_document
 ---
 
+Note: Installing LaTeX requires administrative privileges on your machine.
+
 # Installation guide
 
 1. Backup your computer.
@@ -18,7 +20,7 @@ output: html_document
 4. Close your browser and ensure no programs are running. (This isn't your standard `recommendation': if you don't close everything down, it won't work.)
 5. Run the installation file.
 6. Restart your computer.
-7. Update your installation of LaTeX.
+7. Update your installation of LaTeX. See http://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution for the most up-to-date reference for your particular distribution.
 8. Open up a command prompt (Windows) or terminal (iOS / Linux) and type `tex foo\bye` then hit Enter/Return. The output should be something like
 
     ```
