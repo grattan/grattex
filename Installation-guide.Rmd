@@ -60,6 +60,8 @@ Note: Installing LaTeX requires administrative privileges on your machine.
     e. Restart Sublime Text 3.
 9. Restart your computer.
 
+    Note: Sublime Text is commercial software with an unlimited trial period. How long you decide is a fair trial of the software is up to you.
+
     ### Testing
 9. Go to https://github.com/HughParsonage/grattex/
 9. Clone this repo (you may be prompted to confirm your browser opening another application but it is safe to do so).
