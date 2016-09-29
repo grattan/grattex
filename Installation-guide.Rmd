@@ -9,6 +9,16 @@ Note: Installing LaTeX requires administrative privileges on your machine.
 
 # Installation guide
 
+## Overview
+
+To author reports using the grattan LaTeX template, you need:
+
+1. The ability to run `pdflatex`.
+2. The style files that tell LaTeX to compile the document with the Grattan template.
+3. A text editor to assist with LaTeX coding.
+
+To be able to run `pdflatex`, you need a *distribution* of LaTeX for your operating system. The style files are just plain text files, along with pdfs of the logos needed. The text editor we recommend is called Sublime Text 3. You may elect to have another text editor (or no text editors at all). See http://tex.stackexchange.com/questions/339/latex-editors-ides for a list of editors and relative strengths and weaknesses. I can provided limited support for Emacs, some support for Kile, and full support for ShareLaTeX and Sublime Text 3. 
+
 1. Backup your computer.
 1. Update your operating system.
 1. *(Optional, Windows only)* Install [Search Everything.](https://www.voidtools.com/)
