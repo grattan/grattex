@@ -7,3 +7,7 @@
 \contentsline {section}{\numberline {1.1}Scope}{6}{section.1.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Spending projections}{7}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Capital gains tax and asset lock-in}{10}{chapter..2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Why does asset lock-in occur?}{10}{section.2.1}

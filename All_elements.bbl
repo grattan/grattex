@@ -19,6 +19,41 @@
 
 \refsection{0}
   \sortlist[entry]{nyt/global/}
+    \entry{Burman2009}{inbook}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=8c05910a2897f3c7bdfa564939eacde0}{%
+           family={Burman},
+           family_i={B\bibinitperiod},
+           given={L},
+           given_i={L\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=93f0848dcd5c38be5644c07298e8deee}{%
+           family={Evans},
+           family_i={E\bibinitperiod},
+           given={Chris},
+           given_i={C\bibinitperiod}}}%
+        {{hash=f7b3aebe1b62926f85b2684a59100efa}{%
+           family={Krever},
+           family_i={K\bibinitperiod},
+           given={R},
+           given_i={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Thomson Reuters, Sydney}%
+      }
+      \strng{namehash}{8c05910a2897f3c7bdfa564939eacde0}
+      \strng{fullhash}{8c05910a2897f3c7bdfa564939eacde0}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelyear}{2009}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Australian Business Tax Reform in Retrospect and Prospect}
+      \field{title}{Taxing Capital Gains in Australia: Assessment and Recommendations}
+      \field{year}{2009}
+    \endentry
     \entry{Daley2014}{misc}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=c066536e9842423e2d78d979ebeba9a7}{%
@@ -60,6 +95,76 @@
       \verb{url}
       \verb http://www.defence.gov.au/whitepaper/docs/defenceissuespaper2014.pdf
       \endverb
+    \endentry
+    \entry{Ingles2009a}{report}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=03dff32d5799a69de36674920cc10b7c}{%
+           family={Ingles},
+           family_i={I\bibinitperiod},
+           given={David},
+           given_i={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {The Australia Institute}%
+      }
+      \strng{namehash}{03dff32d5799a69de36674920cc10b7c}
+      \strng{fullhash}{03dff32d5799a69de36674920cc10b7c}
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labelyear}{2009}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The great superannuation tax concession rort}
+      \field{type}{techreport}
+      \field{year}{2009}
+      \verb{url}
+      \verb http://www.tai.org.au/system/files_force/super_tax_concessions_final_7.pdf
+      \endverb
+    \endentry
+    \entry{Johnson2008}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=3ab34db904b7dbbd29c0c325a354a5ab}{%
+           family={Johnson},
+           family_i={J\bibinitperiod},
+           given={C},
+           given_i={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{3ab34db904b7dbbd29c0c325a354a5ab}
+      \strng{fullhash}{3ab34db904b7dbbd29c0c325a354a5ab}
+      \field{sortinit}{J}
+      \field{sortinithash}{ec3950a647c092421b9fcca6d819504a}
+      \field{labelyear}{2008}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Virginia Tax Review}
+      \field{title}{Taxing the Consumption of Capital Gains}
+      \field{volume}{28}
+      \field{year}{2008}
+    \endentry
+    \entry{Lindsey1987}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=3559e5e6139ceb03dcd70485d5b1569c}{%
+           family={Lindsey},
+           family_i={L\bibinitperiod},
+           given={L},
+           given_i={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {University of Chicago Press}%
+      }
+      \strng{namehash}{3559e5e6139ceb03dcd70485d5b1569c}
+      \strng{fullhash}{3559e5e6139ceb03dcd70485d5b1569c}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelyear}{1987}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Taxes and Capital Formation}
+      \field{title}{Rates, Realizations and Revenues of Capital Gains}
+      \field{year}{1987}
     \endentry
     \entry{mangioni2014re}{inproceedings}{}
       \name{author}{2}{}{%
@@ -108,6 +213,31 @@
       \field{labeltitlesource}{title}
       \field{title}{Interstate Comparison of Taxes 2014-15}
       \field{year}{2014}
+    \endentry
+    \entry{OECD2006TaxationOfCapitalGains}{report}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=bdbed435a416a918aa494017fda4c7fb}{%
+           family={OECD},
+           family_i={O\bibinitperiod}}}%
+      }
+      \list{institution}{2}{%
+        {Organisation for Economic Cooperation}%
+        {Development}%
+      }
+      \strng{namehash}{bdbed435a416a918aa494017fda4c7fb}
+      \strng{fullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \field{sortinit}{O}
+      \field{sortinithash}{7803d2715d5e795e70382b084ab8d00e}
+      \field{labelyear}{2006}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Taxation of Capital Gains of Individuals: Policy Considerations and Approaches}
+      \field{type}{techreport}
+      \field{year}{2006}
+      \verb{url}
+      \verb http://www.oecd-ilibrary.org/taxation/taxation-of-capital-gains-of-individuals_9789264029507-en
+      \endverb
     \endentry
     \entry{PBO2014}{misc}{}
       \name{author}{1}{}{%
