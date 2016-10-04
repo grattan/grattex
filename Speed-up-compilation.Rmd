@@ -24,3 +24,4 @@ pdftex -ini -jobname="foofoo" "&pdflatex" mylatexformat.ltx barbar.tex
 6. Run `pdflatex barbar.tex` in the normal way.
 
 
+For the Super Working Paper, this reduces the compilation from 5.3 s to 4.0 s

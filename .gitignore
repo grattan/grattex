@@ -49,6 +49,7 @@ Temporary Items
 *.aux
 *.blg
 *.log
+*.loboxe
 *.out
 *.synctex.gz
 *.toc
