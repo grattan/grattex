@@ -1,6 +1,9 @@
 \documentclass{grattanAlpha}
 
 \title{Report}
+\author{author}
+
+\addbibresource{AP-bibliography.bib}
 
 \begin{document}
 \contentspage
@@ -128,5 +131,52 @@ grants to the States.\footnote{In this report, “States and Territories” are 
 These areas include situations where the Commonwealth budget would substantially benefit from State
 Government reforms.
 
+
+\section{Spending projections}
+The Commonwealth’s spending projections also seem optimistic. They assume tight spending restraint, with government spending falling as a share of the economy (\Cref{fig:FISCAL-2}).\footcite[][5--11]{Treasury2015BudgetPapers201516}  The projections forecast spending to grow at just 2.6~per cent a year on average between 2014\nobreakdash-15 and 2025\nobreakdash-26, far below the 3.6~per~cent average growth rate of the last decade.\footcite[][5]{PBO2015}  Consistent with this spending restraint, the Commonwealth Government forecasts that spending will decline to 24.2 per cent of GDP in 2024-25, below its long term average.\footcite[][3--9]{Treasury2015BudgetPapers201516}  
+
+Spending is forecast to be below the historical average in all program areas other than defence, as is shown in \Vref{fig:FISCAL-8}, which compares the projected growth in the Commonwealth’s largest spending programs over the next 10 years with the history of the last 10~years. 
+
+\begin{figure}
+\caption{Spending forecasts rely on lower growth in almost all major programme areas\label{fig:FISCAL-8}}%
+\includegraphics[width=\columnwidth]{figure/budget-repair-Figure8-altered-1.pdf}
+\noteswithsource{The defence estimates do not factor in the commitment to increase defence spending to 2~per~cent of GDP by 2023-24. Rather they are based on the long-term funding commitments made in previous Defence White Papers and government announcements.}{{\textcite{PBO2014}}}
+\end{figure}
+
+Some of these estimates seem improbable. For example, it seems unlikely that spending on demand-driven programs such as the \textbf{Medicare Benefits Schedule} will moderate without significant policy changes. The PBO attributes the strong historical growth in Medicare payments to policies (such as the Bulk Billing Incentive and the Extended Medicare Safety Net) that have made Medicare services more attractive or accessible. New policy measures such as the freeze in Medicare scheduled fees are forecast to produce lower growth. Yet for more than 20 years the ageing of the population, medical science and technology improvements and rising expectations of the health system have put relentless pressure on the health budget.\footcite{Daley2014}  These pressures will not abate, and the forecasts almost certainly understate them.
+
+The decline in spending growth for hospitals and schools may be credible given the decision in the 2014-15 Budget to limit spending increases to inflation and population growth. This of course does not mean that spending growth will decline in these program areas – merely that the states will have to bear all of the cost of real per capita growth.
+
+The 2015-16 budget assumes even tighter spending growth than have previous budgets. Except for welfare spending, mainly driven by the NDIS, no category is expected to grow materially faster than inflation.\footcite[][BP No.~1, pp.~5--11]{Treasury2015BudgetPapers201516}  
+
+In other programs, lower forecast growth rates are tied to measures from the 2014-15 and 2015-16 Budgets that are unlikely to be passed by the Senate. Therefore spending on the Carers Payment, higher education and Newstart benefits is likely to be more than forecast. Even the forecast growth in defence spending – the only program area where spending is forecast to grow faster than in the last decade – does not put Australia on a path to spend 2~per~cent of GDP on defence by 2023-24 as the Government has promised.\footnote{See: \textcite[][1]{Defence2014}.} 
+
+
+Spending projections also assume there will be no new spending initiatives promised at elections or in response to natural disasters or community demands for more assistance to the disadvantaged. Experience over the last decade suggests that such spending restraint will be difficult (\Vref{box:FISCAL-1}).
+
+Given all the number of things that need to go right, moderating spending growth to 24.2~per~cent of GDP in 2024-25 seems extremely unlikely without further explicit budget measures to cut expenditure.
+
+
+\begin{table}
+\captionwithunits{Approaches to valuing properties for council rates vary\label{tbl:PROP-1}}%
+{Property value bases that can be used to set council rates in each state}
+\begin{tabularx}{\columnwidth}{>{\bfseries}lX}
+%
+\toprule
+\textbf{State} & \textbf{Basis for council rates} \\%[0.5\baselineskip]
+\midrule
+\textbf{NSW} & Unimproved  \\[0.5\baselineskip]
+\textbf{QLD} & Unimproved  \\[0.5\baselineskip]
+\textbf{VIC} & Either unimproved or capital improved  \\[0.5\baselineskip]
+\textbf{WA} & Capital improved  \\[0.5\baselineskip]
+\textbf{SA} & Either unimproved or capital improved \\[0.5\baselineskip]
+\textbf{TAS} & Either unimproved or capital improved  \\[0.5\baselineskip]
+\textbf{NT} & Unimproved  \\[0.5\baselineskip]
+\textbf{ACT} & Unimproved  \\%[0.5\baselineskip]
+\bottomrule
+\end{tabularx}
+\noteswithsource{‘Unimproved’ refers to a set of land valuations that capture the value of the land only. ‘Capital improved’ refers to valuations that capture the value of the land and significant capital improvements made to that land, such as buildings.}{%
+\mbox{\textcites{productivity2008assessing}{mangioni2014re}{Treasury2014-Interstate-Comparison-Taxes1415}}.}
+\end{table}
 
 \end{document}

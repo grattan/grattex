@@ -135,12 +135,12 @@ $(document).ready(function () {
 <li>Run the installation file.</li>
 <li>Restart your computer.</li>
 <li>Update your installation of LaTeX.</li>
-<li><p>Open up a command prompt (Windows) or terminal (iOS / Linux) and type <code>tex null\bye</code> then hit Enter/Return. The output should be something like</p>
+<li><p>Open up a command prompt (Windows) or terminal (iOS / Linux) and type <code>tex foo\bye</code> then hit Enter/Return. The output should be something like</p>
 <pre><code>This is TeX, Version 3.14159265 &lt; distribution &gt;
 &lt; path to your install &gt; 
 No pages of output.
-Transcript written on null.log.</code></pre>
-<p>If you don’t see this in the console, your installation is faulty.</p>
+Transcript written on foo.log.</code></pre>
+<p>If the above is not returned in the console, your installation is faulty. In particular, if you get something like <code>'tex' is not recognized as a command</code>, then TeX is not available on your system path (likely because you had other programs open during the installation phase).</p>
 <h3 id="github">Github</h3></li>
 <li>Sign up for Github.</li>
 <li>Email me to be added to a repo.</li>
@@ -161,9 +161,20 @@ Transcript written on null.log.</code></pre>
 <li>Type <code>LaTeXTools</code>. Verify the installation is proceeding by observing the <code>[ ==   ]</code> at the bottom left of the window.</li>
 <li>Restart Sublime Text 3.</li>
 </ol></li>
-<li><p>Restart your computer.</p></li>
+<li><p>Restart your computer.</p>
+<h3 id="script-builder">Script builder</h3></li>
 <li></li>
 </ol>
+<pre><code>&quot;windows&quot; : {
+            &quot;script_commands&quot;: [
+                &quot;Rscript -e knitr::knit('$file_name')&quot;,
+                &quot;pdflatex -draftmode&quot;,
+                &quot;biber&quot;,
+                &quot;pdflatex -draftmode&quot;,
+                &quot;pdflatex -interaction=nonstopmode&quot;
+            ]
+        },
+</code></pre>
 </div>
 
 

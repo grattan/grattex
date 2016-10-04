@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.28)  1 AUG 2016 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.28)  14 SEP 2016 12:01
 entering extended mode
 **./All_elements.tex
 (All_elements.tex
@@ -485,13 +485,12 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
-File: pdftex.def 2016/06/17 v0.06h Graphics/color for pdfTeX
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\graphics-def\pdf
+tex.def"
+File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count120
@@ -507,7 +506,7 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2016/03/10 v2.15b AMS math features
+Package: amsmath 2016/06/28 v2.15d AMS math features
 \@mathmargin=\skip62
 
 For additional information on amsmath, use the `?' option.
@@ -606,7 +605,7 @@ gfcore.sty" ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 "
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2016/06/02 v1.0s Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
@@ -1456,10 +1455,10 @@ Now handling font encoding U ...
    defining Unicode char U+2423 (decimal 9251)
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def"
-File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )<<t1.cmap>>)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
@@ -1672,7 +1671,7 @@ Package scrhack Info: hyperref hack deactivated because of
 (scrhack)             need that hack, on input line 73.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
-Package: hyperref 2016/05/21 v6.83p Hypertext links for LaTeX
+Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
@@ -1715,7 +1714,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Hy@pagecounter=\count177
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
-File: pd1enc.def 2016/05/21 v6.83p Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
@@ -1761,7 +1760,7 @@ LaTeX Info: Redefining \pageref on input line 6416.
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
-File: hpdftex.def 2016/05/21 v6.83p Hyperref driver for pdfTeX
+File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
 \HyAnn@Count=\count184
 \Fld@listcount=\count185
 \c@bookmark@seq@number=\count186
@@ -2148,7 +2147,7 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 x.cfg"
 File: biblatex.cfg 
 ))
-Package biblatex Info: Redefining '\footcite' on input line 565.
+Package biblatex Info: Redefining '\footcite' on input line 568.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\tocloft\tocloft.
 sty"
@@ -2576,10 +2575,10 @@ Package logreq Info: Writing requests to 'All_elements.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43668 strings out of 493335
- 875403 string characters out of 3136651
- 1436250 words of memory out of 3000000
- 46271 multiletter control sequences out of 15000+200000
+ 43669 strings out of 493335
+ 875470 string characters out of 3136651
+ 1436301 words of memory out of 3000000
+ 46272 multiletter control sequences out of 15000+200000
  72769 words of font info for 149 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,21n,102p,10453b,1822s stack positions out of 5000i,500n,10000p,200000b,50000s
