@@ -356,8 +356,6 @@ left=2.75cm,right=2.75cm
 % Heads and footers
 %
 \newcommand{\classification}{}
-\newcommand*{\Subtitle}[1]{\renewcommand{\@subtitle}{#1}}
-\providecommand*{\@subtitle}{}
 
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
@@ -365,11 +363,11 @@ left=2.75cm,right=2.75cm
 % heading pages. Leaving them out will reset the titles on pages with 
 % \chapter{}
 \RequirePackage{ragged2e}
-\lehead[\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}}
-\lohead[\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}}
+\lehead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
+\lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \the\year{\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \the\year{\Large\strut}}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
@@ -406,8 +404,6 @@ left=2.75cm,right=2.75cm
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
-%% This is a working paper.
-{\Large {\mysubtitle}}\\[2\baselineskip] % Tagline or further description
 
 {\LARGE \myauthor}
 
@@ -460,12 +456,17 @@ left=2.75cm,right=2.75cm
 
 \ProcessOptions\relax
 
+\RequirePackage{multicol}
 \newcommand{\logoskip}{\par\vspace{16pt}}
 
-\newcommand{\GrattanWorkingPaperNumber}[1]{\renewcommand*{\@GrattanWorkingPaperNumber}{#1}}
+\newcommand*{\GrattanWorkingPaperNumber}[1]{\renewcommand*{\@GrattanWorkingPaperNumber}{#1}}
 \newcommand{\@GrattanWorkingPaperNumber}{}
+\newcommand*{\GrattanReportNumber}[1]{\renewcommand*{\@GrattanReportNumber}{#1}}
+\newcommand{\@GrattanReportNumber}{}
 
-\newcommand{\MONTH}{%
+% Allow MONTH/YEAR to be defined; otherwise by default the date of compilation
+\newcommand*{\MONTH}[1]{\renewcommand*{\@MONTH}{#1}}
+\newcommand{\@MONTH}{%
   \ifcase\the\month
   \or January% 1
   \or February% 2
@@ -481,8 +482,14 @@ left=2.75cm,right=2.75cm
   \or December% 12
   \fi}
 
+\newcommand*{\YEAR}[1]{\renewcommand*{\@YEAR}{#1}}
+\newcommand{\@YEAR}{\the\year}
+
 \newcommand\acknowledgements[1]{\renewcommand\@acknowledgements{#1}}
 \newcommand\@acknowledgements{}
+
+\newcommand*{\ISBN}[1]{\renewcommand*{\@ISBN}{#1}}
+\newcommand{\@ISBN}{}
 
 \RequirePackage{tabularx}
   
@@ -490,7 +497,6 @@ left=2.75cm,right=2.75cm
 \pagestyle{empty}
 	\let\mytitle\@title
 	\let\myauthor\@author
-  \let\mysubtitle\@subtitle
 	
 	% TitlePage
 	\onecolumn
@@ -567,7 +573,7 @@ left=2.75cm,right=2.75cm
   \eject \normalsize
   \begin{minipage}[t][0.8\textheight][t]{\columnwidth}
   \setlength{\parskip}{5.5pt plus 2pt}
-  \subsection*{Grattan Institute Working Paper No. \@GrattanWorkingPaperNumber, \MONTH\ \the\year}
+  \subsection*{Grattan Institute Report No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
   \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
@@ -576,7 +582,6 @@ left=2.75cm,right=2.75cm
 % Table of contentss
 \setcounter{tocdepth}{0}
 
-\RequirePackage{multicol}
 \newlength{\currentparskip}
 
 % Designing the overview
