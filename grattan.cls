@@ -590,7 +590,7 @@ left=2.75cm,right=2.75cm
 % overview, placing it with a chapter* heading 'Overview' all on the same
 % page. 
 \newenvironment{overview}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\addchap{Overview}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-22pt}}{\vspace{#1}}\addchap{Overview}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
