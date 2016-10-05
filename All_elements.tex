@@ -1,12 +1,15 @@
-\documentclass{grattanAlpha}
+\documentclass[continuous]{grattan}
 
 \title{Report}
+\Subtitle{.}
 \author{author}
 
 \addbibresource{AP-bibliography.bib}
 
 \begin{document}
 \contentspage
+
+\listoffigures
 
 \begin{overview}[-40pt]
 A federal election is an opportunity to take stock of how Australia
@@ -261,6 +264,94 @@ Properties with rental yields below 5.4~percent but higher than her current 5 wo
 
 The higher the tax rate on capital gains the less willing she will be to realise gains to pursue new investment opportunities. If capital gains were taxed in full, rather than with a 50 per cent discount, her hurdle rate for the new investment would be 5.9~percent.
 \end{smallbox}
+
+\begin{figure}%
+\Caption{Pre-tax contributions of more than \$25,000 a year will likely be made mainly by high-income men}%
+{Projected number of individuals in 2017-18 making pre-tax contributions of more than \$25,000}%
+{fig:pre-tax-contributions-25k-by-decile-201718}
+\includegraphics[width=4.47222in,height=2.94759954545455in]{figure/n-individuals-contr-over-25k-by-decile-201718-1} 
+\noteswithsource{Pre-tax super contributions made by individuals in the ATO 2 per cent
+sample file for 2013-14 are adjusted to reflect total pre-tax contributions reported
+in ATO Taxation Statistics for superannuation funds, such as by estimating
+Super Guarantee contributions for taxpayers with salary income but who report
+no pre-tax contributions from their employer and accounting for people who do
+not lodge their tax return on time. Contributions are then projected forward to
+2017-18 to account for increases in nominal incomes and growth in the working
+population. The range of taxable incomes included in each decile is the same for
+men and women.}{%
+Grattan analysis of \textcite{ATO2016SampleFile1314}.}
+\end{figure}
+
+
+\section{``Carry forward'' provisions are not needed}\label{sec:carry-fwd-provisions-not-needed}
+
+While most of the Government’s proposed changes will better target contributions tax breaks, the “carry forward” provisions are a step backwards. 
+The Government proposes that taxpayers with a super balance of less than \$500,000 will be able to draw on unused pre-tax caps from the previous five years to make ``catch-up'' contributions.
+In theory, these provisions are supposed to help women, carers and others with broken work histories. 
+The ALP does not support this change.\footcite{Bowen-2016-Labors-plan-for-super-not-retrospective}
+
+
+Restricting the catch-up allowance to those with a balance of less than \$500,000 would exclude some people. 
+But it does not materially improve the targeting: those likely to use the catch-up allowance will still mostly be men on higher incomes; 
+only 11~per~cent would be women aged below~50.
+A mere 1~per~cent of women with superannuation balances of less than \$500,000 -- 96,000~people -- are expected to make pre-tax contributions of \$25,000 or more in 2017-18.
+Most~of them would be among the top 20 per cent of income earners (\Vref{fig:n-individuals-by-decile-over-500k-and-over-25k-201718}). %\enlargethispage*{0.5\baselineskip}
+
+\begin{figure}%
+\Caption{Allowing taxpayers to carry forward unused caps will mainly help wealthier men}%
+{Projected number of individuals in 2017-18 with super balances of less than \$500,000 and making pre-tax contributions of at least \$25,000}%
+{fig:n-individuals-by-decile-over-500k-and-over-25k-201718}
+
+\includegraphics[width=4.47222in,height=2.94759954545455in]{figure/n-individuals-by-decile-over-500k-and-over-25k-201718-1} 
+
+\noteswithsource{See \Cref{fig:pre-tax-contributions-25k-by-decile-201718}.}{Grattan analysis of \textcite{ATO2016SampleFile1314}.}
+\end{figure}
+
+\chapter{Future changes\label{chap:future-changes}}
+Overall, both the Government’s and the ALP’s proposed changes are a big step in the right direction. 
+Those affected are overwhelmingly high-income earners who are unlikely to ever qualify for the Age Pension in retirement. 
+Yet the changes don’t go far enough.
+
+\section{Super tax breaks remain poorly targeted overall even after 2016 Budget reforms}\label{sec:super-tax-breaks-remain-poorly-targeted-overall-even-after-2016-budget-reforms}
+
+Even after the reforms, super tax breaks will overwhelmingly flow to high-income earners who do not need them. 
+People in the top 20 per cent of income earners, who are unlikely to ever get a pension, will still receive about half of all super pre-tax contribution tax breaks.
+
+Treasury projections in the 2016 Budget show that the lifetime value of tax breaks to high-income men remains much higher than the value of the Age Pension for low-income earners, even after the Government's Budget changes (\Vref{fig:npv-total-govt-lifetime-support-through-Age-Pension-super-tax}). % 
+These projections are likely to be conservative since they ignore all post-tax super contributions, which are largely made by high-income earners, boosting the super earnings tax breaks they receive.\footnote{Different assumptions about life expectancy and draw down rates can also result in much higher estimates of the lifetime benefits to high-income earners. For example, \textcite{Industry-Super-2015-Off-target-current-settings} calculates that superannuation tax breaks for the top 5 per cent of income earners are worth more than \$2~million for men over their lifetimes.}
+
+\begin{figure}[!b]
+\captionwithunits{Lifetime income support is unequally distributed even after the Government's changes\label{fig:npv-total-govt-lifetime-support-through-Age-Pension-super-tax}}%
+{Net present value of total government support over a lifetime through the Age Pension and super tax breaks in 2016}%
+
+
+\includegraphics[width=4.47222in,height=2.94759954545455in]{figure/npv-total-govt-lifetime-support-throught-Age-Pension-super-tax-cowplot-1} 
+
+
+
+% {Individuals are assumed to commence work in 2016 at age 30 and work until age 70, with a predicted life expectancy of 92.
+% Accumulated superannuation benefits are invested in an account-based pension and individuals are assumed to draw down their assets at the current age based minimum drawdown rates.
+% The level of tax assistance and Age Pension entitlements are discounted by 5 per cent per annum to calculate a net present value in 2016 dollars.
+% Annual incomes are calculated for each percentile based on the distribution of earners at each single year of age.
+% Assumes no non-concessional contributions}%
+\noteswithsource{Individuals are assumed to commence work in 2016 at age 30 and work
+until age 70, with a predicted life expectancy of 92. Accumulated superannuation
+benefits are invested in an account-based pension and individuals are assumed
+to draw down their assets at the current age-based minimum drawdown rates.
+The level of tax assistance and Age Pension entitlements are discounted by 5
+per cent per annum to calculate a net present value in 2016 dollars. Annual
+incomes are calculated for each percentile based on the distribution of earners at
+each single year of age. Assumes no post-tax contributions.}%
+{\textcite[][4]{Budget-2016-17-Super-fact-sheets}.}
+\end{figure}
+
+Before the changes, someone in the top 1 per cent of income earners could expect to receive \textbf{two-and-a-half times as much} in tax breaks from super over her lifetime as a retiree with no assets receives in pension. 
+This is also two-and-a-half times as much as the average income earner receives in pension and super tax breaks combined. 
+The Budget changes merely trim the worst of these excesses: the top one per cent now receives \textbf{just twice as much} as low or average income earners.
+
+There is no public consensus on how government support for people's retirement should be distributed. 
+Yet when self-funded retirees receive twice as from government as the assistance provided by the pension, it is clear more work is required to align super tax breaks with their policy purpose.
+
 
 
 

@@ -1,10 +1,21 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattanWorkingPaperAugust2016}[2016/08/27 Working papers of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2016/10/05 Reports of the Grattan Institute, Melbourne]
 
-\LoadClass[a4paper,11pt,titlepage,headings=big,chapterprefix=false,headsepline,
-parskip=half-,twocolumn,numbers=noenddot, 
-listof=nochaptergap% no space between figures of different chapters
+\LoadClass[%
+a4paper,
+11pt,
+titlepage,
+headings=big,
+chapterprefix=false,
+headsepline,
+parskip=half-,
+twocolumn,
+numbers=noenddot,
 ]{scrreprt}
+
+% Continuous numbering
+\RequirePackage{chngcntr}
+
 % avoid non-discretionary hyphens 
 \exhyphenpenalty=100
 \RequirePackage{cmap}
@@ -101,10 +112,6 @@ listof=nochaptergap% no space between figures of different chapters
 \Crefname{boxe}{Box}{Boxes}
 \DeclareFloatingEnvironment[listname={List of boxes}, name = {Box}]{boxe}
 
-% Continuous numbering
-\RequirePackage{chngcntr}
-\counterwithout{figure}{chapter}
-\counterwithout{table}{chapter}
 \counterwithout{boxe}{chapter}
 \counterwithout{footnote}{chapter}
 
@@ -444,6 +451,13 @@ left=2.75cm,right=2.75cm
 
 }
 
+\DeclareOption{continuous}{%
+  \KOMAoption{listof}{nochaptergap}
+  \addtocontents{lof}{\linespread{1.3}\selectfont}% optical
+  \counterwithout{figure}{chapter}
+  \counterwithout{table}{chapter}
+}
+
 \ProcessOptions\relax
 
 \newcommand{\logoskip}{\par\vspace{16pt}}
@@ -469,6 +483,8 @@ left=2.75cm,right=2.75cm
 
 \newcommand\acknowledgements[1]{\renewcommand\@acknowledgements{#1}}
 \newcommand\@acknowledgements{}
+
+\RequirePackage{tabularx}
   
 \AtBeginDocument{%
 \pagestyle{empty}
