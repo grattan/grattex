@@ -1,8 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2015/02/27 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattanWorkingPaperAugust2016}[2016/08/27 Working papers of the Grattan Institute, Melbourne]
 
 \LoadClass[a4paper,11pt,titlepage,headings=big,chapterprefix=false,headsepline,
-parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
+parskip=half-,twocolumn,numbers=noenddot, 
+listof=nochaptergap% no space between figures of different chapters
+]{scrreprt}
+% avoid non-discretionary hyphens 
+\exhyphenpenalty=100
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{acronym}
@@ -10,7 +14,8 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
   \makeindex
 \RequirePackage{xcolor}
 \RequirePackage{amsmath,amssymb}
-\RequirePackage{tikz,adjustbox}
+\RequirePackage{tikz}
+\RequirePackage{adjustbox}
   \usetikzlibrary{positioning}
   \usetikzlibrary{decorations.text}
   \usetikzlibrary{decorations.pathmorphing}
@@ -18,11 +23,10 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \RequirePackage{float}
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
-\RequirePackage{microtype}
-%% defaults are far too flamboyant. Indeed, zero protrusion with the 
-%% Helvetica font appears to be protruding slightly (even though it 
-%% is simply flush with the box).
-%% encoding = T1 as in \usepackage[T1]{fontenc}
+\frenchspacing
+\RequirePackage[activate=true, expansion, final, kerning=true, spacing=true]{microtype}
+%\microtypecontext{spacing=nonfrench}
+% http://tex.stackexchange.com/questions/303457/setprotrusion-with-helvetica-on-specific-characters
 \SetProtrusion
    [ name     = T1-phv,      % the name is optional
      load     = T1-default ] % first load `T1-default` settings
@@ -31,10 +35,10 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
    {
      \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
    }
+
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
-\definecolor{DarkOrange}{HTML}{D4582A}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
@@ -59,15 +63,16 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 
 
 \RequirePackage{graphicx}
-
+\RequirePackage{booktabs}
 % No widows
 \RequirePackage[all]{nowidow}
 
 % Arial font
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
+  
 %\RequirePackage{uarial}
+%  \linespread{1.04}
 \RequirePackage[scaled]{helvet}
   \renewcommand{\familydefault}{\sfdefault}
 
@@ -81,7 +86,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 %   \chapter[\protect\jumplink{ch\thechapter}{#1}]{#1}%
 %   \outline[fit=fitv]{1}[ch\thechapter]{#1}%
 % }
-\RequirePackage[colorlinks,colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue]{hyperref}
+\RequirePackage[colorlinks, colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue, hypertexnames=false, hidelinks]{hyperref}
 \RequirePackage{cleveref}
 
 % Make url formatting the same
@@ -95,6 +100,14 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \crefname{boxe}{Box}{Boxes}
 \Crefname{boxe}{Box}{Boxes}
 \DeclareFloatingEnvironment[listname={List of boxes}, name = {Box}]{boxe}
+
+% Continuous numbering
+\RequirePackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{boxe}{chapter}
+\counterwithout{footnote}{chapter}
+
 \mdfdefinestyle{GrattanFrameBox}{%
     linecolor=Orange,
     nobreak=true, % prevents page breaking
@@ -116,18 +129,31 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
     innerleftmargin=11pt,
     backgroundcolor=OrangeBackground
     }
+
+% The verysmallbox is intended to be a fraction of one column.
+\newenvironment{verysmallbox}[3][htb]{%
+\setlength{\currentparskip}{\parskip}% save the value
+\begin{boxe}[#1]
+\begin{mdframed}[style=GrattanFrameBox]%
+\setlength{\parskip}{\currentparskip} % restore the value
+\RaggedRight
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false}
+\caption{#2}\label{#3}
+\vspace{-1.5ex}
+}{\end{mdframed}\end{boxe}} 
     
 % The smallbox is a box intended for onecolumn.
 \newenvironment{smallbox}[3][p]{%
 \setlength{\currentparskip}{\parskip}% save the value
 \begin{boxe}[#1]
-\vfill
+\begin{minipage}[\textheight]{\linewidth}
 \begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\parskip}{\currentparskip}% restore the value
-\captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
+\setlength{\parskip}{\currentparskip} % restore the value
+\RaggedRight
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false}
 \caption{#2}\label{#3}
 \vspace{-1.5ex}
-}{\end{mdframed}\vfill\end{boxe}} 
+}{\end{mdframed}\end{minipage}\end{boxe}} 
 
 
 
@@ -139,7 +165,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \setlength{\columnsep}{10mm}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
@@ -148,11 +174,12 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
   \setlength{\currentparskip}{\parskip}
   \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
-  \setlength{\columnsep}{10mm}
-  \begin{multicols}{2}
-  \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=centering,singlelinecheck=false, aboveskip=0pt}
  \caption{#1}\label{#2}%
+   \setlength{\columnsep}{10mm}
+  \begin{multicols}{2}
+  \RaggedRight
+  \setlength{\parskip}{\currentparskip}% restore the value
 }{%
   \end{multicols}\end{mdframed}
   \end@dblfloat
@@ -166,7 +193,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \begin{minipage}[t][\textheight][t]{\textwidth} % textheight
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain, justification=nohyphen, singlelinecheck=false}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=justified,singlelinecheck=false}
  \caption{#1}\label{#2}%
  } {\end{multicols}\end{minipage}\end{mdframed}\end{boxe}%
  \clearpage\twocolumn\nopagecolor}
@@ -182,7 +209,7 @@ parskip=half-,twocolumn,numbers=noenddot]{scrreprt}
 \newcommand{\captionwithunits}[2]{%
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
 singlelinecheck=false,position=top,skip=0pt}
-\caption{#1}
+\caption{{\normalsize\strut}#1}
 %\vspace{-11pt}
 \captionsetup{font={small,color=theGrey}}
 \caption*{#2}
@@ -201,20 +228,22 @@ singlelinecheck=false}
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
 \newcommand*{\source}[1]{%
-\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\captionsetup{format=plain, font={scriptsize, it}, skip=3pt, justification=justified, singlelinecheck=false, position=below}
 \caption*{Source:\ #1}
 }
 \newcommand*{\notes}[1]{%
-\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\captionsetup{format=plain, font={scriptsize, it}, skip=3pt, justification=justified, singlelinecheck=false, position=below}
 \caption*{Notes:\ #1}
 }
 
 \newcommand*{\noteswithsource}[2]{%
-\ifundef{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}
-\captionsetup{format=plain, font={scriptsize, it}, skip=4pt, justification=justified, singlelinecheck=false, position=below}
+\ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
+\captionsetup{format=plain, font={scriptsize, it}, skip=2.5pt, justification=justified, singlelinecheck=false, position=below}
 \caption*{Notes:\ #1}
 \caption*{Source:\ #2}
 }
+
+\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}}
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
@@ -224,24 +253,23 @@ singlelinecheck=false}
 
 % Spacing
 \RedeclareSectionCommand[
-  beforeskip=1.5\baselineskip,
-  afterskip=1.5\baselineskip]{chapter}
+  beforeskip=1\baselineskip,
+  afterskip=1\baselineskip]{chapter}
 \RedeclareSectionCommand[
   beforeskip=0.5\baselineskip,
   afterskip=1sp]{section}
 \RedeclareSectionCommand[
   beforeskip=-.75\baselineskip,
-  afterskip=1sp]{subsection}
+  afterskip=1ex]{subsection}
 \RedeclareSectionCommand[
-  beforeskip=-.5\baselineskip,
-  afterskip=1sp]{subsubsection}
+  beforeskip=0.6ex plus 1.5ex,
+  afterskip=0.1ex]{subsubsection}
 \RedeclareSectionCommand[
   beforeskip=.5\baselineskip,
   afterskip=-1em]{paragraph}
 \RedeclareSectionCommand[
   beforeskip=-.5\baselineskip,
   afterskip=-1em]{subparagraph}
-
   
 \renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname\hspace{1.25em}}
 
@@ -276,28 +304,43 @@ left=2.75cm,right=2.75cm
 \patchcmd{\addcontentsline}% <cmd>
   {\Hy@writebookmark}% <search>
   {\ifnum\pdfstrcmp{chapter}{#2}=0 % Chapter mark
-     \edef\@currentHref{chapter..\thechapter}%
+     \edef\@currentHref{page.\thepage}%
    \fi
    \Hy@writebookmark}% <replace>
   {}{}% <success><failure>
+
 
   
  % Requests forcefully that figures refrain from
 % appearing in the first column.  This will fail
 % should a \clearpage be experienced.
-  \g@addto@macro\@floatplacement{%
-  \if@firstcolumn
-  \global\@colnum\z@
-  \fi
-  }
+\g@addto@macro\@floatplacement{%
+\if@firstcolumn
+\global\@colnum\z@
+\fi
+}
+
+\g@addto@macro\@floatplacement{%
+\if@firstcolumn
+\@fpmin\textheight
+\fi
+}
   
 %% ---------------------------------
 %  Headers and footers
 %% ---------------------------------
 \RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
 
-\addtolength{\textheight}{40pt}
-\addtolength{\footskip}{-10pt}
+\addtolength{\textheight}{22pt}
+\addtolength{\footskip}{-22pt}
+
+% Space between body text and footnote area:
+\addtolength{\skip\footins}{1pt plus 15.5pt}
+
+% Footnote layout (koma)
+% \makebox left-aligned numbers.
+\deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
+\addtokomafont{footnotereference}{\small}
 
 \clearscrheadings
 \clearscrplain
@@ -306,152 +349,211 @@ left=2.75cm,right=2.75cm
 % Heads and footers
 %
 \newcommand{\classification}{}
+\newcommand*{\Subtitle}[1]{\renewcommand{\@subtitle}{#1}}
+\providecommand*{\@subtitle}{}
+
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
 % Furthermore, optional arguments are required: they appear in Chapter 
 % heading pages. Leaving them out will reset the titles on pages with 
 % \chapter{}
-\lehead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
-\lohead[\normalfont\textcolor{theGrey}{\mytitle}]{\normalfont\textcolor{theGrey}{\mytitle}}
+\RequirePackage{ragged2e}
+\lehead[\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}}
+\lohead[\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle\ \MakeLowercase{\mysubtitle}}{\huge\strut}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}]{\textcolor{theGrey}{\normalfont Grattan Institute 2016\phantom{\Large X}}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \the\year{\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \the\year{\Large\strut}}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
-
-\pagestyle{scrheadings}
 \RequirePackage{eso-pic}
-%% Title pages
-\newtoggle{makefullpicture}
-\togglefalse{makefullpicture}
 
-\DeclareOption{fullpicture}{
-  \toggletrue{makefullpicture}
+% Figure parameters -----------------------
+\setlength{\@fptop}{0.100\textheight minus 0.100\textheight}
+\setlength{\@fpbot}{0pt plus 1fil}
+\setlength{\textfloatsep}{11pt plus 22pt minus 11pt}
+
+\newenvironment{figureTop}{
+\begin{figure}
+\begin{minipage}[\textheight]{\linewidth}
+}{%
+\end{minipage}
+\end{figure}
 }
 
-%% For a full picture:
-\iftoggle{makefullpicture}{
-	\newcommand\BackgroundPic{%
-	\put(0,0){%
-	\parbox[b][\paperheight]{\paperwidth}{%
-	\vfill
-	\centering
-	% Amend
-	%\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
-	\vfill
-	}}}
+% Ensure pdfs are used first
+\DeclareGraphicsExtensions{%
+    .pdf,.PDF,%
+    .png,.PNG,%
+    .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2}
 
-}{
-%% For a logo only:
-	\newcommand\BackgroundPic{%
-	\put(0,0){%
-	\parbox[b][\paperheight]{\paperwidth}{%
-	\hfill
-	% // Do nothing
-	% \includegraphics[width=0.2\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
-	\vfill
-	}}}
-}
-
-\ProcessOptions\relax
-
-\RequirePackage{epstopdf}
-\newcommand{\logoskip}{\par\vspace{38pt}}
-\newcommand{\includegraphicsmaybe}[1]{\IfFileExists{#1}{\includegraphics{#1}}{\includegraphics{dummy.pdf}}}
-\newcommand{\noimage}{%
-  \setlength{\fboxsep}{-\fboxrule}%
-  \fbox{\phantom{\rule{150pt}{100pt}}}% Framed box
-}
-\patchcmd{\Gin@ii}
-  {\begingroup}% <search>
-  {\begingroup\renewcommand{\@latex@error}[2]{\noimage}}% <replace>
-  {}% <success>
-  {}% <failure>
-
-
+%% FrontPage options
+%% First, the default, plain front page with a title.
 \newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
 \raggedleft % Right-align all text
 \vfil
 \phantom{.}\hfill 
-\includegraphics[width=0.225\paperwidth,keepaspectratio]{./FrontPage/GrattanSVGLogo}
+\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
-
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
 %% This is a working paper.
-{\Large {Grattan Insitute Working Paper}}\\[2\baselineskip] % Tagline or further description
+{\Large {\mysubtitle}}\\[2\baselineskip] % Tagline or further description
 
 {\LARGE \myauthor}
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
+\newcommand{\BackgroundPic}{}
+
+% Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
+\DeclareOption{FrontPage}{
+	\IfFileExists{./FrontPage/FrontPage.pdf}{%
+	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+	  }{
+	    \ClassError{grattanAlpha}{%
+			'./FrontPage/FrontPage.pdf' does not exist
+	    }{%
+			You have asked for a fullpicture option, but we can't find 
+			a file at './FrontPage/FrontPage.pdf'. Try placing the image
+			there or not using the fullpicture option.
+		}
+	  }
+	\renewcommand\BackgroundPic{%
+		\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+		\vfill
+		\centering
+		% Amend
+		\IfFileExists{./FrontPage/FrontPage.pdf}{%
+			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+		}{
+			\ClassError{grattanAlpha}{%
+				'./FrontPage/FrontPage' does not exist
+			}{%
+				You have asked for a fullpicture option, but we can't find 
+				a file at './FrontPage/FrontPage'. Try placing the image
+				there or not using the fullpicture option.
+			}
+		}
+	\vfill
+	}}}
+	\renewcommand{\titleTH}{} % FrontPage should be entire.
+
+}
+
+\ProcessOptions\relax
+
+\newcommand{\logoskip}{\par\vspace{16pt}}
+
+\newcommand{\GrattanWorkingPaperNumber}[1]{\renewcommand*{\@GrattanWorkingPaperNumber}{#1}}
+\newcommand{\@GrattanWorkingPaperNumber}{}
+
+\newcommand{\MONTH}{%
+  \ifcase\the\month
+  \or January% 1
+  \or February% 2
+  \or March% 3
+  \or April% 4
+  \or May% 5
+  \or June% 6
+  \or July% 7
+  \or August% 8
+  \or September% 9
+  \or October% 10
+  \or November% 11
+  \or December% 12
+  \fi}
+
+\newcommand\acknowledgements[1]{\renewcommand\@acknowledgements{#1}}
+\newcommand\@acknowledgements{}
   
 \AtBeginDocument{%
-\let\mytitle\@title
-\let\myauthor\@author
-% TitlePage
-\onecolumn
-\AddToShipoutPicture*{\BackgroundPic}
-\phantom{.}\hfill\titleTH
-\ClearShipoutPicture
-\clearpage
-\twocolumn
-%
+\pagestyle{empty}
+	\let\mytitle\@title
+	\let\myauthor\@author
+  \let\mysubtitle\@subtitle
+	
+	% TitlePage
+	\onecolumn
+	\AddToShipoutPicture*{\BackgroundPic}
+	\phantom{.}\hfill\titleTH
+	\ClearShipoutPicture
+	\clearpage
+	\twocolumn
+  % use microtype
+  \RaggedRight
+	%
 % Following page.
-  \subsection*{Grattan Institute Support}
-  %\begin{minipage}[t][0.7\textheight][t]{\columnwidth}
-  \begin{minipage}{\columnwidth}
+\pagestyle{scrheadings}
+\begin{minipage}[t][0.85\textheight][t]{\columnwidth}
+  \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \textbf{\textcolor{theGrey}{Founding members}}\par%\logoskip
-  %\vspace*{-5pt}
-  \begin{center}
-  \includegraphics[width=4.0cm]{./logos/aus-gov-logo-stacked-black.eps}\logoskip
-  \includegraphics[width=3.60cm]{./logos/Vic_Gov_Logo.eps}\logoskip
-  \includegraphics[width=3.60cm]{./logos/UOM-Pos_S_PMS.eps}\logoskip
-  \includegraphics[width=3.60cm]{./logos/Bhp.pdf}
-  \end{center}
-  \columnbreak
+  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
+  \vspace{-5pt} 
+  {\centering  
   
-  \textbf{\textcolor{theGrey}{Program support}}
+  {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}
   
-  {\footnotesize Higher Education}
-  \begin{center}
-  \includegraphics[width=3.25cm]{./logos/TMF_logo_green.eps}
-  \end{center}
-  \textbf{\textcolor{theGrey}{Affiliate Partners}}\\[3pt]
-  {\footnotesize%
-  Google \\[3pt]
-  Origin Foundation
-  }\\[8pt]
-  \textbf{\textcolor{theGrey}{Senior Affiliates}}\\[3pt]
-  {\footnotesize
-  EY\\[3pt]
-  PwC\\[3pt]
-  Stockland\\[3pt]
-  The Scanlon Foundation\\[3pt]
-  Wesfarmers
-  }\\[8pt]
-  \textbf{\textcolor{theGrey}{Affiliates}}\\[3pt]
-  {\footnotesize
-  Ashurst\\[3pt]
-  Corrs\\[3pt]
-  Deloitte\\[3pt]
-  Jacobs\\[3pt]
-  Mercy Health\\[3pt]
-  Sinclair Knight Merz\\[3pt]
-  Urbis\\[3pt]
-  Westpac
+  {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}
+  
+  % Too much whitespace on top:
+  % l t r b
+  {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}
+  
+  % Bhp original a little too much whitespace on bottom:
+  {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}
   }
+  \columnbreak\par
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
+  \footnotesize 
+
+  Google 
+
+  Medibank Private
+
+  Susan McKinnon Foundation
+
+  \vspace{27pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
+
+  EY
+
+  PwC
+
+  The Scanlon Foundation
+
+  Wesfarmers
+
+  \vspace{27pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
+
+  Ashurst
+
+  Corrs
+
+  Deloitte
+
+  GE ANZ
+
+  Myer
+
+  Urbis
+
+  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
-  \vfill
-  \phantom{.}
-  \eject
-  %\subsection*{Grattan Institute Support}
-  \input{Acknowledgements}
+  \eject \normalsize
+  \begin{minipage}[t][0.8\textheight][t]{\columnwidth}
+  \setlength{\parskip}{5.5pt plus 2pt}
+  \subsection*{Grattan Institute Working Paper No. \@GrattanWorkingPaperNumber, \MONTH\ \the\year}
+  \raggedright\@acknowledgements
+  \end{minipage}
   \twocolumn
 }
 
@@ -467,15 +569,7 @@ left=2.75cm,right=2.75cm
 % overview, placing it with a chapter* heading 'Overview' all on the same
 % page. 
 \newenvironment{overview}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{Overview}\begin{multicols}{2}}%
-  {\end{multicols}\vss\egroup\hfill\twocolumn}
-  
-\newenvironment{overview*}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\phantom{Overview}}\begin{multicols}{2}}%
-  {\end{multicols}\vss\egroup\hfill\twocolumn}
-  
-\newenvironment{recommendations}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\chapter*{\textcolor{DarkOrange}{Recommendations}}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{#1}\addchap{Overview}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
@@ -488,19 +582,18 @@ left=2.75cm,right=2.75cm
 
 
 % Bibliography
-\RequirePackage[british]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote]{biblatex}
-\renewcommand*{\bibfont}{\raggedright}
-\DeclareLanguageMapping{british}{british-apa}
+\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false]{biblatex}
+\DeclareLanguageMapping{english}{british-apa}
 
 
 %% Bibliography formatting
 % separating entries
 \setlength\bibitemsep{1.5\itemsep}
 % format bibliography
-\renewcommand*{\bibfont}{\small}
-\DeclareFieldFormat{url}{\url{#1}}
+\renewcommand*{\bibfont}{\small\raggedright}
+\DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
 
 %% Citation tweaking
 \DeclareFieldFormat{titlecase}{#1}
@@ -576,14 +669,13 @@ left=2.75cm,right=2.75cm
 \phantom{.}
 \vfill
 \columnbreak
+\begingroup
+\raggedright
 \tableofcontents
+\endgroup
 \end{multicols}
-\clearpage
-\listoffigures
-% This is necessary for the box list to actually appear
-\setcounter{tocdepth}{2}
-\listofboxes
 \twocolumn%
 }
+
 
 
