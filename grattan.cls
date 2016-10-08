@@ -169,7 +169,7 @@ numbers=noenddot,
 \newenvironment{bigbox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
 \begin{boxe}
 \begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\columnsep}{10mm}
+\setlength{\columnsep}{33pt}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
  \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false}
@@ -181,9 +181,9 @@ numbers=noenddot,
   \setlength{\currentparskip}{\parskip}
   \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=centering,singlelinecheck=false, aboveskip=0pt}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false, aboveskip=0pt}
  \caption{#1}\label{#2}%
-   \setlength{\columnsep}{10mm}
+   \setlength{\columnsep}{33pt}
   \begin{multicols}{2}
   \RaggedRight
   \setlength{\parskip}{\currentparskip}% restore the value
@@ -292,11 +292,14 @@ singlelinecheck=false}
 
 \RequirePackage[landscape,twocolumn,
 % orig Word specify 2.3 and 2.5
-left=2.75cm,right=2.75cm
+left=2.60cm,right=2.60cm, top=2.70cm, bottom=2.70cm
 ]{geometry}
   %\addtolength{\columnwidth}{50pt}
-  \setlength{\columnsep}{15mm}  
+  \setlength{\columnsep}{55pt}  
   %\addtolength{\columnwidth}{0.2\columnwidth}
+
+% Space between body text and footnote area:
+\addtolength{\skip\footins}{1pt plus 15.5pt}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
@@ -337,12 +340,6 @@ left=2.75cm,right=2.75cm
 %  Headers and footers
 %% ---------------------------------
 \RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
-
-\addtolength{\textheight}{22pt}
-\addtolength{\footskip}{-22pt}
-
-% Space between body text and footnote area:
-\addtolength{\skip\footins}{1pt plus 15.5pt}
 
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
@@ -493,6 +490,8 @@ left=2.75cm,right=2.75cm
 \newcommand{\@ISBN}{}
 
 \RequirePackage{tabularx}
+\AtBeginEnvironment{tabular}{\small}
+\AtBeginEnvironment{tabularx}{\small}
   
 \AtBeginDocument{%
 \pagestyle{empty}
