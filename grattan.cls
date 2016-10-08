@@ -450,6 +450,7 @@ left=2.75cm,right=2.75cm
 \DeclareOption{continuous}{%
   \KOMAoption{listof}{nochaptergap}
   \addtocontents{lof}{\linespread{1.3}\selectfont}% optical
+  \addtocontents{lot}{\linespread{1.3}\selectfont}% optical
   \counterwithout{figure}{chapter}
   \counterwithout{table}{chapter}
 }
@@ -681,8 +682,15 @@ left=2.75cm,right=2.75cm
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 
 \RequirePackage{tocloft}
-\renewcommand{\cftchapfont}{\normalsize}
-\renewcommand{\cftchapdotsep}{.}
+\renewcommand{\cftchapfont}{\normalsize\normalfont}
+\renewcommand{\cftchapdotsep}{4.5}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftdot}{\normalfont .}
+\renewcommand{\@pnumwidth}{1em}
+
+% indent of list of figures
+\renewcommand{\cftfigindent}{0em}
+
 \AtBeginDocument{\renewcommand{\contentsname}{Table of contents}}
 \newcommand{\contentspage}{%
 \onecolumn
