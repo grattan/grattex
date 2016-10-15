@@ -8,7 +8,6 @@ titlepage,
 headings=big,
 chapterprefix=false,
 headsepline,
-parskip=half-,
 twocolumn,
 numbers=noenddot,
 ]{scrreprt}
@@ -295,9 +294,12 @@ left=2.60cm,right=2.60cm,
 top=2.70cm, bottom=2.65cm,
  headheight=24pt, footskip=24pt
 ]{geometry}
-  %\addtolength{\columnwidth}{50pt}
-  \setlength{\columnsep}{55pt}  
-  %\addtolength{\columnwidth}{0.2\columnwidth}
+
+\setlength{\columnsep}{55pt}  
+
+% Spacing between paragraphs
+% <indent> <distance> <last line end space>
+\setparsizes{0pt}{0.625\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
 
 % Space between body text and footnote area:
 \addtolength{\skip\footins}{1pt plus 15.5pt}
