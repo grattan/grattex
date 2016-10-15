@@ -19,11 +19,9 @@ numbers=noenddot,
 \exhyphenpenalty=100
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
-\RequirePackage{acronym}
-\RequirePackage{makeidx}
-  \makeindex
 \RequirePackage{xcolor}
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{tikz}
 \RequirePackage{adjustbox}
   \usetikzlibrary{positioning}
@@ -45,7 +43,8 @@ numbers=noenddot,
    {
      \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
    }
-
+\RequirePackage{footmisc}
+\RequirePackage[document]{ragged2e}
 % ------
 % Grattan colors
 \definecolor{Orange}{HTML}{F68B33}
@@ -77,7 +76,6 @@ numbers=noenddot,
 % No widows
 \RequirePackage[all]{nowidow}
 
-% Arial font
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
   
@@ -142,10 +140,10 @@ numbers=noenddot,
 \begin{boxe}[#1]
 \begin{mdframed}[style=GrattanFrameBox]%
 \setlength{\parskip}{\currentparskip} % restore the value
-\RaggedRight
 \captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false}
 \caption{#2}\label{#3}
 \vspace{-1.5ex}
+\RaggedRight
 }{\end{mdframed}\end{boxe}} 
     
 % The smallbox is a box intended for onecolumn.
@@ -155,11 +153,11 @@ numbers=noenddot,
 \begin{minipage}[\textheight]{\linewidth}
 \begin{mdframed}[style=GrattanFrameBox]%
 \setlength{\parskip}{\currentparskip} % restore the value
-\RaggedRight
 \captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false}
 \caption{#2}\label{#3}
+\RaggedRight
 \vspace{-1.5ex}
-}{\end{mdframed}\end{minipage}\end{boxe}} 
+}{\end{mdframed}\null\vfill\null\end{minipage}\end{boxe}} 
 
 
 
@@ -168,11 +166,12 @@ numbers=noenddot,
 \newenvironment{bigbox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
 \begin{boxe}
 \begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\columnsep}{10mm}
+\setlength{\columnsep}{33pt}
 \begin{multicols}{2}
 \setlength{\parskip}{\currentparskip}% restore the value
  \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false}
  \caption{#1}\label{#2}%
+ %\RaggedRight
  } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
 % dbl floats
@@ -180,12 +179,12 @@ numbers=noenddot,
   \setlength{\currentparskip}{\parskip}
   \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=centering,singlelinecheck=false, aboveskip=0pt}
+ \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false, aboveskip=0pt}
  \caption{#1}\label{#2}%
-   \setlength{\columnsep}{10mm}
+   \setlength{\columnsep}{33pt}
   \begin{multicols}{2}
-  \RaggedRight
   \setlength{\parskip}{\currentparskip}% restore the value
+  \RaggedRight
 }{%
   \end{multicols}\end{mdframed}
   \end@dblfloat
@@ -234,17 +233,17 @@ singlelinecheck=false}
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
 \newcommand*{\source}[1]{%
-\captionsetup{format=plain, font={scriptsize, it}, skip=3pt, justification=justified, singlelinecheck=false, position=below}
+\captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
 \caption*{Source:\ #1}
 }
 \newcommand*{\notes}[1]{%
-\captionsetup{format=plain, font={scriptsize, it}, skip=3pt, justification=justified, singlelinecheck=false, position=below}
+\captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
 \caption*{Notes:\ #1}
 }
 
 \newcommand*{\noteswithsource}[2]{%
 \ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
-\captionsetup{format=plain, font={scriptsize, it}, skip=2.5pt, justification=justified, singlelinecheck=false, position=below}
+\captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
 \caption*{Notes:\ #1}
 \caption*{Source:\ #2}
 }
@@ -291,14 +290,19 @@ singlelinecheck=false}
 
 \RequirePackage[landscape,twocolumn,
 % orig Word specify 2.3 and 2.5
-left=2.75cm,right=2.75cm
+left=2.60cm,right=2.60cm,
+top=2.70cm, bottom=2.65cm,
+ headheight=24pt, footskip=24pt
 ]{geometry}
 
-\setlength{\columnsep}{15mm}  
+\setlength{\columnsep}{55pt}  
 
 % Spacing between paragraphs
 % <indent> <distance> <last line end space>
 \setparsizes{0pt}{0.625\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
+
+% Space between body text and footnote area:
+\addtolength{\skip\footins}{1pt plus 15.5pt}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
@@ -340,12 +344,6 @@ left=2.75cm,right=2.75cm
 %% ---------------------------------
 \RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
 
-\addtolength{\textheight}{22pt}
-\addtolength{\footskip}{-22pt}
-
-% Space between body text and footnote area:
-\addtolength{\skip\footins}{1pt plus 15.5pt}
-
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
 \deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
@@ -364,12 +362,11 @@ left=2.75cm,right=2.75cm
 % Furthermore, optional arguments are required: they appear in Chapter 
 % heading pages. Leaving them out will reset the titles on pages with 
 % \chapter{}
-\RequirePackage{ragged2e}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
-\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}}
+\ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}{\Large\strut}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
@@ -378,9 +375,16 @@ left=2.75cm,right=2.75cm
 \RequirePackage{eso-pic}
 
 % Figure parameters -----------------------
-\setlength{\@fptop}{0.100\textheight minus 0.100\textheight}
+\renewcommand{\floatpagefraction}{0.1}
+
+\makeatletter
+\setlength{\@fptop}{0.10\textheight minus 0.100\textheight}
+\let\oldtryfcolumn=\@tryfcolumn
+\def\@tryfcolumn{\addtolength{\@fptop}{\dimexpr \@colht-\textheight}%
+  \oldtryfcolumn}
 \setlength{\@fpbot}{0pt plus 1fil}
 \setlength{\textfloatsep}{11pt plus 22pt minus 11pt}
+
 
 \newenvironment{figureTop}{
 \begin{figure}
@@ -495,6 +499,8 @@ left=2.75cm,right=2.75cm
 \newcommand{\@ISBN}{}
 
 \RequirePackage{tabularx}
+\AtBeginEnvironment{tabular}{\small}
+\AtBeginEnvironment{tabularx}{\small}
   
 \AtBeginDocument{%
 \pagestyle{empty}
@@ -509,7 +515,7 @@ left=2.75cm,right=2.75cm
 	\clearpage
 	\twocolumn
   % use microtype
-  \RaggedRight
+  
 	%
 % Following page.
 \pagestyle{scrheadings}
