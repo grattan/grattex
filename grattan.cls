@@ -58,10 +58,17 @@ numbers=noenddot,
 \definecolor{theGrey}{HTML}{6A737B}
 \definecolor{AuthorPage}{RGB}{160,34,38}
 \definecolor{AuthorGrey}{RGB}{174,174,174}
+
+
+% Bullets and numbered items
+\RequirePackage{enumitem}
+% Eliminate left margin
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
 % See http://tex.stackexchange.com/questions/8510/reduce-size-of-bullet-character-in-lists
 % Purpose to enlarge and subsequently raise the bullet
 % see also \renewcommand{\labelitemi}{\raise .5ex\hbox{\tiny$\bullet$}}
-\renewcommand{\labelitemi}{\color{Orange}\parbox[c]{.5em}{\ensuremath{\bullet}}}
+\renewcommand{\labelitemi}{\color{Orange}\parbox[c]{.5em}{\small\ensuremath{\bullet}}{\normalsize\strut}}
 \renewcommand{\labelenumi}{\color{Orange}{\bfseries \arabic{enumi}.~}}
 % ------
 \RequirePackage{colortbl}
