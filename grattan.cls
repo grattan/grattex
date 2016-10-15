@@ -8,7 +8,6 @@ titlepage,
 headings=big,
 chapterprefix=false,
 headsepline,
-parskip=half-,
 twocolumn,
 numbers=noenddot,
 ]{scrreprt}
@@ -294,9 +293,12 @@ singlelinecheck=false}
 % orig Word specify 2.3 and 2.5
 left=2.75cm,right=2.75cm
 ]{geometry}
-  %\addtolength{\columnwidth}{50pt}
-  \setlength{\columnsep}{15mm}  
-  %\addtolength{\columnwidth}{0.2\columnwidth}
+
+\setlength{\columnsep}{15mm}  
+
+% Spacing between paragraphs
+% <indent> <distance> <last line end space>
+\setparsizes{0pt}{0.625\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
