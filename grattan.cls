@@ -623,9 +623,9 @@ top=2.70cm, bottom=2.65cm,
 % Bibliography
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false]{biblatex}
+\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false, giveninits=true]{biblatex}
 \DeclareLanguageMapping{english}{british-apa}
-
+\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
 
 %% Bibliography formatting
 % separating entries
@@ -633,6 +633,8 @@ top=2.70cm, bottom=2.65cm,
 % format bibliography
 \renewcommand*{\bibfont}{\small\raggedright}
 \DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
+% Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
+\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
 
 %% Citation tweaking
 \DeclareFieldFormat{titlecase}{#1}
