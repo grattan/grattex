@@ -373,10 +373,12 @@ top=2.70cm, bottom=2.65cm,
 \RequirePackage{eso-pic}
 
 % Figure parameters -----------------------
-\renewcommand{\floatpagefraction}{0.1}
+%\renewcommand{\floatpagefraction}{0.75}
 
-\makeatletter
-\setlength{\@fptop}{0.10\textheight minus 0.100\textheight}
+% length of fptop is magical: equal to the 
+\newlength{\@chaproom}
+\setlength{\@chaproom}{33.64366pt}
+\setlength{\@fptop}{36.64366pt minus 36.64366pt}
 \let\oldtryfcolumn=\@tryfcolumn
 \def\@tryfcolumn{\addtolength{\@fptop}{\dimexpr \@colht-\textheight}%
   \oldtryfcolumn}
@@ -597,7 +599,7 @@ top=2.70cm, bottom=2.65cm,
 % overview, placing it with a chapter* heading 'Overview' all on the same
 % page. 
 \newenvironment{overview}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-22pt}}{\vspace{#1}}\addchap{Overview}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-23.4pt}}{\vspace{#1}}\addchap{Overview}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
