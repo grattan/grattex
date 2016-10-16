@@ -475,10 +475,17 @@ top=2.70cm, bottom=2.65cm,
 \RequirePackage{multicol}
 \newcommand{\logoskip}{\par\vspace{16pt}}
 
-\newcommand*{\GrattanWorkingPaperNumber}[1]{\renewcommand*{\@GrattanWorkingPaperNumber}{#1}}
-\newcommand{\@GrattanWorkingPaperNumber}{}
+\newcommand*{\ReportOrWorkingPaper}[1]{\renewcommand*{\@Report}{#1}}
+\newcommand{\@Report}{Report}
+
 \newcommand*{\GrattanReportNumber}[1]{\renewcommand*{\@GrattanReportNumber}{#1}}
 \newcommand{\@GrattanReportNumber}{}
+
+\AtBeginDocument{%
+  \ifdefempty{\@GrattanReportNumber}%
+    {\ClassError{You have not provided a Grattan Report Number}}%
+    {}%
+}
 
 % Allow MONTH/YEAR to be defined; otherwise by default the date of compilation
 \newcommand*{\MONTH}[1]{\renewcommand*{\@MONTH}{#1}}
@@ -589,9 +596,9 @@ top=2.70cm, bottom=2.65cm,
   \end{multicols}
   \end{minipage} 
   \eject \normalsize
-  \begin{minipage}[t][0.8\textheight][t]{\columnwidth}
+  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \setlength{\parskip}{5.5pt plus 2pt}
-  \subsection*{Grattan Institute Report No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+  \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
   \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
