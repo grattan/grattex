@@ -297,7 +297,7 @@ singlelinecheck=false}
 
 \RequirePackage[landscape,twocolumn,
 % orig Word specify 2.3 and 2.5
-left=2.60cm,right=2.60cm,
+left=2.30cm,right=2.30cm,
 top=2.70cm, bottom=2.65cm,
  headheight=24pt, footskip=24pt
 ]{geometry}
