@@ -589,7 +589,7 @@ top=2.70cm, bottom=2.65cm,
 
   GE ANZ
 
-  Myer
+  The Myer Foundation
 
   Urbis
 
