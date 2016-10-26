@@ -223,7 +223,6 @@ numbers=noenddot,
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
 singlelinecheck=false,position=top,skip=0pt}
 \caption{#1}
-%\vspace{-11pt}
 \captionsetup{font={small,color=theGrey}}
 \caption*{#2}
 }
