@@ -272,11 +272,11 @@ singlelinecheck=false}
   beforeskip=1\baselineskip,
   afterskip=1\baselineskip]{chapter}
 \RedeclareSectionCommand[
-  beforeskip=0.5\baselineskip,
+  beforeskip=0.5\baselineskip plus 0.25\baselineskip,
   afterskip=1sp]{section}
 \RedeclareSectionCommand[
-  beforeskip=-.75\baselineskip,
-  afterskip=1ex]{subsection}
+  beforeskip=0.25\baselineskip plus 0.25\baselineskip,
+  afterskip=1sp]{subsection}
 \RedeclareSectionCommand[
   beforeskip=0.6ex plus 1.5ex,
   afterskip=0.1ex]{subsubsection}
