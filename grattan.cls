@@ -713,6 +713,15 @@ top=2.70cm, bottom=2.65cm,
   {\usebibmacro{textcite:postnote}}
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 
+% Patch for issue 
+\AtBeginDocument{%
+  \apptocmd\@floatboxreset
+    {\booltrue{citetracker}%
+     \booltrue{pagetracker}}
+    {}
+    {\blx@err@patch{floats}}
+}
+
 \RequirePackage{tocloft}
 \renewcommand{\cftchapfont}{\normalsize\normalfont}
 \renewcommand{\cftchapdotsep}{4.5}
