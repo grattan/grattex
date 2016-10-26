@@ -219,12 +219,16 @@ numbers=noenddot,
 \DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
 \captionsetup{justification=nohyphen}
 
+\newcommand{\units}[1]{%
+\captionsetup{font={small,color=theGrey}}
+\caption*{#1}
+}
+
 \newcommand{\captionwithunits}[2]{%
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
 singlelinecheck=false,position=top,skip=0pt}
 \caption{#1}
-\captionsetup{font={small,color=theGrey}}
-\caption*{#2}
+\units{#2}
 }
 
 \newcommand{\captionoffigurewithunits}[2]{%
