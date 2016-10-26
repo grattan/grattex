@@ -63,8 +63,8 @@ numbers=noenddot,
 % Bullets and numbered items
 \RequirePackage{enumitem}
 % Eliminate left margin
-\setlist[itemize]{leftmargin=*}
-\setlist[enumerate]{leftmargin=*}
+% \setlist[itemize]{leftmargin=*}
+% \setlist[enumerate]{leftmargin=*}
 % See http://tex.stackexchange.com/questions/8510/reduce-size-of-bullet-character-in-lists
 % Purpose to enlarge and subsequently raise the bullet
 % see also \renewcommand{\labelitemi}{\raise .5ex\hbox{\tiny$\bullet$}}
