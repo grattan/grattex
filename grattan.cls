@@ -755,3 +755,5 @@ top=2.70cm, bottom=2.65cm,
   \global\let\@textbottom\mytextbottom
   \global\let\@texttop\mytexttop}}
 
+% Placed just before footnote exceeds 100. 
+\newcommand*{\CenturyFootnote}{\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
