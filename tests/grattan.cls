@@ -189,8 +189,7 @@ numbers=noenddot,
   \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
   \@boxcaption{#1\label{#2}}%
-  % Reduced column sep 
-  \addtolength{\columnsep}{-23.8pt}%
+   \setlength{\columnsep}{33pt}
   \begin{multicols}{2}
   \setlength{\parskip}{\currentparskip}% restore the value
   \RaggedRight
