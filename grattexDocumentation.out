@@ -31,13 +31,14 @@
 \BOOKMARK [2][-]{subsection.4.1}{New commands}{section.4}% 31
 \BOOKMARK [1][-]{section.5}{Compiling a final document}{}% 32
 \BOOKMARK [2][-]{subsection.5.1}{Citations and references}{section.5}% 33
-\BOOKMARK [1][-]{section.6}{Known bugs in the grattan.cls file}{}% 34
-\BOOKMARK [2][-]{subsection.6.1}{Big boxes}{section.6}% 35
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Caption baseline does not match matching column baseline}{subsection.6.1}% 36
-\BOOKMARK [2][-]{subsection.6.2}{Footnotes in big boxes extend across the entire page}{section.6}% 37
-\BOOKMARK [1][-]{section.7}{pdflink errors}{}% 38
-\BOOKMARK [-1][-]{part.1}{Notes for the typesetter}{}% 39
-\BOOKMARK [0][-]{section.8}{Moving floats}{part.1}% 40
-\BOOKMARK [1][-]{section.9}{Bad page break}{section.8}% 41
-\BOOKMARK [1][-]{section.10}{Excessive whitespace between paragraphs}{section.8}% 42
-\BOOKMARK [1][-]{section.11}{Hyphenation}{section.8}% 43
+\BOOKMARK [1][-]{section.6}{Common mistakes made by novices}{}% 34
+\BOOKMARK [1][-]{section.7}{Known bugs in the grattan.cls file}{}% 35
+\BOOKMARK [2][-]{subsection.7.1}{Big boxes}{section.7}% 36
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Caption baseline does not match matching column baseline}{subsection.7.1}% 37
+\BOOKMARK [2][-]{subsection.7.2}{Footnotes in big boxes extend across the entire page}{section.7}% 38
+\BOOKMARK [1][-]{section.8}{pdflink errors}{}% 39
+\BOOKMARK [-1][-]{part.1}{Notes for the typesetter}{}% 40
+\BOOKMARK [0][-]{section.9}{Moving floats}{part.1}% 41
+\BOOKMARK [1][-]{section.10}{Bad page break}{section.9}% 42
+\BOOKMARK [1][-]{section.11}{Excessive whitespace between paragraphs}{section.9}% 43
+\BOOKMARK [1][-]{section.12}{Hyphenation}{section.9}% 44
