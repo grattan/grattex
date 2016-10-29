@@ -1,5 +1,5 @@
-[0] Config.pm:343> INFO - This is Biber 2.5
-[0] Config.pm:346> INFO - Logfile is 'grattexDocumentation.blg'
-[36] biber-MSWIN32:290> INFO - === 
-[403] Utils.pm:165> ERROR - Cannot find control file 'grattexDocumentation.bcf'! - did you pass the "backend=biber" option to BibLaTeX?
-[403] Biber.pm:112> INFO - ERRORS: 1
+[0] Config.pm:354> INFO - This is Biber 2.6
+[0] Config.pm:357> INFO - Logfile is 'grattexDocumentation.blg'
+[33] biber-MSWIN64:302> INFO - === 
+[307] Utils.pm:180> ERROR - Cannot find control file 'grattexDocumentation.bcf'! - did you pass the "backend=biber" option to BibLaTeX?
+[308] Biber.pm:113> INFO - ERRORS: 1

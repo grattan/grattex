@@ -22,10 +22,11 @@
 \contentsline {subsubsection}{\numberline {3.7.2}Tables}{12}{subsubsection.3.7.2}
 \contentsline {subsection}{\numberline {3.8}Boxes}{13}{subsection.3.8}
 \contentsline {subsubsection}{\numberline {3.8.1}smallbox}{13}{subsubsection.3.8.1}
-\contentsline {subsubsection}{\numberline {3.8.2}bigbox*}{14}{subsubsection.3.8.2}
-\contentsline {subsection}{\numberline {3.9}Footnotes and referencing}{14}{subsection.3.9}
-\contentsline {subsubsection}{\numberline {3.9.1}\texttt {bibliography.bib}}{14}{subsubsection.3.9.1}
-\contentsline {subsubsection}{\numberline {3.9.2}Citations}{14}{subsubsection.3.9.2}
+\contentsline {subsubsection}{\numberline {3.8.2}bigbox*}{13}{subsubsection.3.8.2}
+\contentsline {subsection}{\numberline {3.9}Cross-references}{14}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}Footnotes and referencing}{14}{subsection.3.10}
+\contentsline {subsubsection}{\numberline {3.10.1}\texttt {bibliography.bib}}{14}{subsubsection.3.10.1}
+\contentsline {subsubsection}{\numberline {3.10.2}Citations}{15}{subsubsection.3.10.2}
 \contentsline {section}{\numberline {4}More advanced macros}{15}{section.4}
 \contentsline {subsection}{\numberline {4.1}New commands}{15}{subsection.4.1}
 \contentsline {section}{\numberline {5}Compiling a final document}{15}{section.5}
@@ -38,3 +39,5 @@
 \contentsline {part}{\numberline {I}Notes for the typesetter}{16}{part.1}
 \contentsline {section}{\numberline {8}Moving floats}{16}{section.8}
 \contentsline {section}{\numberline {9}Bad page break}{17}{section.9}
+\contentsline {section}{\numberline {10}Excessive whitespace between paragraphs}{17}{section.10}
+\contentsline {section}{\numberline {11}Hyphenation}{18}{section.11}

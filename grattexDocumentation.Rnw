@@ -3,12 +3,15 @@
   \makeindex
 \usepackage{booktabs}
 \usepackage{float}
-\usepackage[left=4cm, right=4cm]{geometry}
+\usepackage[left=3cm, right=5cm]{geometry}
 \usepackage[scale=1.1]{ebgaramond}
 \usepackage{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{tabularx}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{longtable}
 \definecolor{Orange}{HTML}{F68B33}
 \definecolor{DarkOrange}{HTML}{D4582A}
 \usepackage{bold-extra}
@@ -17,7 +20,7 @@ language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\ttfamily,
 texcsstyle=*\color{blue},
-moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
@@ -61,7 +64,7 @@ classoffset=0
 \usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\author{Hugh Griffith Parsonage}
+\author{Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
 \newcommand{\ie}{\emph{i.e.}}
@@ -85,6 +88,23 @@ classoffset=0
   \subsection*{#1}\addsubsecmark{}%
 }
 \makeatother
+
+
+
+\usepackage{realboxes}
+\usepackage{manfnt}
+
+\def\smallstrut{\relax\ifmmode\copy\smallstrutbox\else\unhcopy\strutbox\fi}
+\makeatletter
+\setbox\strutbox\hbox{%
+  \vrule\@height0.5ex % orig .7
+        \@depth0\baselineskip
+        \@width\z@}%
+\makeatother
+
+\newcommand{\code}[1]{\fcolorbox{gray!10}{gray!10}{\smallstrut\texttt{#1}}}
+\newcommand{\Code}[1]{\Colorbox{gray!10}{\lstinline!#1!}}
+\newcommand{\Codee}[1]{\Colorbox{gray!10}{#1}}
 
 \begin{document}
 \maketitle
@@ -267,8 +287,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \begin{lstlisting}
    \documentclass{grattan}
    
-   \title{<Title of the report>}
-   \author{<Authors>}
+   \title{@@<Title of the report>@@}
+   \author{@@<Authors>@@}
+
+   \GrattanReportNumber{@@<number>@@} %% or \GrattanWorkingPaperNumber
    
    \addbibresource{bibliography.bib}
   \end{lstlisting}
@@ -316,14 +338,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   for your overview. The \lstinline![-35pt]! is a fudge factor that adjusts the position of the title to vertically balance the overview on the page. It may be abolished in future versions. 
   
-  You can also use \verb=\begin{summary}= as required. If you want to change the name of the frontmatter, ask us --- it is straight-forward to amend.
+  You can also use \lstinline!\begin{summary}! as required. If you want to change the name of the frontmatter, ask us --- it is straight-forward to amend.
 
   \subsubsection{Contents page(s)}
   Write \index{contentspage}
   \begin{lstlisting}
    \contentspage
   \end{lstlisting}
-  After the \verb=overview= environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
+  After the \lstinline!overview! environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
   
   \subsection{Body text}
   \subsubsection{Sectioning}
@@ -339,11 +361,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
   
-  To start an appendix, type \index{appendix}.
+  To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
+
   \begin{lstlisting}
    \appendix
   \end{lstlisting}
-  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{<appendix title>}! to title the appendices.
+
+  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{@@<appendix title>@@}! to title the appendices.
   
   For example:
   \begin{lstlisting}
@@ -375,7 +399,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsection{Boldface, italics}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
-  That said, you can use \lstinline!\textbf{<text>}! to make \lstinline!text! boldface and \lstinline!\textit{<text>}! to make \lstinline!text! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
+  That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@text@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
   
   \subsection{Paragraphs}
   Use a blank line to mark a new paragraph. Thus
@@ -419,12 +443,11 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Once the image is ready, use the following structure to insert a figure.
   \begin{lstlisting}
    \begin{figure}
-    \Caption{@@<main caption>@@}%
-    {@@<secondary caption/y-axis label>@@}{@@<cross-reference key>@@}
+    \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
+    \units{@@<secondary caption/y-axis label>@@}
     \includegraphics[width=\columnwidth]{figure/@@image-filename@@}
-    \notes{@@<Notes of the chart>@@}
-    
-    \source{@@<Source information>@@}
+    \noteswithsource{@@<Notes of the chart>@@}%  
+    {@@<Source information>@@}
    \end{figure}
   \end{lstlisting}
   
@@ -449,10 +472,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \begin{table}[H]
   \centering
   %\makebox[\textwidth]{%
-  \begin{tabular}{rp{9cm}}
+  \begin{tabular}{rp{9.5cm}}
   \toprule
   \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
-  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across $n$th columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
   \bottomrule
   \end{tabular}%
   %}%
@@ -487,8 +510,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
 
   \begin{lstlisting}
-   \begin{smallbox}{<title of the box>}{box:<cross-ref key>}
-    <contents of the box>
+   \begin{smallbox}{@@<title of the box>@@}{box:@@<cross-ref key>@@}
+    @@<contents of the box>@@
    \end{smallbox}
 
   \end{lstlisting}
@@ -497,27 +520,44 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
 
   When you have a figure in a big box, you must use 
-  \begin{verbatim}
+  \begin{lstlisting}
    \begin{figure}[H] 
     ...
    \end{figure}
-  \end{verbatim}
+  \end{lstlisting}
   to insert a figure.
   
-  Note the \verb=[H]= which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
+  Note the \lstinline![H]! which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
   
+  \subsection{Cross-references}
+  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!Vref! and \lstinline!Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
+  The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
+
+  For example, to refer to some figure
+
+  \begin{lstlisting}
+  Some text which is illustrated by a chart (\Vref{fig:key}) 
+
+  \begin{figure}
+    \caption{The chart's caption\label{fig:key}}
+    \includegraphics{thechartfilename.pdf}
+  \end{figure}
+  \end{lstlisting}
+
+
+
   \subsection{Footnotes and referencing}
   Use the command \verb=\footnote= to mark a footnote. Use \verb=\textcite= within a footnote.
   
   \subsubsection{\texttt{bibliography.bib}}
   The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
-  \begin{verbatim}
+  \begin{lstlisting}
    @type{<key>,
     author={<author name>},
     title={<title>},
     year={<year>}
    }
-  \end{verbatim}
+  \end{lstlisting}
   There are several elements to a bibliography:
   \begin{enumerate}
    \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
@@ -527,18 +567,18 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{enumerate}
   
   \subsubsection{Citations}
-  Use \verb=\footcite{key}= to cite an entry in the database. The citation will appear in a footnote. Use \verb=\footcite{key1}{key2}= to cite multiple entries in the same footnote.
+  Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database. The citation will appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
-  Use \verb=\footcite[][18--24]{<key>}= to add a page reference (in this case, pages 18--24) as a postnote the citation. 
+  Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{key2}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
   
-  Use \verb=\textcite{<key>}= to cite a key if you don't want in a footnote. Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
+  Use \lstinline!\textcite{<key>}! to cite a key if you don't want in a footnote. Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
   
   \section{More advanced macros}
   \subsection{New commands}
-  Use \verb=\newcommand= to create a new command. 
+  Use \lstinline!\newcommand! to create a new command. 
   \begin{lstlisting}
-   \newcommand{<command name>}{<what the command does>}
-   \newcommand{<command name>}[number of arguments]{<what the command does as a function of #>}
+   \newcommand{@@<command name>@@}{@@<what the command does>@@}
+   \newcommand{@@<command name>@@}[@@<number of arguments>@@]{@@<what the command does as a function of #>@@}
   \end{lstlisting}
   For example,
   \begin{lstlisting}
@@ -604,12 +644,18 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \section{Bad page break}
   Consider using:
   \begin{enumerate}
-  \item \lstinline!\pagebreak[0]! at a good/better place for line breaking:
-  \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where $n$ is an integer multiple of $1/4$. 
+  \item \lstinline!\pagebreak[1]! at a good/better place for line breaking:
+  \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where \lstinline!@@<n>@@! is an integer multiple of $1/4$. 
   \end{enumerate}
 
   \section{Excessive whitespace between paragraphs}
-  This occurs 
+  This occurs when there is insufficient text to fill a page (the page is \emph{underfull}) but moving text onto another page is not possible because:
+  \begin{itemize}
+    \item A section would be orphaned from its title
+    \item A footnote would have to be set on a different page from its mark. 
+  \end{itemize}
+
+
   \begin{enumerate}
   \item Reposition floats if useful.
   \item Use \lstinline!\oneraggedpage!:
@@ -624,11 +670,142 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \global\let\@texttop\mytexttop}}
   \end{lstlisting}
   \item Finally, use \lstinline!\raggedbottom! on the entire document. Review.
+
+  \section{Hyphenation}
+  Hyphenation can be distracting and interrupt the text; however, the alternative to hyphenation is often worse.
+
+  When the text is typeset ragged right, \LaTeX{} will actually be \emph{more} inclined to hyphenate. 
+  If full-width justification on a paragraph can be used, it will minimize discretionary hyphens. 
+
+  \LaTeX{} will, by default, avoid hyphenating words, and desperately try to avoid putting discretionary hyphens on consecutive lines or at a page break.
+
+  \begin{center}
+  \textbf{\textsf{If a paragraph in your report contains unsightly hyphenation (\ie\ consecutive hyphens or hyphenation across pages), the best and perhaps only solution is to reword the paragraph.}}
+  \end{center}
+
+  In the unlikely event that rewording the paragraph does not change the hyphenation, you can increase \lstinline!\emergencystretch! to \lstinline!0.5em!. 
+  Note that you in doing so are take responsibility for the typesetting of that paragraph. 
+  You may wish to play around with penalties, but you should do so with trepidation and only ever locally.
+
+  Never use \lstinline!\raggedright! in ordinary body text. It is acceptable in text where each ``paragraph'' is really an isolated verse or element. 
+  For example, it is acceptable in a list of recommendations, in a table, or in the captions to figures. 
+  Although in deploying \lstinline!\raggedright! you win certainly the battle regarding excessive hyphenation, you lose the war -- the text can become badly ragged -- and paragraphs will need to be reworded. 
+
   \end{enumerate}
 
+\appendix
+\newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
+\begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
+\caption{List of all commands} \\
+    \toprule
+    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
+    \midrule
+    \endhead
+    boxsources & Source matter within boxes & Boxes \\[5pt]
+    citetitle & Inserts the title of a citation, as well as including the reference in the bibliography. & Citations \& bibliography \\
+    footcite & Citation to be placed in a footnote & Citations \& bibliography \\
+    footcites & Multiple citations to be placed in a footnote & Citations \& bibliography \\
+    footnote & Insert a footnote. & Citations \& bibliography \\
+    textcite & Inline citation & Citations \& bibliography \\
+    textcites & Multiple citations to be placed inline & Citations \& bibliography \\[5pt]
+    Cref  & Subsequence cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    label & The target of a cross-reference. & Cross-referencing \\
+    phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it occurs in the middle of a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
+    bottomrule & Final horizontal rule in a table & Figures and tables \\
+    caption & General caption (grey, bold) & Figures and tables \\
+    captionwithunits & Caption with first argument top line and second argument units for chart & Figures and tables \\
+    cmidrule & Horizontal rule over a subset of columns & Figures and tables \\
+    columnwidth & Supplies the current width of the column  & Figures and tables \\
+    fnotes & Figure notes that are long & Figures and tables \\
+    tnotes & Table notes that are long & Figures and tables \\
+    includegraphics & inserts an image (typically a pdf) using the file provided & Figures and tables \\
+    linewidth & Current width of line & Figures and tables \\
+    midrule & Horizontal rule separating heading from contents in a table & Figures and tables \\
+    multicolumn & Spread a cell over multiple columns (merge cells) & Figures and tables \\
+    notes & Puts notes under a chart & Figures and tables \\
+    source & Puts source text under a chart & Figures and tables \\
+    noteswithsource & Puts notes and source under a chart/table & Figures and tables \\ 
+    toprule & First horizontal rule in a table & Figures and tables \\
+    units & Units for charts & Figures and tables\\[5pt]
+    emph  & Emphasize text with an oblique font & Fonts \\
+    textbf & Boldface & Fonts \\
+    textit & Italic font (oblique font for Arial) & Fonts \\[5pt]
+    item  & Commence new number or bullet in an enumerate or itemize environment & Lists \\[5pt]
+    ie    & Macro for consistent use of `i.e.' & Misc \\
+    input & Used to insert raw .tex code from another file & Misc \\[5pt]
+    addchap & Chapter without number & Sections \\
+    chapter & Begins a new chapter, first argument the title of the chapter & Sections \\
+    section & Section title & Sections \\
+    subsection & Subsection title & Sections \\[5pt]
+    addbibresource & The path of the bibliography (.bib) file containing the references & Single-use \\
+    acknowledgements & Text appearing in second column of page 2 & Single-use \\ 
+    author & The authors of the report & Single-use \\
+    contentspage & Load after the overview. Prints the table of contents and the list of figures & Single-use \\
+    documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
+    GrattanReportNumber & Prints the report number on page 2 & Single-use \\
+    GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
+    listoffigures & Print list of figures (currently handled by \textbackslash{}contentspage) & Single-use \\
+    listoftables & Prints list of tables & Single-use \\
+    printbibliography & Prints bibliography & Single-use \\
+    printendnotes & Prints endnotes if requested & Single-use \\
+    printfigurenotes & Prints list of `long figure notes' by \textbackslash{}fnotes & Single-use \\
+    printtablenotes & Prints list of `long table notes' by \textbackslash{}tnotes & Single-use \\
+    title & The title of the report & Single-use \\[5pt]
+    \$    & \textbackslash{}\$ for a (literal) dollar sign & Special characters \\
+    \%    & \textbackslash{}\% for a (literal) percentage sign & Special characters \\
+    \&    & Literal ampersand logogram & Special characters \\[5pt]
+    ,     & Half-space kern & Technical \\
+    @     & Use \textbackslash{}@ before a sentence-ending full stop preceded by a capital letter & Technical \\
+    \textbackslash{} & Line break in table & Technical \\
+    \bottomrule
+    \end{longtable}
 
+\begin{tabular}{>{\ttfamily}lp{0.6\textwidth}}
+\toprule
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{figure}
+\Caption{Title}%
+{Units}%
+{xrefkey}
+\includegraphics{path/to/figure}
+\notes{Notes}
+\source{Source}
+\end{verbatim}
+\end{minipage} & Places a floating figure with caption, notes, and source. \\[100pt]
 
-  
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{table}
+\caption{Table caption}
+\begin{tabularx}{\linewidth}
+\toprule
+ColumnHeader1 & ColumnHeader2 \\
+\midrule
+Table entry 1 & Table entry 2 \\
+\bottomrule
+\end{tabularx}
+\notes{}
+\source{}
+\end{table}
+\end{verbatim}
+\end{minipage} & Places a floating table with caption, notes, and source. \\[150pt]
+
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{overview}[-25pt]
+
+\end{overview}
+\begin{recommendations}[-25pt]
+
+\end{recommendations}
+\end{verbatim}
+\end{minipage} & Page of overview and recommendations.\\
+\bottomrule
+\end{tabular}
+
+\restoregeometry
 
 
   

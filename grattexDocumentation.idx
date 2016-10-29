@@ -2,10 +2,13 @@
 \indexentry{contentspage|hyperpage}{9}
 \indexentry{chapter|hyperpage}{9}
 \indexentry{section|hyperpage}{9}
-\indexentry{appendix|hyperpage}{9}
 \indexentry{enumerate|hyperpage}{11}
 \indexentry{itemize|hyperpage}{11}
 \indexentry{smallbox|hyperpage}{13}
 \indexentry{boxes!smallbox|hyperpage}{13}
-\indexentry{bigbox*|hyperpage}{14}
-\indexentry{boxes!bigbox*|hyperpage}{14}
+\indexentry{bigbox*|hyperpage}{13}
+\indexentry{boxes!bigbox*|hyperpage}{13}
+\indexentry{Vref|hyperpage}{14}
+\indexentry{Cref|hyperpage}{14}
+\indexentry{cross-references|hyperpage}{14}
+\indexentry{label|hyperpage}{14}
