@@ -20,10 +20,11 @@ language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\ttfamily,
 texcsstyle=*\color{blue},
-moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
+literate={~} {\(\sim\)}{1},
 moredelim = [is][\slshape\color{violet}]{@@}{@@},
 classoffset=1,
 morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
@@ -60,8 +61,9 @@ classoffset=0
   {0pt}% horizontal sep
   {}% title
 
-
+\usepackage{varioref}
 \usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
+\usepackage{cleveref}
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
 \author{Hugh Parsonage}
@@ -111,6 +113,10 @@ classoffset=0
 \newcommand{\code}[1]{\fcolorbox{gray!10}{gray!10}{\smallstrut\texttt{#1}}}
 \newcommand{\Code}[1]{\Colorbox{gray!10}{\lstinline!#1!}}
 \newcommand{\Codee}[1]{\Colorbox{gray!10}{#1}}
+
+\usepackage{enumitem}
+
+
 
 \begin{document}
 \maketitle
@@ -183,6 +189,7 @@ Text coloured blue is simply syntax highlighting and has no special meaning. All
    '' & \verb=''= \\
    -- (en-dash) & \verb=--=  \\
    --- (em-dash) & \verb=---=  \\
+   \(-\) & \verb=\(-\)= \\
    \bottomrule   
   \end{tabular}
   \end{table}
@@ -412,6 +419,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{minipage}
   \end{center}
 
+  \subsubsection{Non-breaking spaces}
+  Use \lstinline!~! for a non-breaking space: \lstinline!\$40~million!. 
+
+  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!. 
+
+
+
   
   \subsection{Numbered / bulleted lists}
   Use \verb=enumerate= and \verb=itemize= \index{enumerate}\index{itemize}
@@ -482,27 +496,26 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   
   \begin{lstlisting}
-    \newcommand{\tblHead}[2][c]{\bfseries\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
-    \newcommand{\tblHeadR}[2][c]{\bfseries\begin{tabular}[#1]{@{}>{\raggedleft}p{\linewidth}@{}}#2\end{tabular}}
-    
-    \begin{table}
-    \caption{Budgetary impact of income tax rate changes}\label{tbl:tax_cuts}
-    \begin{tabularx}{\columnwidth}{lr>{\raggedleft\arraybackslash}X}
+\newcommand{\tblHead}[2][c]{\bfseries\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\tblHeadR}[2][c]{\bfseries\begin{tabular}[#1]{@{}>{\raggedleft}p{\linewidth}@{}}#2\end{tabular}}
+
+\begin{table}
+  \caption{Budgetary impact of income tax rate changes}\label{tbl:tax_cuts}
+  \begin{tabularx}{\columnwidth}{lr>{\raggedleft\arraybackslash}X}
     \toprule
     \tblHead{Tax bracket} & \tblHead{Current tax rate} & \tblHeadR{Budgetary impact of 1 percentage point change (2015-16)}\\
     \midrule
-    \$0-\$18,200 & 0\% & \\
-    \$18,201 - \$37,000 & 19\% & \$1.9\\
-    \$37,001 - \$80,000 & 32.5\% & \$2.3\\
-    \$80,001 - \$180,000& 37\% & \$1.3\\
-    \$180,001 + & 45\% & \$0.7\\
+    \$0-\$18,200         & 0\%    & \\
+    \$18,201 - \$37,000  & 19\%   & \$1.9\\
+    \$37,001 - \$80,000  & 32.5\% & \$2.3\\
+    \$80,001 - \$180,000 & 37\%   & \$1.3\\
+    \$180,001 +          & 45\%   & \$0.7\\
     \bottomrule
-    \end{tabularx}
+  \end{tabularx}
 
-    \notes{Excludes Temporary Budget Repair Levy (2\%\ for those earning over \$180,000 until 2016-17)}
-
-    \source{Grattan analysis ATO 2\%\ sample file (2013). See \url{https://grattan.shinyapps.io/Changing_income_taxes/Forty_three_app.Rmd}}
-    \end{table}
+  \noteswithsource{Excludes Temporary Budget Repair Levy (2\%\ for those earning over \$180,000 until 2016-17)}%
+  {Grattan analysis ATO 2\%\ sample file (2013). See \url{https://grattan.shinyapps.io/Changing_income_taxes/Forty_three_app.Rmd}}
+\end{table}
   \end{lstlisting}
   \subsection{Boxes}
   \subsubsection{smallbox}\index{smallbox}\index{boxes!smallbox}
@@ -514,10 +527,15 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \end{smallbox}
 
   \end{lstlisting}
+
+  \subsubsection{verysmallbox}\index{verysmallbox}\index{boxes!verysmallbox}
+  The very small box is used for boxes which may be sufficiently shorter than a column to share the column with paragraphs from the body text. 
+  Such boxes would contain two or fewer paragraphs. 
   
   \subsubsection{bigbox*} \index{bigbox*}\index{boxes!bigbox*}
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
 
+  \subsubsection*{Figures in boxes must use [H]}
   When you have a figure in a big box, you must use 
   \begin{lstlisting}
    \begin{figure}[H] 
@@ -527,12 +545,16 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   to insert a figure.
   
   Note the \lstinline![H]! which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
+
+  \subsection{Footnotes in boxes}
+  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
+  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \subsection{Cross-references}
   There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!Vref! and \lstinline!Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
   The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
-  For example, to refer to some figure
+  For example, to refer to some figure, use the following template.
 
   \begin{lstlisting}
   Some text which is illustrated by a chart (\Vref{fig:key}) 
@@ -542,6 +564,30 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \includegraphics{thechartfilename.pdf}
   \end{figure}
   \end{lstlisting}
+
+  % \begin{center}
+  {{Your labels should be evocative of what is displayed, {not} the number.} }
+  {You will end up moving or removing a figure, table, or box and confuse your labels.}
+  % \end{center}
+
+  If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??!. 
+
+  The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
+  I \emph{strongly} recommend you use the prefixes in \Vref{tbl:prefixes-by-float-type}. 
+  Using these prefixes consistently will make auto-completion easier. 
+
+  \begin{table}[H]
+  \caption{Prefixes to use in cross-reference anchors, by float type\label{tbl:prefixes-by-float-type}}
+  \begin{tabular}{>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
+  \toprule
+  \textbf{\textrm{Float environ.}} & \textbf{\textrm{Prefix}} & \textbf{\textrm{Example}} \\
+  \midrule 
+  figure & fig: & \verb=\label{fig:prop-hholds-by-decile}= \\
+  table  & tbl: & \verb=\label{tbl:tax-paid-by-bracket}= \\
+  box    & box: & \verb=\begin{smallbox}{A short history of motorsport}{box:motorsport}= \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
 
 
 
@@ -558,19 +604,20 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    }
   \end{lstlisting}
   There are several elements to a bibliography:
-  \begin{enumerate}
+  \begin{enumerate}[leftmargin=5em]
    \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
    \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as I will show below).
    \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
    
   \end{enumerate}
   
-  \subsubsection{Citations}
-  Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database. The citation will appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
+  \subsubsection{Citations}\index{citations}\index{footcite}\index{footcites}
+  Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
   Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{key2}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
   
-  Use \lstinline!\textcite{<key>}! to cite a key if you don't want in a footnote. Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
+  Use \lstinline!\textcite{<key>}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
+  Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
   
   \section{More advanced macros}
   \subsection{New commands}
@@ -633,6 +680,18 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \section{Known bugs in the \texttt{grattan.cls} file}
+  \subsection{\texttt{microtype}'s spacing and \texttt{ragged2e}} 
+  Currently, \texttt{spacing=true} and \texttt{ragged2e} are used. 
+  This is not supported by \texttt{microtype}, which issues a warning. 
+  Indeed, it can cause catastrophically bad typesetting.
+
+  If you see words being put on top of other words, it is due to this bug. 
+
+  \includegraphics[width=\textwidth]{figure/ragged-spacing-bug.png}
+
+  The fix depends on the context: if it occurs within an environment \texttt{EE}, use \lstinline!\AtBeginEnvironment{EE}{\RaggedRight}!. 
+  If it occurs close to a list, a paragraph break (\ie~a blank line) before the list environment may be necessary. 
+
   \subsection{Big boxes}
   \subsubsection{Caption baseline does not match matching column baseline}
   Solved: \url{http://tex.stackexchange.com/questions/305450/align-caption-baseline-in-second-column-with-baseline-of-first-column}
@@ -721,6 +780,545 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{enumerate}
 
 \appendix
+\part{Error messages}
+\chapter{Common \LaTeX{} Errors}
+\label{cha:common-errors}
+
+This chapter is best understood by following the PDF output.
+
+The following is a list of common \LaTeX{} compile errors as they appear in the log file, and suggestions for how to resolve these. More often than not, errors come from something simple, such as forgetting a parenthesis, a typo, or forgetting to end an environment. But there are also cases where you have no idea what you have done wrong and it can take a fair bit of time to find or even understand your error.
+
+A feature of ShareLaTeX is that it provides `hints' on how to resolve particular errors -- most of the time these hints are sufficient. But if not, it may be necessary to view the raw log file to diagnose the problem.
+
+\section{The Form of an Error}
+\label{sec:form-an-error}
+
+There are two forms of errors: \LaTeX{} errors and \TeX{} errors.  In
+both types of errors, the part after the error message will tell you
+where the error occurred.  An example:
+\begin{verbatim}
+l.15 <offending text>
+\end{verbatim}
+The \texttt{l.15} tells you what line the error occurred on and the
+text will tell you the text that caused the error.
+
+\subsection{\LaTeX{} Errors}
+\label{sec:latex-errors}
+
+The general form of an error in \LaTeX{} is shown below:
+\begin{verbatim}
+! LaTeX error: <error message>
+
+See the LaTeX manual or LaTeX Companion for
+explanation.
+Type H <return>   for immediate help.
+...
+\end{verbatim}
+
+The \texttt{!} lets you know that the error has occurred.  The error
+message will tell you what type of error you have committed.  After
+the ellipses, you will find the line at which the error occurred and
+the text that caused the error (or at least the text where \LaTeX{}
+found the error).
+
+\subsection{\TeX{} Errors}
+\label{sec:tex-errors}
+
+Errors may also have the following form:
+\begin{verbatim}
+! <error message>
+\end{verbatim}
+
+These errors are formatted differently because they are error messages
+that came from \TeX{} instead of \LaTeX{}.  After the error, you will
+still find the line that the error occurred in and the text of the
+error.
+
+\section{Warnings}
+\label{sec:warnings}
+
+There are some error messages that are just warnings and will not stop
+or change the compilation of the document.  Chances are you have seen
+them many times.
+
+\subsection{Underfull}
+\label{sec:underfull}
+
+The following error results when a line does not extend the width of
+the page, something \LaTeX{} always tries to accomplish:
+\begin{verbatim}
+Underfull \hbox (badness 10000) in paragraph at lines
+104--107
+\end{verbatim}
+
+This error message is just a warning and is not something to worry
+about.  For the most part, when a line does not span the width of the
+page, it is because you have written something that you want to only
+cover part of the page.
+
+\subsection{Overfull}
+\label{sec:overfull}
+
+The following error results when a line extends beyond the width of
+the page:
+\begin{verbatim}
+Overfull \hbox (16.04988pt too wide) in paragraph at
+lines 30--31 [] [] \OT1/cmtt/m/n/12 I'm trying to put
+way too much text into a line in my document.
+\end{verbatim}
+Usually this error comes form when you are using the \texttt{verbatim}
+package because it will not move to the next line if your text does
+not go to the next line.  The easiest way to fix this is to find the
+place in your document where this is occurring and change the text so
+that it fits to the page.
+
+This error will still show up if the text is still on the page but
+outside of the width of text that \LaTeX{} has set.  In this case, you
+are welcome to fix things so that the error does not show up or you
+can leave the text as it is.
+
+\subsection{References}
+\label{sec:references-1}
+
+The following warnings occur when references are changed when \LaTeX{}
+was compiled:
+\begin{verbatim}
+LaTeX Warning: Label(s) may have changed. Rerun to get
+cross-references right.
+
+LaTeX Warning: There were undefined references.
+
+LaTeX Warning: Reference `name' on page 1 undefined on
+input line 15.
+\end{verbatim}
+
+The way to fix these errors is to recompile the document again to
+correct the page numbers.  Sometimes it is necessary to recompile the
+document twice to fix this error.  You also may have defined a
+reference wrong, so you should check to make sure your label is
+correct.
+
+\section{Beginning and Ending}
+\label{sec:beginning-ending}
+
+\subsection{Begin Ended by End}
+\label{sec:begin-ended-end}
+
+This type of error occurs when each environment is not correctly
+started and ended.  When you are missing an \verb|\end| command, the
+following error will show up:
+\begin{verbatim}
+! LaTeX Error: \begin{enumerate} on input line 23
+ended by \end{document}.
+\end{verbatim}
+
+To fix this, you need to end the environment mentioned in the error
+with the appropriate command.
+
+When you are missing a \verb|\begin| command, the following will appear:
+\begin{verbatim}
+! LaTeX Error: \begin{document} ended by
+\end{itemize}.
+\end{verbatim}
+
+To fix this, you basically do the same thing as before, correctly
+beginning the environment mentioned in the error with the appropriate
+command.
+
+\subsection{End Occurred Inside a Group}
+\label{sec:end-occurred-inside}
+
+The following error message will show up at the end of compiling a
+file if an environment is begun that is not ended:
+\begin{verbatim}
+(\end occurred inside a group at level <n>)
+\end{verbatim}
+
+To fix this error, make sure you end the environment that was begun.
+The previous error is more helpful in finding the \verb|\begin|
+statement.
+
+\subsection{Ended by End of Line}
+\label{sec:ended-end-line}
+
+The following error will occur when you try to place a command inside
+a section heading:
+\begin{verbatim}
+! LaTeX Error: \verb ended by end of line.
+
+See the LaTeX manual or LaTeX Companion for
+explanation.
+Type H <return>   for immediate help.
+...
+\end{verbatim}
+
+There will be many errors of the same type for this mistake.  In order
+to find where you put the command, look in the output file and find
+the last heading that shows up.
+
+\subsection{Missing Begin Document}
+\label{sec:miss-begin-docum}
+
+This error is self-explanatory:
+\begin{verbatim}
+! LaTeX Error: Missing \begin{document}
+\end{verbatim}
+
+\section{Errors Usually Caused by Bad Spelling}
+\label{sec:errors-usually-caus}
+
+\subsection{Unknown Control Sequence}
+\label{sec:unkn-contr-sequ}
+
+This error results when you use a command (something that starts with a
+\texttt{$\backslash$}) that is not recognized by \LaTeX{}:
+\begin{verbatim}
+! Undefined control sequence.
+\end{verbatim}
+
+Usually this error results from spelling a command incorrectly.  Go to
+the line that is indicated by the error and fix the command.
+
+\subsection{Environment Undefined}
+\label{sec:envir-undef}
+
+This error results when you begin an environment with a \verb|\begin|
+command that is not recognized:
+\begin{verbatim}
+! LaTeX Error: Environment verbatin undefined.
+\end{verbatim}
+
+Usually you have just spelled your environment incorrectly, so you
+just need to fix it.
+
+\subsection{Bad File Name}
+\label{sec:bad-file-name}
+
+This error results when you have mistyped the command \texttt{latex}
+or do not have \LaTeX{} installed on your computer:
+\begin{verbatim}
+Bad command or file name
+\end{verbatim}
+To fix this, correctly spell the command to compile your file or make
+sure that \LaTeX{} is correctly installed on your computer.
+
+\subsection{Cannot Find File Name}
+\label{sec:cannot-find-file}
+
+This error occurs when you try to compile a file that the computer
+cannot find:
+\begin{verbatim}
+! I can't find file `sample'.
+<*> sample
+
+Please type another input file name:
+\end{verbatim}
+
+To fix this error, make sure you have spelled the file name
+correctly.  You also may be in the wrong directory to compile the
+file, so check to make sure you are in the same directory as your
+file.
+
+\section{Fatal Errors}
+\label{sec:fatal-errors}
+
+\subsection{Runaway Argument}
+\label{sec:runaway-argument}
+
+This error happens when a paragraph ends before a command's argument
+is done (i.e., \LaTeX{} thinks that there is a missing \}):
+\begin{verbatim}
+Runaway argument?
+\end{verbatim}
+
+To fix this, you should use a different command to accomplish what you
+are trying to do.  An example of this is to use \verb|\bfseries|
+instead of \verb|\bftext| to make bold text in more than one
+paragraph.
+
+This error can also be caused by a missing mandatory argument to a
+command.
+
+\subsection{Just an *}
+\label{sec:just-an-asterisk}
+
+This error normally occurs when you do not end your document with \\ \verb|\end{document}|:
+\begin{verbatim}
+*
+\end{verbatim}
+
+If you are prompted to enter something in, it is best to enter
+\begin{verbatim}
+\end{document}
+\end{verbatim}
+and hope it works.  Be sure to end your document
+with the appropriate command.
+
+\subsection{Emergency Stop}
+\label{sec:emergency-stop}
+
+This error happens when \LaTeX{} will stop trying to compile your
+document due to a serious error:
+\begin{verbatim}
+! Emergency stop.
+\end{verbatim}
+To fix this error, you will need to figure out what caused it to stop
+compiling.  Chance are you forgot to end your document with
+\verb|\end{document}|, but there might also be another reason for the
+emergency stop.
+
+\subsection{Please Type a Command or Say End}
+\label{sec:please-type-command}
+
+This error happens when your file has ended prematurely:
+\begin{verbatim}
+(Please type a command or say `\end')
+\end{verbatim}
+
+The best way to deal with this type of error is to type
+\begin{verbatim}
+\end
+\end{verbatim}
+or
+\begin{verbatim}
+\end{document}
+\end{verbatim}
+in the case that the absence of that command
+caused the error.  Usually if you have ended your document correctly,
+the error will result from a missing \} or forgetting to end a
+verbatim environment.
+
+\section{Graphics Errors}
+\label{sec:graphics-errors}
+
+\subsection{Too Many Unprocessed Floats}
+\label{sec:too-many-unprocessed}
+
+This error occurs when figures or tables (i.e., floats) have not been
+typeset:
+\begin{verbatim}
+! LaTeX Error: Too many unprocessed floats.
+\end{verbatim}
+
+\LaTeX{} can only have so many floats waiting to be typeset.  In order
+to fix this error, make sure that you are placing your floats where
+you want them (with a \texttt{[h]} option) and not wanting too many on
+one page in sequence.  Using the command \verb|\clearpage| can be very
+useful in distributing floats correctly.
+
+\subsection{Unknown Graphics Extension}
+\label{sec:unkn-graph-extens}
+
+The following error occurs when you try to use a type of graphic that
+is not supported by the type of file that you are producing:
+\begin{verbatim}
+! LaTeX Error: Unknown graphics extension: .gif
+\end{verbatim}
+
+In order to fix this error, you should change your graphics to the
+types that are supported by the type of file you are outputting or you
+will need to include the correct package to deal with that type of
+graphic.  Sometimes you may have named the graphic poorly so that
+\LaTeX{} will not recognize it as a graphic file.
+
+\subsection{Division by Zero}
+\label{sec:division-zero}
+
+The following error occurs when the height of a graphic object is zero:
+\begin{verbatim}
+! Package graphics Error: Division by 0.
+\end{verbatim}
+
+This is usually caused when you rotate an object with zero depth so
+that its height becomes zero.  The best way to fix this is to use the
+keyword \texttt{totalheight} instead of \texttt{height}.
+
+\section{Math Errors}
+\label{sec:math-errors}
+
+\subsection{Display Math Should End With \$\$}
+\label{sec:display-math-should}
+
+This error occurs when the displaymath or equation mode is ended incorrectly:
+\begin{verbatim}
+! Display math should end with $$
+\end{verbatim}
+
+To fix this error, make sure that you end the displaymath or equation
+mode correctly (ending them with a \$ is not acceptable).
+
+\subsection{Bad Math Environment Delimiter}
+\label{sec:bad-math-environment}
+
+This error occurs when you do not have your delimiters correct in math
+mode:
+\begin{verbatim}
+! LaTeX Error: Bad math environment delimiter.
+\end{verbatim}
+
+Usually this occurs when you forget to match a right delimiter with
+every left delimiter.  This error may also happen when you forget to
+end an array.
+
+\subsection{Missing Right}
+\label{sec:missing-right}
+
+This error occurs when you have a missing right parenthesis:
+\begin{verbatim}
+! Extra \right.
+\end{verbatim}
+
+To fix this, you either need to add a \verb|\right| command or you
+need to end an array.
+
+\subsection{Missing Delimiter}
+\label{sec:missing-delimiter}
+
+This error message occurs when a delimiter is missing:
+\begin{verbatim}
+! Missing delimiter (. inserted).
+\end{verbatim}
+
+To fix this error, you need to make sure that you have a right
+delimiter for every left delimiter.  If you do not want a right
+delimiter matching a left delimiter, you need to use ``.''\ to not
+have an error message show up.
+
+\subsection{Missing \$ Inserted}
+\label{sec:missing--inserted}
+
+The following error occurs when you try to use a character that can
+only be used in math mode, like \_ or \^{}:
+\begin{verbatim}
+! Missing $ inserted
+\end{verbatim}
+
+To fix this error, make sure you change the character to what it
+should be in text mode.
+
+\section{Tabular Environment Errors}
+\label{sec:tabul-envir-errors}
+
+\subsection{Misplaced Alignment Tab Character \&}
+\label{sec:mispl-alignm-tab}
+
+This error occurs when you use \texttt{\&} and when you are not in a
+tabular environment:
+\begin{verbatim}
+Misplaced alignment tab character &
+\end{verbatim}
+
+To fix this error, you need to use \verb|\&| to make a \&.
+
+\subsection{Extra Alignment Tab}
+\label{sec:extra-alignment-tab}
+
+This error occurs when you use too many tabs for the number of columns
+in a table:
+\begin{verbatim}
+! Extra alignment tab has been changed to \cr
+\end{verbatim}
+
+The result of this error is that a new row is formed where the extra
+tab was.  You should go back and fix your table so that the correct
+number of items in each row would show up.
+
+\subsection{Argument Has an Extra \}}
+\label{sec:argument-has-an}
+
+These errors happen when an incorrect number of arguments to a tabular
+environment have been specified:
+\begin{verbatim}
+! Argument of \cline has an extra }.
+
+! Argument of \multicolumn has an extra }.
+\end{verbatim}
+
+To fix this error, make sure your arguments to the tabular environment
+are correct.
+
+\section{Errors With Lists}
+\label{sec:errors-with-lists}
+
+\subsection{Missing Item}
+\label{sec:missing-item}
+
+This error occurs when there is plain text in an environment that
+takes items:
+\begin{verbatim}
+! LaTeX Error: Something's wrong--perhaps a missing
+\item.
+\end{verbatim}
+
+To fix this error, make sure the plain text is changed into an item.
+
+\subsection{Too Deeply Nested}
+\label{sec:too-deeply-nested}
+
+This error occurs when there are too many lists for \LaTeX{} to
+handle:
+\begin{verbatim}
+! LaTeX Error: Too deeply nested
+\end{verbatim}
+
+\LaTeX{} can only handle four levels of one type of list and six
+levels of different types of lists.  To fix this, you need to use less
+levels of lists or define your own list environment.
+
+\section{Miscellaneous Errors}
+\label{sec:miscellaneous-errors}
+
+\subsection{Only Used in the Preamble}
+\label{sec:only-used-preamble}
+
+This error occurs when you place a command in the body of a \LaTeX{}
+document that should be placed in the preamble:
+\begin{verbatim}
+! LaTeX Error: Can be used only in the preamble.
+\end{verbatim}
+
+To fix this error, just move the command to the preamble.
+
+\subsection{There Is No Line/Page Here to End}
+\label{sec:there-no-linepage}
+
+This error occurs when you incorrectly use the commands that make a
+new line or a new page:
+\begin{verbatim}
+! LaTeX Error: There's a no line here to end.
+\end{verbatim}
+
+You may just leave the command that is making a new line in place or
+you can take it out.  Here, \LaTeX{} is just trying to make sure that
+everything looks nice.
+
+\subsection{Command Already Defined}
+\label{sec:comm-alre-defin}
+
+This error occurs when you try to define a command that already exists:
+\begin{verbatim}
+! LaTeX Error: Command ... already defined.
+\end{verbatim}
+
+To fix this, you need to define your command differently.
+
+\subsection{Missing Number}
+\label{sec:missing-number}
+
+This error is made when a number is expected as an argument and one is
+not provided:
+\begin{verbatim}
+! Missing number, treated as zero.
+\end{verbatim}
+
+To fix this error, you need to find where a number is expected so that
+you can provide the correct one.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "reader"
+%%% End: 
+
 \newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
 \caption{List of all commands} \\
@@ -784,10 +1382,11 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \&    & Literal ampersand logogram & Special characters \\[5pt]
     ,     & Half-space kern & Technical \\
     @     & Use \textbackslash{}@ before a sentence-ending full stop preceded by a capital letter & Technical \\
+    (     & Use \textbackslash{}( to begin math-mode. You should type \textbackslash{}(-\textbackslash{}) if you want a negative symbol. & Technical \\
     \textbackslash{} & Line break in table & Technical \\
     \bottomrule
     \end{longtable}
-
+\part{Quick-reference}
 \begin{tabular}{>{\ttfamily}lp{0.6\textwidth}}
 \toprule
 \begin{minipage}[t]{0.4\linewidth}

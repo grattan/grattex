@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.9)  30 OCT 2016 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.9)  31 OCT 2016 00:01
 entering extended mode
 **./grattexDocumentation.tex
 (grattexDocumentation.tex
@@ -945,7 +945,7 @@ Class scrartcl Warning: Usage of package `titlesec' together
 (scrartcl)              the extended optional argument of the section
 (scrartcl)              commands.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `titlesec' on input line 97.
+(scrartcl)              package `titlesec' on input line 98.
 
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titlese
@@ -984,8 +984,12 @@ Package titlesec Warning: Non standard sectioning command detected
 )
 
 Package scrartcl Warning: Activating an ugly workaround for a missing
-(scrartcl)                feature of package `titlesec` on input line 97.
+(scrartcl)                feature of package `titlesec` on input line 98.
 
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\varioref.sty"
+Package: varioref 2016/02/16 v1.5c package for extended references (FMi)
+\c@vrcnt=\count118
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
@@ -1038,15 +1042,15 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen155
-\Hy@linkcounter=\count118
-\Hy@pagecounter=\count119
+\Hy@linkcounter=\count119
+\Hy@pagecounter=\count120
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count120
+\Hy@SavedSpaceFactor=\count121
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -1059,7 +1063,7 @@ Package hyperref Info: Plain pages OFF on input line 4501.
 Package hyperref Info: Backreferencing OFF on input line 4506.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4735.
-\c@Hy@tempcnt=\count121
+\c@Hy@tempcnt=\count122
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip10
@@ -1067,7 +1071,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5088.
 \XeTeXLinkMargin=\dimen156
-\Fld@menulength=\count122
+\Fld@menulength=\count123
 \Field@Width=\dimen157
 \Fld@charsize=\dimen158
 Package hyperref Info: Hyper figures OFF on input line 6342.
@@ -1079,17 +1083,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6367.
 Package hyperref Info: PDF/A mode OFF on input line 6372.
 LaTeX Info: Redefining \ref on input line 6412.
 LaTeX Info: Redefining \pageref on input line 6416.
-\Hy@abspage=\count123
-\c@Item=\count124
-\c@Hfootnote=\count125
+\Hy@abspage=\count124
+\c@Item=\count125
+\c@Hfootnote=\count126
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
-\Fld@listcount=\count126
-\c@bookmark@seq@number=\count127
+\Fld@listcount=\count127
+\c@bookmark@seq@number=\count128
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
@@ -1097,6 +1101,29 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip65
+)
+("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\cleveref\clevere
+f.sty"
+Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2230.
+LaTeX Info: Redefining \cref on input line 2230.
+LaTeX Info: Redefining \Cref on input line 2230.
+LaTeX Info: Redefining \crefrange on input line 2230.
+LaTeX Info: Redefining \Crefrange on input line 2230.
+LaTeX Info: Redefining \cpageref on input line 2230.
+LaTeX Info: Redefining \Cpageref on input line 2230.
+LaTeX Info: Redefining \cpagerefrange on input line 2230.
+LaTeX Info: Redefining \Cpagerefrange on input line 2230.
+LaTeX Info: Redefining \labelcref on input line 2230.
+LaTeX Info: Redefining \labelcpageref on input line 2230.
+Package cleveref Info: `varioref' support loaded on input line 2453.
+Package cleveref Info: `cleveref' supersedes `varioref's \labelformatcommand on
+ input line 2453.
+LaTeX Info: Redefining \vref on input line 2453.
+LaTeX Info: Redefining \Vref on input line 2453.
+LaTeX Info: Redefining \vrefrange on input line 2453.
+LaTeX Info: Redefining \fullref on input line 2453.
+Package cleveref Info: `listings' support loaded on input line 2950.
 )
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\realboxes\realbo
 xes.sty"
@@ -1117,33 +1144,42 @@ Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 y"
 Package: manfnt 1999/07/010.2LaTeX2e manfnt package
 \dbend@height=\skip66
+)
+("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\enumitem\enumite
+m.sty"
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip67
+\enit@outerparindent=\dimen159
+\enit@toks=\toks28
+\enit@inbox=\box39
+\enitdp@description=\count129
 ) (grattexDocumentation.aux)
 \openout1 = `grattexDocumentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 165.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 165.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 169.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 169.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
 LaTeX Font Info:    Try loading font information for T1+EBGaramond-OsF on input
- line 165.
+ line 169.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\ebgaramond\t1ebg
 aramond-osf.fd"
@@ -1151,22 +1187,22 @@ File: T1EBGaramond-OsF.fd 2014/07/06 (autoinst) Font definitions for T1/EBGaram
 ond-OsF.
 )
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 165.
+(Font)              scaled to size 12.04506pt on input line 169.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.
 mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count128
-\scratchdimen=\dimen159
-\scratchbox=\box39
-\nofMPsegments=\count129
-\nofMParguments=\count130
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count131
-\MPscratchDim=\dimen160
-\MPnumerator=\count132
-\makeMPintoPDFobject=\count133
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count130
+\scratchdimen=\dimen160
+\scratchbox=\box40
+\nofMPsegments=\count131
+\nofMParguments=\count132
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count133
+\MPscratchDim=\dimen161
+\MPnumerator=\count134
+\makeMPintoPDFobject=\count135
+\everyMPtoPDFconversion=\toks30
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1214,9 +1250,9 @@ G,.JBIG2,.JB2,.eps]
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count134
-\c@mv@boldtabular=\count135
-LaTeX Info: Redefining \microtypecontext on input line 165.
+\c@mv@tabular=\count136
+\c@mv@boldtabular=\count137
+LaTeX Info: Redefining \microtypecontext on input line 169.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1231,29 +1267,31 @@ Package microtype Info: No adjustment of character kerning.
 Garamond.cfg"
 File: mt-EBGaramond.cfg 2013/05/22 v1.1 microtype config. file: EB Garamond
 )
-\c@lstlisting=\count136
+\c@lstlisting=\count138
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring ON on input line 165.
+\AtBeginShipoutBox=\box41
+Package hyperref Info: Link coloring ON on input line 169.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count137
+\c@section@level=\count139
+LaTeX Info: Redefining \Ref on input line 515.
 )
-LaTeX Info: Redefining \ref on input line 165.
-LaTeX Info: Redefining \pageref on input line 165.
-LaTeX Info: Redefining \nameref on input line 165.
+LaTeX Info: Redefining \ref on input line 169.
+LaTeX Info: Redefining \pageref on input line 169.
+LaTeX Info: Redefining \nameref on input line 169.
 
 (grattexDocumentation.out) (grattexDocumentation.out)
 \@outlinefile=\write5
 \openout5 = `grattexDocumentation.out'.
 
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 167.
+LaTeX Info: Redefining \Ref on input line 169.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 171.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd"
@@ -1266,9 +1304,9 @@ Package microtype Info: Loading generic settings for font family
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <20.74> not ava
 ilable
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 167.
+ine 171.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 22.81412pt on input line 167.
+(Font)              scaled to size 22.81412pt on input line 171.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\microtype\mt-cmr
 .cfg"
@@ -1276,25 +1314,25 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 167.
+(Font)              <20.74> on input line 171.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 167.
+(Font)              <14.4> on input line 171.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 167.
+(Font)              <12> on input line 171.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <14.4> not avai
 lable
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 167.
+ine 171.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 15.84007pt on input line 167.
+(Font)              scaled to size 15.84007pt on input line 171.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 167.
+(Font)              <7> on input line 171.
  [1
 
 
 {C:/Users/Hugh Parsonage/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Package tocbasic Info: character protrusion at toc deactivated on input line 16
-7.
+Package tocbasic Info: character protrusion at toc deactivated on input line 17
+1.
  (grattexDocumentation.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 1.
@@ -1314,7 +1352,7 @@ le
 ine 3.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
 (Font)              scaled to size 8.80005pt on input line 3.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 28.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 31.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1323,25 +1361,25 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 35.
  [2
 
 ]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 38.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 13.20007pt on input line 40.
-)
+(Font)              scaled to size 13.20007pt on input line 44.
+ [3])
 \tf@toc=\write6
 \openout6 = `grattexDocumentation.toc'.
 
- [3]
-LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/it' will be
-(Font)              scaled to size 12.04506pt on input line 181.
-LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/sc' will be
-(Font)              scaled to size 12.04506pt on input line 195.
  [4]
+LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/it' will be
+(Font)              scaled to size 12.04506pt on input line 185.
+LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/sc' will be
+(Font)              scaled to size 12.04506pt on input line 199.
+ [5]
 LaTeX Font Info:    Try loading font information for TS1+EBGaramond-OsF on inpu
-t line 206.
+t line 210.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\ebgaramond\ts1eb
 garamond-osf.fd"
@@ -1349,7 +1387,7 @@ File: TS1EBGaramond-OsF.fd 2014/07/06 (autoinst) Font definitions for TS1/EBGar
 amond-OsF.
 )
 LaTeX Font Info:    Font shape `TS1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 206.
+(Font)              scaled to size 12.04506pt on input line 210.
 Package microtype Info: Character `textthreeoldstyle ' is missing
 (microtype)             in font `TS1/EBGaramond-OsF/m/n/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1359,10 +1397,10 @@ Package microtype Info: Character `textfouroldstyle ' is missing
 Package microtype Info: Character `textsevenoldstyle ' is missing
 (microtype)             in font `TS1/EBGaramond-OsF/m/n/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [5
+ [6
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 232
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 236
 .
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1371,13 +1409,13 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-[6]
+[7]
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <10> not availa
 ble
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 246.
+ine 251.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 11.00006pt on input line 246.
+(Font)              scaled to size 11.00006pt on input line 251.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang
 1.sty"
@@ -1387,89 +1425,151 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-\tabularxlength=\skip67
+\tabularxlength=\skip68
 
 
-LaTeX Warning: \verb may be unreliable inside tabularx on input line 287.
+LaTeX Warning: \verb may be unreliable inside tabularx on input line 292.
 
-[7
-
-] [8
+[8
 
 ] [9
 
-] [10] [11] [12]
-Underfull \hbox (badness 2189) in paragraph at lines 526--526
+] [10
+
+] [11] [12] [13]
+Underfull \hbox (badness 2189) in paragraph at lines 538--538
 []|\T1/EBGaramond-OsF/m/n/10.95 to de-note a hor-i-zon-tal rule be-tween the $\
 OML/cmm/m/it/10.95 m$\T1/EBGaramond-OsF/m/n/10.95 th and $\OML/cmm/m/it/10.95 n
 $\T1/EBGaramond-OsF/m/n/10.95 th
  []
 
 
-Overfull \hbox (105.48323pt too wide) in paragraph at lines 524--531
+Overfull \hbox (105.48323pt too wide) in paragraph at lines 536--543
  [][] 
  []
 
-[13]
+[14] [15]
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 9.90005pt on input line 569.
+(Font)              scaled to size 9.90005pt on input line 584.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 569.
+(Font)              <9> on input line 584.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 569.
+(Font)              <5> on input line 584.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 6.60004pt on input line 569.
- [14] [15] [16] [17
+(Font)              scaled to size 6.60004pt on input line 584.
+ [16]
+Overfull \hbox (113.60391pt too wide) in paragraph at lines 629--638
+[][] 
+ []
 
-] [18
+[17] [18] [19
+
+] [20
 
 ]
-Overfull \hbox (56.20834pt too wide) in paragraph at lines 681--682
+Overfull \hbox (56.20834pt too wide) in paragraph at lines 726--727
 []\T1/EBGaramond-OsF/m/n/10.95 (-20) Using [][][][][][] in-stead of [][][][][][
 ]. 
  []
 
-[19
+[21
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 685.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 730.
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 731.
 
-Overfull \hbox (320.95389pt too wide) in paragraph at lines 688--689
+Overfull \hbox (14.11311pt too wide) in paragraph at lines 732--735
+\T1/EBGaramond-OsF/m/n/10.95 (-20) Currently, \T1/cmtt/m/n/10.95 spacing=true \
+T1/EBGaramond-OsF/m/n/10.95 (-20) and \T1/cmtt/m/n/10.95 ragged2e \T1/EBGaramon
+d-OsF/m/n/10.95 (-20) are used. This is not sup-ported by \T1/cmtt/m/n/10.95 mi
+crotype\T1/EBGaramond-OsF/m/n/10.95 (-20) ,
+ []
+
+<figure/ragged-spacing-bug.png, id=796, 569.87906pt x 594.72188pt>
+File: figure/ragged-spacing-bug.png Graphic file (type png)
+
+<use figure/ragged-spacing-bug.png>
+Package pdftex.def Info: figure/ragged-spacing-bug.png used on input line 738.
+(pdftex.def)             Requested size: 369.88583pt x 386.01108pt.
+
+Overfull \hbox (12.04506pt too wide) in paragraph at lines 738--739
+[][] 
+ []
+
+
+Overfull \hbox (320.95389pt too wide) in paragraph at lines 745--746
 \T1/EBGaramond-OsF/m/n/10.95 (-20) Solved: [][]$\T1/cmtt/m/n/10.95 http : / / t
 ex . stackexchange . com / questions / 305450 / align-[]caption-[]baseline-[]in
 -[]second-[]column-[]with-[]baseline-[]of-[]first-[]column$[][] 
  []
 
-[20
+[22
 
-] [21
+ <./figure/ragged-spacing-bug.png>] [23] [24
 
 ]
 part I.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 694.
-[22
+(scrkbase)              on input line 751.
+[25
 
 ]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 695.
+(hyperref)                than one, level fixed on input line 752.
 
-[23
+[26
 
 ]
-Overfull \hbox (55.2553pt too wide) in paragraph at lines 718--719
+Overfull \hbox (55.2553pt too wide) in paragraph at lines 775--776
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] \T1/EBGaramond-OsF/m/n/1
 0.95 (-20) or [][][][][][][][][][][][][][][][][][][][]
  []
 
-[24
+[27
 
-] [25
+] [28
 
-] [26
+] [29
+
+]
+part II.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 831.
+[30
+
+]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 841.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 853.
+
+[31
+
+] [32
+
+] [33] [34
+
+] [35
+
+] [36
+
+] [37
+
+] [38
+
+] [39
+
+] [40
+
+] [41
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1504,63 +1604,74 @@ Overfull \hbox (55.2553pt too wide) in paragraph at lines 718--719
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- [27
+ [42
 
-]
-Overfull \hbox (36.04506pt too wide) in paragraph at lines 841--884
-[][] 
+] [43]
+part III.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 1437.
+
+Overfull \hbox (24.0pt too wide) in paragraph at lines 1438--1481
+[] 
  []
 
-[28] (grattexDocumentation.ind [29
+[44
+
+] (grattexDocumentation.ind [45
 
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 898.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 898.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1495.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1495.
  (grattexDocumentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 898.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 898.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1495.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1495.
+
 Package rerunfilecheck Info: File `grattexDocumentation.out' has not changed.
-(rerunfilecheck)             Checksum: 0C98E2584421E76BE4B09FF2B8D64E59;3045.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 898.
+(rerunfilecheck)             Checksum: 84F64184FDDA9AA95155329C224D03EF;6564.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1495.
  ) 
 Here is how much of TeX's memory you used:
- 17587 strings out of 493334
- 282747 string characters out of 3139223
- 574854 words of memory out of 3000000
- 20365 multiletter control sequences out of 15000+200000
- 59127 words of font info for 162 fonts, out of 3000000 for 9000
+ 19718 strings out of 493334
+ 327009 string characters out of 3139223
+ 609627 words of memory out of 3000000
+ 22381 multiletter control sequences out of 15000+200000
+ 63791 words of font info for 186 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,16n,122p,8914b,2204s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 59i,16n,122p,8914b,2239s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
-c\dpi600\ecso1095.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\p
-k\ljfour\jknappen\ec\dpi600\ecsx2488.pk> <C:\Users\Hugh Parsonage\AppData\Local
-\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx2074.pk> <C:\Users\Hugh Pars
-onage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk> 
+c\dpi600\ecsx0800.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\p
+k\ljfour\jknappen\ec\dpi600\ecso1095.pk> <C:\Users\Hugh Parsonage\AppData\Local
+\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx2488.pk> <C:\Users\Hugh Pars
+onage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx2074.pk> 
 <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
-pi600\ectt0900.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\l
-jfour\jknappen\ec\dpi600\tctt1095.pk>{C:/Users/Hugh Parsonage/AppData/Roaming/M
-iKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm_i7zvqf.enc}{C:/Users/Hugh Parsonage/A
-ppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm_2jdbaj.enc} <C:\Users
-\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecs
-t1095.pk>{C:/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/eb
-garamond/ebgm_ny6sxo.enc} <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecsx1200.pk> <C:\Users\Hugh Parsonage\AppData\L
-ocal\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk> <C:\Users\Hugh 
-Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1095.
+pi600\ectt1200.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\ectt1440.pk> <C:\Users\Hugh Parsonage\AppData\Local\Mi
+KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk> <C:\Users\Hugh Parsona
+ge\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1095.pk>{C:/
+Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm
+_i7zvqf.enc}{C:/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips
+/ebgaramond/ebgm_2jdbaj.enc} <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\
+fonts\pk\ljfour\jknappen\ec\dpi600\ecst1095.pk>{C:/Users/Hugh Parsonage/AppData
+/Roaming/MiKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm_ny6sxo.enc} <C:\Users\Hugh 
+Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1200.
 pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecsx1440.pk>{C:/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts
-/enc/dvips/ebgaramond/ebgm_iymieh.enc}<C:/Users/Hugh Parsonage/AppData/Roaming/
-MiKTeX/2.9/fonts/type1/public/ebgaramond/EBGaramond12-Italic.pfb><C:/Users/Hugh
- Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/ebgaramond/EBGaramond1
-2-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on grattexDocumentation.pdf (29 pages, 352080 bytes).
+ec\dpi600\ectt1095.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecsx1095.pk> <C:\Users\Hugh Parsonage\AppData\Loca
+l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx1440.pk>{C:/Users/Hugh Pars
+onage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm_iymieh.enc}<C:
+/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/ebgaramond/
+EBGaramond12-Italic.pfb><C:/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fon
+ts/type1/public/ebgaramond/EBGaramond12-Regular.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb>
+Output written on grattexDocumentation.pdf (45 pages, 604316 bytes).
 PDF statistics:
- 1044 PDF objects out of 1200 (max. 8388607)
- 323 named destinations out of 1000 (max. 500000)
- 40801 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1452 PDF objects out of 1728 (max. 8388607)
+ 389 named destinations out of 1000 (max. 500000)
+ 42230 words of extra memory for PDF output out of 42996 (max. 10000000)
 
