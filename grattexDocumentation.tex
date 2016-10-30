@@ -178,13 +178,13 @@ LaTeX code with some \markup.
 \end{lstlisting}
 or inline: \lstinline!\TeX{}!.
 
-Code examples can be, for want of better terms, \emph{complete} or \emph{illustrative}. \defi{Complete} code means the code should be copied-and-pasted directly into the input file without modification, whereas \defi{illustrative} code should be modified based on the desired output. For example, if an author wishes to increase the gap between columns in the overview by 2\,mm, the code excerpt is complete. The author should copy and paste the following, placing it before \lstinline!\begin{overview}!:
+Code examples can be, for want of better terms, \emph{complete} or \emph{illustrative}. \defi{Complete} code means the code should be copied-and-pasted directly into the input file without modification, whereas \defi{illustrative} code should be modified based on the desired output. For example, if an author wishes to increase the gap between columns in the overview by 2\,mm, the code excerpt below is complete. The author should copy and paste the following, placing it before \lstinline!\begin{overview}!:
 \begin{lstlisting}
 \newlength{\overviewextra}
 \setlength{\overviewextra}{2mm}
 \addtolength{\columnsep}{\overviewextra}
 \end{lstlisting}
-Whereas an illustrative version of the following, where the author is offered a choice for the gap between columns, the option is coloured violet, slanted, and delimited with chevrons:
+Whereas in an illustrative version of the above, the author is offered a choice for the gap between columns. In illustrative code examples, such options are coloured violet, slanted, and delimited with chevrons:
 \begin{lstlisting}
 \newlength{\overviewextra}
 \setlength{\overviewextra}{@@<extra column width>@@}
@@ -192,7 +192,7 @@ Whereas an illustrative version of the following, where the author is offered a 
 \end{lstlisting}
 
 
-Coloured text is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
+Text coloured blue is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
 
 \newpage
  \section{Some principles for erstwhile MS Word users}
@@ -209,6 +209,7 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
   \end{itemize}
 
   \item \LaTeX\ is a butler, not a slave: it is a partner in document preparation. In general, your responsibilities should not overlap: you decide the content and it decides the form. Where your responsibilities do overlap, you should seek to \emph{advise} \LaTeX, not to \emph{order} it. Further, you should be as gentle as possible with your advice. Only forcefully advise when the document will not require amendments and you are sure \LaTeX\ is wrong. 
+  \item \LaTeX\ is a computer program, not a human. Despite the previous points, there are limits to what \LaTeX\ can do. In particular, \LaTeX\ cannot reword paragraphs.
   \item Don't manually position figures, tables, or boxes. Let them float in the document. It is nearly certain that the initial placement will be odd. As long you have used a \verb=figure=, \verb=table= or \verb=*box= environment, they will float into good positions. For errant figures, tables, or boxes, wait until the document is completely finished before advising positions.
   \item Don't do any of the following:
   \begin{enumerate}
@@ -239,7 +240,7 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
   
 
 
-  \item The grattan class file assumes your input is encoded in \texttt{utf8}. Avoid copying from MS Word to \verb=.tex= files. Otherwise, special characters above will creep in silently. If you must, use \verb=pandoc=.
+  \item The grattan class file assumes your input is encoded in \texttt{UTF-8}. Avoid copying from MS Word to \verb=.tex= files. Otherwise, special characters above will creep in silently. If you must, use \verb=pandoc=.
   \item Use \verb= % = for comments.
  \end{enumerate}
  \section{Basics of \textrm{\LaTeX}}
@@ -248,21 +249,21 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
  \begin{enumerate}
   \item Start with a plain text file with the file extension \verb=.tex= in a directory/folder
   \item Run the \verb=pdflatex= program on that file. That is, type 
-  \begin{lstlisting}
+  \begin{lstlisting}[language=bash]
     cd path/to/your/directory
   \end{lstlisting}
   and then 
   \begin{lstlisting}
-    pdflatex file.tex
+    pdflatex myfile.tex
   \end{lstlisting}
   in cmd (Windows) or Terminal (Linux or Mac).
-  \item The program returns a pdf file or an error.
+  \item The program puts a pdf file \lstinline!myfile.pdf! or returns an error.
  \end{enumerate}
 
  
  \subsection{Commands and environments}
  \subsubsection{Commands}
- A \defi{command} starts with a backslash \verb=\= followed by one or more charaters. A {command} may have zero or more mandatory arguments and zero or more optional arguments. For example:
+ A \defi{command} starts with a backslash \verb=\= followed by one or more characters. A {command} may have zero or more mandatory arguments and zero or more optional arguments. For example:
  \begin{table}[H]
  \raggedright
  \renewcommand{\arraystretch}{1.4}
@@ -278,7 +279,7 @@ Coloured text is simply syntax highlighting and has no special meaning. All \TeX
     \midrule
     \verb=\$= & 0 mandatory\newline 0 optional & \textbf{Prints} the \$\ sign\\
     \verb=\textbf= & 1 mandatory\newline 0 optional & Prints its argument in boldface. \\
-    \verb=\\= & 0 mandatory\newline 1 optional & Forces a linebreak, with optional extra space \\
+    \verb=\\= & 0 mandatory\newline 1 optional & Forces a line break, with optional extra space \\
     \verb=\footcite= & 1 mandatory\newline 2 optional & Cites its mandatory argument, with optional pre- or post-notes (such as page numbers) \\
     \verb=\footcites= & $n$ mandatory\newline $2n + 2$ optional & Multiple footcites \\
     \bottomrule
@@ -359,23 +360,15 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \begin{enumerate}
     \item A file \verb=FrontPagePicture=
    \end{enumerate}
-   \item The folder \verb=logos= which must contain:
+   \item The following files:
     \begin{verbatim}
-    aus-gov-logo-stacked-black-eps-converted-to.pdf
-    aus-gov-logo-stacked-black.eps
+    aus-gov-logo-stacked-black.pdf
     Bhp.pdf
-    TMF_logo_black.eps
+    GrattanSVGLogo.pdf
     TMF_logo_green-eps-converted-to.pdf
-    TMF_logo_green.eps
-    UOM-Pos3D_S_Sm.jpg
-    UOM-Pos_S_PMS-eps-converted-to.pdf
-    UOM-Pos_S_PMS.eps
-    UOM-Rev_H_PMS-eps-converted-to.pdf
-    UOM-Rev_H_PMS.eps
-    UOM-Rev_S_PMS-eps-converted-to.pdf
-    UOM-Rev_S_PMS.eps
-    Vic_Gov_Logo-eps-converted-to.pdf
-    Vic_Gov_Logo.eps
+    TMF_logo_green.pdf
+    UOM-Pos_S_PMS.pdf
+    Vic_Gov_Logo-2016.pdf
     \end{verbatim}
 
 
@@ -501,7 +494,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \begin{figure}
     \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
     \units{@@<secondary caption/y-axis label>@@}
-    \includegraphics[width=\columnwidth]{figure/@@image-filename@@}
+    \includegraphics{figure/@@image-filename@@}
     \noteswithsource{@@<Notes of the chart>@@}%  
     {@@<Source information>@@}
    \end{figure}
@@ -640,7 +633,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \begin{lstlisting}
    \newcommand{\eg}{\emph{e.g.}}
   \end{lstlisting}
-  Creates a newcommand \verb=\eg= which prints \emph{e.g.} when it is called. Another one I often use is:
+  Creates a new command \verb=\eg= which prints \emph{e.g.} when it is called. Another one I often use is:
   \begin{lstlisting}
    \newcommand{\gao}{Grattan analysis of}
   \end{lstlisting}
@@ -710,7 +703,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \item providing the same options to the errant float's predecessor
   \item providing the same options to both the errant float and its predecessor
   \end{enumerate}
-  \item At this point, if the figure remains steadfast, you have encountered a very unusual situtation, and I would encourage you to accept the result.  
+  \item At this point, if the figure remains steadfast, you have encountered a very unusual situation, and I would encourage you to accept the result.  
   \item Otherwise: you should consider rewording captions or the surrounding text.
   \item Next consider the use of \lstinline!\FloatBarrier!
   \item Then consider the option \verb=!=.
