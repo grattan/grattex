@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.9)  31 OCT 2016 00:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.9)  1 NOV 2016 17:31
 entering extended mode
 **./grattexDocumentation.tex
 (grattexDocumentation.tex
@@ -1343,16 +1343,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <10.95> not ava
 ilable
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 3.
+ine 4.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 3.
+(Font)              scaled to size 12.04506pt on input line 4.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <8> not availab
 le
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 3.
+ine 4.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 8.80005pt on input line 3.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 31.
+(Font)              scaled to size 8.80005pt on input line 4.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 32.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1365,9 +1365,9 @@ Package microtype Info: Loading generic settings for font family
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 38.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 39.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 13.20007pt on input line 44.
+(Font)              scaled to size 13.20007pt on input line 45.
  [3])
 \tf@toc=\write6
 \openout6 = `grattexDocumentation.toc'.
@@ -1378,8 +1378,22 @@ LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/it' will be
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/sc' will be
 (Font)              scaled to size 12.04506pt on input line 199.
  [5]
+LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
+(Font)              scaled to size 9.90005pt on input line 206.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 206.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 206.
+LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
+(Font)              scaled to size 6.60004pt on input line 206.
+LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/it' will be
+(Font)              scaled to size 9.90005pt on input line 206.
+
+[6
+
+]
 LaTeX Font Info:    Try loading font information for TS1+EBGaramond-OsF on inpu
-t line 210.
+t line 222.
 
 ("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\ebgaramond\ts1eb
 garamond-osf.fd"
@@ -1387,7 +1401,7 @@ File: TS1EBGaramond-OsF.fd 2014/07/06 (autoinst) Font definitions for TS1/EBGar
 amond-OsF.
 )
 LaTeX Font Info:    Font shape `TS1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 210.
+(Font)              scaled to size 12.04506pt on input line 222.
 Package microtype Info: Character `textthreeoldstyle ' is missing
 (microtype)             in font `TS1/EBGaramond-OsF/m/n/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1397,10 +1411,23 @@ Package microtype Info: Character `textfouroldstyle ' is missing
 Package microtype Info: Character `textsevenoldstyle ' is missing
 (microtype)             in font `TS1/EBGaramond-OsF/m/n/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [6
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[][][]\T1/EBGaramond-OsF/m/n/9 (+20) See [][]$\T1/cmtt/m/n/9 http : / / tex . s
+tackexchange . com / questions / 27440 / what-[]cant-[]tex-[]do$[][] \T1/EBGara
+mond-OsF/m/n/9 (+20) and [][]$\T1/cmtt/m/n/9 http :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+\T1/cmtt/m/n/9 / / tex . stackexchange . com / questions / 70901 / typesetting-
+[]limitations-[]of-[]latex ?
+ []
+
+[7
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 236
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 248
 .
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd"
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1409,167 +1436,149 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-[7]
+ [8]
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/bx/n' in size <10> not availa
 ble
 (Font)              Font shape `T1/EBGaramond-OsF/m/n' tried instead on input l
-ine 251.
+ine 264.
 LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 11.00006pt on input line 251.
-
-("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang
-1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-("C:\Users\Hugh Parsonage\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang
-1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
+(Font)              scaled to size 11.00006pt on input line 264.
 \tabularxlength=\skip68
 
 
-LaTeX Warning: \verb may be unreliable inside tabularx on input line 292.
+LaTeX Warning: \verb may be unreliable inside tabularx on input line 309.
 
-[8
-
-] [9
+[9
 
 ] [10
 
-] [11] [12] [13]
-Underfull \hbox (badness 2189) in paragraph at lines 538--538
+] [11
+
+] [12] [13] [14]
+Underfull \hbox (badness 2189) in paragraph at lines 556--556
 []|\T1/EBGaramond-OsF/m/n/10.95 to de-note a hor-i-zon-tal rule be-tween the $\
 OML/cmm/m/it/10.95 m$\T1/EBGaramond-OsF/m/n/10.95 th and $\OML/cmm/m/it/10.95 n
 $\T1/EBGaramond-OsF/m/n/10.95 th
  []
 
 
-Overfull \hbox (105.48323pt too wide) in paragraph at lines 536--543
+Overfull \hbox (105.48323pt too wide) in paragraph at lines 554--561
  [][] 
  []
 
-[14] [15]
-LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 9.90005pt on input line 584.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 584.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 584.
-LaTeX Font Info:    Font shape `T1/EBGaramond-OsF/m/n' will be
-(Font)              scaled to size 6.60004pt on input line 584.
- [16]
-Overfull \hbox (113.60391pt too wide) in paragraph at lines 629--638
+[15] [16] [17]
+Overfull \hbox (113.60391pt too wide) in paragraph at lines 647--656
 [][] 
  []
 
-[17] [18] [19
+[18] [19] [20
 
-] [20
+] [21
 
 ]
-Overfull \hbox (56.20834pt too wide) in paragraph at lines 726--727
+Overfull \hbox (56.20834pt too wide) in paragraph at lines 744--745
 []\T1/EBGaramond-OsF/m/n/10.95 (-20) Using [][][][][][] in-stead of [][][][][][
 ]. 
  []
 
-[21
+[22
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 730.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 748.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 731.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 749.
 
-Overfull \hbox (14.11311pt too wide) in paragraph at lines 732--735
+Overfull \hbox (14.11311pt too wide) in paragraph at lines 750--753
 \T1/EBGaramond-OsF/m/n/10.95 (-20) Currently, \T1/cmtt/m/n/10.95 spacing=true \
 T1/EBGaramond-OsF/m/n/10.95 (-20) and \T1/cmtt/m/n/10.95 ragged2e \T1/EBGaramon
 d-OsF/m/n/10.95 (-20) are used. This is not sup-ported by \T1/cmtt/m/n/10.95 mi
 crotype\T1/EBGaramond-OsF/m/n/10.95 (-20) ,
  []
 
-<figure/ragged-spacing-bug.png, id=796, 569.87906pt x 594.72188pt>
+<figure/ragged-spacing-bug.png, id=817, 569.87906pt x 594.72188pt>
 File: figure/ragged-spacing-bug.png Graphic file (type png)
 
 <use figure/ragged-spacing-bug.png>
-Package pdftex.def Info: figure/ragged-spacing-bug.png used on input line 738.
+Package pdftex.def Info: figure/ragged-spacing-bug.png used on input line 756.
 (pdftex.def)             Requested size: 369.88583pt x 386.01108pt.
 
-Overfull \hbox (12.04506pt too wide) in paragraph at lines 738--739
+Overfull \hbox (12.04506pt too wide) in paragraph at lines 756--757
 [][] 
  []
 
 
-Overfull \hbox (320.95389pt too wide) in paragraph at lines 745--746
+Overfull \hbox (320.95389pt too wide) in paragraph at lines 763--764
 \T1/EBGaramond-OsF/m/n/10.95 (-20) Solved: [][]$\T1/cmtt/m/n/10.95 http : / / t
 ex . stackexchange . com / questions / 305450 / align-[]caption-[]baseline-[]in
 -[]second-[]column-[]with-[]baseline-[]of-[]first-[]column$[][] 
  []
 
-[22
+[23
 
- <./figure/ragged-spacing-bug.png>] [23] [24
+ <./figure/ragged-spacing-bug.png>] [24] [25
 
 ]
 part I.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 751.
-[25
+(scrkbase)              on input line 769.
+[26
 
 ]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 752.
+(hyperref)                than one, level fixed on input line 770.
 
-[26
+[27
 
 ]
-Overfull \hbox (55.2553pt too wide) in paragraph at lines 775--776
+Overfull \hbox (55.2553pt too wide) in paragraph at lines 793--794
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] \T1/EBGaramond-OsF/m/n/1
 0.95 (-20) or [][][][][][][][][][][][][][][][][][][][]
  []
 
-[27
-
-] [28
+[28
 
 ] [29
+
+] [30
 
 ]
 part II.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 831.
-[30
+(scrkbase)              on input line 849.
+[31
 
 ]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 841.
+(hyperref)                than one, level fixed on input line 859.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 853.
+(hyperref)                than one, level fixed on input line 871.
 
-[31
+[32
 
-] [32
+] [33
 
-] [33] [34
-
-] [35
+] [34] [35
 
 ] [36
 
 ] [37
 
-] [38
-
-] [39
+] [38] [39
 
 ] [40
 
 ] [41
+
+] [42
+
+] [43
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1604,42 +1613,42 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- [42
+ [44
 
-] [43]
+] [45]
 part III.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 1437.
+(scrkbase)              on input line 1467.
 
-Overfull \hbox (24.0pt too wide) in paragraph at lines 1438--1481
+Overfull \hbox (24.0pt too wide) in paragraph at lines 1468--1511
 [] 
  []
 
-[44
+[46
 
-] (grattexDocumentation.ind [45
+] (grattexDocumentation.ind [47
 
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1495.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1495.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1525.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1525.
  (grattexDocumentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1495.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1495.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1525.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1525.
 
 Package rerunfilecheck Info: File `grattexDocumentation.out' has not changed.
-(rerunfilecheck)             Checksum: 84F64184FDDA9AA95155329C224D03EF;6564.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1495.
+(rerunfilecheck)             Checksum: 58EE4969196DB0D2B7FDF2D3F05CC003;6688.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1525.
  ) 
 Here is how much of TeX's memory you used:
- 19718 strings out of 493334
- 327009 string characters out of 3139223
- 609627 words of memory out of 3000000
- 22381 multiletter control sequences out of 15000+200000
- 63791 words of font info for 186 fonts, out of 3000000 for 9000
+ 19642 strings out of 493334
+ 326370 string characters out of 3139223
+ 601254 words of memory out of 3000000
+ 22286 multiletter control sequences out of 15000+200000
+ 67443 words of font info for 197 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,16n,122p,8914b,2239s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
@@ -1650,8 +1659,8 @@ onage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsx2074.pk>
 <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
 pi600\ectt1200.pk> <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\fonts\pk\l
 jfour\jknappen\ec\dpi600\ectt1440.pk> <C:\Users\Hugh Parsonage\AppData\Local\Mi
-KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk> <C:\Users\Hugh Parsona
-ge\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1095.pk>{C:/
+KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1095.pk> <C:\Users\Hugh Parsona
+ge\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt0900.pk>{C:/
 Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/ebgaramond/ebgm
 _i7zvqf.enc}{C:/Users/Hugh Parsonage/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips
 /ebgaramond/ebgm_2jdbaj.enc} <C:\Users\Hugh Parsonage\AppData\Local\MiKTeX\2.9\
@@ -1669,9 +1678,9 @@ ts/type1/public/ebgaramond/EBGaramond12-Regular.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb>
-Output written on grattexDocumentation.pdf (45 pages, 604316 bytes).
+Output written on grattexDocumentation.pdf (47 pages, 624328 bytes).
 PDF statistics:
- 1452 PDF objects out of 1728 (max. 8388607)
- 389 named destinations out of 1000 (max. 500000)
- 42230 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1515 PDF objects out of 1728 (max. 8388607)
+ 396 named destinations out of 1000 (max. 500000)
+ 46342 words of extra memory for PDF output out of 51595 (max. 10000000)
 

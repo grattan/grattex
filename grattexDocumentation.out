@@ -1,94 +1,96 @@
 \BOOKMARK [2][-]{subsection*.1}{Interpreting code examples}{}% 1
-\BOOKMARK [1][-]{section.1}{Some principles for erstwhile MS Word users}{}% 2
-\BOOKMARK [1][-]{section.2}{Basics of LaTeX}{}% 3
-\BOOKMARK [2][-]{subsection.2.1}{Compilation}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.2}{Commands and environments}{section.2}% 5
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Commands}{subsection.2.2}% 6
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Environments}{subsection.2.2}% 7
-\BOOKMARK [1][-]{section.3}{Writing a report}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{The preamble}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Grattan-specific preamble}{subsection.3.1}% 10
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Other requirements}{subsection.3.1}% 11
-\BOOKMARK [2][-]{subsection.3.2}{Frontmatter}{section.3}% 12
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Overview / Summary / Preface}{subsection.3.2}% 13
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Contents page\(s\)}{subsection.3.2}% 14
-\BOOKMARK [2][-]{subsection.3.3}{Body text}{section.3}% 15
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Sectioning}{subsection.3.3}% 16
-\BOOKMARK [2][-]{subsection.3.4}{Boldface, italics}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.5}{Paragraphs}{section.3}% 18
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Non-breaking spaces}{subsection.3.5}% 19
-\BOOKMARK [2][-]{subsection.3.6}{Numbered / bulleted lists}{section.3}% 20
-\BOOKMARK [2][-]{subsection.3.7}{Floats}{section.3}% 21
-\BOOKMARK [3][-]{subsubsection.3.7.1}{Figures}{subsection.3.7}% 22
-\BOOKMARK [3][-]{subsubsection.3.7.2}{Tables}{subsection.3.7}% 23
-\BOOKMARK [2][-]{subsection.3.8}{Boxes}{section.3}% 24
-\BOOKMARK [3][-]{subsubsection.3.8.1}{smallbox}{subsection.3.8}% 25
-\BOOKMARK [3][-]{subsubsection.3.8.2}{verysmallbox}{subsection.3.8}% 26
-\BOOKMARK [3][-]{subsubsection.3.8.3}{bigbox*}{subsection.3.8}% 27
-\BOOKMARK [2][-]{subsection.3.9}{Footnotes in boxes}{section.3}% 28
-\BOOKMARK [2][-]{subsection.3.10}{Cross-references}{section.3}% 29
-\BOOKMARK [2][-]{subsection.3.11}{Footnotes and referencing}{section.3}% 30
-\BOOKMARK [3][-]{subsubsection.3.11.1}{bibliography.bib}{subsection.3.11}% 31
-\BOOKMARK [3][-]{subsubsection.3.11.2}{Citations}{subsection.3.11}% 32
-\BOOKMARK [1][-]{section.4}{More advanced macros}{}% 33
-\BOOKMARK [2][-]{subsection.4.1}{New commands}{section.4}% 34
-\BOOKMARK [1][-]{section.5}{Compiling a final document}{}% 35
-\BOOKMARK [2][-]{subsection.5.1}{Citations and references}{section.5}% 36
-\BOOKMARK [1][-]{section.6}{Common mistakes made by novices}{}% 37
-\BOOKMARK [1][-]{section.7}{Known bugs in the grattan.cls file}{}% 38
-\BOOKMARK [2][-]{subsection.7.1}{microtype's spacing and ragged2e}{section.7}% 39
-\BOOKMARK [2][-]{subsection.7.2}{Big boxes}{section.7}% 40
-\BOOKMARK [3][-]{subsubsection.7.2.1}{Caption baseline does not match matching column baseline}{subsection.7.2}% 41
-\BOOKMARK [2][-]{subsection.7.3}{Footnotes in big boxes extend across the entire page}{section.7}% 42
-\BOOKMARK [1][-]{section.8}{pdflink errors}{}% 43
-\BOOKMARK [-1][-]{part.1}{Notes for the typesetter}{}% 44
-\BOOKMARK [0][-]{section.9}{Moving floats}{part.1}% 45
-\BOOKMARK [1][-]{section.10}{Bad page break}{section.9}% 46
-\BOOKMARK [1][-]{section.11}{Excessive whitespace between paragraphs}{section.9}% 47
-\BOOKMARK [1][-]{section.12}{Hyphenation}{section.9}% 48
-\BOOKMARK [-1][-]{part.2}{Error messages}{}% 49
-\BOOKMARK [0][-]{appendix.A}{The Form of an Error}{part.2}% 50
-\BOOKMARK [1][-]{subsection.A.1}{LaTeX Errors}{appendix.A}% 51
-\BOOKMARK [2][-]{subsection.A.2}{TeX Errors}{subsection.A.1}% 52
-\BOOKMARK [1][-]{appendix.B}{Warnings}{appendix.A}% 53
-\BOOKMARK [2][-]{subsection.B.1}{Underfull}{appendix.B}% 54
-\BOOKMARK [2][-]{subsection.B.2}{Overfull}{appendix.B}% 55
-\BOOKMARK [2][-]{subsection.B.3}{References}{appendix.B}% 56
-\BOOKMARK [1][-]{appendix.C}{Beginning and Ending}{appendix.A}% 57
-\BOOKMARK [2][-]{subsection.C.1}{Begin Ended by End}{appendix.C}% 58
-\BOOKMARK [2][-]{subsection.C.2}{End Occurred Inside a Group}{appendix.C}% 59
-\BOOKMARK [2][-]{subsection.C.3}{Ended by End of Line}{appendix.C}% 60
-\BOOKMARK [2][-]{subsection.C.4}{Missing Begin Document}{appendix.C}% 61
-\BOOKMARK [1][-]{appendix.D}{Errors Usually Caused by Bad Spelling}{appendix.A}% 62
-\BOOKMARK [2][-]{subsection.D.1}{Unknown Control Sequence}{appendix.D}% 63
-\BOOKMARK [2][-]{subsection.D.2}{Environment Undefined}{appendix.D}% 64
-\BOOKMARK [2][-]{subsection.D.3}{Bad File Name}{appendix.D}% 65
-\BOOKMARK [2][-]{subsection.D.4}{Cannot Find File Name}{appendix.D}% 66
-\BOOKMARK [1][-]{appendix.E}{Fatal Errors}{appendix.A}% 67
-\BOOKMARK [2][-]{subsection.E.1}{Runaway Argument}{appendix.E}% 68
-\BOOKMARK [2][-]{subsection.E.2}{Just an *}{appendix.E}% 69
-\BOOKMARK [2][-]{subsection.E.3}{Emergency Stop}{appendix.E}% 70
-\BOOKMARK [2][-]{subsection.E.4}{Please Type a Command or Say End}{appendix.E}% 71
-\BOOKMARK [1][-]{appendix.F}{Graphics Errors}{appendix.A}% 72
-\BOOKMARK [2][-]{subsection.F.1}{Too Many Unprocessed Floats}{appendix.F}% 73
-\BOOKMARK [2][-]{subsection.F.2}{Unknown Graphics Extension}{appendix.F}% 74
-\BOOKMARK [2][-]{subsection.F.3}{Division by Zero}{appendix.F}% 75
-\BOOKMARK [1][-]{appendix.G}{Math Errors}{appendix.A}% 76
-\BOOKMARK [2][-]{subsection.G.1}{Display Math Should End With \044\044}{appendix.G}% 77
-\BOOKMARK [2][-]{subsection.G.2}{Bad Math Environment Delimiter}{appendix.G}% 78
-\BOOKMARK [2][-]{subsection.G.3}{Missing Right}{appendix.G}% 79
-\BOOKMARK [2][-]{subsection.G.4}{Missing Delimiter}{appendix.G}% 80
-\BOOKMARK [2][-]{subsection.G.5}{Missing \044 Inserted}{appendix.G}% 81
-\BOOKMARK [1][-]{appendix.H}{Tabular Environment Errors}{appendix.A}% 82
-\BOOKMARK [2][-]{subsection.H.1}{Misplaced Alignment Tab Character \046}{appendix.H}% 83
-\BOOKMARK [2][-]{subsection.H.2}{Extra Alignment Tab}{appendix.H}% 84
-\BOOKMARK [2][-]{subsection.H.3}{Argument Has an Extra \175}{appendix.H}% 85
-\BOOKMARK [1][-]{appendix.I}{Errors With Lists}{appendix.A}% 86
-\BOOKMARK [2][-]{subsection.I.1}{Missing Item}{appendix.I}% 87
-\BOOKMARK [2][-]{subsection.I.2}{Too Deeply Nested}{appendix.I}% 88
-\BOOKMARK [1][-]{appendix.J}{Miscellaneous Errors}{appendix.A}% 89
-\BOOKMARK [2][-]{subsection.J.1}{Only Used in the Preamble}{appendix.J}% 90
-\BOOKMARK [2][-]{subsection.J.2}{There Is No Line/Page Here to End}{appendix.J}% 91
-\BOOKMARK [2][-]{subsection.J.3}{Command Already Defined}{appendix.J}% 92
-\BOOKMARK [2][-]{subsection.J.4}{Missing Number}{appendix.J}% 93
-\BOOKMARK [-1][-]{part.3}{Quick-reference}{}% 94
+\BOOKMARK [1][-]{section.1}{The name of the game}{}% 2
+\BOOKMARK [1][-]{section.2}{Some principles for erstwhile MS Word users}{}% 3
+\BOOKMARK [1][-]{section.3}{Basics of LaTeX}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Compilation}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Commands and environments}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Commands}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Environments}{subsection.3.2}% 8
+\BOOKMARK [1][-]{section.4}{Writing a report}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{The preamble}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Grattan-specific preamble}{subsection.4.1}% 11
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Other requirements}{subsection.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Frontmatter}{section.4}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Overview / Summary / Preface}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Contents page\(s\)}{subsection.4.2}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Body text}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Sectioning}{subsection.4.3}% 17
+\BOOKMARK [2][-]{subsection.4.4}{Boldface, italics}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.5}{Paragraphs}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Non-breaking spaces}{subsection.4.5}% 20
+\BOOKMARK [2][-]{subsection.4.6}{Numbered / bulleted lists}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.7}{Floats}{section.4}% 22
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Figures}{subsection.4.7}% 23
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Tables}{subsection.4.7}% 24
+\BOOKMARK [2][-]{subsection.4.8}{Boxes}{section.4}% 25
+\BOOKMARK [3][-]{subsubsection.4.8.1}{smallbox}{subsection.4.8}% 26
+\BOOKMARK [3][-]{subsubsection.4.8.2}{verysmallbox}{subsection.4.8}% 27
+\BOOKMARK [3][-]{subsubsection.4.8.3}{bigbox*}{subsection.4.8}% 28
+\BOOKMARK [2][-]{subsection.4.9}{Footnotes in boxes}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.10}{Cross-references}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.11}{Footnotes and referencing}{section.4}% 31
+\BOOKMARK [3][-]{subsubsection.4.11.1}{bibliography.bib}{subsection.4.11}% 32
+\BOOKMARK [3][-]{subsubsection.4.11.2}{Citations}{subsection.4.11}% 33
+\BOOKMARK [1][-]{section.5}{More advanced macros}{}% 34
+\BOOKMARK [2][-]{subsection.5.1}{New commands}{section.5}% 35
+\BOOKMARK [1][-]{section.6}{Compiling a final document}{}% 36
+\BOOKMARK [2][-]{subsection.6.1}{Citations and references}{section.6}% 37
+\BOOKMARK [1][-]{section.7}{Common mistakes made by novices}{}% 38
+\BOOKMARK [1][-]{section.8}{Known bugs in the grattan.cls file}{}% 39
+\BOOKMARK [2][-]{subsection.8.1}{microtype's spacing and ragged2e}{section.8}% 40
+\BOOKMARK [2][-]{subsection.8.2}{Big boxes}{section.8}% 41
+\BOOKMARK [3][-]{subsubsection.8.2.1}{Caption baseline does not match matching column baseline}{subsection.8.2}% 42
+\BOOKMARK [2][-]{subsection.8.3}{Footnotes in big boxes extend across the entire page}{section.8}% 43
+\BOOKMARK [1][-]{section.9}{pdflink errors}{}% 44
+\BOOKMARK [-1][-]{part.1}{Notes for the typesetter}{}% 45
+\BOOKMARK [0][-]{section.10}{Moving floats}{part.1}% 46
+\BOOKMARK [1][-]{section.11}{Bad page break}{section.10}% 47
+\BOOKMARK [1][-]{section.12}{Excessive whitespace between paragraphs}{section.10}% 48
+\BOOKMARK [1][-]{section.13}{Hyphenation}{section.10}% 49
+\BOOKMARK [-1][-]{part.2}{Error messages}{}% 50
+\BOOKMARK [0][-]{appendix.A}{The Form of an Error}{part.2}% 51
+\BOOKMARK [1][-]{subsection.A.1}{LaTeX Errors}{appendix.A}% 52
+\BOOKMARK [2][-]{subsection.A.2}{TeX Errors}{subsection.A.1}% 53
+\BOOKMARK [1][-]{appendix.B}{Warnings}{appendix.A}% 54
+\BOOKMARK [2][-]{subsection.B.1}{Underfull}{appendix.B}% 55
+\BOOKMARK [2][-]{subsection.B.2}{Overfull}{appendix.B}% 56
+\BOOKMARK [2][-]{subsection.B.3}{References}{appendix.B}% 57
+\BOOKMARK [1][-]{appendix.C}{Beginning and Ending}{appendix.A}% 58
+\BOOKMARK [2][-]{subsection.C.1}{Begin Ended by End}{appendix.C}% 59
+\BOOKMARK [2][-]{subsection.C.2}{End Occurred Inside a Group}{appendix.C}% 60
+\BOOKMARK [2][-]{subsection.C.3}{Ended by End of Line}{appendix.C}% 61
+\BOOKMARK [2][-]{subsection.C.4}{Missing Begin Document}{appendix.C}% 62
+\BOOKMARK [1][-]{appendix.D}{Errors Usually Caused by Bad Spelling}{appendix.A}% 63
+\BOOKMARK [2][-]{subsection.D.1}{Unknown Control Sequence}{appendix.D}% 64
+\BOOKMARK [2][-]{subsection.D.2}{Environment Undefined}{appendix.D}% 65
+\BOOKMARK [2][-]{subsection.D.3}{Bad File Name}{appendix.D}% 66
+\BOOKMARK [2][-]{subsection.D.4}{Cannot Find File Name}{appendix.D}% 67
+\BOOKMARK [1][-]{appendix.E}{Fatal Errors}{appendix.A}% 68
+\BOOKMARK [2][-]{subsection.E.1}{Runaway Argument}{appendix.E}% 69
+\BOOKMARK [2][-]{subsection.E.2}{Just an *}{appendix.E}% 70
+\BOOKMARK [2][-]{subsection.E.3}{Emergency Stop}{appendix.E}% 71
+\BOOKMARK [2][-]{subsection.E.4}{Please Type a Command or Say End}{appendix.E}% 72
+\BOOKMARK [2][-]{subsection.E.5}{Floats lost}{appendix.E}% 73
+\BOOKMARK [1][-]{appendix.F}{Graphics Errors}{appendix.A}% 74
+\BOOKMARK [2][-]{subsection.F.1}{Too Many Unprocessed Floats}{appendix.F}% 75
+\BOOKMARK [2][-]{subsection.F.2}{Unknown Graphics Extension}{appendix.F}% 76
+\BOOKMARK [2][-]{subsection.F.3}{Division by Zero}{appendix.F}% 77
+\BOOKMARK [1][-]{appendix.G}{Math Errors}{appendix.A}% 78
+\BOOKMARK [2][-]{subsection.G.1}{Display Math Should End With \044\044}{appendix.G}% 79
+\BOOKMARK [2][-]{subsection.G.2}{Bad Math Environment Delimiter}{appendix.G}% 80
+\BOOKMARK [2][-]{subsection.G.3}{Missing Right}{appendix.G}% 81
+\BOOKMARK [2][-]{subsection.G.4}{Missing Delimiter}{appendix.G}% 82
+\BOOKMARK [2][-]{subsection.G.5}{Missing \044 Inserted}{appendix.G}% 83
+\BOOKMARK [1][-]{appendix.H}{Tabular Environment Errors}{appendix.A}% 84
+\BOOKMARK [2][-]{subsection.H.1}{Misplaced Alignment Tab Character \046}{appendix.H}% 85
+\BOOKMARK [2][-]{subsection.H.2}{Extra Alignment Tab}{appendix.H}% 86
+\BOOKMARK [2][-]{subsection.H.3}{Argument Has an Extra \175}{appendix.H}% 87
+\BOOKMARK [1][-]{appendix.I}{Errors With Lists}{appendix.A}% 88
+\BOOKMARK [2][-]{subsection.I.1}{Missing Item}{appendix.I}% 89
+\BOOKMARK [2][-]{subsection.I.2}{Too Deeply Nested}{appendix.I}% 90
+\BOOKMARK [1][-]{appendix.J}{Miscellaneous Errors}{appendix.A}% 91
+\BOOKMARK [2][-]{subsection.J.1}{Only Used in the Preamble}{appendix.J}% 92
+\BOOKMARK [2][-]{subsection.J.2}{There Is No Line/Page Here to End}{appendix.J}% 93
+\BOOKMARK [2][-]{subsection.J.3}{Command Already Defined}{appendix.J}% 94
+\BOOKMARK [2][-]{subsection.J.4}{Missing Number}{appendix.J}% 95
+\BOOKMARK [-1][-]{part.3}{Quick-reference}{}% 96

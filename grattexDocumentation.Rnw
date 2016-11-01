@@ -151,6 +151,18 @@ Whereas in an illustrative version of the above, the author is offered a choice 
 Text coloured blue is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
 
 \newpage
+\section{The name of the game}
+\LaTeX\ is technically a package of the 1978 computer programme \TeX. 
+The language used by your computer to set the words on the page is called \TeX; the \emph{engine} used to convert this to a pdf is called pdf\TeX, and the language you write in is called \LaTeX. 
+
+\TeX\ was written -- recursively -- in order to typeset its own user manual.\footnote{Knuth, D. (1984) \textit{The \TeX book}, Addison-Wesley Professional.} 
+
+In all cases, the \TeX{} is pronounced \(\tau\epsilon\chi\), similar to \emph{tech-} as in \emph{technology} but the X is pronounced as a voiceless velar fricative, like the final sound in \emph{loch} or \emph{Bach}. 
+
+Your interface in which you write \LaTeX\ is called an IDE (integrated development environment). The particular IDE we recommend is called ShareLaTeX, which is an online SaaS provider of \LaTeX. 
+
+\newpage
+
  \section{Some principles for erstwhile MS Word users}
  Learning \LaTeX{} as an MS Word user is a frustrating, confusing, rewarding, and ecstatic experience.  There are some principles that are inviolate for novices.
  \begin{enumerate}
@@ -159,13 +171,13 @@ Text coloured blue is simply syntax highlighting and has no special meaning. All
   \item The \verb=grattan.cls= template is designed so that authors do not have to make any layout or typographic decisions.
   \item \LaTeX\ is a butler, not a robot. It may not do exactly as you say, but it will do what you mean. When it doesn't, it either means 
   \begin{itemize}
-   \item You given it a nonsensical instruction
+   \item You've given it a nonsensical instruction
    \item Your instruction contradicts another instruction
    \item Your instruction contravenes good typographic design, as it sees fit
   \end{itemize}
 
   \item \LaTeX\ is a butler, not a slave: it is a partner in document preparation. In general, your responsibilities should not overlap: you decide the content and it decides the form. Where your responsibilities do overlap, you should seek to \emph{advise} \LaTeX, not to \emph{order} it. Further, you should be as gentle as possible with your advice. Only forcefully advise when the document will not require amendments and you are sure \LaTeX\ is wrong. 
-  \item \LaTeX\ is a computer program, not a human. Despite the previous points, there are limits to what \LaTeX\ can do. In particular, \LaTeX\ cannot reword paragraphs.
+  \item \LaTeX\ is a computer program, not a human. Despite the previous points, there are limits to what \LaTeX\ can do. In particular, \LaTeX\ cannot reword paragraphs. If you ask for five figures and a box to appear on one page, no software can save you. The lesson is not that \LaTeX\ is limited (though it does have weaknesses\footnote{See \url{http://tex.stackexchange.com/questions/27440/what-cant-tex-do} and \url{http://tex.stackexchange.com/questions/70901/typesetting-limitations-of-latex?noredirect=1&lq=1}.}) but that changing the actual words, charts, etc you give it can have a dramatic effect on appearance. 
   \item Don't manually position figures, tables, or boxes. Let them float in the document. It is nearly certain that the initial placement will be odd. As long you have used a \verb=figure=, \verb=table= or \verb=*box= environment, they will float into good positions. For errant figures, tables, or boxes, wait until the document is completely finished before advising positions.
   \item Don't do any of the following:
   \begin{enumerate}
@@ -187,9 +199,10 @@ Text coloured blue is simply syntax highlighting and has no special meaning. All
    \% & \verb=\%= \\
    `` & \verb=``= (button above \verb=Tab=) \\
    '' & \verb=''= \\
+   \multicolumn{2}{l}{(similarly for single-quotes)} \\ 
    -- (en-dash) & \verb=--=  \\
    --- (em-dash) & \verb=---=  \\
-   \(-\) & \verb=\(-\)= \\
+   \(-\) (minus sign) & \verb=\(-\)= \\
    \bottomrule   
   \end{tabular}
   \end{table}
@@ -205,22 +218,26 @@ Text coloured blue is simply syntax highlighting and has no special meaning. All
  The process of \LaTeX\ is basically:
  \begin{enumerate}
   \item Start with a plain text file with the file extension \verb=.tex= in a directory/folder
-  \item Run the \verb=pdflatex= program on that file. That is, type 
-  \begin{lstlisting}[language=bash]
-    cd path/to/your/directory
-  \end{lstlisting}
-  and then 
-  \begin{lstlisting}
-    pdflatex myfile.tex
-  \end{lstlisting}
-  in cmd (Windows) or Terminal (Linux or Mac).
-  \item The program puts a pdf file \lstinline!myfile.pdf! or returns an error.
+  \item Run the \verb=pdflatex= program on that file. 
+  \item The program outputs a pdf file \lstinline!myfile.pdf! or returns an error.
  \end{enumerate}
+
+ In ShareLaTeX, the plain text file is viewed on a browser. The act of pressing the Compile button is equivalent to running \Code{pdflatex} on that file.
 
  
  \subsection{Commands and environments}
  \subsubsection{Commands}
- A \defi{command} starts with a backslash \verb=\= followed by one or more characters. A {command} may have zero or more mandatory arguments and zero or more optional arguments. For example:
+ A \defi{command} starts with a backslash \verb=\= followed by one or more characters.
+ The command's \defi{name} is the string of characters after the backslash. 
+ A {command} may have zero or more mandatory arguments and zero or more optional arguments. 
+ Mandatory arguments are delimited by curly braces; optional arguments by square braces
+
+ \begin{lstlisting}
+ \somecommand[@@<optional arg>@@]{@@<mandatory arg1>@@}{@@<mandatory arg2>@@}
+ \end{lstlisting} 
+
+ Below is a table of some commands and their arguments:
+ 
  \begin{table}[H]
  \raggedright
  \renewcommand{\arraystretch}{1.4}
@@ -304,7 +321,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \title{@@<Title of the report>@@}
    \author{@@<Authors>@@}
 
-   \GrattanReportNumber{@@<number>@@} %% or \GrattanWorkingPaperNumber
+   \GrattanReportNumber{@@<number>@@} %% or 
+   \GrattanWorkingPaperNumber{@@<number>@@}
    
    \addbibresource{bibliography.bib}
   \end{lstlisting}
@@ -315,7 +333,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \item The \verb=bibliography.bib= file, containing your bibliography database.
    \item The folder \verb=FrontPage= which must contain:
    \begin{enumerate}
-    \item A file \verb=FrontPagePicture=
+    \item A file \verb=FrontPage.pdf=
    \end{enumerate}
    \item The following files:
     \begin{verbatim}
@@ -357,12 +375,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsubsection{Sectioning}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
-   \chapter{<chapter title>}
+   \chapter{@@<chapter title>@@}
   \end{lstlisting}
   Similarly, 
   \begin{lstlisting}
-   \section{<section title>}
-   \subsection{<subsection title>}
+   \section{@@<section title>@@}
+   \subsection{@@<subsection title>@@}
    \subsubsection{<subsubsection title>}
   \end{lstlisting}
   Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
@@ -1087,6 +1105,18 @@ in the case that the absence of that command
 caused the error.  Usually if you have ended your document correctly,
 the error will result from a missing \} or forgetting to end a
 verbatim environment.
+
+\subsection{Floats lost}
+This can either mean:
+
+\begin{enumerate}
+\item You have forgotten to use \lstinline!\end{figure}! (or table etc) for a particular float; or
+\item You have put a float inside another float. For example, you have put a todonote inside a figure, or you have put a figure inside a footnote, or you have put a figure (without using the \lstinline![H]!) inside a box.
+\end{enumerate}
+
+This is a difficult problem to debug. 
+The line of output given by the error message is the first place where \LaTeX\ noticed something went wrong. (So the offending code is before that -- though unfortunately not always immediately before that.) 
+
 
 \section{Graphics Errors}
 \label{sec:graphics-errors}
