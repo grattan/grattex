@@ -87,7 +87,7 @@ numbers=noenddot,
 \RequirePackage[T1]{fontenc}
   
 %\RequirePackage{uarial}
-%  \linespread{1.04}
+  %\linespread{1.03}  % for 14pt baselineskip
 \RequirePackage[scaled]{helvet}
   \renewcommand{\familydefault}{\sfdefault}
 
@@ -273,14 +273,14 @@ singlelinecheck=false}
   beforeskip=1\baselineskip,
   afterskip=1\baselineskip]{chapter}
 \RedeclareSectionCommand[
-  beforeskip=0.5\baselineskip plus 0.25\baselineskip,
-  afterskip=1sp]{section}
+  beforeskip=0.5\baselineskip plus 0.3\baselineskip,
+  afterskip=0.5\baselineskip]{section}
 \RedeclareSectionCommand[
-  beforeskip=0.25\baselineskip plus 0.25\baselineskip,
-  afterskip=1sp]{subsection}
+  beforeskip=0.5\baselineskip plus 0.2\baselineskip,
+  afterskip=0.5\baselineskip]{subsection}
 \RedeclareSectionCommand[
-  beforeskip=0.6ex plus 1.5ex,
-  afterskip=0.1ex]{subsubsection}
+  beforeskip=0.5\baselineskip plus 0.1\baselineskip,
+  afterskip=0.5\baselineskip]{subsubsection}
 \RedeclareSectionCommand[
   beforeskip=.5\baselineskip,
   afterskip=-1em]{paragraph}
@@ -289,6 +289,10 @@ singlelinecheck=false}
   afterskip=-1em]{subparagraph}
   
 \renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname\hspace{1.25em}}
+
+% Removes glue around section titles. 
+\RequirePackage{xpatch}
+\xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
 
   
 % --------------
@@ -632,7 +636,8 @@ top=2.70cm, bottom=2.65cm,
 \newlength{\overviewExtra}
 \setlength{\overviewExtra}{0pt}
 \newenvironment{overview}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-23.4pt}}{\vspace{#1}}\addchap{Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
+% vspace{-24.5pt} should align Overview baseline with chapter baseline
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
   {\end{multicols}\addtolength{\columnsep}{-\overviewExtra}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
