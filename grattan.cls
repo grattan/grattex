@@ -436,7 +436,7 @@ top=2.70cm, bottom=2.65cm,
 	\IfFileExists{./FrontPage/FrontPage.pdf}{%
 	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
 	  }{
-	    \ClassError{grattanAlpha}{%
+	    \ClassError{grattan}{%
 			'./FrontPage/FrontPage.pdf' does not exist
 	    }{%
 			You have asked for a fullpicture option, but we can't find 
@@ -453,7 +453,7 @@ top=2.70cm, bottom=2.65cm,
 		\IfFileExists{./FrontPage/FrontPage.pdf}{%
 			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
 		}{
-			\ClassError{grattanAlpha}{%
+			\ClassError{grattan}{%
 				'./FrontPage/FrontPage' does not exist
 			}{%
 				You have asked for a fullpicture option, but we can't find 
