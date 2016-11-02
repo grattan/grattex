@@ -420,7 +420,8 @@ top=2.70cm, bottom=2.65cm,
 \raggedleft % Right-align all text
 \vfil
 \phantom{.}\hfill 
-\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}
+
+\IfFileExists{GrattanSVGLogo.pdf}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{./logos/GrattanSVGLogo}}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
@@ -548,16 +549,25 @@ top=2.70cm, bottom=2.65cm,
   \vspace{-5pt} 
   {\centering  
   
-  {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}
+  \IfFileExists{aus-gov-logo-stacked-black.pdf}%
+    {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}%
+    {\includegraphics[width=3.75cm]{./logos/aus-gov-logo-stacked-black}}
   
-  {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}
+  \IfFileExists{Vic_Gov_Logo-2016.pdf}%
+    {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}%
+    {\includegraphics[width=3.25cm]{./logos/Vic_Gov_Logo-2016}}
   
-  % Too much whitespace on top:
-  % l t r b
-  {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}
+  \IfFileExists{UOM-Pos_S_PMS.pdf}%
+    % Too much whitespace on top:
+    % l t r b
+    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}%
+    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{./logos/UOM-Pos_S_PMS}}%
+
   
-  % Bhp original a little too much whitespace on bottom:
-  {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}
+  \IfFileExists{Bhp.pdf}%
+    % Bhp original a little too much whitespace on bottom:
+    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
+    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
   }
   \columnbreak\par
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
