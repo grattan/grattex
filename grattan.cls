@@ -244,23 +244,29 @@ singlelinecheck=false}
 % New user friendly (less typing) \Caption?
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
+%% Credit to amsthm.sty
+\def\@addpunct#1{%
+  \relax\ifhmode
+    \ifnum\spacefactor>\@m \else#1\fi
+  \fi}
+
 \newcommand*{\source}[1]{%
 \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Source:\ #1}
+\caption*{Source:\ #1\@addpunct{.}}
 }
 \newcommand*{\notes}[1]{%
 \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1}
+\caption*{Notes:\ #1\@addpunct{.}}
 }
 
 \newcommand*{\noteswithsource}[2]{%
 \ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
 \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1}
-\caption*{Source:\ #2}
+\caption*{Notes:\ #1\@addpunct{.}}
+\caption*{Source:\ #2\@addpunct{.}}
 }
 
-\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}}
+\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
