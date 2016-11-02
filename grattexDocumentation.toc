@@ -22,75 +22,76 @@
 \contentsline {subsection}{\numberline {4.7}Floats}{15}{subsection.4.7}
 \contentsline {subsubsection}{\numberline {4.7.1}Figures}{15}{subsubsection.4.7.1}
 \contentsline {subsubsection}{\numberline {4.7.2}Tables}{15}{subsubsection.4.7.2}
+\contentsline {subsubsection}{\numberline {4.7.3}Excel}{16}{subsubsection.4.7.3}
 \contentsline {subsection}{\numberline {4.8}Boxes}{17}{subsection.4.8}
 \contentsline {subsubsection}{\numberline {4.8.1}smallbox}{17}{subsubsection.4.8.1}
 \contentsline {subsubsection}{\numberline {4.8.2}verysmallbox}{17}{subsubsection.4.8.2}
-\contentsline {subsubsection}{\numberline {4.8.3}bigbox*}{17}{subsubsection.4.8.3}
-\contentsline {subsection}{\numberline {4.9}Footnotes in boxes}{17}{subsection.4.9}
-\contentsline {subsection}{\numberline {4.10}Cross-references}{17}{subsection.4.10}
-\contentsline {subsection}{\numberline {4.11}Footnotes and referencing}{18}{subsection.4.11}
-\contentsline {subsubsection}{\numberline {4.11.1}\texttt {bibliography.bib}}{18}{subsubsection.4.11.1}
-\contentsline {subsubsection}{\numberline {4.11.2}Citations}{19}{subsubsection.4.11.2}
-\contentsline {section}{\numberline {5}More advanced macros}{20}{section.5}
-\contentsline {subsection}{\numberline {5.1}New commands}{20}{subsection.5.1}
-\contentsline {section}{\numberline {6}Compiling a final document}{21}{section.6}
-\contentsline {subsection}{\numberline {6.1}Citations and references}{21}{subsection.6.1}
-\contentsline {section}{\numberline {7}Common mistakes made by novices}{22}{section.7}
-\contentsline {section}{\numberline {8}Known bugs in the \texttt {grattan.cls} file}{23}{section.8}
-\contentsline {subsection}{\numberline {8.1}\texttt {microtype}'s spacing and \texttt {ragged2e}}{23}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Big boxes}{23}{subsection.8.2}
-\contentsline {subsubsection}{\numberline {8.2.1}Caption baseline does not match matching column baseline}{23}{subsubsection.8.2.1}
-\contentsline {subsection}{\numberline {8.3}Footnotes in big boxes extend across the entire page}{24}{subsection.8.3}
-\contentsline {section}{\numberline {9}pdflink errors}{25}{section.9}
-\contentsline {part}{\numberline {I}Notes for the typesetter}{26}{part.1}
-\contentsline {section}{\numberline {10}Moving floats}{27}{section.10}
-\contentsline {section}{\numberline {11}Bad page break}{28}{section.11}
-\contentsline {section}{\numberline {12}Excessive whitespace between paragraphs}{29}{section.12}
-\contentsline {section}{\numberline {13}Hyphenation}{30}{section.13}
-\contentsline {part}{\numberline {II}Error messages}{31}{part.2}
-\contentsline {section}{\numberline {A}The Form of an Error}{32}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}\LaTeX {} Errors}{32}{subsection.A.1}
-\contentsline {subsection}{\numberline {A.2}T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}{} Errors}{32}{subsection.A.2}
-\contentsline {section}{\numberline {B}Warnings}{33}{appendix.B}
-\contentsline {subsection}{\numberline {B.1}Underfull}{33}{subsection.B.1}
-\contentsline {subsection}{\numberline {B.2}Overfull}{33}{subsection.B.2}
-\contentsline {subsection}{\numberline {B.3}References}{33}{subsection.B.3}
-\contentsline {section}{\numberline {C}Beginning and Ending}{35}{appendix.C}
-\contentsline {subsection}{\numberline {C.1}Begin Ended by End}{35}{subsection.C.1}
-\contentsline {subsection}{\numberline {C.2}End Occurred Inside a Group}{35}{subsection.C.2}
-\contentsline {subsection}{\numberline {C.3}Ended by End of Line}{35}{subsection.C.3}
-\contentsline {subsection}{\numberline {C.4}Missing Begin Document}{35}{subsection.C.4}
-\contentsline {section}{\numberline {D}Errors Usually Caused by Bad Spelling}{36}{appendix.D}
-\contentsline {subsection}{\numberline {D.1}Unknown Control Sequence}{36}{subsection.D.1}
-\contentsline {subsection}{\numberline {D.2}Environment Undefined}{36}{subsection.D.2}
-\contentsline {subsection}{\numberline {D.3}Bad File Name}{36}{subsection.D.3}
-\contentsline {subsection}{\numberline {D.4}Cannot Find File Name}{36}{subsection.D.4}
-\contentsline {section}{\numberline {E}Fatal Errors}{37}{appendix.E}
-\contentsline {subsection}{\numberline {E.1}Runaway Argument}{37}{subsection.E.1}
-\contentsline {subsection}{\numberline {E.2}Just an *}{37}{subsection.E.2}
-\contentsline {subsection}{\numberline {E.3}Emergency Stop}{37}{subsection.E.3}
-\contentsline {subsection}{\numberline {E.4}Please Type a Command or Say End}{37}{subsection.E.4}
-\contentsline {subsection}{\numberline {E.5}Floats lost}{38}{subsection.E.5}
-\contentsline {section}{\numberline {F}Graphics Errors}{39}{appendix.F}
-\contentsline {subsection}{\numberline {F.1}Too Many Unprocessed Floats}{39}{subsection.F.1}
-\contentsline {subsection}{\numberline {F.2}Unknown Graphics Extension}{39}{subsection.F.2}
-\contentsline {subsection}{\numberline {F.3}Division by Zero}{39}{subsection.F.3}
-\contentsline {section}{\numberline {G}Math Errors}{40}{appendix.G}
-\contentsline {subsection}{\numberline {G.1}Display Math Should End With \$\$}{40}{subsection.G.1}
-\contentsline {subsection}{\numberline {G.2}Bad Math Environment Delimiter}{40}{subsection.G.2}
-\contentsline {subsection}{\numberline {G.3}Missing Right}{40}{subsection.G.3}
-\contentsline {subsection}{\numberline {G.4}Missing Delimiter}{40}{subsection.G.4}
-\contentsline {subsection}{\numberline {G.5}Missing \$ Inserted}{40}{subsection.G.5}
-\contentsline {section}{\numberline {H}Tabular Environment Errors}{41}{appendix.H}
-\contentsline {subsection}{\numberline {H.1}Misplaced Alignment Tab Character \&}{41}{subsection.H.1}
-\contentsline {subsection}{\numberline {H.2}Extra Alignment Tab}{41}{subsection.H.2}
-\contentsline {subsection}{\numberline {H.3}Argument Has an Extra \}}{41}{subsection.H.3}
-\contentsline {section}{\numberline {I}Errors With Lists}{42}{appendix.I}
-\contentsline {subsection}{\numberline {I.1}Missing Item}{42}{subsection.I.1}
-\contentsline {subsection}{\numberline {I.2}Too Deeply Nested}{42}{subsection.I.2}
-\contentsline {section}{\numberline {J}Miscellaneous Errors}{43}{appendix.J}
-\contentsline {subsection}{\numberline {J.1}Only Used in the Preamble}{43}{subsection.J.1}
-\contentsline {subsection}{\numberline {J.2}There Is No Line/Page Here to End}{43}{subsection.J.2}
-\contentsline {subsection}{\numberline {J.3}Command Already Defined}{43}{subsection.J.3}
-\contentsline {subsection}{\numberline {J.4}Missing Number}{43}{subsection.J.4}
-\contentsline {part}{\numberline {III}Quick-reference}{46}{part.3}
+\contentsline {subsubsection}{\numberline {4.8.3}bigbox*}{18}{subsubsection.4.8.3}
+\contentsline {subsection}{\numberline {4.9}Footnotes in boxes}{18}{subsection.4.9}
+\contentsline {subsection}{\numberline {4.10}Cross-references}{18}{subsection.4.10}
+\contentsline {subsection}{\numberline {4.11}Footnotes and referencing}{19}{subsection.4.11}
+\contentsline {subsubsection}{\numberline {4.11.1}\texttt {bibliography.bib}}{19}{subsubsection.4.11.1}
+\contentsline {subsubsection}{\numberline {4.11.2}Citations}{20}{subsubsection.4.11.2}
+\contentsline {section}{\numberline {5}More advanced macros}{21}{section.5}
+\contentsline {subsection}{\numberline {5.1}New commands}{21}{subsection.5.1}
+\contentsline {section}{\numberline {6}Compiling a final document}{22}{section.6}
+\contentsline {subsection}{\numberline {6.1}Citations and references}{22}{subsection.6.1}
+\contentsline {section}{\numberline {7}Common mistakes made by novices}{23}{section.7}
+\contentsline {section}{\numberline {8}Known bugs in the \texttt {grattan.cls} file}{24}{section.8}
+\contentsline {subsection}{\numberline {8.1}\texttt {microtype}'s spacing and \texttt {ragged2e}}{24}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Big boxes}{24}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Caption baseline does not match matching column baseline}{24}{subsubsection.8.2.1}
+\contentsline {subsection}{\numberline {8.3}Footnotes in big boxes extend across the entire page}{25}{subsection.8.3}
+\contentsline {section}{\numberline {9}pdflink errors}{26}{section.9}
+\contentsline {part}{\numberline {I}Notes for the typesetter}{27}{part.1}
+\contentsline {section}{\numberline {10}Moving floats}{28}{section.10}
+\contentsline {section}{\numberline {11}Bad page break}{29}{section.11}
+\contentsline {section}{\numberline {12}Excessive whitespace between paragraphs}{30}{section.12}
+\contentsline {section}{\numberline {13}Hyphenation}{31}{section.13}
+\contentsline {part}{\numberline {II}Error messages}{32}{part.2}
+\contentsline {section}{\numberline {A}The Form of an Error}{33}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}\LaTeX {} Errors}{33}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m {}{} Errors}{33}{subsection.A.2}
+\contentsline {section}{\numberline {B}Warnings}{34}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}Underfull}{34}{subsection.B.1}
+\contentsline {subsection}{\numberline {B.2}Overfull}{34}{subsection.B.2}
+\contentsline {subsection}{\numberline {B.3}References}{34}{subsection.B.3}
+\contentsline {section}{\numberline {C}Beginning and Ending}{36}{appendix.C}
+\contentsline {subsection}{\numberline {C.1}Begin Ended by End}{36}{subsection.C.1}
+\contentsline {subsection}{\numberline {C.2}End Occurred Inside a Group}{36}{subsection.C.2}
+\contentsline {subsection}{\numberline {C.3}Ended by End of Line}{36}{subsection.C.3}
+\contentsline {subsection}{\numberline {C.4}Missing Begin Document}{36}{subsection.C.4}
+\contentsline {section}{\numberline {D}Errors Usually Caused by Bad Spelling}{37}{appendix.D}
+\contentsline {subsection}{\numberline {D.1}Unknown Control Sequence}{37}{subsection.D.1}
+\contentsline {subsection}{\numberline {D.2}Environment Undefined}{37}{subsection.D.2}
+\contentsline {subsection}{\numberline {D.3}Bad File Name}{37}{subsection.D.3}
+\contentsline {subsection}{\numberline {D.4}Cannot Find File Name}{37}{subsection.D.4}
+\contentsline {section}{\numberline {E}Fatal Errors}{38}{appendix.E}
+\contentsline {subsection}{\numberline {E.1}Runaway Argument}{38}{subsection.E.1}
+\contentsline {subsection}{\numberline {E.2}Just an *}{38}{subsection.E.2}
+\contentsline {subsection}{\numberline {E.3}Emergency Stop}{38}{subsection.E.3}
+\contentsline {subsection}{\numberline {E.4}Please Type a Command or Say End}{38}{subsection.E.4}
+\contentsline {subsection}{\numberline {E.5}Floats lost}{39}{subsection.E.5}
+\contentsline {section}{\numberline {F}Graphics Errors}{40}{appendix.F}
+\contentsline {subsection}{\numberline {F.1}Too Many Unprocessed Floats}{40}{subsection.F.1}
+\contentsline {subsection}{\numberline {F.2}Unknown Graphics Extension}{40}{subsection.F.2}
+\contentsline {subsection}{\numberline {F.3}Division by Zero}{40}{subsection.F.3}
+\contentsline {section}{\numberline {G}Math Errors}{41}{appendix.G}
+\contentsline {subsection}{\numberline {G.1}Display Math Should End With \$\$}{41}{subsection.G.1}
+\contentsline {subsection}{\numberline {G.2}Bad Math Environment Delimiter}{41}{subsection.G.2}
+\contentsline {subsection}{\numberline {G.3}Missing Right}{41}{subsection.G.3}
+\contentsline {subsection}{\numberline {G.4}Missing Delimiter}{41}{subsection.G.4}
+\contentsline {subsection}{\numberline {G.5}Missing \$ Inserted}{41}{subsection.G.5}
+\contentsline {section}{\numberline {H}Tabular Environment Errors}{42}{appendix.H}
+\contentsline {subsection}{\numberline {H.1}Misplaced Alignment Tab Character \&}{42}{subsection.H.1}
+\contentsline {subsection}{\numberline {H.2}Extra Alignment Tab}{42}{subsection.H.2}
+\contentsline {subsection}{\numberline {H.3}Argument Has an Extra \}}{42}{subsection.H.3}
+\contentsline {section}{\numberline {I}Errors With Lists}{43}{appendix.I}
+\contentsline {subsection}{\numberline {I.1}Missing Item}{43}{subsection.I.1}
+\contentsline {subsection}{\numberline {I.2}Too Deeply Nested}{43}{subsection.I.2}
+\contentsline {section}{\numberline {J}Miscellaneous Errors}{44}{appendix.J}
+\contentsline {subsection}{\numberline {J.1}Only Used in the Preamble}{44}{subsection.J.1}
+\contentsline {subsection}{\numberline {J.2}There Is No Line/Page Here to End}{44}{subsection.J.2}
+\contentsline {subsection}{\numberline {J.3}Command Already Defined}{44}{subsection.J.3}
+\contentsline {subsection}{\numberline {J.4}Missing Number}{44}{subsection.J.4}
+\contentsline {part}{\numberline {III}Quick-reference}{47}{part.3}

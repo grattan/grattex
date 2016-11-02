@@ -116,7 +116,7 @@ classoffset=0
 \usepackage{cleveref}
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\author{Hugh Parsonage}
+\author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
 \newcommand{\ie}{\emph{i.e.}}
@@ -423,13 +423,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsubsection{Sectioning}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
-   \chapter{<chapter title>}
+   \chapter{@@<chapter title>@@}
   \end{lstlisting}
   Similarly, 
   \begin{lstlisting}
-   \section{<section title>}
-   \subsection{<subsection title>}
-   \subsubsection{<subsubsection title>}
+   \section{@@<section title>@@}
+   \subsection{@@<subsection title>@@}
+   \subsubsection{@@<subsubsection title>@@}
   \end{lstlisting}
   Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
   
@@ -471,10 +471,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsection{Boldface, italics}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
-  That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@text@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
+  That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
   
   \subsection{Paragraphs}
-  Use a blank line to mark a new paragraph. Thus
+  Use a blank line to mark a new paragraph. For example
   \begin{center}
   \begin{minipage}{\textwidth}
   \begin{lstlisting}
@@ -482,8 +482,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
    Proposals to extend or broaden Australia's 10 per cent goods and services tax (GST) have been perennial. Current governments face many challenges, such as funding growing healthcare costs, reducing deficits, and cutting inefficient taxes. A higher GST could fund any of these initiatives -- although perhaps not all of them. 
   \end{lstlisting}
+  N.B.: The indent here means a continued line. There are only three lines of code illustrated here. 
   \end{minipage}
   \end{center}
+  In the above example, \emph{Proposals to extend} will begin on a new paragraph. 
 
   \subsubsection{Non-breaking spaces}
   Use \lstinline!~! for a non-breaking space: \lstinline!\$40~million!. 
@@ -494,7 +496,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   
   \subsection{Numbered / bulleted lists}
-  Use \verb=enumerate= and \verb=itemize= \index{enumerate}\index{itemize}
+  Use \verb=enumerate= (for numbered lists) and \verb=itemize= (for bulleted lists) \index{enumerate}\index{itemize}
   \begin{lstlisting}
    \begin{enumerate}
     \item First numbered item
@@ -517,23 +519,39 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
   \subsection{Floats}
   \subsubsection{Figures}
-  Before you insert a figure, you need to create your image. This can either be done directly through a scripting language (like R or python), through \LaTeX\ directly (as through Ti\textit{k}Z), or through an external program. Your file should be a pdf, though almost all image types are supported. If you are going through an external program, ensure the file is moved to the atlas directory of your report. This directory should be placed in the same directory as your \verb=.tex= file. The directory should be called something evocative, like \verb=figure=, as it is in this manual.
+  Before you insert a figure, you need to create your image (say in PowerPoint).
+  Your file should be saved as a pdf, though almost all image types are supported. 
+  If you are going through an external program, ensure the file is moved to the atlas directory of your report. 
+  This directory should be placed in the same directory as your \verb=.tex= file.
   
   Once the image is ready, use the following structure to insert a figure.
   \begin{lstlisting}
    \begin{figure}
     \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
     \units{@@<secondary caption/y-axis label>@@}
-    \includegraphics{figure/@@image-filename@@}
+    \includegraphics{atlas/@@image-filename@@}
     \noteswithsource{@@<Notes of the chart>@@}%  
     {@@<Source information>@@}
    \end{figure}
   \end{lstlisting}
-  
-  \subsubsection{Tables}
-  Tables are tricky in \LaTeX. Use the \verb=tabularx= environment for a table with a specific width. Let \lstinline!\columnwidth! be the table's width.
-  
+
+  Alternatively, you can save your charts in a single pdf, with each page having a different chart. To refer to the 3rd page in your pack \lstinline!@@<chart-pack-filename.pdf>@@!, use:
   \begin{lstlisting}
+  \includegraphics[page=3]{atlas/@@<chart-pack-filename.pdf>@@}
+  \end{lstlisting}
+
+  Use \lstinline!\caption! for the boldface caption and \lstinline!\units! for the non-bold (secondary) caption. 
+  Use \lstinline!\label! to mark the cross-reference key target, which should be inside the argument to \lstinline!\caption!. 
+  
+  Use \lstinline!\noteswithsource! to put the notes and source under a figure (or table). Note this command has two mandatory arguments. 
+  Use \lstinline!\notes! if you have notes but no source; and \lstinline!\source! if you have a source but no notes. 
+
+  \subsubsection{Tables}
+    Tables are tricky in \LaTeX. Most tables will have the following construction:
+
+    \begin{lstlisting}
+    \begin{table}
+    \caption{@@<Caption to the table>@@}
    \begin{tabularx}{\columnwidth}{@@<alignment parameters>@@}
     \toprule
     Header1 & Header2 & Header3 \\
@@ -544,9 +562,57 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     Last row & Last row & Last row
     \bottomrule
    \end{tabularx}
+   \noteswithsource{@@<Notes>@@}%
+   {@@<Source>@@}
+   \end{table}
   \end{lstlisting}
-  The \lstinline!@@<alignment parameters>! determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. Use the double-backslash \verb=\\= to move to the next row and the ampersand \verb=&= to move to the next column. Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
+  Like with figure, we put the contents of this float in an environment called \Code{table}. 
+  The \lstinline!\begin{table}! \dots \lstinline!\end{table}! simply tells \LaTeX{} to float the placement, to use ``Table $N$:'' in the caption, and possibly to note it in the list of tables. 
+  It does nothing to actually construct the table.
+
+  The actual construction of the table is handled by \Code{tabularx}\index{tabularx} which is very similar to the standard \Code{tabular} environment. 
+  Its first argument is the width of the table and its second argument is the \emph{alignment parameters} of the tabular's columns:
+
+  The \lstinline!@@<alignment parameters>! determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. 
+
+  Inside the tabular, use the ampersand \verb=&= to move to the next column and the double-backslash \verb=\\= to move to the next row. 
+  Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
+
+\subsubsection{Excel}
+    Most authors would be well-advised to quickly write their tables in Excel and then use Excel2LaTeX.
+
+    To start using Excel2LaTeX:
+
+  \begin{enumerate}
+  	\item Go to \url{https://www.ctan.org/pkg/excel2latex?lang=en}
+  	\item Download the contents of this package
+  	\item Unzip the archive. 
+  	\item Enable the add-in for your version of Excel. (\eg~\url{https://support.office.com/en-us/article/Add-or-remove-add-ins-0af570c4-5cf3-4fa9-9b88-403625a0b460})
+  	\item Activate the add-in (see Excel documentation for your version).
+  	\item Open the Add-Ins tab in Excel, and, with the sheet containing your table open, click \texttt{Convert table to LaTeX}.
+  	\item The defaults are usually sensible. Click Copy to clipboard and paste into your \texttt{.tex} source file. 
+  \end{enumerate}
+
+  Once you have copied the table, you should make the following adjustments:
+
+  \begin{enumerate}
+    \item Use \lstinline!\begin{tabularx}{\linewidth}! instead of 
+    \lstinline!\begin{tabular}! (be sure to also change \lstinline!\end{tabular}! to \lstinline!\end{tabularx}!. 
+
+    The \Code{tabularx} environment creates a table of fixed width -- in this case, the current width of the line. 
+    It achieves by stretching one or more of the columns.
+    The author chooses which columns will be stretchable by replacing the corresponding alignment parameter with \Code{X}.
+    \item So you should also change at least one of your columns' alignment parameters to \Code{X}. 
+    By default, \Code{X} has a ragged right edge (or is left aligned). 
+    \item All \Code{X} columns will stretch to the same width. 
+    So if a tabular's natural width is 80\% of the line width, and you replace a single column's alignment parameter with an \Code{X}, then that column will have an extra 20\% of the line width added to its width.
+    If, on the other hand, you replace two columns' alignment parameters with \Code{XX}, those columns will each be widened by 10\% of the line width. 
+    \item If the column or columns you would like to stretch should be centre-aligned (with both edges ragged), not left-aligned, then instead of putting \Code{X}, you should put \lstinline!>{\centering}X!. 
+    If it should have a ragged left edge (be right-aligned), then you should put \lstinline!>{\RaggedLeft}X! or (for a very ragged edge) \lstinline!>{\raggedleft}X!.
+\end{enumerate}
+  
+  
   \subsection*{More advanced} 
   \begin{table}[H]
   \centering
@@ -560,29 +626,6 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   %}%
   \end{table}
 
-  
-  \begin{lstlisting}
-\newcommand{\tblHead}[2][c]{\bfseries\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
-\newcommand{\tblHeadR}[2][c]{\bfseries\begin{tabular}[#1]{@{}>{\raggedleft}p{\linewidth}@{}}#2\end{tabular}}
-
-\begin{table}
-  \caption{Budgetary impact of income tax rate changes}\label{tbl:tax_cuts}
-  \begin{tabularx}{\columnwidth}{lr>{\raggedleft\arraybackslash}X}
-    \toprule
-    \tblHead{Tax bracket} & \tblHead{Current tax rate} & \tblHeadR{Budgetary impact of 1 percentage point change (2015-16)}\\
-    \midrule
-    \$0-\$18,200         & 0\%    & \\
-    \$18,201 - \$37,000  & 19\%   & \$1.9\\
-    \$37,001 - \$80,000  & 32.5\% & \$2.3\\
-    \$80,001 - \$180,000 & 37\%   & \$1.3\\
-    \$180,001 +          & 45\%   & \$0.7\\
-    \bottomrule
-  \end{tabularx}
-
-  \noteswithsource{Excludes Temporary Budget Repair Levy (2\%\ for those earning over \$180,000 until 2016-17)}%
-  {Grattan analysis ATO 2\%\ sample file (2013). See \url{https://grattan.shinyapps.io/Changing_income_taxes/Forty_three_app.Rmd}}
-\end{table}
-  \end{lstlisting}
   \subsection{Boxes}
   \subsubsection{smallbox}\index{smallbox}\index{boxes!smallbox}
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
@@ -617,13 +660,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \subsection{Cross-references}
-  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!Vref! and \lstinline!Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
+  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
   The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
   For example, to refer to some figure, use the following template.
 
   \begin{lstlisting}
-  Some text which is illustrated by a chart (\Vref{fig:key}) 
+  \Vref{fig:key} shows that ...  
 
   \begin{figure}
     \caption{The chart's caption\label{fig:key}}
@@ -631,12 +674,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{figure}
   \end{lstlisting}
 
+  \lstinline!\Vref{fig:key}! will expand to Figure N shows that ... 
+
   % \begin{center}
   {{Your labels should be evocative of what is displayed, {not} the number.} }
   {You will end up moving or removing a figure, table, or box and confuse your labels.}
   % \end{center}
 
-  If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??!. 
+  If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??! and the log file will contain a warning.
 
   The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
   I \emph{strongly} recommend you use the prefixes in \Vref{tbl:prefixes-by-float-type}. 
@@ -658,7 +703,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \subsection{Footnotes and referencing}
-  Use the command \verb=\footnote= to mark a footnote. Use \verb=\textcite= within a footnote.
+  Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
   
   \subsubsection{\texttt{bibliography.bib}}
   The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
@@ -672,7 +717,30 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   There are several elements to a bibliography:
   \begin{enumerate}[leftmargin=5em]
    \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
-   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as I will show below).
+   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
+
+   Bad (who knows that 2016c is):
+   \begin{lstlisting}
+   @Misc{DaleyEtAl2016c,
+   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+   		title  = {Hot Property},
+   		year   = {2016},
+   	}
+   \end{lstlisting}
+
+   Good:
+
+   \begin{lstlisting}
+   @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
+   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+   		title  = {Hot Property},
+   		year   = {2016},
+   	}
+   \end{lstlisting}
+
+   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion. 
+
+
    \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
    
   \end{enumerate}
