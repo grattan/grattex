@@ -221,7 +221,7 @@ numbers=noenddot,
 \captionsetup{justification=nohyphen}
 
 \newcommand{\units}[1]{%
-\captionsetup{font={small,color=theGrey}}
+\captionsetup{font={small,color=theGrey,aboveskip=0pt,belowskip=0pt}}
 \caption*{#1}
 }
 
@@ -702,6 +702,12 @@ top=2.70cm, bottom=2.65cm,
   \printtext[citehyperref]{%
     \restorebibmacro{cite}%
     \usebibmacro{cite}}}
+
+\renewbibmacro*{cite:title}{%
+  \ifsingletitle
+    {}
+    {\printtext[bibhyperref]{%
+       \printfield[citetitle]{labeltitle}}}}
 
 \renewbibmacro*{textcite}{%
   \ifboolexpr{
