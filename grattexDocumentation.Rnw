@@ -20,7 +20,7 @@ language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\ttfamily,
 texcsstyle=*\color{blue},
-moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
@@ -119,6 +119,7 @@ classoffset=0
 
 
 \begin{document}
+A
 \maketitle
 \tableofcontents
 \newpage
@@ -235,6 +236,31 @@ Your interface in which you write \LaTeX\ is called an IDE (integrated developme
  \begin{lstlisting}
  \somecommand[@@<optional arg>@@]{@@<mandatory arg1>@@}{@@<mandatory arg2>@@}
  \end{lstlisting} 
+
+ \textbf{\textsf{Note:}} Whitespace after commands with zero arguments is \emph{ignored}. So 
+
+ \begin{lstlisting}
+ \LaTeX is a macro package.
+ \end{lstlisting}
+ 
+ will typeset: \LaTeX is a macro package. (Note that there is no space between \LaTeX{} and is. 
+ On reflection, this is understandable: a command is defined by letters, so a space after a command in effect defines the name.
+ But because it's a typesetting program, always having a space would make some things impossible. 
+ For example, `This is typed in \LaTeX.' would have a space between \LaTeX{} and the full stop.
+
+ To indicate that a space should follow such a command, use either 
+
+ \begin{lstlisting}
+ \LaTeX{} is a macro package.
+ \end{lstlisting}
+ wherein the use of braces tells the compiler the command name has finished, or 
+
+ \begin{lstlisting}
+ \LaTeX\ is a macro package.
+ \end{lstlisting}
+ Note that \lstinline!\LaTeX\! is not a single command. 
+ Rather \lstinline!\LaTeX! is one command; and \Code{\\  } itself is another command that inserts an explicit space. 
+
 
  Below is a table of some commands and their arguments:
  
@@ -697,7 +723,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    
   \end{enumerate}
 
-  \subsubsection{
+  
   
   \subsubsection{Citations}\index{citations}\index{footcite}\index{footcites}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
@@ -1323,19 +1349,19 @@ The result of this error is that a new row is formed where the extra
 tab was.  You should go back and fix your table so that the correct
 number of items in each row would show up.
 
-\subsection{Argument Has an Extra \}}
-\label{sec:argument-has-an}
+% \subsection{Argument Has an Extra \}}
+% \label{sec:argument-has-an}
 
-These errors happen when an incorrect number of arguments to a tabular
-environment have been specified:
-\begin{verbatim}
-! Argument of \cline has an extra }.
+% These errors happen when an incorrect number of arguments to a tabular
+% environment have been specified:
+% \begin{verbatim}
+% ! Argument of \cline has an extra }.
 
-! Argument of \multicolumn has an extra }.
-\end{verbatim}
+% ! Argument of \multicolumn has an extra }.
+% \end{verbatim}
 
-To fix this error, make sure your arguments to the tabular environment
-are correct.
+% To fix this error, make sure your arguments to the tabular environment
+% are correct.
 
 \section{Errors With Lists}
 \label{sec:errors-with-lists}
