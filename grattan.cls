@@ -424,6 +424,14 @@ top=2.70cm, bottom=2.65cm,
     .png,.PNG,%
     .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2}
 
+% Use Embargo text if declared
+\newcommand{\@EmbargoText}{\null}
+\DeclareOption{embargoed}{
+  \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
+  \newcommand*{\@EmbargoDate}{XXXX}
+  \renewcommand{\@EmbargoText}{\LARGE\bfseries Embargoed until 9 pm \@EmbargoDate\hfill\null}
+}
+
 %% FrontPage options
 %% First, the default, plain front page with a title.
 \newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
@@ -437,6 +445,8 @@ top=2.70cm, bottom=2.65cm,
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
 
 {\LARGE \myauthor}
+
+\@EmbargoText
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
