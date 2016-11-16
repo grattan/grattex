@@ -668,7 +668,7 @@ top=2.70cm, bottom=2.65cm,
 % Bibliography
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false, uniquename=init, giveninits=true]{biblatex}
+\RequirePackage[backend=biber,singletitle,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false, uniquename=init]{biblatex}
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
 
