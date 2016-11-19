@@ -220,13 +220,13 @@ numbers=noenddot,
 
 % Captions in general
 \DeclareCaptionFont{theGrey}{\color{theGrey}}
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}}
+\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey},aboveskip=1pt}
 % suppress hyphenation in caption
 \DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
 \captionsetup{justification=nohyphen}
 
 \newcommand{\units}[1]{%
-\captionsetup{font={small,color=theGrey,aboveskip=0pt,belowskip=0pt}}
+\captionsetup{font={small,color=theGrey}, aboveskip=0pt, belowskip=0pt}
 \caption*{#1}
 }
 
