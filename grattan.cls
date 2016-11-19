@@ -104,6 +104,11 @@ numbers=noenddot,
 \RequirePackage[colorlinks, colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue, hypertexnames=false, hidelinks]{hyperref}
 \RequirePackage{cleveref}
 
+% For previous page for 'varioref'
+\patchcmd\cref@old@@vpageref
+{\advance\@tempcnta-2}
+{\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
+
 % Make url formatting the same
 \urlstyle{same}
 
