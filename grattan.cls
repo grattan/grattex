@@ -413,7 +413,6 @@ top=2.70cm, bottom=2.65cm,
 \def\@tryfcolumn{\addtolength{\@fptop}{\dimexpr \@colht-\textheight}%
   \oldtryfcolumn}
 \setlength{\@fpbot}{36.64366pt plus 1fil minus 36.64366pt}
-\setlength{\textfloatsep}{11pt plus 22pt minus 11pt}
 \setkeys{Gin}{width=\columnwidth}
 
 \newenvironment{figureTop}{
