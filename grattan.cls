@@ -319,10 +319,11 @@ singlelinecheck=false}
 % orig Word specify 2.3 and 2.5
 left=2.30cm,right=2.30cm,
 top=2.70cm, bottom=2.65cm,
- headheight=24pt, footskip=24pt
+ headheight=25pt, footskip=24pt,
 ]{geometry}
 
 \setlength{\columnsep}{55pt}  
+\setlength{\footheight}{18.0pt}
 
 % Spacing between paragraphs
 % <indent> <distance> <last line end space>
