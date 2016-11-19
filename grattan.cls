@@ -385,6 +385,16 @@ top=2.70cm, bottom=2.65cm,
 %
 \newcommand{\classification}{}
 
+% Use Embargo text if declared
+\newcommand*{\@EmbargoText}{\null}
+\newcommand*{\@EmbargoTitleText}{\null}
+\DeclareOption{embargoed}{
+  \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
+  \newcommand*{\@EmbargoDate}{XXXX}
+  \renewcommand*{\@EmbargoText}{Embargoed until 9 pm \@EmbargoDate}
+  \renewcommand*{\@EmbargoTitleText}{\LARGE\bfseries\@EmbargoText\hfill\null}
+}
+
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
 % Furthermore, optional arguments are required: they appear in Chapter 
@@ -394,6 +404,8 @@ top=2.70cm, bottom=2.65cm,
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \cehead[\classification]{\classification}
 \cohead[\classification]{\classification}
+\rehead[\classification\@EmbargoText]{\classification\@EmbargoText}
+\rohead[\classification\@EmbargoText]{\classification\@EmbargoText}
 \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}{\Large\strut}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
@@ -442,6 +454,10 @@ top=2.70cm, bottom=2.65cm,
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
 
 {\LARGE \myauthor}
+
+\vfil
+
+{\@EmbargoTitleText}
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
