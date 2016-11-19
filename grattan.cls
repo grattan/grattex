@@ -330,7 +330,7 @@ top=2.70cm, bottom=2.65cm,
 \setparsizes{0pt}{0.6\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
 
 % Space between body text and footnote area:
-\addtolength{\skip\footins}{1pt plus 15.5pt}
+\addtolength{\skip\footins}{1pt plus 14pt}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
