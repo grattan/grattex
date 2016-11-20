@@ -383,6 +383,7 @@ top=2.70cm, bottom=2.65cm,
 % -------
 % Heads and footers
 %
+\RequirePackage{eso-pic}
 \newcommand{\classification}{}
 
 % Use Embargo text if declared
@@ -402,8 +403,6 @@ top=2.70cm, bottom=2.65cm,
 % \chapter{}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
-\cehead[\classification]{\classification}
-\cohead[\classification]{\classification}
 \rehead[\classification\@EmbargoText]{\classification\@EmbargoText}
 \rohead[\classification\@EmbargoText]{\classification\@EmbargoText}
 \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}{\Large\strut}}
@@ -412,7 +411,7 @@ top=2.70cm, bottom=2.65cm,
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
-\RequirePackage{eso-pic}
+
 
 % Figure parameters -----------------------
 %\renewcommand{\floatpagefraction}{0.75}
@@ -702,9 +701,10 @@ top=2.70cm, bottom=2.65cm,
 \AtBeginEnvironment{tabularx}{\small}
   
 \AtBeginDocument{%
-\pagestyle{empty}
+  \pagestyle{empty}
 	\let\mytitle\@title
 	\let\myauthor\@author
+  \let\@@acknowledgements\@acknowledgements
 	
 	% TitlePage
 	\onecolumn
@@ -791,7 +791,7 @@ top=2.70cm, bottom=2.65cm,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \setlength{\parskip}{5.5pt plus 2pt}
   \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
-  \raggedright\@acknowledgements
+  \raggedright\@@acknowledgements
   \end{minipage}
   \twocolumn
 }
