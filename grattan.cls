@@ -632,8 +632,8 @@ top=2.70cm, bottom=2.65cm,
   \end{minipage} 
   \eject \normalsize
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-  \setlength{\parskip}{5.5pt plus 2pt}
   \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+  \setlength{\parskip}{5.5pt plus 2pt}
   \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
