@@ -515,7 +515,7 @@ top=2.70cm, bottom=2.65cm,
 ,labelalpha,maxalphanames=1
 ]{biblatex}
 
-%\iffalse
+\@ifpackagelater{biblatex}{2016/09/01}{%
 \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
 \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
 \ExecuteBibliographyOptions{sorting=gratt}
@@ -549,7 +549,7 @@ top=2.70cm, bottom=2.65cm,
   \endgroup
   \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
 }
-%\fi
+}
 
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
@@ -637,6 +637,7 @@ top=2.70cm, bottom=2.65cm,
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 % removes intersentence space after et al.
 \xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
+\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
 \DefineBibliographyStrings{english}
    {andothers = {et al\adddot}}
 
