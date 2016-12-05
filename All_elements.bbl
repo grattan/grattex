@@ -18,7 +18,7 @@
 
 
 \refsection{0}
-  \sortlist[entry]{nyt/global/}
+  \sortlist[entry]{gratt/global/}
     \entry{ABS-SIH11-CURF}{misc}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=7d8a220d2262f9d6c658d549ee12cf2c}{%
@@ -29,9 +29,11 @@
       \strng{fullhash}{7d8a220d2262f9d6c658d549ee12cf2c}
       \strng{authornamehash}{7d8a220d2262f9d6c658d549ee12cf2c}
       \strng{authorfullhash}{7d8a220d2262f9d6c658d549ee12cf2c}
+      \field{labelalpha}{ABS}
       \field{sortinit}{A}
       \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Survey of Income and Housing 2011-12, Basic CURF}
@@ -47,9 +49,11 @@
       \strng{fullhash}{13feae5cffb3660906f5b51b6c24f8fd}
       \strng{authornamehash}{13feae5cffb3660906f5b51b6c24f8fd}
       \strng{authorfullhash}{13feae5cffb3660906f5b51b6c24f8fd}
+      \field{labelalpha}{ASFA}
       \field{sortinit}{A}
       \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{ASFA Retirement Standard}
@@ -68,9 +72,11 @@
       \strng{fullhash}{9b27761c46b7dcd902103e8a46e61492}
       \strng{authornamehash}{9b27761c46b7dcd902103e8a46e61492}
       \strng{authorfullhash}{9b27761c46b7dcd902103e8a46e61492}
+      \field{labelalpha}{ATO}
       \field{sortinit}{A}
       \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The 2013-14 individuals' sample file}
@@ -89,9 +95,11 @@
       \strng{fullhash}{3e044c40a3a3a3c7a4954c89eb8468a2}
       \strng{authornamehash}{3e044c40a3a3a3c7a4954c89eb8468a2}
       \strng{authorfullhash}{3e044c40a3a3a3c7a4954c89eb8468a2}
+      \field{labelalpha}{Australian Labor Party}
       \field{sortinit}{A}
       \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Fairer Super -- Fact Sheet}
@@ -112,9 +120,11 @@
       \strng{fullhash}{722c8ef9e317c3e0ce2898f4fe48a0b3}
       \strng{authornamehash}{722c8ef9e317c3e0ce2898f4fe48a0b3}
       \strng{authorfullhash}{722c8ef9e317c3e0ce2898f4fe48a0b3}
+      \field{labelalpha}{Bowen}
       \field{sortinit}{B}
       \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
       \field{labeldatesource}{}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{24}
@@ -153,11 +163,13 @@
       \strng{fullhash}{8c05910a2897f3c7bdfa564939eacde0}
       \strng{authornamehash}{8c05910a2897f3c7bdfa564939eacde0}
       \strng{authorfullhash}{8c05910a2897f3c7bdfa564939eacde0}
-      \strng{editornamehash}{7436287b2826c524050820e152652630}
+      \strng{editornamehash}{270adce564f918c8cd0fcfb6ecb19d20}
       \strng{editorfullhash}{7436287b2826c524050820e152652630}
+      \field{labelalpha}{Burman}
       \field{sortinit}{B}
       \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Australian Business Tax Reform in Retrospect and Prospect}
@@ -176,9 +188,11 @@
       \strng{fullhash}{c066536e9842423e2d78d979ebeba9a7}
       \strng{authornamehash}{c066536e9842423e2d78d979ebeba9a7}
       \strng{authorfullhash}{c066536e9842423e2d78d979ebeba9a7}
+      \field{labelalpha}{Daley}
       \field{sortinit}{D}
       \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Australia gets the third-best policy on infrastructure. Here's why}
@@ -217,9 +231,11 @@
       \strng{fullhash}{4fabd179c2191865dc0d1db9cf0a66bc}
       \strng{authornamehash}{8270bdd0aee07568e0bdea8a89956d75}
       \strng{authorfullhash}{4fabd179c2191865dc0d1db9cf0a66bc}
+      \field{labelalpha}{Daley+}
       \field{sortinit}{D}
       \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Super tax targeting}
@@ -239,9 +255,11 @@
       \strng{fullhash}{128343c7abc14c26dbe868808b5dc658}
       \strng{authornamehash}{128343c7abc14c26dbe868808b5dc658}
       \strng{authorfullhash}{128343c7abc14c26dbe868808b5dc658}
+      \field{labelalpha}{Defence}
       \field{sortinit}{D}
       \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Defence Issues Paper}
@@ -260,9 +278,11 @@
       \strng{fullhash}{ce22eff4cdb0c3f77c427059c7710f65}
       \strng{authornamehash}{ce22eff4cdb0c3f77c427059c7710f65}
       \strng{authorfullhash}{ce22eff4cdb0c3f77c427059c7710f65}
+      \field{labelalpha}{DHS}
       \field{sortinit}{D}
       \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
       \field{labeldatesource}{}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{2}
@@ -284,9 +304,11 @@
       \strng{fullhash}{c9537678bf87c4464b4a14f99f19a146}
       \strng{authornamehash}{c9537678bf87c4464b4a14f99f19a146}
       \strng{authorfullhash}{c9537678bf87c4464b4a14f99f19a146}
+      \field{labelalpha}{Industry Super Australia}
       \field{sortinit}{I}
       \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{6}
@@ -311,9 +333,11 @@
       \strng{fullhash}{03dff32d5799a69de36674920cc10b7c}
       \strng{authornamehash}{03dff32d5799a69de36674920cc10b7c}
       \strng{authorfullhash}{03dff32d5799a69de36674920cc10b7c}
+      \field{labelalpha}{Ingles}
       \field{sortinit}{I}
       \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The great superannuation tax concession rort}
@@ -335,9 +359,11 @@
       \strng{fullhash}{3ab34db904b7dbbd29c0c325a354a5ab}
       \strng{authornamehash}{3ab34db904b7dbbd29c0c325a354a5ab}
       \strng{authorfullhash}{3ab34db904b7dbbd29c0c325a354a5ab}
+      \field{labelalpha}{Johnson}
       \field{sortinit}{J}
       \field{sortinithash}{ec3950a647c092421b9fcca6d819504a}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Virginia Tax Review}
@@ -360,9 +386,11 @@
       \strng{fullhash}{3559e5e6139ceb03dcd70485d5b1569c}
       \strng{authornamehash}{3559e5e6139ceb03dcd70485d5b1569c}
       \strng{authorfullhash}{3559e5e6139ceb03dcd70485d5b1569c}
+      \field{labelalpha}{Lindsey}
       \field{sortinit}{L}
       \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{series}{Taxes and Capital Formation}
@@ -385,13 +413,15 @@
       \list{organization}{1}{%
         {Taxation Institute Australia}%
       }
-      \strng{namehash}{7e0ba6722daec49d5bbaffe9e7ccc3ed}
+      \strng{namehash}{4f3f34e3293fdfcb88b6b9876e63161a}
       \strng{fullhash}{7e0ba6722daec49d5bbaffe9e7ccc3ed}
-      \strng{authornamehash}{7e0ba6722daec49d5bbaffe9e7ccc3ed}
+      \strng{authornamehash}{4f3f34e3293fdfcb88b6b9876e63161a}
       \strng{authorfullhash}{7e0ba6722daec49d5bbaffe9e7ccc3ed}
+      \field{labelalpha}{Mangioni+}
       \field{sortinit}{M}
       \field{sortinithash}{2684bec41e9697b92699b46491061da2}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Australian Tax Forum: a journal of taxation policy, law and reform}
@@ -410,9 +440,11 @@
       \strng{fullhash}{1464e3994d831af0fcb7a155426375d4}
       \strng{authornamehash}{1464e3994d831af0fcb7a155426375d4}
       \strng{authorfullhash}{1464e3994d831af0fcb7a155426375d4}
+      \field{labelalpha}{McCrann}
       \field{sortinit}{M}
       \field{sortinithash}{2684bec41e9697b92699b46491061da2}
       \field{labeldatesource}{}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{3}
@@ -435,9 +467,11 @@
       \strng{fullhash}{2c62e9d42b5b8a428b4b2f4a22839cd8}
       \strng{authornamehash}{2c62e9d42b5b8a428b4b2f4a22839cd8}
       \strng{authorfullhash}{2c62e9d42b5b8a428b4b2f4a22839cd8}
+      \field{labelalpha}{NSW Treasury}
       \field{sortinit}{N}
       \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Interstate Comparison of Taxes 2014-15}
@@ -457,9 +491,11 @@
       \strng{fullhash}{bdbed435a416a918aa494017fda4c7fb}
       \strng{authornamehash}{bdbed435a416a918aa494017fda4c7fb}
       \strng{authorfullhash}{bdbed435a416a918aa494017fda4c7fb}
+      \field{labelalpha}{OECD}
       \field{sortinit}{O}
       \field{sortinithash}{7803d2715d5e795e70382b084ab8d00e}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Taxation of Capital Gains of Individuals: Policy Considerations and Approaches}
@@ -467,6 +503,29 @@
       \field{year}{2006}
       \verb{url}
       \verb http://www.oecd-ilibrary.org/taxation/taxation-of-capital-gains-of-individuals_9789264029507-en
+      \endverb
+    \endentry
+    \entry{long-url}{misc}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=3e4cdf22d9f5ce96df240b7f2163269c}{%
+           family={OWS},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{3e4cdf22d9f5ce96df240b7f2163269c}
+      \strng{fullhash}{3e4cdf22d9f5ce96df240b7f2163269c}
+      \strng{authornamehash}{3e4cdf22d9f5ce96df240b7f2163269c}
+      \strng{authorfullhash}{3e4cdf22d9f5ce96df240b7f2163269c}
+      \field{labelalpha}{OWS}
+      \field{sortinit}{O}
+      \field{sortinithash}{7803d2715d5e795e70382b084ab8d00e}
+      \field{labeldatesource}{year}
+      \true{singletitle}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Gross and net capital stocks for total economy by industry and asset in current prices and chained volume measures}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://www.ons.gov.uk/economy/nationalaccounts/uksectoraccounts/datasets/grossandnetcapitalstocksfortotaleconomybyindustryandassetincurrentpricesandchainedvolumemeasures
       \endverb
     \endentry
     \entry{PBO2014}{misc}{}
@@ -479,9 +538,11 @@
       \strng{fullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authornamehash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authorfullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
+      \field{labelalpha}{PBO}
       \field{sortinit}{P}
       \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
       \field{labeldatesource}{year}
+      \field{extraalpha}{1}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Projections of Government spending over the medium term}
@@ -500,10 +561,12 @@
       \strng{fullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authornamehash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authorfullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
+      \field{labelalpha}{PBO}
       \field{sortinit}{P}
       \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
       \field{extrayear}{1}
       \field{labeldatesource}{year}
+      \field{extraalpha}{2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{2015-16 Budget: medium term-projections}
@@ -522,10 +585,12 @@
       \strng{fullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authornamehash}{a466c7795edfc3b1490f07bdf64d8ef5}
       \strng{authorfullhash}{a466c7795edfc3b1490f07bdf64d8ef5}
+      \field{labelalpha}{PBO}
       \field{sortinit}{P}
       \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
       \field{extrayear}{2}
       \field{labeldatesource}{year}
+      \field{extraalpha}{3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{5}
@@ -546,9 +611,11 @@
       \strng{fullhash}{97d8809bf6683a3dd7994b78a9a0b374}
       \strng{authornamehash}{97d8809bf6683a3dd7994b78a9a0b374}
       \strng{authorfullhash}{97d8809bf6683a3dd7994b78a9a0b374}
+      \field{labelalpha}{Productivity Commission}
       \field{sortinit}{P}
       \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
       \field{labeldatesource}{year}
+      \true{singletitle}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Productivity Commission, Government of Australia Research Reports}
@@ -571,9 +638,11 @@
       \strng{fullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authornamehash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authorfullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
+      \field{labelalpha}{Treasury}
       \field{sortinit}{T}
       \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
       \field{labeldatesource}{year}
+      \field{extraalpha}{1}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Commonwealth Budget Papers 2015-16}
@@ -592,10 +661,12 @@
       \strng{fullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authornamehash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authorfullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
+      \field{labelalpha}{Treasury}
       \field{sortinit}{T}
       \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
       \field{extrayear}{1}
       \field{labeldatesource}{year}
+      \field{extraalpha}{2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Budget 2016-17: Superannuation fact sheets}
@@ -614,10 +685,12 @@
       \strng{fullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authornamehash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
       \strng{authorfullhash}{20e968a2ef4cbdc5bea5e34d0b1e7333}
+      \field{labelalpha}{Treasury}
       \field{sortinit}{T}
       \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
       \field{extrayear}{2}
       \field{labeldatesource}{year}
+      \field{extraalpha}{3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Budget Papers 2016-17}

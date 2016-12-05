@@ -101,6 +101,7 @@ numbers=noenddot,
 %   \chapter[\protect\jumplink{ch\thechapter}{#1}]{#1}%
 %   \outline[fit=fitv]{1}[ch\thechapter]{#1}%
 % }
+\PassOptionsToPackage{hyphens}{url}
 \RequirePackage[colorlinks, colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue, hypertexnames=false, hidelinks]{hyperref}
 \RequirePackage{cleveref}
 
@@ -563,9 +564,23 @@ top=2.70cm, bottom=2.65cm,
 \setlength\bibitemsep{1.5\itemsep}
 % format bibliography
 \renewcommand*{\bibfont}{\small\raggedright}
+
+% Allow URLs to break on any character
+  % Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
+  \patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+\let\origbibsetup\bibsetup
+\renewcommand{\bibsetup}{%
+  \origbibsetup%
+  \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
+    \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+    \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+    \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+    \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+    \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+    \do\Y\do\Z}
+}
 \DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
-% Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
-\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+
 
 %% Citation tweaking
 \DeclareFieldFormat{titlecase}{#1}
