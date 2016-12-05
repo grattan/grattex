@@ -391,9 +391,10 @@ top=2.70cm, bottom=2.65cm,
 \newcommand*{\@EmbargoTitleText}{\null}
 \DeclareOption{embargoed}{
   \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
+  \newcommand*{\EmbargoTitleText}[1]{\renewcommand{\@EmbargoTitleText}{#1}}
   \newcommand*{\@EmbargoDate}{XXXX}
   \renewcommand*{\@EmbargoText}{Embargoed until 9 pm \@EmbargoDate}
-  \renewcommand*{\@EmbargoTitleText}{\LARGE\bfseries\@EmbargoText\hfill\null}
+  \renewcommand*{\@EmbargoTitleText}{\@EmbargoText}
 }
 
 % Avoid spaces or newlines in the following commands' arguments: they 
@@ -456,7 +457,7 @@ top=2.70cm, bottom=2.65cm,
 
 \vfil
 
-{\@EmbargoTitleText}
+{\LARGE\bfseries\@EmbargoTitleText\hfill\null}
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
@@ -790,9 +791,9 @@ top=2.70cm, bottom=2.65cm,
   \end{minipage} 
   \eject \normalsize
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-  \setlength{\parskip}{5.5pt plus 2pt}
   \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
-  \raggedright\@@acknowledgements
+  \setlength{\parskip}{5.5pt plus 2pt}
+  \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
 }
