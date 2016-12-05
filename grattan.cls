@@ -383,7 +383,19 @@ top=2.70cm, bottom=2.65cm,
 % -------
 % Heads and footers
 %
+\RequirePackage{eso-pic}
 \newcommand{\classification}{}
+
+% Use Embargo text if declared
+\newcommand*{\@EmbargoText}{\null}
+\newcommand*{\@EmbargoTitleText}{\null}
+\DeclareOption{embargoed}{
+  \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
+  \newcommand*{\EmbargoTitleText}[1]{\renewcommand{\@EmbargoTitleText}{#1}}
+  \newcommand*{\@EmbargoDate}{XXXX}
+  \renewcommand*{\@EmbargoText}{Embargoed until 9 pm \@EmbargoDate}
+  \renewcommand*{\@EmbargoTitleText}{\@EmbargoText}
+}
 
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
@@ -392,15 +404,15 @@ top=2.70cm, bottom=2.65cm,
 % \chapter{}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
-\cehead[\classification]{\classification}
-\cohead[\classification]{\classification}
+\rehead[\classification\@EmbargoText]{\classification\@EmbargoText}
+\rohead[\classification\@EmbargoText]{\classification\@EmbargoText}
 \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}{\Large\strut}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
-\RequirePackage{eso-pic}
+
 
 % Figure parameters -----------------------
 %\renewcommand{\floatpagefraction}{0.75}
@@ -429,14 +441,6 @@ top=2.70cm, bottom=2.65cm,
     .png,.PNG,%
     .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2}
 
-% Use Embargo text if declared
-\newcommand{\@EmbargoText}{\null}
-\DeclareOption{embargoed}{
-  \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
-  \newcommand*{\@EmbargoDate}{XXXX}
-  \renewcommand{\@EmbargoText}{\LARGE\bfseries Embargoed until 9 pm \@EmbargoDate\hfill\null}
-}
-
 %% FrontPage options
 %% First, the default, plain front page with a title.
 \newcommand*{\titleTH}{\begingroup % Create the command for including the title page in the document
@@ -451,7 +455,9 @@ top=2.70cm, bottom=2.65cm,
 
 {\LARGE \myauthor}
 
-\@EmbargoText
+\vfil
+
+{\LARGE\bfseries\@EmbargoTitleText\hfill\null}
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
@@ -503,6 +509,151 @@ top=2.70cm, bottom=2.65cm,
 
 \ProcessOptions\relax
 
+% Bibliography
+\RequirePackage[english]{babel}
+\RequirePackage{csquotes}
+\RequirePackage[backend=biber,singletitle,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=1, maxbibnames=9, uniquelist=false, uniquename=init,sorting=anyt
+,labelalpha,maxalphanames=1
+]{biblatex}
+
+\@ifpackagelater{biblatex}{2016/09/01}{%
+\DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+\DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+\ExecuteBibliographyOptions{sorting=gratt}
+
+
+\newtoggle{bbx:dowehavemorenames}
+\DeclareNameFormat{dowehavemorenames}{%
+ \ifboolexpr{
+   test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+   and
+   test \ifmorenames
+ }
+   {\global\toggletrue{bbx:dowehavemorenames}}
+   {\global\togglefalse{bbx:dowehavemorenames}}}
+
+\newcounter{mymaxcitenames}
+\AtBeginDocument{%
+ \setcounter{mymaxcitenames}{\value{maxnames}}%
+}
+
+\renewbibmacro*{begentry}{%
+  \begingroup
+    \defcounter{maxnames}{\value{mymaxcitenames}}%
+    \printnames[dowehavemorenames]{labelname}%
+    \iftoggle{bbx:dowehavemorenames}
+      {\printnames{labelname}%
+       \setunit{\printdelim{nameyeardelim}}%
+       \usebibmacro{date+extrayear}%
+       \space\space\newunit\newblock}
+      {}%
+  \endgroup
+  \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+}
+}
+
+\DeclareLanguageMapping{english}{british-apa}
+\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
+\DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
+\renewbibmacro{in:}{} % suppress In:
+\renewbibmacro{bbx:editor}{} % suppress Ed:
+
+%% Bibliography formatting
+% separating entries
+\setlength\bibitemsep{1.5\itemsep}
+% format bibliography
+\renewcommand*{\bibfont}{\small\raggedright}
+\DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
+% Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
+\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+
+%% Citation tweaking
+\DeclareFieldFormat{titlecase}{#1}
+\setlength\bibhang{.5in}
+\renewcommand*{\bibnamedash}{%
+  \ifdimless{\leftmargin}{0.75em}
+    {\mbox{\textemdash\space}}
+    {\makebox[\leftmargin][l]{%
+       \ifdimless{\leftmargin}{1.25em}
+         {\textendash}
+         {\rule{0.8\bibhang}{.2pt}}}}}
+% Hyperlinks entire citation label for most citaiton commands 
+% http://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}%
+      {\bibcloseparen\global\boolfalse{cbx:parens}}%
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\newbibmacro*{cite:title}{%
+  \ifsingletitle
+    {}
+    {\printtext[bibhyperref]{%
+       \printfield[citetitle]{labeltitle}}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{%
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }%
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+
+% The following lines give the correct footcite Author (Year) but make the ibid erroneous
+% Author (ibid) % use ifciteibid
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\boolfalse{cbx:parens}}
+  {\usebibmacro{citeindex}%
+  \ifciteibid{Ibid.}{%  % for ibidem
+   \iffirstcitekey
+     {\setcounter{textcitetotal}{1}}
+     {\stepcounter{textcitetotal}%
+      \textcitedelim}%
+   \usebibmacro{textcite}}%
+   }
+  {\ifbool{cbx:parens}
+     {\bibcloseparen\global\boolfalse{cbx:parens}}
+     {}}
+  {\usebibmacro{textcite:postnote}}
+\newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
+% removes intersentence space after et al.
+\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
+\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
+\DefineBibliographyStrings{english}
+   {andothers = {et al\adddot}}
+
+% biblatex ShareLaTeX version control
+% 2016/09/17
+\@ifpackagelater{biblatex}{2016/09/01}{\ExecuteBibliographyOptions{giveninits=true}}{\ExecuteBibliographyOptions{firstinits=true}}
+% Patch for issue 
+\AtBeginDocument{%
+  \apptocmd\@floatboxreset
+    {\booltrue{citetracker}%
+     \booltrue{pagetracker}}
+    {}
+    {\blx@err@patch{floats}}
+}
+
 \RequirePackage{multicol}
 \newcommand{\logoskip}{\par\vspace{16pt}}
 
@@ -517,6 +668,8 @@ top=2.70cm, bottom=2.65cm,
     {\ClassError{You have not provided a Grattan Report Number}}%
     {}%
 }
+
+%% BibLaTeX needs to precede acknowledgements (otherwise acknowledgements can't contain citations).
 
 % Allow MONTH/YEAR to be defined; otherwise by default the date of compilation
 \newcommand*{\MONTH}[1]{\renewcommand*{\@MONTH}{#1}}
@@ -550,9 +703,10 @@ top=2.70cm, bottom=2.65cm,
 \AtBeginEnvironment{tabularx}{\small}
   
 \AtBeginDocument{%
-\pagestyle{empty}
+  \pagestyle{empty}
 	\let\mytitle\@title
 	\let\myauthor\@author
+  \let\@@acknowledgements\@acknowledgements
 	
 	% TitlePage
 	\onecolumn
@@ -670,100 +824,7 @@ top=2.70cm, bottom=2.65cm,
   {\end{multicols}\vss\egroup\hfill\twocolumn}
 
 
-% Bibliography
-\RequirePackage[english]{babel}
-\RequirePackage{csquotes}
-\RequirePackage[backend=biber,singletitle,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false, uniquename=init]{biblatex}
-\DeclareLanguageMapping{english}{british-apa}
-\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
 
-%% Bibliography formatting
-% separating entries
-\setlength\bibitemsep{1.5\itemsep}
-% format bibliography
-\renewcommand*{\bibfont}{\small\raggedright}
-\DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
-% Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
-\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
-
-%% Citation tweaking
-\DeclareFieldFormat{titlecase}{#1}
-\setlength\bibhang{.5in}
-\renewcommand*{\bibnamedash}{%
-  \ifdimless{\leftmargin}{0.75em}
-    {\mbox{\textemdash\space}}
-    {\makebox[\leftmargin][l]{%
-       \ifdimless{\leftmargin}{1.25em}
-         {\textendash}
-         {\rule{0.8\bibhang}{.2pt}}}}}
-% Hyperlinks entire citation label for most citaiton commands 
-% http://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
-\DeclareFieldFormat{citehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{#1}}
-
-\DeclareFieldFormat{textcitehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{%
-    #1%
-    \ifbool{cbx:parens}
-      {\bibcloseparen\global\boolfalse{cbx:parens}}
-      {}}}
-
-\savebibmacro{cite}
-\savebibmacro{textcite}
-
-\renewbibmacro*{cite}{%
-  \printtext[citehyperref]{%
-    \restorebibmacro{cite}%
-    \usebibmacro{cite}}}
-
-\renewbibmacro*{cite:title}{%
-  \ifsingletitle
-    {}
-    {\printtext[bibhyperref]{%
-       \printfield[citetitle]{labeltitle}}}}
-
-\renewbibmacro*{textcite}{%
-  \ifboolexpr{
-    ( not test {\iffieldundef{prenote}} and
-      test {\ifnumequal{\value{citecount}}{1}} )
-    or
-    ( not test {\iffieldundef{postnote}} and
-      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-  }
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-    {}%
-  \printtext[textcitehyperref]{%
-    \restorebibmacro{textcite}%
-    \usebibmacro{textcite}}}
-
-% The following lines give the correct footcite Author (Year) but make the ibid erroneous
-% Author (ibid) % use ifciteibid
-\DeclareCiteCommand{\footcite}[\mkbibfootnote]
-  {\boolfalse{cbx:parens}}
-  {\usebibmacro{citeindex}%
-  \ifciteibid{Ibid.}{%  % for ibidem
-   \iffirstcitekey
-     {\setcounter{textcitetotal}{1}}
-     {\stepcounter{textcitetotal}%
-      \textcitedelim}%
-   \usebibmacro{textcite}}%
-   }
-  {\ifbool{cbx:parens}
-     {\bibcloseparen\global\boolfalse{cbx:parens}}
-     {}}
-  {\usebibmacro{textcite:postnote}}
-\newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
-
-% Patch for issue 
-\AtBeginDocument{%
-  \apptocmd\@floatboxreset
-    {\booltrue{citetracker}%
-     \booltrue{pagetracker}}
-    {}
-    {\blx@err@patch{floats}}
-}
 
 \RequirePackage{tocloft}
 \renewcommand{\cftchapfont}{\normalsize\normalfont}
