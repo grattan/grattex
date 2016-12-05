@@ -153,6 +153,9 @@ numbers=noenddot,
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
 }
 
+% Issue #27
+\AtBeginEnvironment{mdframed}{\renewcommand{\thempfootnote}{\alph{mpfootnote}}}
+
 % The verysmallbox is intended to be a fraction of one column.
 \newenvironment{verysmallbox}[3][htb]{%
 \setlength{\currentparskip}{\parskip}% save the value
