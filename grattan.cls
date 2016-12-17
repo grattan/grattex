@@ -439,6 +439,21 @@ top=2.70cm, bottom=2.65cm,
 \end{figure}
 }
 
+% For two figures on one page (with possible space for text underneath)
+\newcommand{\doublecolumnfigure}[2]{
+  \begin{figure*}
+    \begin{minipage}[t][\textheight]{\columnwidth}
+      \vspace{\@fptop}
+      #1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t][\textheight]{\columnwidth}
+      \vspace{\@fptop}
+      #2
+    \end{minipage}
+  \end{figure*}
+}
+
 % Ensure pdfs are used first
 \DeclareGraphicsExtensions{%
     .pdf,.PDF,%
