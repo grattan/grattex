@@ -2,6 +2,12 @@
 
 ## Changelog
 
+### 2016-12-19
+* Allow long URLs in bibliography, line-breaking at width #36
+* Box footnotes are now non-italic #43
+* New command, `\doublecolumnfigure` now used #46
+* Documentation moved to `./doc/`
+
 ### 2016-11-19
 
 New features:
