@@ -49,6 +49,15 @@ Temporary Items
 *.aux
 *.blg
 *.log
+*.loboxe
 *.out
 *.synctex.gz
 *.toc
+~$ShareLaTeX-vs-SublimeGit.xlsx
+*.bcf
+Assessing-the-2016-super-tax-reforms.bbl
+*.bbl
+Example-report.lof
+*.xml
+Example-report.txt
+*.lof

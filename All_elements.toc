@@ -1,9 +1,0 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
-\select@language {english}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Economic growth priorities}{6}{chapter..1}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}Scope}{6}{section.1.1}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Spending projections}{7}{section.1.2}

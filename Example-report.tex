@@ -1,6 +1,5 @@
 \documentclass[continuous]{grattan}
 \usepackage{layout}
-\usepackage{blindtext}
 
 \title{Report title}
 \author{author and author}
@@ -10,7 +9,6 @@
 \GrattanReportNumber{2016-X}
 
 \addbibresource{AP-bibliography.bib}
-\addbibresource{bibtester.bib} % for long-url
 
 \listfiles
 
@@ -211,7 +209,6 @@ If these lost benefits (\$29.2~billion + \$34.3~billion) were fully capitalized 
 
 \eject
 \begin{table}[H]
-\captionsetup{labelfont = {small, bf, theGrey}, position=above, aboveskip=-1pt, font = {small, theGrey}} % 1pt magical for baseline alignment with first column
 \caption{Impact of policy changes on after-tax returns}\label{tbl:Impact-house-prices}
 \makebox[\linewidth][c]{
 
@@ -432,35 +429,6 @@ types of savings by reducing taxes on other savings income
 such as net rental income and bank deposits.
 \end{itemize}
 
-\nocite{long-url}
-
-
-\newcommand{\gls}[1]{\textbf{#1}}
-\newcommand{\Gls}[1]{\textbf{#1}}
-\begin{smallbox}{Do \gls{Loan fees} favour rich students?}{box:do-loan-fees-favour-rich-students}
-
-\Gls{Loan fees} and the upfront payment discount are occasionally criticised as favouring wealthier students.%
-\footcites{Hare-2015-loan-fees-advantage-the-rich}{Evans2011MediareleaseGillard} %
-They can choose to pay upfront and so avoid the loan fee or get the discount.
-It is true that people who pay upfront make lower direct cash payments for their higher education than people who take out a \gls{HELP} loan.
-But there is a cost to paying upfront as well as to deferring.
-
-Anyone who pays upfront forgoes investment returns they could get on that money, or the benefits of other things they could buy for the same amount.
-They also lose the protection of income-contingent repayment.
-If students who pay upfront earn below the \gls{Threshold} after their degree, they have implicitly lost the cost of their fees.
-
-In fact, the absence of a loan fee benefits wealthier students.
-By borrowing instead of paying upfront, they receive an \gls{Interest subsidy} financed by taxpayers.
-The money they would have used to pay upfront can instead be invested to increase their income.
-The absence of a loan fee, combined with the bonus on early repayment of \gls{HELP} debt, at least partly explains the decreasing rates of upfront payment for full-fee postgraduate courses.
-
-Providing interest-free loans to people who do not need them is a clear case of poorly-targeted higher education spending with low social return.
-These interest subsidies have no effect on higher education participation, and they reduce the amount of money available for more pressing higher education purposes.
-\end{smallbox}
 \printbibliography
-
-\blinddocument
-
-\the\baselineskip
 
 \end{document}

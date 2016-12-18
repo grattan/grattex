@@ -87,7 +87,7 @@ numbers=noenddot,
 \RequirePackage[T1]{fontenc}
   
 %\RequirePackage{uarial}
-  %\linespread{1.03}  % for 14pt baselineskip
+%  \linespread{1.04}
 \RequirePackage[scaled]{helvet}
   \renewcommand{\familydefault}{\sfdefault}
 
@@ -101,14 +101,8 @@ numbers=noenddot,
 %   \chapter[\protect\jumplink{ch\thechapter}{#1}]{#1}%
 %   \outline[fit=fitv]{1}[ch\thechapter]{#1}%
 % }
-\PassOptionsToPackage{hyphens}{url}
 \RequirePackage[colorlinks, colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue, hypertexnames=false, hidelinks]{hyperref}
 \RequirePackage{cleveref}
-
-% For previous page for 'varioref'
-\patchcmd\cref@old@@vpageref
-{\advance\@tempcnta-2}
-{\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
 
 % Make url formatting the same
 \urlstyle{same}
@@ -130,7 +124,7 @@ numbers=noenddot,
     nobreak=true, % prevents page breaking
     outerlinewidth=0.5pt,
     innertopmargin=0.5\baselineskip,
-    innerbottommargin=0.75\baselineskip,
+    innerbottommargin=0.5\baselineskip,
     innerrightmargin=11pt,
     innerleftmargin=11pt,
     backgroundcolor=OrangeBackground
@@ -141,7 +135,7 @@ numbers=noenddot,
     nobreak=true, % prevents page breaking
     outerlinewidth=0.5pt,
     innertopmargin=0.5\baselineskip,
-    innerbottommargin=0.75\baselineskip,
+    innerbottommargin=0.5\baselineskip,
     innerrightmargin=11pt,
     innerleftmargin=11pt,
     backgroundcolor=OrangeBackground
@@ -152,9 +146,6 @@ numbers=noenddot,
 \caption{#1}
 \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
 }
-
-% Issue #27
-\AtBeginEnvironment{mdframed}{\renewcommand{\thempfootnote}{\alph{mpfootnote}}}
 
 % The verysmallbox is intended to be a fraction of one column.
 \newenvironment{verysmallbox}[3][htb]{%
@@ -198,8 +189,7 @@ numbers=noenddot,
   \@dblfloat{boxe}%
   \begin{mdframed}[style=GrattanFrameBox]
   \@boxcaption{#1\label{#2}}%
-  % Reduced column sep 
-  \addtolength{\columnsep}{-23.8pt}%
+   \setlength{\columnsep}{33pt}
   \begin{multicols}{2}
   \setlength{\parskip}{\currentparskip}% restore the value
   \RaggedRight
@@ -224,13 +214,13 @@ numbers=noenddot,
 
 % Captions in general
 \DeclareCaptionFont{theGrey}{\color{theGrey}}
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey},aboveskip=1pt}
+\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}}
 % suppress hyphenation in caption
 \DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
 \captionsetup{justification=nohyphen}
 
 \newcommand{\units}[1]{%
-\captionsetup{font={small,color=theGrey}, aboveskip=0pt, belowskip=0pt}
+\captionsetup{font={small,color=theGrey}}
 \caption*{#1}
 }
 
@@ -253,29 +243,23 @@ singlelinecheck=false}
 % New user friendly (less typing) \Caption?
 \newcommand{\Caption}[3]{\captionwithunits{#1}{#2}\label{#3}}
 
-%% Credit to amsthm.sty
-\def\@addpunct#1{%
-  \relax\ifhmode
-    \ifnum\spacefactor>\@m \else#1\fi
-  \fi}
-
 \newcommand*{\source}[1]{%
 \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Source:\ #1\@addpunct{.}}
+\caption*{Source:\ #1}
 }
 \newcommand*{\notes}[1]{%
 \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1\@addpunct{.}}
+\caption*{Notes:\ #1}
 }
 
 \newcommand*{\noteswithsource}[2]{%
 \ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
 \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1\@addpunct{.}}
-\caption*{Source:\ #2\@addpunct{.}}
+\caption*{Notes:\ #1}
+\caption*{Source:\ #2}
 }
 
-\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
+\newcommand*{\boxsources}[1]{\footnotesize\textit{#1}}
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
@@ -288,14 +272,14 @@ singlelinecheck=false}
   beforeskip=1\baselineskip,
   afterskip=1\baselineskip]{chapter}
 \RedeclareSectionCommand[
-  beforeskip=0.5\baselineskip plus 0.3\baselineskip,
-  afterskip=0.5\baselineskip]{section}
+  beforeskip=0.5\baselineskip plus 0.25\baselineskip,
+  afterskip=1sp]{section}
 \RedeclareSectionCommand[
-  beforeskip=0.5\baselineskip plus 0.2\baselineskip,
-  afterskip=0.5\baselineskip]{subsection}
+  beforeskip=0.25\baselineskip plus 0.25\baselineskip,
+  afterskip=1sp]{subsection}
 \RedeclareSectionCommand[
-  beforeskip=0.5\baselineskip plus 0.1\baselineskip,
-  afterskip=0.5\baselineskip]{subsubsection}
+  beforeskip=0.6ex plus 1.5ex,
+  afterskip=0.1ex]{subsubsection}
 \RedeclareSectionCommand[
   beforeskip=.5\baselineskip,
   afterskip=-1em]{paragraph}
@@ -304,10 +288,6 @@ singlelinecheck=false}
   afterskip=-1em]{subparagraph}
   
 \renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname\hspace{1.25em}}
-
-% Removes glue around section titles. 
-\RequirePackage{xpatch}
-\xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
 
   
 % --------------
@@ -323,18 +303,17 @@ singlelinecheck=false}
 % orig Word specify 2.3 and 2.5
 left=2.30cm,right=2.30cm,
 top=2.70cm, bottom=2.65cm,
- headheight=25pt, footskip=24pt,
+ headheight=24pt, footskip=24pt
 ]{geometry}
 
 \setlength{\columnsep}{55pt}  
-\setlength{\footheight}{18.0pt}
 
 % Spacing between paragraphs
 % <indent> <distance> <last line end space>
 \setparsizes{0pt}{0.6\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
 
 % Space between body text and footnote area:
-\addtolength{\skip\footins}{1pt plus 14pt}
+\addtolength{\skip\footins}{1pt plus 15.5pt}
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
@@ -387,19 +366,7 @@ top=2.70cm, bottom=2.65cm,
 % -------
 % Heads and footers
 %
-\RequirePackage{eso-pic}
 \newcommand{\classification}{}
-
-% Use Embargo text if declared
-\newcommand*{\@EmbargoText}{\null}
-\newcommand*{\@EmbargoTitleText}{\null}
-\DeclareOption{embargoed}{
-  \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
-  \newcommand*{\EmbargoTitleText}[1]{\renewcommand{\@EmbargoTitleText}{#1}}
-  \newcommand*{\@EmbargoDate}{XXXX}
-  \renewcommand*{\@EmbargoText}{Embargoed until 9 pm \@EmbargoDate}
-  \renewcommand*{\@EmbargoTitleText}{\@EmbargoText}
-}
 
 % Avoid spaces or newlines in the following commands' arguments: they 
 % may cause errors.
@@ -408,15 +375,15 @@ top=2.70cm, bottom=2.65cm,
 % \chapter{}
 \lehead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
 \lohead[\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}]{\normalfont\textcolor{theGrey}{\mytitle}{\huge\strut}}
-\rehead[\classification\@EmbargoText]{\classification\@EmbargoText}
-\rohead[\classification\@EmbargoText]{\classification\@EmbargoText}
+\cehead[\classification]{\classification}
+\cohead[\classification]{\classification}
 \ifoot[{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR {\Large\strut}}}]{\textcolor{theGrey}{\normalfont Grattan Institute \@YEAR}{\Large\strut}}
 \cfoot[\classification]{\classification}
 \ofoot[\normalfont\textcolor{theGrey}{\thepage}]{\normalfont\textcolor{theGrey}{\thepage}}
 
 \setkomafont{headsepline}{\color{Orange}}
 \setkomafont{footsepline}{\color{Orange}}
-
+\RequirePackage{eso-pic}
 
 % Figure parameters -----------------------
 %\renewcommand{\floatpagefraction}{0.75}
@@ -429,6 +396,7 @@ top=2.70cm, bottom=2.65cm,
 \def\@tryfcolumn{\addtolength{\@fptop}{\dimexpr \@colht-\textheight}%
   \oldtryfcolumn}
 \setlength{\@fpbot}{36.64366pt plus 1fil minus 36.64366pt}
+\setlength{\textfloatsep}{11pt plus 22pt minus 11pt}
 \setkeys{Gin}{width=\columnwidth}
 
 \newenvironment{figureTop}{
@@ -437,21 +405,6 @@ top=2.70cm, bottom=2.65cm,
 }{%
 \end{minipage}
 \end{figure}
-}
-
-% For two figures on one page (with possible space for text underneath)
-\newcommand{\doublecolumnfigure}[2]{
-  \begin{figure*}
-    \begin{minipage}[t][\textheight]{\columnwidth}
-      \vspace{\@fptop}
-      #1
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t][\textheight]{\columnwidth}
-      \vspace{\@fptop}
-      #2
-    \end{minipage}
-  \end{figure*}
 }
 
 % Ensure pdfs are used first
@@ -466,17 +419,12 @@ top=2.70cm, bottom=2.65cm,
 \raggedleft % Right-align all text
 \vfil
 \phantom{.}\hfill 
-
-\IfFileExists{GrattanSVGLogo.pdf}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{./logos/GrattanSVGLogo}}
+\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
 {\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
 
 {\LARGE \myauthor}
-
-\vfil
-
-{\LARGE\bfseries\@EmbargoTitleText\hfill\null}
 
 \vfill% Whitespace at the bottom of the page
 \endgroup}
@@ -487,7 +435,7 @@ top=2.70cm, bottom=2.65cm,
 	\IfFileExists{./FrontPage/FrontPage.pdf}{%
 	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
 	  }{
-	    \ClassError{grattan}{%
+	    \ClassError{grattanAlpha}{%
 			'./FrontPage/FrontPage.pdf' does not exist
 	    }{%
 			You have asked for a fullpicture option, but we can't find 
@@ -504,7 +452,7 @@ top=2.70cm, bottom=2.65cm,
 		\IfFileExists{./FrontPage/FrontPage.pdf}{%
 			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
 		}{
-			\ClassError{grattan}{%
+			\ClassError{grattanAlpha}{%
 				'./FrontPage/FrontPage' does not exist
 			}{%
 				You have asked for a fullpicture option, but we can't find 
@@ -528,165 +476,6 @@ top=2.70cm, bottom=2.65cm,
 
 \ProcessOptions\relax
 
-% Bibliography
-\RequirePackage[english]{babel}
-\RequirePackage{csquotes}
-\RequirePackage[backend=biber,singletitle,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=1, maxbibnames=9, uniquelist=false, uniquename=init,sorting=anyt
-,labelalpha,maxalphanames=1
-]{biblatex}
-
-\@ifpackagelater{biblatex}{2016/09/01}{%
-\DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-\DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-\ExecuteBibliographyOptions{sorting=gratt}
-
-
-\newtoggle{bbx:dowehavemorenames}
-\DeclareNameFormat{dowehavemorenames}{%
- \ifboolexpr{
-   test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-   and
-   test \ifmorenames
- }
-   {\global\toggletrue{bbx:dowehavemorenames}}
-   {\global\togglefalse{bbx:dowehavemorenames}}}
-
-\newcounter{mymaxcitenames}
-\AtBeginDocument{%
- \setcounter{mymaxcitenames}{\value{maxnames}}%
-}
-
-\renewbibmacro*{begentry}{%
-  \begingroup
-    \defcounter{maxnames}{\value{mymaxcitenames}}%
-    \printnames[dowehavemorenames]{labelname}%
-    \iftoggle{bbx:dowehavemorenames}
-      {\printnames{labelname}%
-       \setunit{\printdelim{nameyeardelim}}%
-       \usebibmacro{date+extrayear}%
-       \space\space\newunit\newblock}
-      {}%
-  \endgroup
-  \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
-}
-}
-
-\DeclareLanguageMapping{english}{british-apa}
-\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
-\DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
-\renewbibmacro{in:}{} % suppress In:
-\renewbibmacro{bbx:editor}{} % suppress Ed:
-
-%% Bibliography formatting
-% separating entries
-\setlength\bibitemsep{1.5\itemsep}
-% format bibliography
-\renewcommand*{\bibfont}{\small\raggedright}
-
-% Allow URLs to break on any character
-  % Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
-  \patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
-\let\origbibsetup\bibsetup
-\renewcommand{\bibsetup}{%
-  \origbibsetup%
-  \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
-    \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
-    \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
-    \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
-    \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
-    \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
-    \do\Y\do\Z}
-}
-\DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
-
-
-%% Citation tweaking
-\DeclareFieldFormat{titlecase}{#1}
-\setlength\bibhang{.5in}
-\renewcommand*{\bibnamedash}{%
-  \ifdimless{\leftmargin}{0.75em}
-    {\mbox{\textemdash\space}}
-    {\makebox[\leftmargin][l]{%
-       \ifdimless{\leftmargin}{1.25em}
-         {\textendash}
-         {\rule{0.8\bibhang}{.2pt}}}}}
-% Hyperlinks entire citation label for most citaiton commands 
-% http://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
-\DeclareFieldFormat{citehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{#1}}
-
-\DeclareFieldFormat{textcitehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{%
-    #1%
-    \ifbool{cbx:parens}%
-      {\bibcloseparen\global\boolfalse{cbx:parens}}%
-      {}}}
-
-\savebibmacro{cite}
-\savebibmacro{textcite}
-
-\renewbibmacro*{cite}{%
-  \printtext[citehyperref]{%
-    \restorebibmacro{cite}%
-    \usebibmacro{cite}}}
-
-\newbibmacro*{cite:title}{%
-  \ifsingletitle
-    {}
-    {\printtext[bibhyperref]{%
-       \printfield[citetitle]{labeltitle}}}}
-
-\renewbibmacro*{textcite}{%
-  \ifboolexpr{%
-    ( not test {\iffieldundef{prenote}} and
-      test {\ifnumequal{\value{citecount}}{1}} )
-    or
-    ( not test {\iffieldundef{postnote}} and
-      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-  }%
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-    {}%
-  \printtext[textcitehyperref]{%
-    \restorebibmacro{textcite}%
-    \usebibmacro{textcite}}}
-
-% The following lines give the correct footcite Author (Year) but make the ibid erroneous
-% Author (ibid) % use ifciteibid
-\DeclareCiteCommand{\footcite}[\mkbibfootnote]
-  {\boolfalse{cbx:parens}}
-  {\usebibmacro{citeindex}%
-  \ifciteibid{Ibid.}{%  % for ibidem
-   \iffirstcitekey
-     {\setcounter{textcitetotal}{1}}
-     {\stepcounter{textcitetotal}%
-      \textcitedelim}%
-   \usebibmacro{textcite}}%
-   }
-  {\ifbool{cbx:parens}
-     {\bibcloseparen\global\boolfalse{cbx:parens}}
-     {}}
-  {\usebibmacro{textcite:postnote}}
-\newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
-% removes intersentence space after et al.
-\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
-\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
-\DefineBibliographyStrings{english}
-   {andothers = {et al\adddot}}
-
-% biblatex ShareLaTeX version control
-% 2016/09/17
-\@ifpackagelater{biblatex}{2016/09/01}{\ExecuteBibliographyOptions{giveninits=true}}{\ExecuteBibliographyOptions{firstinits=true}}
-% Patch for issue 
-\AtBeginDocument{%
-  \apptocmd\@floatboxreset
-    {\booltrue{citetracker}%
-     \booltrue{pagetracker}}
-    {}
-    {\blx@err@patch{floats}}
-}
-
 \RequirePackage{multicol}
 \newcommand{\logoskip}{\par\vspace{16pt}}
 
@@ -701,8 +490,6 @@ top=2.70cm, bottom=2.65cm,
     {\ClassError{You have not provided a Grattan Report Number}}%
     {}%
 }
-
-%% BibLaTeX needs to precede acknowledgements (otherwise acknowledgements can't contain citations).
 
 % Allow MONTH/YEAR to be defined; otherwise by default the date of compilation
 \newcommand*{\MONTH}[1]{\renewcommand*{\@MONTH}{#1}}
@@ -736,10 +523,9 @@ top=2.70cm, bottom=2.65cm,
 \AtBeginEnvironment{tabularx}{\small}
   
 \AtBeginDocument{%
-  \pagestyle{empty}
+\pagestyle{empty}
 	\let\mytitle\@title
 	\let\myauthor\@author
-  \let\@@acknowledgements\@acknowledgements
 	
 	% TitlePage
 	\onecolumn
@@ -761,25 +547,16 @@ top=2.70cm, bottom=2.65cm,
   \vspace{-5pt} 
   {\centering  
   
-  \IfFileExists{aus-gov-logo-stacked-black.pdf}%
-    {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}%
-    {\includegraphics[width=3.75cm]{./logos/aus-gov-logo-stacked-black}}
+  {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}
   
-  \IfFileExists{Vic_Gov_Logo-2016.pdf}%
-    {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}%
-    {\includegraphics[width=3.25cm]{./logos/Vic_Gov_Logo-2016}}
+  {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}
   
-  \IfFileExists{UOM-Pos_S_PMS.pdf}%
-    % Too much whitespace on top:
-    % l t r b
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}%
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{./logos/UOM-Pos_S_PMS}}%
-
+  % Too much whitespace on top:
+  % l t r b
+  {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}
   
-  \IfFileExists{Bhp.pdf}%
-    % Bhp original a little too much whitespace on bottom:
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
+  % Bhp original a little too much whitespace on bottom:
+  {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}
   }
   \columnbreak\par
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
@@ -824,8 +601,8 @@ top=2.70cm, bottom=2.65cm,
   \end{minipage} 
   \eject \normalsize
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-  \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
   \setlength{\parskip}{5.5pt plus 2pt}
+  \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
   \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
@@ -844,8 +621,7 @@ top=2.70cm, bottom=2.65cm,
 \newlength{\overviewExtra}
 \setlength{\overviewExtra}{0pt}
 \newenvironment{overview}[1][]%
-% vspace{-24.5pt} should align Overview baseline with chapter baseline
-  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-23.4pt}}{\vspace{#1}}\addchap{Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
   {\end{multicols}\addtolength{\columnsep}{-\overviewExtra}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
@@ -857,7 +633,94 @@ top=2.70cm, bottom=2.65cm,
   {\end{multicols}\vss\egroup\hfill\twocolumn}
 
 
+% Bibliography
+\RequirePackage[english]{babel}
+\RequirePackage{csquotes}
+\RequirePackage[backend=biber,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=2, maxbibnames=9, uniquelist=false, uniquename=init, giveninits=true]{biblatex}
+\DeclareLanguageMapping{english}{british-apa}
+\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
 
+%% Bibliography formatting
+% separating entries
+\setlength\bibitemsep{1.5\itemsep}
+% format bibliography
+\renewcommand*{\bibfont}{\small\raggedright}
+\DeclareFieldFormat{url}{\textcolor{blue}{\url{#1}}}
+% Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
+\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+
+%% Citation tweaking
+\DeclareFieldFormat{titlecase}{#1}
+\setlength\bibhang{.5in}
+\renewcommand*{\bibnamedash}{%
+  \ifdimless{\leftmargin}{0.75em}
+    {\mbox{\textemdash\space}}
+    {\makebox[\leftmargin][l]{%
+       \ifdimless{\leftmargin}{1.25em}
+         {\textendash}
+         {\rule{0.8\bibhang}{.2pt}}}}}
+% Hyperlinks entire citation label for most citaiton commands 
+% http://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+
+% The following lines give the correct footcite Author (Year) but make the ibid erroneous
+% Author (ibid) % use ifciteibid
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\boolfalse{cbx:parens}}
+  {\usebibmacro{citeindex}%
+  \ifciteibid{Ibid.}{%  % for ibidem
+   \iffirstcitekey
+     {\setcounter{textcitetotal}{1}}
+     {\stepcounter{textcitetotal}%
+      \textcitedelim}%
+   \usebibmacro{textcite}}%
+   }
+  {\ifbool{cbx:parens}
+     {\bibcloseparen\global\boolfalse{cbx:parens}}
+     {}}
+  {\usebibmacro{textcite:postnote}}
+\newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
+
+% Patch for issue 
+\AtBeginDocument{%
+  \apptocmd\@floatboxreset
+    {\booltrue{citetracker}%
+     \booltrue{pagetracker}}
+    {}
+    {\blx@err@patch{floats}}
+}
 
 \RequirePackage{tocloft}
 \renewcommand{\cftchapfont}{\normalsize\normalfont}
@@ -891,5 +754,3 @@ top=2.70cm, bottom=2.65cm,
   \global\let\@textbottom\mytextbottom
   \global\let\@texttop\mytexttop}}
 
-% Placed just before footnote exceeds 100. 
-\newcommand*{\CenturyFootnote}{\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
