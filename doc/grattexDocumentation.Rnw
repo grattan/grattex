@@ -1,0 +1,1573 @@
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage{makeidx}
+  \makeindex
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[left=3cm, right=5cm]{geometry}
+\usepackage[scale=1.1]{ebgaramond}
+\usepackage{microtype}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{longtable}
+\definecolor{Orange}{HTML}{F68B33}
+\definecolor{DarkOrange}{HTML}{D4582A}
+\usepackage{bold-extra}
+\lstset{
+language=[LaTeX]TeX,
+basicstyle=\ttfamily,
+commentstyle=\ttfamily,
+texcsstyle=*\color{blue},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites},
+columns=flexible,
+breaklines=true,
+backgroundcolor=\color{black!5},
+literate={~} {\(\sim\)}{1},
+moredelim = [is][\slshape\color{violet}]{@@}{@@},
+classoffset=1,
+morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
+classoffset=0
+}
+\usepackage{fancyvrb}
+\newcommand{\nverb}[1]{
+\begin{Verbatim}
+ #1
+\end{Verbatim}
+
+}
+
+
+\usepackage{upquote}  % for ``
+\usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
+\captionsetup[table]{belowskip=5pt}
+
+\usepackage{titlesec}     % for customizing sections
+% customize section
+\titleformat{\section}%
+  {\Large\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+\titleformat{\subsection}%
+  {\large\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesubsection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+\titleformat{\subsubsection}%
+  {\sffamily\bfseries}% format
+  {\makebox[0pt][r]{\thesubsubsection\hspace{12pt}}}% label
+  {0pt}% horizontal sep
+  {}% title
+
+\usepackage{varioref}
+\usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
+\usepackage{cleveref}
+
+\title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
+\author{Cameron Chisholm \and Hugh Parsonage}
+
+\newcommand{\defi}[1]{\textbf{\textsf{#1}}}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+
+% From scrartcl.cls lines 3687--3701
+\makeatletter
+\newcommand\addsubsec{\SecDef\@addsubsec\@saddsubsec}
+\newcommand*{\@addsubsec}{}
+\def\@addsubsec[#1]#2{%
+  \edef\reserved@aa{%
+    \unexpanded{%
+      \subsection[{#1}]{#2}%
+      \c@secnumdepth=
+    }\the\c@secnumdepth\relax
+  }%
+  \c@secnumdepth=\numexpr \subsectionnumdepth-1\relax
+  \reserved@aa
+}
+\newcommand*{\@saddsubsec}[1]{%
+  \subsection*{#1}\addsubsecmark{}%
+}
+\makeatother
+
+% Page break every section
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+\let\oldpart\part
+\renewcommand\part{\clearpage\oldpart}
+
+
+
+\usepackage{realboxes}
+\usepackage{manfnt}
+
+\def\smallstrut{\relax\ifmmode\copy\smallstrutbox\else\unhcopy\strutbox\fi}
+\makeatletter
+\setbox\strutbox\hbox{%
+  \vrule\@height0.5ex % orig .7
+        \@depth0\baselineskip
+        \@width\z@}%
+\makeatother
+
+\newcommand{\code}[1]{\fcolorbox{gray!10}{gray!10}{\smallstrut\texttt{#1}}}
+\newcommand{\Code}[1]{\Colorbox{gray!10}{\lstinline!#1!}}
+\newcommand{\Codee}[1]{\Colorbox{gray!10}{#1}}
+
+\usepackage{enumitem}
+
+
+
+\begin{document}
+A
+\maketitle
+\tableofcontents
+\newpage
+% \subsection*{Interpreting code examples}
+% \addcontentsline{toc}{subsection}{Interpreting code examples}
+\addsubsec{Interpreting code examples}
+Example code are written using a listing:
+\begin{lstlisting}
+LaTeX code with some \markup.  
+\begin{environment}
+
+\end{environment}
+\end{lstlisting}
+or inline: \lstinline!\TeX{}!.
+
+Code examples can be, for want of better terms, \emph{complete} or \emph{illustrative}. \defi{Complete} code means the code should be copied-and-pasted directly into the input file without modification, whereas \defi{illustrative} code should be modified based on the desired output. For example, if an author wishes to increase the gap between columns in the overview by 2\,mm, the code excerpt below is complete. The author should copy and paste the following, placing it before \lstinline!\begin{overview}!:
+\begin{lstlisting}
+\newlength{\overviewextra}
+\setlength{\overviewextra}{2mm}
+\addtolength{\columnsep}{\overviewextra}
+\end{lstlisting}
+Whereas in an illustrative version of the above, the author is offered a choice for the gap between columns. In illustrative code examples, such options are coloured violet, slanted, and delimited with chevrons:
+\begin{lstlisting}
+\newlength{\overviewextra}
+\setlength{\overviewextra}{@@<extra column width>@@}
+\addtolength{\columnsep}{\overviewextra}
+\end{lstlisting}
+
+
+Text coloured blue is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
+
+\newpage
+\section{The name of the game}
+\LaTeX\ is technically a package of the 1978 computer programme \TeX. 
+The language used by your computer to set the words on the page is called \TeX; the \emph{engine} used to convert this to a pdf is called pdf\TeX, and the language you write in is called \LaTeX. 
+
+\TeX\ was written -- recursively -- in order to typeset its own user manual.\footnote{Knuth, D. (1984) \textit{The \TeX book}, Addison-Wesley Professional.} 
+
+In all cases, the \TeX{} is pronounced \(\tau\epsilon\chi\), similar to \emph{tech-} as in \emph{technology} but the X is pronounced as a voiceless velar fricative, like the final sound in \emph{loch} or \emph{Bach}. 
+
+Your interface in which you write \LaTeX\ is called an IDE (integrated development environment). The particular IDE we recommend is called ShareLaTeX, which is an online SaaS provider of \LaTeX. 
+
+\newpage
+
+ \section{Some principles for erstwhile MS Word users}
+ Learning \LaTeX{} as an MS Word user is a frustrating, confusing, rewarding, and ecstatic experience.  There are some principles that are inviolate for novices.
+ \begin{enumerate}
+  \item Don't worry about the appearance of your document as your write. Write what you mean. MS Word is a What You See Is What You Get editor. \LaTeX\ is a What You See Is What You \emph{Mean}.
+  \item \LaTeX\ takes an author's input and sets out the document's appearance using the author's raw input, the author's advice about how the document should look, and a set of parameters and algorithms that govern tradeoffs concerning document appearance. 
+  \item The \verb=grattan.cls= template is designed so that authors do not have to make any layout or typographic decisions.
+  \item \LaTeX\ is a butler, not a robot. It may not do exactly as you say, but it will do what you mean. When it doesn't, it either means 
+  \begin{itemize}
+   \item You've given it a nonsensical instruction
+   \item Your instruction contradicts another instruction
+   \item Your instruction contravenes good typographic design, as it sees fit
+  \end{itemize}
+
+  \item \LaTeX\ is a butler, not a slave: it is a partner in document preparation. In general, your responsibilities should not overlap: you decide the content and it decides the form. Where your responsibilities do overlap, you should seek to \emph{advise} \LaTeX, not to \emph{order} it. Further, you should be as gentle as possible with your advice. Only forcefully advise when the document will not require amendments and you are sure \LaTeX\ is wrong. 
+  \item \LaTeX\ is a computer program, not a human. Despite the previous points, there are limits to what \LaTeX\ can do. In particular, \LaTeX\ cannot reword paragraphs. If you ask for five figures and a box to appear on one page, no software can save you. The lesson is not that \LaTeX\ is limited (though it does have weaknesses\footnote{See \url{http://tex.stackexchange.com/questions/27440/what-cant-tex-do} and \url{http://tex.stackexchange.com/questions/70901/typesetting-limitations-of-latex?noredirect=1&lq=1}.}) but that changing the actual words, charts, etc you give it can have a dramatic effect on appearance. 
+  \item Don't manually position figures, tables, or boxes. Let them float in the document. It is nearly certain that the initial placement will be odd. As long you have used a \verb=figure=, \verb=table= or \verb=*box= environment, they will float into good positions. For errant figures, tables, or boxes, wait until the document is completely finished before advising positions.
+  \item Don't do any of the following:
+  \begin{enumerate}
+   \item Insert horizontal or vertical whitespace, including manual line-breaks (except in tables)
+   \item page- or column-breaking
+  \end{enumerate}
+  \item Do not ignore errors (\emph{i.e.}~things that prevent compilation). Any errors which you can't resolve in less than 60 seconds should be referred to Cameron Chisholm or Hugh Parsonage. Preferably attach what you think caused the error.
+  \item Take note of warnings from time to time. Warnings relating to bibliographies should be fixed immediately. Other warnings are typically just hints that manual intervention may improve the layout -- resolving them can be deferred.
+
+  \item Beware special characters. 
+  \begin{table}[h]
+   \centering
+   \begin{tabular}{ll}
+   \toprule
+   \textbf{When you want this \dots} & \textbf{\dots type this.} \\
+   \midrule
+   %
+   \$ & \verb=\$= \\
+   \% & \verb=\%= \\
+   `` & \verb=``= (button above \verb=Tab=) \\
+   '' & \verb=''= \\
+   \multicolumn{2}{l}{(similarly for single-quotes)} \\ 
+   -- (en-dash) & \verb=--=  \\
+   --- (em-dash) & \verb=---=  \\
+   \(-\) (minus sign) & \verb=\(-\)= \\
+   \bottomrule   
+  \end{tabular}
+  \end{table}
+
+  
+
+
+  \item The grattan class file assumes your input is encoded in \texttt{UTF-8}. Avoid copying from MS Word to \verb=.tex= files. Otherwise, special characters above will creep in silently. If you must, use \verb=pandoc=.
+  \item Use \verb= % = for comments.
+ \end{enumerate}
+ \section{Basics of \textrm{\LaTeX}}
+ \subsection{Compilation}
+ The process of \LaTeX\ is basically:
+ \begin{enumerate}
+  \item Start with a plain text file with the file extension \verb=.tex= in a directory/folder
+  \item Run the \verb=pdflatex= program on that file. 
+  \item The program outputs a pdf file \lstinline!myfile.pdf! or returns an error.
+ \end{enumerate}
+
+ In ShareLaTeX, the plain text file is viewed on a browser. The act of pressing the Compile button is equivalent to running \Code{pdflatex} on that file.
+
+ 
+ \subsection{Commands and environments}
+ \subsubsection{Commands}
+ A \defi{command} starts with a backslash \verb=\= followed by one or more characters.
+ The command's \defi{name} is the string of characters after the backslash. 
+ A {command} may have zero or more mandatory arguments and zero or more optional arguments. 
+ Mandatory arguments are delimited by curly braces; optional arguments by square braces
+
+ \begin{lstlisting}
+ \somecommand[@@<optional arg>@@]{@@<mandatory arg1>@@}{@@<mandatory arg2>@@}
+ \end{lstlisting} 
+
+ \textbf{\textsf{Note:}} Whitespace after commands with zero arguments is \emph{ignored}. So 
+
+ \begin{lstlisting}
+ \LaTeX is a macro package.
+ \end{lstlisting}
+ 
+ will typeset: \LaTeX is a macro package. (Note that there is no space between \LaTeX{} and is. 
+ On reflection, this is understandable: a command is defined by letters, so a space after a command in effect defines the name.
+ But because it's a typesetting program, always having a space would make some things impossible. 
+ For example, `This is typed in \LaTeX.' would have a space between \LaTeX{} and the full stop.
+
+ To indicate that a space should follow such a command, use either 
+
+ \begin{lstlisting}
+ \LaTeX{} is a macro package.
+ \end{lstlisting}
+ wherein the use of braces tells the compiler the command name has finished, or 
+
+ \begin{lstlisting}
+ \LaTeX\ is a macro package.
+ \end{lstlisting}
+ Note that \lstinline!\LaTeX\! is not a single command. 
+ Rather \lstinline!\LaTeX! is one command; and \Code{\\  } itself is another command that inserts an explicit space. 
+
+
+ Below is a table of some commands and their arguments:
+ 
+ \begin{table}[H]
+ \raggedright
+ \renewcommand{\arraystretch}{1.4}
+ \newlength{\tabularxlength}
+ \setlength{\tabularxlength}{\linewidth}
+ \addtolength{\tabularxlength}{0.5\paperwidth}
+ \addtolength{\tabularxlength}{-0.5\linewidth}
+ \caption{Examples of commands and their arguments}
+  \makebox[\textwidth][l]{%
+  \begin{tabularx}{\tabularxlength}{lp{2.5cm}X}
+    \toprule
+    \textbf{\textsf{Command}} & \textbf{\textsf{Arguments}} & \textbf{\textsf{Description}} \\ 
+    \midrule
+    \verb=\$= & 0 mandatory\newline 0 optional & \textbf{Prints} the \$\ sign\\
+    \verb=\textbf= & 1 mandatory\newline 0 optional & Prints its argument in boldface. \\
+    \verb=\\= & 0 mandatory\newline 1 optional & Forces a line break, with optional extra space \\
+    \verb=\footcite= & 1 mandatory\newline 2 optional & Cites its mandatory argument, with optional pre- or post-notes (such as page numbers) \\
+    \verb=\footcites= & $n$ mandatory\newline $2n + 2$ optional & Multiple footcites \\
+    \bottomrule
+  \end{tabularx}
+  }
+ \end{table}
+ \clearpage
+ \subsubsection{Environments}
+ An \defi{environment} looks like
+\begin{lstlisting}
+  \begin{environment}
+   ...
+  \end{environment}
+\end{lstlisting}
+It may have mandatory or optional arguments, which occur immediately after \verb=\begin{environment}=.  
+
+ \begin{table}[h]
+ \raggedright
+ \renewcommand{\arraystretch}{1.4}
+ \setlength{\tabularxlength}{\linewidth}
+ \addtolength{\tabularxlength}{0.5\paperwidth}
+ \addtolength{\tabularxlength}{-0.5\linewidth}
+ \caption{Examples of environments}
+  \makebox[\textwidth][l]{%
+  \begin{tabularx}{\tabularxlength}{lp{2.5cm}X}
+    \toprule
+    \textbf{\textsf{Environment}} & \textbf{\textsf{Arguments}} & \textbf{\textsf{Description}} \\ 
+    \midrule
+    \verb=document= & none & The contents of the document. \\
+    \verb=figure= & 1 optional & Creates a section of a document which ``floats'' above the body of the text. Captions and cross-reference labels within a \verb=figure= environment will refer to the figure. The optional argument restricts the placement of the figure on the page. \\ 
+    %
+    \verb=quote= & none & Used to designate a long quote with additional margin. \\
+    %
+    \verb=smallbox= & 2 mandatory, 1 optional & Creates a box, limited to one column. The first argument is optional and specifies the position of the box. The second argument is mandatory and specifies the title of the box, the third argument is also mandatory and specifies the cross-reference label of the box. \\ 
+    \bottomrule
+  \end{tabularx}
+  }
+  \end{table}
+  %
+  \section{Writing a report}
+  \subsection{The preamble}
+  The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything after \verb=\begin{document}=. 
+  
+  In every \LaTeX\ document, you must have 
+  \begin{enumerate}
+   \item The \emph{command} \verb=\documentclass= and a valid document class. In our case, use 
+   \begin{lstlisting}
+\documentclass{grattan}
+   \end{lstlisting}
+   \item A \verb=document= environment.
+  \end{enumerate}
+  That is, every \LaTeX\ document must have the following three lines.
+  \begin{lstlisting}
+\documentclass{@@<style>@@}
+  
+\begin{document}
+  
+\end{document}
+  \end{lstlisting}
+  \subsubsection{Grattan-specific preamble}
+  The \verb=grattan= package will not compile without additional lines of code. Your preamble must have the following lines.
+  \begin{lstlisting}
+   \documentclass{grattan}
+   
+   \title{@@<Title of the report>@@}
+   \author{@@<Authors>@@}
+
+   \GrattanReportNumber{@@<number>@@} %% or 
+   \GrattanWorkingPaperNumber{@@<number>@@}
+   
+   \addbibresource{bibliography.bib}
+  \end{lstlisting}
+  \subsubsection{Other requirements}
+  The \verb=.tex= file must be in a directory containing:
+  \begin{enumerate}
+   \item The \verb=grattan.cls= file, which creates the document according to the Grattan template.
+   \item The \verb=bibliography.bib= file, containing your bibliography database.
+   \item The folder \verb=FrontPage= which must contain:
+   \begin{enumerate}
+    \item A file \verb=FrontPage.pdf=
+   \end{enumerate}
+   \item The following files:
+    \begin{verbatim}
+    aus-gov-logo-stacked-black.pdf
+    Bhp.pdf
+    GrattanSVGLogo.pdf
+    TMF_logo_green-eps-converted-to.pdf
+    TMF_logo_green.pdf
+    UOM-Pos_S_PMS.pdf
+    Vic_Gov_Logo-2016.pdf
+    \end{verbatim}
+
+
+  \end{enumerate}
+
+
+
+  
+  \subsection{Frontmatter}
+  \subsubsection{Overview / Summary / Preface}
+  Use \index{overview}
+  \begin{lstlisting}
+   \begin{overview}[-35pt]
+    ...
+   \end{overview}
+  \end{lstlisting}
+  for your overview. The \lstinline![-35pt]! is a fudge factor that adjusts the position of the title to vertically balance the overview on the page. It may be abolished in future versions. 
+  
+  You can also use \lstinline!\begin{summary}! as required. If you want to change the name of the frontmatter, ask us --- it is straight-forward to amend.
+
+  \subsubsection{Contents page(s)}
+  Write \index{contentspage}
+  \begin{lstlisting}
+   \contentspage
+  \end{lstlisting}
+  After the \lstinline!overview! environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
+  
+  \subsection{Body text}
+  \subsubsection{Sectioning}
+  To start a new chapter, write \index{chapter} \index{section}
+  \begin{lstlisting}
+   \chapter{@@<chapter title>@@}
+  \end{lstlisting}
+  Similarly, 
+  \begin{lstlisting}
+   \section{@@<section title>@@}
+   \subsection{@@<subsection title>@@}
+   \subsubsection{@@<subsubsection title>@@}
+  \end{lstlisting}
+  Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
+  
+  To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
+
+  \begin{lstlisting}
+   \appendix
+  \end{lstlisting}
+
+  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{@@<appendix title>@@}! to title the appendices.
+  
+  For example:
+  \begin{lstlisting}
+  \documentclass{grattan}
+  
+  \title{Brief report}
+  \author{Me}
+  
+  \begin{document}
+  
+  \begin{overview}
+  In this report, we found all is well.
+  \end{overview}
+  \contentspage
+  \chapter{Australia is fine}
+  Australia is fine.
+  \section{How do we know this}
+  Grattan analysis of ABS (2016).
+  \subsection{Limitations of analysis}
+  Our analysis is wrong.
+  
+  \chapter{Options for reform}
+  Tidy desk.
+  \appendix
+  \chapter{International comparisons}
+  \end{document}
+  \end{lstlisting}
+  
+  \subsection{Boldface, italics}
+  In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
+  
+  That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
+  
+  \subsection{Paragraphs}
+  Use a blank line to mark a new paragraph. For example
+  \begin{center}
+  \begin{minipage}{\textwidth}
+  \begin{lstlisting}
+   A well-designed GST reform package could support economic growth, make the tax and transfer system more progressive and give state and Commonwealth governments more budgetary options.
+
+   Proposals to extend or broaden Australia's 10 per cent goods and services tax (GST) have been perennial. Current governments face many challenges, such as funding growing healthcare costs, reducing deficits, and cutting inefficient taxes. A higher GST could fund any of these initiatives -- although perhaps not all of them. 
+  \end{lstlisting}
+  N.B.: The indent here means a continued line. There are only three lines of code illustrated here. 
+  \end{minipage}
+  \end{center}
+  In the above example, \emph{Proposals to extend} will begin on a new paragraph. 
+
+  \subsubsection{Non-breaking spaces}
+  Use \lstinline!~! for a non-breaking space: \lstinline!\$40~million!. 
+
+  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!. 
+
+
+
+  
+  \subsection{Numbered / bulleted lists}
+  Use \verb=enumerate= (for numbered lists) and \verb=itemize= (for bulleted lists) \index{enumerate}\index{itemize}
+  \begin{lstlisting}
+   \begin{enumerate}
+    \item First numbered item
+    \item Second numbered item 
+    \begin{enumerate}
+     \item First item in a nested list
+    \end{enumerate}
+    \item Third numbered item
+   \end{enumerate}
+
+   \begin{itemize}
+     \item First bulleted item 
+     \item Second bulleted item 
+     \begin{itemize}
+      \item First nested bulleted item.
+     \end{itemize}
+   \end{itemize}
+  \end{lstlisting}
+
+  
+  \subsection{Floats}
+  \subsubsection{Figures}
+  Before you insert a figure, you need to create your image (say in PowerPoint).
+  Your file should be saved as a pdf, though almost all image types are supported. 
+  If you are going through an external program, ensure the file is moved to the atlas directory of your report. 
+  This directory should be placed in the same directory as your \verb=.tex= file.
+  
+  Once the image is ready, use the following structure to insert a figure.
+  \begin{lstlisting}
+   \begin{figure}
+    \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
+    \units{@@<secondary caption/y-axis label>@@}
+    \includegraphics{atlas/@@image-filename@@}
+    \noteswithsource{@@<Notes of the chart>@@}%  
+    {@@<Source information>@@}
+   \end{figure}
+  \end{lstlisting}
+
+  Alternatively, you can save your charts in a single pdf, with each page having a different chart. To refer to the 3rd page in your pack \lstinline!@@<chart-pack-filename.pdf>@@!, use:
+  \begin{lstlisting}
+  \includegraphics[page=3]{atlas/@@<chart-pack-filename.pdf>@@}
+  \end{lstlisting}
+
+  Use \lstinline!\caption! for the boldface caption and \lstinline!\units! for the non-bold (secondary) caption. 
+  Use \lstinline!\label! to mark the cross-reference key target, which should be inside the argument to \lstinline!\caption!. 
+  
+  Use \lstinline!\noteswithsource! to put the notes and source under a figure (or table). Note this command has two mandatory arguments. 
+  Use \lstinline!\notes! if you have notes but no source; and \lstinline!\source! if you have a source but no notes. 
+
+  \subsubsection{Tables}
+    Tables are tricky in \LaTeX. Most tables will have the following construction:
+
+    \begin{lstlisting}
+    \begin{table}
+    \caption{@@<Caption to the table>@@}
+   \begin{tabularx}{\columnwidth}{@@<alignment parameters>@@}
+    \toprule
+    Header1 & Header2 & Header3 \\
+    \midrule 
+    First row & First row & First row \\
+    Second row & Second row & Second row \\
+    ...
+    Last row & Last row & Last row
+    \bottomrule
+   \end{tabularx}
+   \noteswithsource{@@<Notes>@@}%
+   {@@<Source>@@}
+   \end{table}
+  \end{lstlisting}
+
+  Like with figure, we put the contents of this float in an environment called \Code{table}. 
+  The \lstinline!\begin{table}! \dots \lstinline!\end{table}! simply tells \LaTeX{} to float the placement, to use ``Table $N$:'' in the caption, and possibly to note it in the list of tables. 
+  It does nothing to actually construct the table.
+
+  The actual construction of the table is handled by \Code{tabularx}\index{tabularx} which is very similar to the standard \Code{tabular} environment. 
+  Its first argument is the width of the table and its second argument is the \emph{alignment parameters} of the tabular's columns:
+
+  The \lstinline!@@<alignment parameters>! determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. 
+
+  Inside the tabular, use the ampersand \verb=&= to move to the next column and the double-backslash \verb=\\= to move to the next row. 
+  Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
+
+\subsubsection{Excel}
+    Most authors would be well-advised to quickly write their tables in Excel and then use Excel2LaTeX.
+
+    To start using Excel2LaTeX:
+
+  \begin{enumerate}
+  	\item Go to \url{https://www.ctan.org/pkg/excel2latex?lang=en}
+  	\item Download the contents of this package
+  	\item Unzip the archive. 
+  	\item Enable the add-in for your version of Excel. (\eg~\url{https://support.office.com/en-us/article/Add-or-remove-add-ins-0af570c4-5cf3-4fa9-9b88-403625a0b460})
+  	\item Activate the add-in (see Excel documentation for your version).
+  	\item Open the Add-Ins tab in Excel, and, with the sheet containing your table open, click \texttt{Convert table to LaTeX}.
+  	\item The defaults are usually sensible. Click Copy to clipboard and paste into your \texttt{.tex} source file. 
+  \end{enumerate}
+
+  Once you have copied the table, you should make the following adjustments:
+
+  \begin{enumerate}
+    \item Use \lstinline!\begin{tabularx}{\linewidth}! instead of 
+    \lstinline!\begin{tabular}! (be sure to also change \lstinline!\end{tabular}! to \lstinline!\end{tabularx}!. 
+
+    The \Code{tabularx} environment creates a table of fixed width -- in this case, the current width of the line. 
+    It achieves by stretching one or more of the columns.
+    The author chooses which columns will be stretchable by replacing the corresponding alignment parameter with \Code{X}.
+    \item So you should also change at least one of your columns' alignment parameters to \Code{X}. 
+    By default, \Code{X} has a ragged right edge (or is left aligned). 
+    \item All \Code{X} columns will stretch to the same width. 
+    So if a tabular's natural width is 80\% of the line width, and you replace a single column's alignment parameter with an \Code{X}, then that column will have an extra 20\% of the line width added to its width.
+    If, on the other hand, you replace two columns' alignment parameters with \Code{XX}, those columns will each be widened by 10\% of the line width. 
+    \item If the column or columns you would like to stretch should be centre-aligned (with both edges ragged), not left-aligned, then instead of putting \Code{X}, you should put \lstinline!>{\centering}X!. 
+    If it should have a ragged left edge (be right-aligned), then you should put \lstinline!>{\RaggedLeft}X! or (for a very ragged edge) \lstinline!>{\raggedleft}X!.
+\end{enumerate}
+  
+  
+  \subsection*{More advanced} 
+  \begin{table}[H]
+  \centering
+  %\makebox[\textwidth]{%
+  \begin{tabular}{rp{9.5cm}}
+  \toprule
+  \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
+  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \bottomrule
+  \end{tabular}%
+  %}%
+  \end{table}
+
+  \subsection{Boxes}
+  \subsubsection{smallbox}\index{smallbox}\index{boxes!smallbox}
+  Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
+
+  \begin{lstlisting}
+   \begin{smallbox}{@@<title of the box>@@}{box:@@<cross-ref key>@@}
+    @@<contents of the box>@@
+   \end{smallbox}
+
+  \end{lstlisting}
+
+  \subsubsection{verysmallbox}\index{verysmallbox}\index{boxes!verysmallbox}
+  The very small box is used for boxes which may be sufficiently shorter than a column to share the column with paragraphs from the body text. 
+  Such boxes would contain two or fewer paragraphs. 
+  
+  \subsubsection{bigbox*} \index{bigbox*}\index{boxes!bigbox*}
+  Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
+
+  \subsubsection*{Figures in boxes must use [H]}
+  When you have a figure in a big box, you must use 
+  \begin{lstlisting}
+   \begin{figure}[H] 
+    ...
+   \end{figure}
+  \end{lstlisting}
+  to insert a figure.
+  
+  Note the \lstinline![H]! which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
+
+  \subsection{Footnotes in boxes}
+  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
+  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
+  
+  \subsection{Cross-references}
+  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
+  The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
+
+  For example, to refer to some figure, use the following template.
+
+  \begin{lstlisting}
+  \Vref{fig:key} shows that ...  
+
+  \begin{figure}
+    \caption{The chart's caption\label{fig:key}}
+    \includegraphics{thechartfilename.pdf}
+  \end{figure}
+  \end{lstlisting}
+
+  \lstinline!\Vref{fig:key}! will expand to Figure N shows that ... 
+
+  % \begin{center}
+  {{Your labels should be evocative of what is displayed, {not} the number.} }
+  {You will end up moving or removing a figure, table, or box and confuse your labels.}
+  % \end{center}
+
+  If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??! and the log file will contain a warning.
+
+  The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
+  I \emph{strongly} recommend you use the prefixes in \Vref{tbl:prefixes-by-float-type}. 
+  Using these prefixes consistently will make auto-completion easier. 
+
+  \begin{table}[H]
+  \caption{Prefixes to use in cross-reference anchors, by float type\label{tbl:prefixes-by-float-type}}
+  \begin{tabular}{>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
+  \toprule
+  \textbf{\textrm{Float environ.}} & \textbf{\textrm{Prefix}} & \textbf{\textrm{Example}} \\
+  \midrule 
+  figure & fig: & \verb=\label{fig:prop-hholds-by-decile}= \\
+  table  & tbl: & \verb=\label{tbl:tax-paid-by-bracket}= \\
+  box    & box: & \verb=\begin{smallbox}{A short history of motorsport}{box:motorsport}= \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+
+
+
+  \subsection{Footnotes and referencing}
+  Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
+  
+  \subsubsection{\texttt{bibliography.bib}}
+  The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
+  \begin{lstlisting}
+   @type{<key>,
+    author={<author name>},
+    title={<title>},
+    year={<year>}
+   }
+  \end{lstlisting}
+  There are several elements to a bibliography:
+  \begin{enumerate}[leftmargin=5em]
+   \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
+   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
+
+   Bad (who knows that 2016c is):
+   \begin{lstlisting}
+   @Misc{DaleyEtAl2016c,
+   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+   		title  = {Hot Property},
+   		year   = {2016},
+   	}
+   \end{lstlisting}
+
+   Good:
+
+   \begin{lstlisting}
+   @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
+   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+   		title  = {Hot Property},
+   		year   = {2016},
+   	}
+   \end{lstlisting}
+
+   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion. 
+
+
+   \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
+   
+  \end{enumerate}
+
+  
+  
+  \subsubsection{Citations}\index{citations}\index{footcite}\index{footcites}
+  Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
+  
+  Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{key2}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
+  
+  Use \lstinline!\textcite{<key>}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
+  Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
+  
+  \section{More advanced macros}
+  \subsection{New commands}
+  Use \lstinline!\newcommand! to create a new command. 
+  \begin{lstlisting}
+   \newcommand{@@<command name>@@}{@@<what the command does>@@}
+   \newcommand{@@<command name>@@}[@@<number of arguments>@@]{@@<what the command does as a function of #>@@}
+  \end{lstlisting}
+  For example,
+  \begin{lstlisting}
+   \newcommand{\eg}{\emph{e.g.}}
+  \end{lstlisting}
+  Creates a new command \verb=\eg= which prints \emph{e.g.} when it is called. Another one I often use is:
+  \begin{lstlisting}
+   \newcommand{\gao}{Grattan analysis of}
+  \end{lstlisting}
+  Slightly more advanced is
+  \begin{lstlisting}
+   \newcommand{\defi}[1]{\textbf{#1}\index{#1}}
+  \end{lstlisting}
+  This makes the argument of \verb=\defi= bold and places it in the index. 
+  
+  \section{Compiling a final document}
+  \subsection{Citations and references}
+  \begin{enumerate}
+    \item If your file is called \lstinline!YourReport.tex!
+    \begin{lstlisting}
+    texify --pdf --clean YourReport.tex
+    \end{lstlisting}
+    \item Update bibliography
+    \begin{lstlisting}
+    biber YourReport
+    \end{lstlisting}
+    Note that you should not provide the extension for \lstinline!biber!.
+    \item Re-run:
+    \begin{lstlisting}
+    texify --pdf --clean YourReport.tex
+    \end{lstlisting}
+  \end{enumerate}
+
+  \section{Common mistakes made by novices}
+  \begin{enumerate}
+    \item Not regularly compiling your document.
+    \item Not fixing errors revealed through compilation.
+    \item Not checking citations have been correctly rendered:
+    \begin{enumerate}
+      \item Making sure you've hit the right reference.
+      \item Making sure the references have been entered correctly. 
+    \end{enumerate}
+    \item Using \Code{Figure \\Vref} instead of just \Code{\\Vref}.
+    \item Putting \Code{\\label} in the wrong position. (It should be immediately after the counter is updated.)
+    \item Manually specifying figure position, column breaks, white space.
+    \item Using \Code{\\footcite} instead of \Code{\\textcite}:
+    \begin{enumerate}
+      \item In notes and sources or
+      \item In footnotes themselves. 
+    \end{enumerate}
+    \item Using \Code{\\textcite\{blah\} and \\textcite\{foo\}} instead of \Code{\\textcites\{blah\}\{foo\}}.
+  \end{enumerate}
+
+
+  \section{Known bugs in the \texttt{grattan.cls} file}
+  \subsection{\texttt{microtype}'s spacing and \texttt{ragged2e}} 
+  Currently, \texttt{spacing=true} and \texttt{ragged2e} are used. 
+  This is not supported by \texttt{microtype}, which issues a warning. 
+  Indeed, it can cause catastrophically bad typesetting.
+
+  If you see words being put on top of other words, it is due to this bug. 
+
+  \includegraphics[width=\textwidth]{figure/ragged-spacing-bug.png}
+
+  The fix depends on the context: if it occurs within an environment \texttt{EE}, use \lstinline!\AtBeginEnvironment{EE}{\RaggedRight}!. 
+  If it occurs close to a list, a paragraph break (\ie~a blank line) before the list environment may be necessary. 
+
+  \subsection{Big boxes}
+  \subsubsection{Caption baseline does not match matching column baseline}
+  Solved: \url{http://tex.stackexchange.com/questions/305450/align-caption-baseline-in-second-column-with-baseline-of-first-column}
+  \subsection{Footnotes in big boxes extend across the entire page}
+  
+  
+  \section{pdflink errors}
+  Use \lstinline!\nocite{*}! and delete all auxiliary files to escape the error.
+  \part{Notes for the typesetter}
+  \section{Moving floats}
+  \begin{enumerate}
+  \item If the author would prefer a float  (figure, table, or box) to be placed in a different location in the document, you as the typesetter must first understand why the output routine has placed the figure where it has. 
+  \item If it is clear that the output routine has averted a substantial typographic sin by placing the figure there, the author should be told of this.
+  \item Otherwise, the first step is to move the errant float forward or backward one or two paragraphs as required, noting that the order in which floats of the same type (\eg~figure) occur in the source file is preserved in the final document.
+  \item Next consider, in the following order:
+  \begin{enumerate} 
+  \item providing the options \lstinline![htb]! as required to the float environment
+  \item providing the same options to the errant float's predecessor
+  \item providing the same options to both the errant float and its predecessor
+  \end{enumerate}
+  \item At this point, if the figure remains steadfast, you have encountered a very unusual situation, and I would encourage you to accept the result.  
+  \item Otherwise: you should consider rewording captions or the surrounding text.
+  \item Next consider the use of \lstinline!\FloatBarrier!
+  \item Then consider the option \verb=!=.
+  \item As an emergency measure, you can manually place the figure using the option \verb=H=.
+  \item As a last resort, consider using primitive \TeX{} to manually place the figure with respect to the page. This should be the very last step in a publication. 
+  \end{enumerate}
+
+  \section{Bad page break}
+  Consider using:
+  \begin{enumerate}
+  \item \lstinline!\pagebreak[1]! at a good/better place for line breaking:
+  \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where \lstinline!@@<n>@@! is an integer multiple of $1/4$. 
+  \end{enumerate}
+
+  \section{Excessive whitespace between paragraphs}
+  This occurs when there is insufficient text to fill a page (the page is \emph{underfull}) but moving text onto another page is not possible because:
+  \begin{itemize}
+    \item A section would be orphaned from its title
+    \item A footnote would have to be set on a different page from its mark. 
+  \end{itemize}
+
+
+  \begin{enumerate}
+  \item Reposition floats if useful.
+  \item Use \lstinline!\oneraggedpage!:
+  \begin{lstlisting}
+% one page ragged bottom
+\makeatletter
+\newcommand{\oneraggedpage}{\let\mytextbottom\@textbottom
+  \let\mytexttop\@texttop
+  \raggedbottom
+  \afterpage{%
+  \global\let\@textbottom\mytextbottom
+  \global\let\@texttop\mytexttop}}
+  \end{lstlisting}
+  \item Finally, use \lstinline!\raggedbottom! on the entire document. Review.
+
+  \section{Hyphenation}
+  Hyphenation can be distracting and interrupt the text; however, the alternative to hyphenation is often worse.
+
+  When the text is typeset ragged right, \LaTeX{} will actually be \emph{more} inclined to hyphenate. 
+  If full-width justification on a paragraph can be used, it will minimize discretionary hyphens. 
+
+  \LaTeX{} will, by default, avoid hyphenating words, and desperately try to avoid putting discretionary hyphens on consecutive lines or at a page break.
+
+  \begin{center}
+  \textbf{\textsf{If a paragraph in your report contains unsightly hyphenation (\ie\ consecutive hyphens or hyphenation across pages), the best and perhaps only solution is to reword the paragraph.}}
+  \end{center}
+
+  There is one exception. The command 
+  \begin{lstlisting}
+  \setlength{\overviewExtra}{1mm}
+  \end{lstlisting}
+
+  will add $1$\,mm extra to the nominal column width in the overview. Try values from $-4$\,mm to $4$\,mm to minimize hyphenations. 
+
+  In the unlikely event that rewording the paragraph does not change the hyphenation, you can increase \lstinline!\emergencystretch! to \lstinline!0.5em!. 
+  Note that you in doing so are take responsibility for the typesetting of that paragraph. 
+  You may wish to play around with penalties, but you should do so with trepidation and only ever locally.
+
+  Never use \lstinline!\raggedright! in ordinary body text. It is acceptable in text where each ``paragraph'' is really an isolated verse or element. 
+  For example, it is acceptable in a list of recommendations, in a table, or in the captions to figures. 
+  Although in deploying \lstinline!\raggedright! you win certainly the battle regarding excessive hyphenation, you lose the war -- the text can become badly ragged -- and paragraphs will need to be reworded. 
+
+  \end{enumerate}
+
+\appendix
+\part{Error messages}
+\chapter{Common \LaTeX{} Errors}
+\label{cha:common-errors}
+
+This chapter is best understood by following the PDF output.
+
+The following is a list of common \LaTeX{} compile errors as they appear in the log file, and suggestions for how to resolve these. More often than not, errors come from something simple, such as forgetting a parenthesis, a typo, or forgetting to end an environment. But there are also cases where you have no idea what you have done wrong and it can take a fair bit of time to find or even understand your error.
+
+A feature of ShareLaTeX is that it provides `hints' on how to resolve particular errors -- most of the time these hints are sufficient. But if not, it may be necessary to view the raw log file to diagnose the problem.
+
+\section{The Form of an Error}
+\label{sec:form-an-error}
+
+There are two forms of errors: \LaTeX{} errors and \TeX{} errors.  In
+both types of errors, the part after the error message will tell you
+where the error occurred.  An example:
+\begin{verbatim}
+l.15 <offending text>
+\end{verbatim}
+The \texttt{l.15} tells you what line the error occurred on and the
+text will tell you the text that caused the error.
+
+\subsection{\LaTeX{} Errors}
+\label{sec:latex-errors}
+
+The general form of an error in \LaTeX{} is shown below:
+\begin{verbatim}
+! LaTeX error: <error message>
+
+See the LaTeX manual or LaTeX Companion for
+explanation.
+Type H <return>   for immediate help.
+...
+\end{verbatim}
+
+The \texttt{!} lets you know that the error has occurred.  The error
+message will tell you what type of error you have committed.  After
+the ellipses, you will find the line at which the error occurred and
+the text that caused the error (or at least the text where \LaTeX{}
+found the error).
+
+\subsection{\TeX{} Errors}
+\label{sec:tex-errors}
+
+Errors may also have the following form:
+\begin{verbatim}
+! <error message>
+\end{verbatim}
+
+These errors are formatted differently because they are error messages
+that came from \TeX{} instead of \LaTeX{}.  After the error, you will
+still find the line that the error occurred in and the text of the
+error.
+
+\section{Warnings}
+\label{sec:warnings}
+
+There are some error messages that are just warnings and will not stop
+or change the compilation of the document.  Chances are you have seen
+them many times.
+
+\subsection{Underfull}
+\label{sec:underfull}
+
+The following error results when a line does not extend the width of
+the page, something \LaTeX{} always tries to accomplish:
+\begin{verbatim}
+Underfull \hbox (badness 10000) in paragraph at lines
+104--107
+\end{verbatim}
+
+This error message is just a warning and is not something to worry
+about.  For the most part, when a line does not span the width of the
+page, it is because you have written something that you want to only
+cover part of the page.
+
+\subsection{Overfull}
+\label{sec:overfull}
+
+The following error results when a line extends beyond the width of
+the page:
+\begin{verbatim}
+Overfull \hbox (16.04988pt too wide) in paragraph at
+lines 30--31 [] [] \OT1/cmtt/m/n/12 I'm trying to put
+way too much text into a line in my document.
+\end{verbatim}
+Usually this error comes form when you are using the \texttt{verbatim}
+package because it will not move to the next line if your text does
+not go to the next line.  The easiest way to fix this is to find the
+place in your document where this is occurring and change the text so
+that it fits to the page.
+
+This error will still show up if the text is still on the page but
+outside of the width of text that \LaTeX{} has set.  In this case, you
+are welcome to fix things so that the error does not show up or you
+can leave the text as it is.
+
+\subsection{References}
+\label{sec:references-1}
+
+The following warnings occur when references are changed when \LaTeX{}
+was compiled:
+\begin{verbatim}
+LaTeX Warning: Label(s) may have changed. Rerun to get
+cross-references right.
+
+LaTeX Warning: There were undefined references.
+
+LaTeX Warning: Reference `name' on page 1 undefined on
+input line 15.
+\end{verbatim}
+
+The way to fix these errors is to recompile the document again to
+correct the page numbers.  Sometimes it is necessary to recompile the
+document twice to fix this error.  You also may have defined a
+reference wrong, so you should check to make sure your label is
+correct.
+
+\section{Beginning and Ending}
+\label{sec:beginning-ending}
+
+\subsection{Begin Ended by End}
+\label{sec:begin-ended-end}
+
+This type of error occurs when each environment is not correctly
+started and ended.  When you are missing an \verb|\end| command, the
+following error will show up:
+\begin{verbatim}
+! LaTeX Error: \begin{enumerate} on input line 23
+ended by \end{document}.
+\end{verbatim}
+
+To fix this, you need to end the environment mentioned in the error
+with the appropriate command.
+
+When you are missing a \verb|\begin| command, the following will appear:
+\begin{verbatim}
+! LaTeX Error: \begin{document} ended by
+\end{itemize}.
+\end{verbatim}
+
+To fix this, you basically do the same thing as before, correctly
+beginning the environment mentioned in the error with the appropriate
+command.
+
+\subsection{End Occurred Inside a Group}
+\label{sec:end-occurred-inside}
+
+The following error message will show up at the end of compiling a
+file if an environment is begun that is not ended:
+\begin{verbatim}
+(\end occurred inside a group at level <n>)
+\end{verbatim}
+
+To fix this error, make sure you end the environment that was begun.
+The previous error is more helpful in finding the \verb|\begin|
+statement.
+
+\subsection{Ended by End of Line}
+\label{sec:ended-end-line}
+
+The following error will occur when you try to place a command inside
+a section heading:
+\begin{verbatim}
+! LaTeX Error: \verb ended by end of line.
+
+See the LaTeX manual or LaTeX Companion for
+explanation.
+Type H <return>   for immediate help.
+...
+\end{verbatim}
+
+There will be many errors of the same type for this mistake.  In order
+to find where you put the command, look in the output file and find
+the last heading that shows up.
+
+\subsection{Missing Begin Document}
+\label{sec:miss-begin-docum}
+
+This error is self-explanatory:
+\begin{verbatim}
+! LaTeX Error: Missing \begin{document}
+\end{verbatim}
+
+\section{Errors Usually Caused by Bad Spelling}
+\label{sec:errors-usually-caus}
+
+\subsection{Unknown Control Sequence}
+\label{sec:unkn-contr-sequ}
+
+This error results when you use a command (something that starts with a
+\texttt{$\backslash$}) that is not recognized by \LaTeX{}:
+\begin{verbatim}
+! Undefined control sequence.
+\end{verbatim}
+
+Usually this error results from spelling a command incorrectly.  Go to
+the line that is indicated by the error and fix the command.
+
+\subsection{Environment Undefined}
+\label{sec:envir-undef}
+
+This error results when you begin an environment with a \verb|\begin|
+command that is not recognized:
+\begin{verbatim}
+! LaTeX Error: Environment verbatin undefined.
+\end{verbatim}
+
+Usually you have just spelled your environment incorrectly, so you
+just need to fix it.
+
+\subsection{Bad File Name}
+\label{sec:bad-file-name}
+
+This error results when you have mistyped the command \texttt{latex}
+or do not have \LaTeX{} installed on your computer:
+\begin{verbatim}
+Bad command or file name
+\end{verbatim}
+To fix this, correctly spell the command to compile your file or make
+sure that \LaTeX{} is correctly installed on your computer.
+
+\subsection{Cannot Find File Name}
+\label{sec:cannot-find-file}
+
+This error occurs when you try to compile a file that the computer
+cannot find:
+\begin{verbatim}
+! I can't find file `sample'.
+<*> sample
+
+Please type another input file name:
+\end{verbatim}
+
+To fix this error, make sure you have spelled the file name
+correctly.  You also may be in the wrong directory to compile the
+file, so check to make sure you are in the same directory as your
+file.
+
+\section{Fatal Errors}
+\label{sec:fatal-errors}
+
+\subsection{Runaway Argument}
+\label{sec:runaway-argument}
+
+This error happens when a paragraph ends before a command's argument
+is done (i.e., \LaTeX{} thinks that there is a missing \}):
+\begin{verbatim}
+Runaway argument?
+\end{verbatim}
+
+To fix this, you should use a different command to accomplish what you
+are trying to do.  An example of this is to use \verb|\bfseries|
+instead of \verb|\bftext| to make bold text in more than one
+paragraph.
+
+This error can also be caused by a missing mandatory argument to a
+command.
+
+\subsection{Just an *}
+\label{sec:just-an-asterisk}
+
+This error normally occurs when you do not end your document with \\ \verb|\end{document}|:
+\begin{verbatim}
+*
+\end{verbatim}
+
+If you are prompted to enter something in, it is best to enter
+\begin{verbatim}
+\end{document}
+\end{verbatim}
+and hope it works.  Be sure to end your document
+with the appropriate command.
+
+\subsection{Emergency Stop}
+\label{sec:emergency-stop}
+
+This error happens when \LaTeX{} will stop trying to compile your
+document due to a serious error:
+\begin{verbatim}
+! Emergency stop.
+\end{verbatim}
+To fix this error, you will need to figure out what caused it to stop
+compiling.  Chance are you forgot to end your document with
+\verb|\end{document}|, but there might also be another reason for the
+emergency stop.
+
+\subsection{Please Type a Command or Say End}
+\label{sec:please-type-command}
+
+This error happens when your file has ended prematurely:
+\begin{verbatim}
+(Please type a command or say `\end')
+\end{verbatim}
+
+The best way to deal with this type of error is to type
+\begin{verbatim}
+\end
+\end{verbatim}
+or
+\begin{verbatim}
+\end{document}
+\end{verbatim}
+in the case that the absence of that command
+caused the error.  Usually if you have ended your document correctly,
+the error will result from a missing \} or forgetting to end a
+verbatim environment.
+
+\subsection{Floats lost}
+This can either mean:
+
+\begin{enumerate}
+\item You have forgotten to use \lstinline!\end{figure}! (or table etc) for a particular float; or
+\item You have put a float inside another float. For example, you have put a todonote inside a figure, or you have put a figure inside a footnote, or you have put a figure (without using the \lstinline![H]!) inside a box.
+\end{enumerate}
+
+This is a difficult problem to debug. 
+The line of output given by the error message is the first place where \LaTeX\ noticed something went wrong. (So the offending code is before that -- though unfortunately not always immediately before that.) 
+
+
+\section{Graphics Errors}
+\label{sec:graphics-errors}
+
+\subsection{Too Many Unprocessed Floats}
+\label{sec:too-many-unprocessed}
+
+This error occurs when figures or tables (i.e., floats) have not been
+typeset:
+\begin{verbatim}
+! LaTeX Error: Too many unprocessed floats.
+\end{verbatim}
+
+\LaTeX{} can only have so many floats waiting to be typeset.  In order
+to fix this error, make sure that you are placing your floats where
+you want them (with a \texttt{[h]} option) and not wanting too many on
+one page in sequence.  Using the command \verb|\clearpage| can be very
+useful in distributing floats correctly.
+
+\subsection{Unknown Graphics Extension}
+\label{sec:unkn-graph-extens}
+
+The following error occurs when you try to use a type of graphic that
+is not supported by the type of file that you are producing:
+\begin{verbatim}
+! LaTeX Error: Unknown graphics extension: .gif
+\end{verbatim}
+
+In order to fix this error, you should change your graphics to the
+types that are supported by the type of file you are outputting or you
+will need to include the correct package to deal with that type of
+graphic.  Sometimes you may have named the graphic poorly so that
+\LaTeX{} will not recognize it as a graphic file.
+
+\subsection{Division by Zero}
+\label{sec:division-zero}
+
+The following error occurs when the height of a graphic object is zero:
+\begin{verbatim}
+! Package graphics Error: Division by 0.
+\end{verbatim}
+
+This is usually caused when you rotate an object with zero depth so
+that its height becomes zero.  The best way to fix this is to use the
+keyword \texttt{totalheight} instead of \texttt{height}.
+
+\section{Math Errors}
+\label{sec:math-errors}
+
+\subsection{Display Math Should End With \$\$}
+\label{sec:display-math-should}
+
+This error occurs when the displaymath or equation mode is ended incorrectly:
+\begin{verbatim}
+! Display math should end with $$
+\end{verbatim}
+
+To fix this error, make sure that you end the displaymath or equation
+mode correctly (ending them with a \$ is not acceptable).
+
+\subsection{Bad Math Environment Delimiter}
+\label{sec:bad-math-environment}
+
+This error occurs when you do not have your delimiters correct in math
+mode:
+\begin{verbatim}
+! LaTeX Error: Bad math environment delimiter.
+\end{verbatim}
+
+Usually this occurs when you forget to match a right delimiter with
+every left delimiter.  This error may also happen when you forget to
+end an array.
+
+\subsection{Missing Right}
+\label{sec:missing-right}
+
+This error occurs when you have a missing right parenthesis:
+\begin{verbatim}
+! Extra \right.
+\end{verbatim}
+
+To fix this, you either need to add a \verb|\right| command or you
+need to end an array.
+
+\subsection{Missing Delimiter}
+\label{sec:missing-delimiter}
+
+This error message occurs when a delimiter is missing:
+\begin{verbatim}
+! Missing delimiter (. inserted).
+\end{verbatim}
+
+To fix this error, you need to make sure that you have a right
+delimiter for every left delimiter.  If you do not want a right
+delimiter matching a left delimiter, you need to use ``.''\ to not
+have an error message show up.
+
+\subsection{Missing \$ Inserted}
+\label{sec:missing--inserted}
+
+The following error occurs when you try to use a character that can
+only be used in math mode, like \_ or \^{}:
+\begin{verbatim}
+! Missing $ inserted
+\end{verbatim}
+
+To fix this error, make sure you change the character to what it
+should be in text mode.
+
+\section{Tabular Environment Errors}
+\label{sec:tabul-envir-errors}
+
+\subsection{Misplaced Alignment Tab Character \&}
+\label{sec:mispl-alignm-tab}
+
+This error occurs when you use \texttt{\&} and when you are not in a
+tabular environment:
+\begin{verbatim}
+Misplaced alignment tab character &
+\end{verbatim}
+
+To fix this error, you need to use \verb|\&| to make a \&.
+
+\subsection{Extra Alignment Tab}
+\label{sec:extra-alignment-tab}
+
+This error occurs when you use too many tabs for the number of columns
+in a table:
+\begin{verbatim}
+! Extra alignment tab has been changed to \cr
+\end{verbatim}
+
+The result of this error is that a new row is formed where the extra
+tab was.  You should go back and fix your table so that the correct
+number of items in each row would show up.
+
+% \subsection{Argument Has an Extra \}}
+% \label{sec:argument-has-an}
+
+% These errors happen when an incorrect number of arguments to a tabular
+% environment have been specified:
+% \begin{verbatim}
+% ! Argument of \cline has an extra }.
+
+% ! Argument of \multicolumn has an extra }.
+% \end{verbatim}
+
+% To fix this error, make sure your arguments to the tabular environment
+% are correct.
+
+\section{Errors With Lists}
+\label{sec:errors-with-lists}
+
+\subsection{Missing Item}
+\label{sec:missing-item}
+
+This error occurs when there is plain text in an environment that
+takes items:
+\begin{verbatim}
+! LaTeX Error: Something's wrong--perhaps a missing
+\item.
+\end{verbatim}
+
+To fix this error, make sure the plain text is changed into an item.
+
+\subsection{Too Deeply Nested}
+\label{sec:too-deeply-nested}
+
+This error occurs when there are too many lists for \LaTeX{} to
+handle:
+\begin{verbatim}
+! LaTeX Error: Too deeply nested
+\end{verbatim}
+
+\LaTeX{} can only handle four levels of one type of list and six
+levels of different types of lists.  To fix this, you need to use less
+levels of lists or define your own list environment.
+
+\section{Miscellaneous Errors}
+\label{sec:miscellaneous-errors}
+
+\subsection{Only Used in the Preamble}
+\label{sec:only-used-preamble}
+
+This error occurs when you place a command in the body of a \LaTeX{}
+document that should be placed in the preamble:
+\begin{verbatim}
+! LaTeX Error: Can be used only in the preamble.
+\end{verbatim}
+
+To fix this error, just move the command to the preamble.
+
+\subsection{There Is No Line/Page Here to End}
+\label{sec:there-no-linepage}
+
+This error occurs when you incorrectly use the commands that make a
+new line or a new page:
+\begin{verbatim}
+! LaTeX Error: There's a no line here to end.
+\end{verbatim}
+
+You may just leave the command that is making a new line in place or
+you can take it out.  Here, \LaTeX{} is just trying to make sure that
+everything looks nice.
+
+\subsection{Command Already Defined}
+\label{sec:comm-alre-defin}
+
+This error occurs when you try to define a command that already exists:
+\begin{verbatim}
+! LaTeX Error: Command ... already defined.
+\end{verbatim}
+
+To fix this, you need to define your command differently.
+
+\subsection{Missing Number}
+\label{sec:missing-number}
+
+This error is made when a number is expected as an argument and one is
+not provided:
+\begin{verbatim}
+! Missing number, treated as zero.
+\end{verbatim}
+
+To fix this error, you need to find where a number is expected so that
+you can provide the correct one.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "reader"
+%%% End: 
+
+\newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
+\begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
+\caption{List of all commands} \\
+    \toprule
+    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
+    \midrule
+    \endhead
+    boxsources & Source matter within boxes & Boxes \\[5pt]
+    citetitle & Inserts the title of a citation, as well as including the reference in the bibliography. & Citations \& bibliography \\
+    footcite & Citation to be placed in a footnote & Citations \& bibliography \\
+    footcites & Multiple citations to be placed in a footnote & Citations \& bibliography \\
+    footnote & Insert a footnote. & Citations \& bibliography \\
+    textcite & Inline citation & Citations \& bibliography \\
+    textcites & Multiple citations to be placed inline & Citations \& bibliography \\[5pt]
+    Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    Cref  & Subsequent cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    label & The target of a cross-reference. & Cross-referencing \\
+    phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it is just text in a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
+    bottomrule & Final horizontal rule in a table & Figures and tables \\
+    caption & General caption (grey, bold) & Figures and tables \\
+    captionwithunits & Caption with first argument top line and second argument units for chart & Figures and tables \\
+    cmidrule & Horizontal rule over a subset of columns & Figures and tables \\
+    columnwidth & Supplies the current width of the column  & Figures and tables \\
+    %fnotes & Figure notes that are long & Figures and tables \\
+    %tnotes & Table notes that are long & Figures and tables \\
+    includegraphics & inserts an image (typically a pdf) using the file provided & Figures and tables \\
+    linewidth & Current width of line & Figures and tables \\
+    midrule & Horizontal rule separating heading from contents in a table & Figures and tables \\
+    multicolumn & Spread a cell over multiple columns (merge cells) & Figures and tables \\
+    notes & Puts notes under a chart & Figures and tables \\
+    source & Puts source text under a chart & Figures and tables \\
+    noteswithsource & Puts notes and source under a chart/table & Figures and tables \\ 
+    toprule & First horizontal rule in a table & Figures and tables \\
+    units & Units for charts & Figures and tables\\[5pt]
+    emph  & Emphasize text with an oblique font & Fonts \\
+    textbf & Boldface & Fonts \\
+    textit & Italic font (oblique font for Arial) & Fonts \\[5pt]
+    item  & Commence new number or bullet in an enumerate or itemize environment & Lists \\[5pt]
+    ie    & Macro for consistent use of `i.e.' & Misc \\
+    input & Used to insert raw .tex code from another file & Misc \\[5pt]
+    addchap & Chapter without number & Sections \\
+    chapter & Begins a new chapter, first argument the title of the chapter & Sections \\
+    section & Section title & Sections \\
+    subsection & Subsection title & Sections \\[5pt]
+    addbibresource & The path of the bibliography (.bib) file containing the references & Single-use \\
+    acknowledgements & Text appearing in second column of page 2 & Single-use \\ 
+    author & The authors of the report & Single-use \\
+    contentspage & Load after the overview. Prints the table of contents and the list of figures & Single-use \\
+    documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
+    GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
+    %GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
+    listoffigures & Print list of figures  & Single-use \\
+    listoftables & Prints list of tables & Single-use \\
+    printbibliography & Prints bibliography & Single-use \\
+    printendnotes & Prints endnotes if requested & Single-use \\
+    %printfigurenotes & Prints list of `long figure notes' by \textbackslash{}fnotes & Single-use \\
+    %printtablenotes & Prints list of `long table notes' by \textbackslash{}tnotes & Single-use \\
+    title & The title of the report & Single-use \\[5pt]
+    \$    & \textbackslash{}\$ for a (literal) dollar sign & Special characters \\
+    \%    & \textbackslash{}\% for a (literal) percentage sign & Special characters \\
+    \&    & Literal ampersand logogram & Special characters \\[5pt]
+    ,     & Half-space kern & Technical \\
+    @     & Use \textbackslash{}@ before a sentence-ending full stop preceded by a capital letter & Technical \\
+    (     & Use \textbackslash{}( to begin math-mode. You should type \textbackslash{}(-\textbackslash{}) if you want a negative symbol. & Technical \\
+    \textbackslash{} & Line break in table & Technical \\
+    \bottomrule
+    \end{longtable}
+\part{Quick-reference}
+\begin{tabular}{>{\ttfamily}lp{0.6\textwidth}}
+\toprule
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{figure}
+\Caption{Title}%
+{Units}%
+{xrefkey}
+\includegraphics{path/to/figure}
+\notes{Notes}
+\source{Source}
+\end{verbatim}
+\end{minipage} & Places a floating figure with caption, notes, and source. \\[100pt]
+
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{table}
+\caption{Table caption}
+\begin{tabularx}{\linewidth}
+\toprule
+ColumnHeader1 & ColumnHeader2 \\
+\midrule
+Table entry 1 & Table entry 2 \\
+\bottomrule
+\end{tabularx}
+\notes{}
+\source{}
+\end{table}
+\end{verbatim}
+\end{minipage} & Places a floating table with caption, notes, and source. \\[150pt]
+
+\begin{minipage}[t]{0.4\linewidth}
+\begin{verbatim}
+\begin{overview}[-25pt]
+
+\end{overview}
+\begin{recommendations}[-25pt]
+
+\end{recommendations}
+\end{verbatim}
+\end{minipage} & Page of overview and recommendations.\\
+\bottomrule
+\end{tabular}
+
+\restoregeometry
+
+
+  
+
+
+
+
+  
+
+
+ 
+\printindex
+\end{document}
