@@ -41,8 +41,8 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
-    - Rscript -e 'if (requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+    - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
   - Rscript -e '1 + 1'
