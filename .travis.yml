@@ -11,7 +11,7 @@ addons:
   apt:
     packages:
       - libhunspell-dev
-      - hunspell-en-au
+      # - hunspell-en-au Wait :-)
 
 packages:
   - magrittr
