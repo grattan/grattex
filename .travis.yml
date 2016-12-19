@@ -7,6 +7,20 @@ cache:
   - /$HOME/.texlive
 warnings_are_errors: false
 
+addons:
+  apt:
+    packages:
+      - libhunspell-dev
+      - hunspell-en-au
+
+packages:
+  - magrittr
+  - dplyr
+  - data.table
+  - hunspell
+  - testthat
+  - grattanReporter
+
 r_github_packages:
   - hughparsonage/grattanReporter
 
@@ -29,7 +43,7 @@ before_script:
 
 script: 
   - Rscript -e '1 + 1'
-  - Rscript -e 'grattanReporter::checkGrattanReport()'
+  - Rscript -e 'library(grattanReporter);checkGrattanReport()'
   #- pdflatex -draftmode Report.tex
   #- biber Report
   #- pdflatex -draftmode Report.tex
