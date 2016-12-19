@@ -28,10 +28,11 @@ before_script:
     - tlmgr update biber
 
 script: 
-  - Rscript -e 'grattanReporter::checkGrattanReport()'
-  - pdflatex -draftmode Report.tex
-  - biber Report
-  - pdflatex -draftmode Report.tex
+  - Rscript -e '1 + 1'
+  #- Rscript -e 'grattanReporter::checkGrattanReport()'
+  #- pdflatex -draftmode Report.tex
+  #- biber Report
+  #- pdflatex -draftmode Report.tex
 
 notifications:
   email: false
