@@ -45,11 +45,10 @@ before_script:
     - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
-  - Rscript -e '1 + 1'
-  - Rscript -e '"grattanReporter" %in% rownames(installed.packages())'
-  #- pdflatex -draftmode Report.tex
-  #- biber Report
-  #- pdflatex -draftmode Report.tex
+  - Rscript -e 'grattanReporter::checkGrattanReport()'
+  - pdflatex -draftmode Report.tex
+  - biber Report
+  - pdflatex -draftmode Report.tex
 
 notifications:
   email: false
