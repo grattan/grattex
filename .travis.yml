@@ -29,7 +29,7 @@ before_script:
 
 script: 
   - Rscript -e '1 + 1'
-  #- Rscript -e 'grattanReporter::checkGrattanReport()'
+  - Rscript -e 'grattanReporter::checkGrattanReport()'
   #- pdflatex -draftmode Report.tex
   #- biber Report
   #- pdflatex -draftmode Report.tex
