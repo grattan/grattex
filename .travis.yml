@@ -1,0 +1,34 @@
+language: r
+
+sudo: true
+cache: 
+  - packages
+  - /tmp/texlive
+  - /$HOME/.texlive
+warnings_are_errors: false
+
+before_install:
+  - source ./source/texlive.sh
+  - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
+  - tlmgr update --all
+  - sudo apt-get update
+  - sudo apt-get install texlive-bibtex-extra
+
+install: echo Installation step #do not remove this line!
+
+before_script:
+    # as somehow no biber package is available for ubuntu 12.04 via apt, let's just download it directly
+    # - wget "http://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/0.9.9/binaries/Linux/biber-linux_x86_64.tar.gz"
+    - wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"
+    - tar xzf biber-linux_x86_64.tar.gz
+    - export PATH=$PATH:$PWD
+    - tlmgr update biber
+
+script: 
+  - pdflatex -draftmode Assessing-the-2016-super-tax-reforms.tex
+  - biber Assessing-the-2016-super-tax-reforms
+  - Rscript CheckBiber.R
+  - pdflatex -draftmode Assessing-the-2016-super-tax-reforms.tex
+
+notifications:
+  email: false

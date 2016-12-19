@@ -47,7 +47,7 @@ numbers=noenddot,
 \RequirePackage[document]{ragged2e}
 % ------
 % Grattan colors
-\definecolor{Orange}{HTML}{F68B33}
+\definecolor{Orange}{RGB}{243,144,29}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
@@ -55,7 +55,7 @@ numbers=noenddot,
 \definecolor{Color4}{RGB}{212,88,42}
 \definecolor{Color5}{RGB}{160,34,38}
 \definecolor{Color6}{RGB}{98,18,20}
-\definecolor{theGrey}{HTML}{6A737B}
+\definecolor{theGrey}{RGB}{106,115,123}
 \definecolor{AuthorPage}{RGB}{160,34,38}
 \definecolor{AuthorGrey}{RGB}{174,174,174}
 
@@ -65,11 +65,13 @@ numbers=noenddot,
 % Eliminate left margin
 % \setlist[itemize]{leftmargin=*}
 % \setlist[enumerate]{leftmargin=*}
+
 % See http://tex.stackexchange.com/questions/8510/reduce-size-of-bullet-character-in-lists
 % Purpose to enlarge and subsequently raise the bullet
 % see also \renewcommand{\labelitemi}{\raise .5ex\hbox{\tiny$\bullet$}}
 \renewcommand{\labelitemi}{\color{Orange}\parbox[c]{.5em}{\small\ensuremath{\bullet}}{\normalsize\strut}}
 \renewcommand{\labelenumi}{\color{Orange}{\bfseries \arabic{enumi}.~}}
+\renewcommand{\labelitemii}{{\color{Orange}\bfseries \textendash}}
 % ------
 \RequirePackage{colortbl}
 \RequirePackage{array}
@@ -86,8 +88,7 @@ numbers=noenddot,
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
   
-%\RequirePackage{uarial}
-  %\linespread{1.03}  % for 14pt baselineskip
+
 \RequirePackage[scaled]{helvet}
   \renewcommand{\familydefault}{\sfdefault}
 
@@ -96,16 +97,15 @@ numbers=noenddot,
 \RequirePackage{caption}
 % Cross references.
 \RequirePackage{varioref}
-% \RequirePackage{navigator}
-% \newcommand\Chapter[1]{%
-%   \chapter[\protect\jumplink{ch\thechapter}{#1}]{#1}%
-%   \outline[fit=fitv]{1}[ch\thechapter]{#1}%
-% }
 \PassOptionsToPackage{hyphens}{url}
-\RequirePackage[colorlinks, colorlinks = true, urlcolor=blue, linkcolor=black,citecolor=blue, hypertexnames=false, hidelinks]{hyperref}
+\RequirePackage[
+  hypertexnames=false, 
+  hidelinks
+]{hyperref}
 \RequirePackage{cleveref}
 
 % For previous page for 'varioref'
+% space after second -2 is important here.
 \patchcmd\cref@old@@vpageref
 {\advance\@tempcnta-2}
 {\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
@@ -130,7 +130,7 @@ numbers=noenddot,
     nobreak=true, % prevents page breaking
     outerlinewidth=0.5pt,
     innertopmargin=0.5\baselineskip,
-    innerbottommargin=0.75\baselineskip,
+    innerbottommargin=0.5\baselineskip,
     innerrightmargin=11pt,
     innerleftmargin=11pt,
     backgroundcolor=OrangeBackground
@@ -147,10 +147,22 @@ numbers=noenddot,
     backgroundcolor=OrangeBackground
     }
 
+% Purpose not merely to provide consistent formatting of 
+% box titles but also to restore caption to normal after caption is complete
 \newcommand{\@boxcaption}[1]{%
-\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false, skip=0ex, position=above}
-\caption{#1}
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
+  \captionsetup{labelfont       = {bf, Orange},
+                font            = {bf, Orange},
+                format          = plain,
+                justification   = raggedright,
+                singlelinecheck = false, 
+                skip            = 0ex, 
+                position        = above}
+  \caption{#1}
+  \captionsetup{format    = plain,
+                font      = {small, bf, theGrey},
+                labelfont = {small, bf, theGrey}, 
+                position  = above, 
+                skip      = 0pt}
 }
 
 % Issue #27
@@ -158,24 +170,31 @@ numbers=noenddot,
 
 % The verysmallbox is intended to be a fraction of one column.
 \newenvironment{verysmallbox}[3][htb]{%
-\setlength{\currentparskip}{\parskip}% save the value
-\begin{boxe}[#1]
-\begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\parskip}{\currentparskip} % restore the value
-\@boxcaption{#2\label{#3}}
-\RaggedRight
-}{\end{mdframed}\end{boxe}} 
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}[#1]
+    \begin{mdframed}[style=GrattanFrameBox]%
+    \setlength{\parskip}{\currentparskip} % restore the value
+    \@boxcaption{#2\label{#3}}
+    \RaggedRight
+  }{
+    \end{mdframed}%
+  \end{boxe}} 
     
 % The smallbox is a box intended for onecolumn.
 \newenvironment{smallbox}[3][p]{%
-\setlength{\currentparskip}{\parskip}% save the value
-\begin{boxe}[#1]
-\begin{minipage}[\textheight]{\linewidth}
-\begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\parskip}{\currentparskip} % restore the value
-\@boxcaption{#2\label{#3}}
-\RaggedRight
-}{\end{mdframed}\null\vfill\null\end{minipage}\end{boxe}} 
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}[#1]
+    \begin{minipage}[\textheight]{\linewidth}
+      \begin{mdframed}[style=GrattanFrameBox]%
+      \setlength{\parskip}{\currentparskip} % restore the value
+      \@boxcaption{#2\label{#3}}
+      \RaggedRight
+}{%
+      \end{mdframed}%
+    \null\vfill\null%
+  \end{minipage}%
+\end{boxe}
+} 
 
 
 
@@ -190,7 +209,8 @@ numbers=noenddot,
  \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false}
  \caption{#1}\label{#2}%
  %\RaggedRight
- } {\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
+}{
+\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
 
 % dbl floats
 \newenvironment{bigbox*}[2]{%
@@ -224,30 +244,35 @@ numbers=noenddot,
 
 % Captions in general
 \DeclareCaptionFont{theGrey}{\color{theGrey}}
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey},aboveskip=1pt}
+\captionsetup{
+  format    = plain,
+  font      = {small, bf, theGrey},
+  labelfont = {small, bf, theGrey}, 
+  aboveskip = 1pt
+}
 % suppress hyphenation in caption
 \DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
 \captionsetup{justification=nohyphen}
 
 \newcommand{\units}[1]{%
-\captionsetup{font={small,color=theGrey}, aboveskip=0pt, belowskip=0pt}
-\caption*{#1}
+  \captionsetup{font={small,color=theGrey}, aboveskip=0pt, belowskip=0pt}
+  \caption*{#1}
 }
 
 \newcommand{\captionwithunits}[2]{%
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
-singlelinecheck=false,position=top,skip=0pt}
-\caption{#1}
-\units{#2}
+  \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
+  singlelinecheck=false,position=top,skip=0pt}
+  \caption{#1}
+  \units{#2}
 }
 
 \newcommand{\captionoffigurewithunits}[2]{%
-\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
-singlelinecheck=false}
-\captionof{figure}{#1}
-\vspace{-11pt}
-\captionsetup{font={small,color=theGrey}}
-\caption*{#2}
+  \captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, justification=raggedright,
+  singlelinecheck=false}
+  \captionof{figure}{#1}
+  \vspace{-11pt}
+  \captionsetup{font={small,color=theGrey}}
+  \caption*{#2}
 }
 
 % New user friendly (less typing) \Caption?
@@ -260,19 +285,19 @@ singlelinecheck=false}
   \fi}
 
 \newcommand*{\source}[1]{%
-\captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Source:\ #1\@addpunct{.}}
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Source:\ #1\@addpunct{.}}
 }
 \newcommand*{\notes}[1]{%
-\captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1\@addpunct{.}}
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Notes:\ #1\@addpunct{.}}
 }
 
 \newcommand*{\noteswithsource}[2]{%
-\ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
-\captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
-\caption*{Notes:\ #1\@addpunct{.}}
-\caption*{Source:\ #2\@addpunct{.}}
+  \ifstrempty{#2}{\ClassWarning{'\noteswithsource' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Notes:\ #1\@addpunct{.}}
+  \caption*{Source:\ #2\@addpunct{.}}
 }
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
@@ -319,19 +344,24 @@ singlelinecheck=false}
 % N.B. geometry must be after hyperref, and hence cleveref
 
 
-\RequirePackage[landscape,twocolumn,
-% orig Word specify 2.3 and 2.5
-left=2.30cm,right=2.30cm,
-top=2.70cm, bottom=2.65cm,
- headheight=25pt, footskip=24pt,
+\RequirePackage[
+  landscape,
+  twocolumn,
+  left=2.30cm, 
+  right=2.30cm,
+  top=74pt, 
+  headsep=22pt,
+  bottom=71.5pt,
+  headheight=25.5pt, 
+  footskip=25.5pt,
 ]{geometry}
 
 \setlength{\columnsep}{55pt}  
-\setlength{\footheight}{18.0pt}
+\setlength{\footheight}{18pt}
 
 % Spacing between paragraphs
 % <indent> <distance> <last line end space>
-\setparsizes{0pt}{0.6\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{5pt plus 1fil}
+\setparsizes{0pt}{0.6\baselineskip plus 0.25\baselineskip minus 0.1\baselineskip}{0pt plus 1fil}
 
 % Space between body text and footnote area:
 \addtolength{\skip\footins}{1pt plus 14pt}
@@ -531,44 +561,54 @@ top=2.70cm, bottom=2.65cm,
 % Bibliography
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[backend=biber,singletitle,style=authoryear-ibid,ibidtracker=strict, autocite=footnote, maxcitenames=1, maxbibnames=9, uniquelist=false, uniquename=init,sorting=anyt
-,labelalpha,maxalphanames=1
+\RequirePackage[
+  backend=biber,
+  singletitle,
+  style=authoryear-ibid,
+  ibidtracker=strict, 
+  autocite=footnote, 
+  maxcitenames=1, 
+  maxbibnames=9, 
+  uniquelist=false, 
+  uniquename=init,
+  sorting=anyt,
+  labelalpha,
+  maxalphanames=1
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
-\DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-\DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-\ExecuteBibliographyOptions{sorting=gratt}
+  \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+  \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+  \ExecuteBibliographyOptions{sorting=gratt}
 
+  \newtoggle{bbx:dowehavemorenames}
+  \DeclareNameFormat{dowehavemorenames}{%
+   \ifboolexpr{
+     test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+     and
+     test \ifmorenames
+   }
+     {\global\toggletrue{bbx:dowehavemorenames}}
+     {\global\togglefalse{bbx:dowehavemorenames}}}
 
-\newtoggle{bbx:dowehavemorenames}
-\DeclareNameFormat{dowehavemorenames}{%
- \ifboolexpr{
-   test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-   and
-   test \ifmorenames
- }
-   {\global\toggletrue{bbx:dowehavemorenames}}
-   {\global\togglefalse{bbx:dowehavemorenames}}}
+  \newcounter{mymaxcitenames}
+  \AtBeginDocument{%
+   \setcounter{mymaxcitenames}{\value{maxnames}}%
+  }
 
-\newcounter{mymaxcitenames}
-\AtBeginDocument{%
- \setcounter{mymaxcitenames}{\value{maxnames}}%
-}
-
-\renewbibmacro*{begentry}{%
-  \begingroup
-    \defcounter{maxnames}{\value{mymaxcitenames}}%
-    \printnames[dowehavemorenames]{labelname}%
-    \iftoggle{bbx:dowehavemorenames}
-      {\printnames{labelname}%
-       \setunit{\printdelim{nameyeardelim}}%
-       \usebibmacro{date+extrayear}%
-       \space\space\newunit\newblock}
-      {}%
-  \endgroup
-  \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
-}
+  \renewbibmacro*{begentry}{%
+    \begingroup
+      \defcounter{maxnames}{\value{mymaxcitenames}}%
+      \printnames[dowehavemorenames]{labelname}%
+      \iftoggle{bbx:dowehavemorenames}
+        {\printnames{labelname}%
+         \setunit{\printdelim{nameyeardelim}}%
+         \usebibmacro{date+extrayear}%
+         \space\space\newunit\newblock}
+        {}%
+    \endgroup
+    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+  }
 }
 
 \DeclareLanguageMapping{english}{british-apa}
@@ -734,12 +774,13 @@ top=2.70cm, bottom=2.65cm,
 \RequirePackage{tabularx}
 \AtBeginEnvironment{tabular}{\small}
 \AtBeginEnvironment{tabularx}{\small}
+\newcolumntype{R}{>{\RaggedLeft\arraybackslash}X}
+\newcolumntype{Q}{>{\raggedleft\arraybackslash}X}
   
 \AtBeginDocument{%
   \pagestyle{empty}
 	\let\mytitle\@title
 	\let\myauthor\@author
-  \let\@@acknowledgements\@acknowledgements
 	
 	% TitlePage
 	\onecolumn
@@ -824,14 +865,14 @@ top=2.70cm, bottom=2.65cm,
   \end{minipage} 
   \eject \normalsize
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-  \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
-  \setlength{\parskip}{5.5pt plus 2pt}
-  \raggedright\@acknowledgements
+    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+    \setlength{\parskip}{5.5pt plus 2pt}
+    \raggedright\@acknowledgements
   \end{minipage}
   \twocolumn
 }
 
-% Table of contentss
+% Table of contents
 \setcounter{tocdepth}{0}
 
 \newlength{\currentparskip}
@@ -856,7 +897,20 @@ top=2.70cm, bottom=2.65cm,
   {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter*{#1}\begin{multicols}{2}}%
   {\end{multicols}\vss\egroup\hfill\twocolumn}
 
+\newlength{\recommendationExtra}
+\setlength{\recommendationExtra}{0pt}
+\newenvironment{recommendations}[1][]%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Recommendations}\addtolength{\columnsep}{\recommendationExtra}\begin{multicols}{2}}%
+  {\end{multicols}\addtolength{\columnsep}{-\recommendationExtra}\vss\egroup\hfill\twocolumn}
 
+\newcounter{reco}
+\crefalias{reco}{rec}
+\Crefname{reco}{Recommendation}{Recommendations}
+\Crefname{rec}{Recommendation}{Recommendations}
+\newcommand*{\recommendation}[1]{{\subsection*{Recommendation \refstepcounter{reco}\thereco: #1}}}
+
+\newcounter{subreco}
+\newcommand*{\subrecommendation}[1]{{\color{Orange}\refstepcounter{subreco}Rec.\hspace{4pt}\thereco\alph{subreco}: {#1}\hspace{0.4em}}}
 
 
 \RequirePackage{tocloft}
@@ -871,17 +925,17 @@ top=2.70cm, bottom=2.65cm,
 
 \AtBeginDocument{\renewcommand{\contentsname}{Table of contents}}
 \newcommand{\contentspage}{%
-\onecolumn
-\begin{multicols}{2}
-\phantom{.}
-\vfill
-\columnbreak
-\begingroup
-\raggedright
-\tableofcontents
-\endgroup
-\end{multicols}
-\twocolumn%
+  \onecolumn
+  \begin{multicols}{2}
+    \phantom{.}
+    \vfill
+    \columnbreak
+    \begingroup
+      \raggedright
+      \tableofcontents
+    \endgroup
+  \end{multicols}
+  \twocolumn%
 }
 
 \newcommand{\oneraggedpage}{\let\mytextbottom\@textbottom

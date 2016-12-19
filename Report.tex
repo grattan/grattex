@@ -1,0 +1,175 @@
+\documentclass{grattan}
+% Comments are deployed by the % sign; everything after % is ignored by the compiler.
+% Please do not put comments before \documentclass as these are reserved for TeX directives.
+
+\author{}
+\title{}
+
+\GrattanReportNumber{2017-XX}
+
+\acknowledgements{%
+This 
+%
+}
+
+
+\begin{document}
+
+\begin{overview}
+This is the overview. 
+The word \textbf{Overview} appears in the contentspage at \verb=\contentspage= as an unnumbered entry.
+Set over two columns, the first and last baseline of each column is set on matching baselines. 
+
+(But only if the overview is large enough!) 
+
+The first line of the overview starts at a fixed vertical position but its height is determined by the constraint of matching the baselines.
+In particular if the overview is too large, it will overflow the page.
+
+Footnotes are not permitted.
+\end{overview}
+
+\begin{recommendations}
+\recommendation{Recommendation}
+Some text under a recommendation.
+\end{recommendations}
+
+\contentspage
+
+\chapter{Chapter title}
+\section{Section title}
+\subsection{Subsection title}
+\subsubsection{Subsubsection title}
+Some text in one paragraph. 
+Some text in one paragraph. 
+Some text in one paragraph. 
+
+Some text in the next paragraph. 
+Some text in the next paragraph. 
+Some text in the next paragraph. 
+
+Since singular newlines are ignored, put different sentences on different lines.
+
+\begin{enumerate}
+	\item An enumerated list
+	\item Another item
+	\begin{enumerate}
+		\item A subitem of the second item
+		\item Another subitem
+
+		New paragraphs are the same as in the body text
+	\end{enumerate}
+\end{enumerate}
+
+Another list:
+\begin{itemize}
+	\item A bulleted/non-enumerated list
+	\item Another item
+	\begin{itemize}
+		\item A subitem.
+	\end{itemize}
+\end{itemize}
+
+\chapter{Figures and tables}
+An initial cross-reference to \Vref{fig:first-example-figure}.
+
+\begin{figure}
+\caption{Figure caption\label{fig:first-example-figure}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\noteswithsource{Notes}{Source}
+\end{figure}
+
+A cross-reference to \Vref{box:example}.
+
+\begin{verysmallbox}{A very small box}{box:very-small-box-example}
+Contents of very smallbox.
+
+A paragraph with a footnote.
+
+Some text in a very small box. 
+Some text in a very small box. 
+Some text in a very small box. 
+\end{verysmallbox}
+
+\begin{smallbox}{A small box}{box:example}
+A smallbox. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box.\footnote{Footnote entry.}
+
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box.
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text.\footnote{X}
+\end{smallbox}
+
+A cross-reference to \Vref{fig:2nd-example-figure}, with a reference \Cref{fig:first-example-figure}.
+
+\begin{figure}
+\caption{A second figure caption\label{fig:2nd-example-figure}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\noteswithsource{Notes}{Source}
+\end{figure}
+
+A table:
+
+\begin{table}
+\caption{Table caption}\label{tbl:one-table}
+\begin{tabularx}{\linewidth}{XXR}
+%
+\toprule
+\textbf{Column title}                           & \textbf{Column type}                              & \textbf{Ragged left title} \\
+\midrule
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\[15.5pt]
+Use the optional argument & to the double backslash & to specify the precise distance between rows. \\
+\cmidrule(lr){2-3}
+Never use vertical rules & But sometimes horizontal rules are appropriate. & Use cmidrule(lr) \\
+\bottomrule
+\end{tabularx}
+\noteswithsource{Notes}{Source}
+
+
+
+\end{table}
+Another table, cross-referenced in the same way \Vref{tbl:one-table}.
+
+
+\end{document}
