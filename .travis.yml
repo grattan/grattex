@@ -43,7 +43,7 @@ before_script:
 
 script: 
   - Rscript -e '1 + 1'
-  # - Rscript -e 'library(grattanReporter);checkGrattanReport()'
+   - Rscript -e 'installed.packages()'
   #- pdflatex -draftmode Report.tex
   #- biber Report
   #- pdflatex -draftmode Report.tex
