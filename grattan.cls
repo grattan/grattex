@@ -712,7 +712,7 @@ numbers=noenddot,
 % removes intersentence space after et al.
 \xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
 \xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
-\DefineBibliographyStrings{english}
+\DefineBibliographyStrings{british-apa}
    {andothers = {et al\adddot}}
 
 % biblatex ShareLaTeX version control
