@@ -559,7 +559,7 @@ numbers=noenddot,
 \ProcessOptions\relax
 
 % Bibliography
-\RequirePackage[british]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage{csquotes}
 \RequirePackage[
   backend=biber,
@@ -611,7 +611,7 @@ numbers=noenddot,
   }
 }
 
-\DeclareLanguageMapping{british}{british-apa}
+\DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
 \DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
 \renewbibmacro{in:}{} % suppress In:
@@ -712,8 +712,8 @@ numbers=noenddot,
 % removes intersentence space after et al.
 \xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
 \xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
-\DefineBibliographyStrings{british}
-   {andothers = {et al\adddot}}
+%\DefineBibliographyStrings{british}
+%   {andothers = {et al\adddot}}
 
 % biblatex ShareLaTeX version control
 % 2016/09/17
