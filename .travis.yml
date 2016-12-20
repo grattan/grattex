@@ -19,6 +19,7 @@ packages:
   - data.table
   - hunspell
   - testthat
+  - devtools
   - grattanReporter
 
 r_github_packages:
@@ -40,13 +41,14 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
+    - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+    - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
-  - Rscript -e '1 + 1'
-  # - Rscript -e 'library(grattanReporter);checkGrattanReport()'
-  #- pdflatex -draftmode Report.tex
-  #- biber Report
-  #- pdflatex -draftmode Report.tex
+  - Rscript -e 'library(grattanReporter);grattanReporter::checkGrattanReport()'
+  - pdflatex -draftmode Report.tex
+  - biber Report
+  - pdflatex -draftmode Report.tex
 
 notifications:
   email: false
