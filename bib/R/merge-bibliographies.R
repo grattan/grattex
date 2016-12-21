@@ -11,6 +11,6 @@ HE_2016 <- ReadBib("./bib/2016-HE-Bib.bib", check = FALSE)
 AP_2016 %>%
   as.data.frame %>%
   as.data.table %>%
-  mutate(Year = coalesce(year, year(date))) %>%
-  select(author, title)
+  mutate(Year = coalesce(as.double(year), year(date))) %>%
+  select(title, Year) %>%
   .[duplicated(.)]
