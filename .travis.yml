@@ -2,7 +2,7 @@ language: r
 
 sudo: true
 cache: 
-  # - packages
+  - packages
   - /tmp/texlive
   - /$HOME/.texlive
 warnings_are_errors: false
