@@ -1,0 +1,27 @@
+\documentclass{grattan}
+
+% Cite legislation before others
+\defbibfilter{legislation}{
+type=customa
+}
+\defbibfilter{other}{
+not type=customa
+}
+\addbibresource{Grattan-Master-Bibliography.bib}
+
+%\addbibresource[location=remote]{https://raw.githubusercontent.com/HughParsonage/grattex/master/bib/2016-AP-bibliography.bib}
+%\addbibresource[location=remote]{https://raw.githubusercontent.com/HughParsonage/grattex/master/bib/2016-HE-Bib.bib}
+
+\GrattanReportNumber{2}
+\title{all}
+\author{.}
+
+\begin{document}
+\includegraphics{Example-image}
+\textcite{GST-Act-1999}
+
+\nocite{*}
+%\printbibliography[filter=legislation]
+\printbibliography%[filter=other]
+
+\end{document}

@@ -1,0 +1,15 @@
+\documentclass{grattan}
+
+\addbibresource{2016-AP-bibliography.bib}
+% \addbibresource{2016-HE-Bib.bib}
+
+\GrattanReportNumber{2}
+\title{.}
+\author{.}
+
+\begin{document}
+\includegraphics{Example-image}
+
+\nocite{*} 
+\printbibliography
+\end{document}
