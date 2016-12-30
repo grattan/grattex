@@ -39,6 +39,7 @@ classoffset=0
 }
 
 
+
 \usepackage{upquote}  % for ``
 \usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
 \captionsetup[table]{belowskip=5pt}
@@ -71,6 +72,7 @@ classoffset=0
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
 \newcommand{\ie}{\emph{i.e.}}
 \newcommand{\eg}{\emph{e.g.}}
+\newcommand*{\etc}{\emph{etc}}
 
 % From scrartcl.cls lines 3687--3701
 \makeatletter
@@ -119,7 +121,7 @@ classoffset=0
 
 
 \begin{document}
-A
+
 \maketitle
 \tableofcontents
 \newpage
@@ -716,13 +718,38 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    	}
    \end{lstlisting}
 
-   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion. 
+   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
 
 
    \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
    
   \end{enumerate}
 
+  \subsubsection{Which entry type to use?}
+  \begin{description}
+    \item[\texttt{@Article}] For newspaper articles, academic journal articles. If a newspaper, put the newspaper's name in the \lstinline!journal! field.
+    \item[\texttt{@TechReport}] Anything written by members of an institution. If the authors, contributors, \etc\ are named in the document, these should be in the author field \emph{even if the work says the institution should be the named author}. 
+    \item[\texttt{@Book}] A work whose author is distinct from the publisher/editor.
+    \item[\texttt{@Misc}] Anything not falling into the above categories. 
+  \end{description}
+
+  In general, ignore the recommended citation, except perhaps to respect the precedence of authors.
+
+  \subsubsection{Nonstandard authors}
+  Abbreviate the names of institutions when they appear in the author field:
+
+  \begin{tabularx}{\linewidth}{lX}
+  ABS      & Not \textdagger Australian Bureau of Statistics \\
+  ATO & Not \textdagger Australian Taxation Office \\
+  PC       & Not \textdagger Productivity Commission \\
+  PBO      & Not \textdagger Parliamentary Budget Office \\
+  D[A-Z]+   & Not \textdagger Department of \dots unless the Department has a single portfolio \eg~\emph{Department of Defence}, \emph{Attorney-General's Department}. (Use \emph{NSW D[A-Z]+} \etc\ if the Department is not a Commonwealth Department). \\
+  IRS      & Not \textdagger Internal Revenue Service. (But ``NZ Inland Revenue'') \\
+  HM       & For UK Departments of State \\
+  Treasury & Not Department of Treasury \\
+  \end{tabularx}
+
+  Use \emph{Hansard} in the author field for proceedings of the Parliament of Australia.
   
   
   \subsubsection{Citations}\index{citations}\index{footcite}\index{footcites}
