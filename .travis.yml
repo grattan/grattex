@@ -52,4 +52,4 @@ script:
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
-  
+  on_success: change
