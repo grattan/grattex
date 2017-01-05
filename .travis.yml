@@ -51,4 +51,5 @@ script:
   - pdflatex -draftmode Report.tex
 
 notifications:
-  email: false
+  slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
+  
