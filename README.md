@@ -1,4 +1,24 @@
 # grattex
+This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
+Staff starting a new report should do the following:
+
+  1. Login as the `grattaninstitute` super user in [github.com](https://github.com) and [sharelatex.com](https://sharelatex.com).
+  2. Copy `https://github.com/HughParsonage/grattex` to your clipboard
+  2. Visit https://github.com/new/import
+  3. Paste `https://github.com/HughParsonage/grattex` into the `Your old repository’s clone URL`.
+  3. Choose an evocative name for your repository under `Name`
+  4. Select Private
+  5. Click `Begin Import`.
+  6. After the import is complete, follow the link to the report.
+  6. Click the Settings Tab.
+  6. On the left, click `Collaborators`. 
+  6. Add `HughParsonage` and any other authors as desired.
+  7. Visit [sharelatex.com](https://sharelatex.com).
+  7. Click `New Project > Import from GitHub`.
+  7. Locate the repository you just created, and click `Import to ShareLaTeX`. 
+  7. If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed.
+  7. At the top right, click `Share`.
+  7. Add collaborators as desired. 
 
 ## Changelog
 
