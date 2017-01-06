@@ -32,7 +32,8 @@ numbers=noenddot,
 \RequirePackage{placeins}
 \RequirePackage{afterpage}
 \nonfrenchspacing
-\RequirePackage[activate=true, expansion, final, kerning=true, spacing=true]{microtype}
+\iffalse
+\RequirePackage[activate=false, expansion, final, kerning=true, spacing=true]{microtype}
 \microtypecontext{spacing=nonfrench}
 % http://tex.stackexchange.com/questions/303457/setprotrusion-with-helvetica-on-specific-characters
 \SetProtrusion
@@ -43,6 +44,7 @@ numbers=noenddot,
    {
      \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
    }
+\fi
 \RequirePackage{footmisc}
 \RequirePackage[document]{ragged2e}
 % ------
@@ -710,10 +712,10 @@ numbers=noenddot,
   {\usebibmacro{textcite:postnote}}
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 % removes intersentence space after et al.
-\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
-\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
-%\DefineBibliographyStrings{british}
-%   {andothers = {et al\adddot}}
+%\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
+%\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
+\DefineBibliographyStrings{british}
+   {andothers = {et al.\hskip 0pt}}
 
 % biblatex ShareLaTeX version control
 % 2016/09/17
