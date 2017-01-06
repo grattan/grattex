@@ -45,11 +45,12 @@ before_script:
     - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
-  - Rscript -e 'library(grattanReporter);grattanReporter::checkGrattanReport()'
+  - set -e
   - pdflatex -interaction=batchmode Report.tex
   - biber -V --onlylog Report
   - Rscript -e 'library(grattanReporter);grattanReporter::check_biber()'
   - pdflatex -interaction=batchmode Report.tex
+  - Rscript -e 'library(grattanReporter);grattanReporter::checkGrattanReport()'
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
