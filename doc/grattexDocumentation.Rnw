@@ -10,6 +10,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{tabularx}
 \usepackage{listings}
+\usepackage{lstautogobble}
 \usepackage{xcolor}
 \usepackage{longtable}
 \definecolor{Orange}{HTML}{F68B33}
@@ -37,6 +38,19 @@ classoffset=0
 \end{Verbatim}
 
 }
+
+\lstdefinelanguage{BibTeX}
+  {keywords={%
+      @article,@book,@collectedbook,@conference,@electronic,@ieeetranbstctl,%
+      @inbook,@incollectedbook,@incollection,@injournal,@inproceedings,%
+      @manual,@mastersthesis,@misc,@patent,@periodical,@phdthesis,@preamble,%
+      @proceedings,@standard,@string,@techreport,@unpublished%
+      },
+   comment=[l][\itshape]{@comment},
+   sensitive=false,
+   autogobble=true,
+   moredelim = [is][\slshape\color{violet}]{@@}{@@},
+  }
 
 
 
@@ -245,7 +259,11 @@ Your interface in which you write \LaTeX\ is called an IDE (integrated developme
  \LaTeX is a macro package.
  \end{lstlisting}
  
- will typeset: \LaTeX is a macro package. (Note that there is no space between \LaTeX{} and is. 
+ will typeset: 
+\begin{quote}
+ \LaTeX is a macro package.
+ \end{quote} 
+ (Note that there is no space between \LaTeX{} and `is'.)
  On reflection, this is understandable: a command is defined by letters, so a space after a command in effect defines the name.
  But because it's a typesetting program, always having a space would make some things impossible. 
  For example, `This is typed in \LaTeX.' would have a space between \LaTeX{} and the full stop.
@@ -664,18 +682,29 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??! and the log file will contain a warning.
 
   The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
-  I \emph{strongly} recommend you use the prefixes in \Vref{tbl:prefixes-by-float-type}. 
-  Using these prefixes consistently will make auto-completion easier. 
+  The house style requires the use of the prefixes in \Vref{tbl:prefixes-by-float-type}. 
+  Using these prefixes consistently will make auto-completion easier and is necessary for \texttt{grattanReporter} checks. 
 
   \begin{table}[H]
   \caption{Prefixes to use in cross-reference anchors, by float type\label{tbl:prefixes-by-float-type}}
-  \begin{tabular}{>{\ttfamily}l>{\ttfamily}l>{\ttfamily}l}
+  \begin{tabular}{>{\ttfamily}l>{\ttfamily}r>{\ttfamily}l}
   \toprule
-  \textbf{\textrm{Float environ.}} & \textbf{\textrm{Prefix}} & \textbf{\textrm{Example}} \\
+  \begin{tabular}{@{}p{0.14\linewidth}@{}}
+  \textrm{Float}\tabularnewline 
+  \textrm{environ.}\tabularnewline 
+  \textrm{command}
+  \end{tabular} & \textrm{Prefix} & \textrm{Example} \\
   \midrule 
-  figure & fig: & \verb=\label{fig:prop-hholds-by-decile}= \\
-  table  & tbl: & \verb=\label{tbl:tax-paid-by-bracket}= \\
-  box    & box: & \verb=\begin{smallbox}{A short history of motorsport}{box:motorsport}= \\
+  figure         & fig:       & \verb=\label{fig:prop-hholds-by-decile}= \\
+  table          & tbl:       & \verb=\label{tbl:tax-paid-by-bracket}= \\
+  box            & box:       & \verb=\begin{smallbox}{A short history of dogs}{box:dogs}= \\
+  footnote       & fn:        & \verb=\footnote{A footnote.\label{fn:my-footnote}}= \\
+  chapter        & chap:      & \verb=\chapter{Introduction}\label{chap:intro}= \\
+  addchap        & chap:      & \verb=\subsection{Or can it}\label{subsubsec:Or-can-it}= \\
+  section        & sec:       & \verb=\section{The budget problem}\label{sec:budget-problem}= \\
+  subsection     & subsec:    & \verb=\subsection{Change}\label{subsec:Change}= \\
+  subsubsection  & subsubsec: & \verb=\subsubsection{Or can it}\label{subsubsec:Or-can-it}= \\
+  phantomsection & paragraph: & \verb=\phantomsection\label{paragraph:PROP-land-taxes}=\\
   \bottomrule
   \end{tabular}
   \end{table}
@@ -687,12 +716,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
   \subsubsection{\texttt{bibliography.bib}}
   The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
-  \begin{lstlisting}
-   @type{<key>,
-    author={<author name>},
-    title={<title>},
-    year={<year>}
-   }
+  \begin{lstlisting}[language=BibTeX]
+  @@<@type>@@{@@<key>@@,
+    author={@@<author name>@@},
+    title={@@<title>@@},
+    year={@@<year>@@}
+  }
   \end{lstlisting}
   There are several elements to a bibliography:
   \begin{enumerate}[leftmargin=5em]
@@ -700,7 +729,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
 
    Bad (who knows that 2016c is):
-   \begin{lstlisting}
+
+   \begin{lstlisting}[language=BibTeX]
    @Misc{DaleyEtAl2016c,
    		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
    		title  = {Hot Property},
@@ -710,7 +740,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
    Good:
 
-   \begin{lstlisting}
+   \begin{lstlisting}[language=BibTeX]
    @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
    		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
    		title  = {Hot Property},
@@ -721,7 +751,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
 
 
-   \item[\texttt{author=<author name>}] each of these lines designate the fields of the reference %
+   \item[\lstinline!author=@@<author name>@@!] each of these lines designate the fields of the reference %
    
   \end{enumerate}
 
@@ -750,6 +780,21 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{tabularx}
 
   Use \emph{Hansard} in the author field for proceedings of the Parliament of Australia.
+
+  \subsubsection{ABS entries}
+  If you are citing an catalogue entry from the ABS:
+  \begin{itemize}
+    \item Include the catalogue number as a \lstinline!note = !, not in the title.
+    \item Only the most up-to-date version of time series data should be used, unless you are making a point about revisions to the entry. 
+  \end{itemize}
+
+  \subsubsection{R packages}
+  You should cite the R core team and all R packages that were attached for any analysis reaching publication. 
+  Use \texttt{knitr::write\_bib} to generate the entries. 
+  If an R package has a poorly-written DESCRIPTION file that precludes a neat output from \texttt{knitr::write\_bib}, \emph{leave as-is}.
+
+  \subsubsection{\LaTeX}
+  Do not cite your use of \LaTeX, except in books as a colophon.
   
   
   \subsubsection{Citations}\index{citations}\index{footcite}\index{footcites}
