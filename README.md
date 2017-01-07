@@ -22,6 +22,10 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2016-01-06
+* Add `\Chapref` and friends for neater hyperlinks to chapters
+* Add `\ie` `\eg` `\etc` macros.
+
 ### 2016-12-19
 * Allow long URLs in bibliography, line-breaking at width #36
 * Box footnotes are now non-italic #43
