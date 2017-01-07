@@ -112,6 +112,16 @@ numbers=noenddot,
 {\advance\@tempcnta-2}
 {\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
 
+% Hack for Chapter references
+% This ensures that chapter hyperlinks hit the page
+% not the baseline below the chapter title.
+\newcommand{\topref}[1]% #1 = label
+{\hyperlink{page.\getpagerefnumber{#1}}{\getrefnumber{#1}}}
+
+\newcommand*{\Chapref}[1]{Chapter~\topref{#1}}
+\newcommand*{\Chaprefrange}[1]{\Crefrange{#1}}
+\newcommand*{\Chapsref}[1]{Chapters~\topref{#1}}
+
 % Make url formatting the same
 \urlstyle{same}
 
@@ -619,6 +629,7 @@ numbers=noenddot,
 \renewbibmacro{in:}{} % suppress In:
 \renewbibmacro{bbx:editor}{} % suppress Ed:
 
+
 %% Bibliography formatting
 % separating entries
 \setlength\bibitemsep{1.5\itemsep}
@@ -949,3 +960,9 @@ numbers=noenddot,
 
 % Placed just before footnote exceeds 100. 
 \newcommand*{\CenturyFootnote}{\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
+
+% Discretionary commands for consistent treatment of common abbreviations
+\newcommand*{\eg}{\emph{e.g.}}
+\newcommand*{\ie}{\emph{i.e.}}
+\newcommand*{\etc}{\emph{etc.}}
+
