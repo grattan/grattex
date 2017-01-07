@@ -119,8 +119,8 @@ numbers=noenddot,
 {\hyperlink{page.\getpagerefnumber{#1}}{\getrefnumber{#1}}}
 
 \newcommand*{\Chapref}[1]{Chapter~\topref{#1}}
-\newcommand*{\Chaprefrange}[1]{\Crefrange{#1}}
 \newcommand*{\Chapsref}[1]{Chapters~\topref{#1}}
+\newcommand*{\Chaprefrange}[2]{Chapters~\topref{#1} to~\topref{#2}}
 
 % Make url formatting the same
 \urlstyle{same}
