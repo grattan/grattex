@@ -39,10 +39,16 @@ Some text under a recommendation.
 
 \contentspage
 
-\chapter{Chapter title}
-\section{Section title}
-\subsection{Subsection title}
-\subsubsection{Sub-subsection title}
+\chapter{Chapter title}\label{chap:example}
+This demonstrates the markup commands for sectioning. 
+If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as above and below.
+Although \LaTeX{} doesn't require it, you \emph{must} label all chapters, and every label must have a specific prefix followed by a colon, as throughout this document.
+
+To refer to a chapter, use \Chapref{chap:example}, not \Vref{chap:example}, as the latter's hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
+
+\section{Section title}\label{sec:example}
+\subsection{Subsection title}\label{subsec:example}
+\subsubsection{Sub-subsection title}\label{subsubsec:example}
 Some text in one paragraph. 
 Some text in one paragraph. 
 Some text in one paragraph. 
@@ -73,7 +79,7 @@ Another list:
 	\end{itemize}
 \end{itemize}
 
-\chapter{Figures and tables}
+\chapter{Figures and tables}\label{chap:figs-and-tbls}
 An initial cross-reference to \Vref{fig:first-example-figure}.
 
 \begin{figure}
@@ -143,9 +149,11 @@ Some text.%
 \footnote{All footnotes should end with a full stop.} 
 Some other text.%
 \footnote{(Or a closing parenthesis, which itself should be preceded by a full stop.)}
+To refer to a footnote, use \Vref{fn:example} as usual; however, the label \emph{must} be inside the footnote.%
+\footnote{\label{fn:example}For example, refer here.}
 \end{smallbox}
 
-A cross-reference to \Vref{fig:2nd-example-figure}, with a reference \Cref{fig:first-example-figure}.
+A cross-reference to \Vref{fig:2nd-example-figure}, with a different cross-reference that will never print the page number: \Cref{fig:first-example-figure}.
 
 \begin{figure}
 \caption{A second figure caption\label{fig:2nd-example-figure}}
@@ -181,7 +189,7 @@ Another table, cross-referenced in the same way \Vref{tbl:one-table}.
 
 A big box, occupying two pages floats with respect to the body text.
 
-\begin{bigbox*}
+\begin{bigbox*}{Big box title}{box:big-example}
 Far far away, behind the word mountains, far from the countries Snoot and Boot, there live the blind texts.
 Separated they live in Bookmarks grove right at the coast of the Semantics, a large language ocean.
 
@@ -201,7 +209,7 @@ The copy warned the Little Blind Text, that where it came from it would have bee
 But nothing the copy said could convince her and so it didn't take long until a few insidious Copy Writers ambushed her, made her drunk with Long Tongue and Parole and dragged her into their agency, where they abused her for their
 \end{bigbox*}
 
-\chapter{Citations}
+\chapter{Citations}\label{chap:citations}
 The database is contained in a .bib file. 
 Citations to appear in-line with the text are inserted like: \textcite{Daley-etal-2016-SAPTO}.
 Citations to appear in a footnote use the structure of this sentence.\footcite{Daley-etal-2016-Assessing-2016-super-tax-reforms}
