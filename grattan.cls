@@ -888,7 +888,7 @@ numbers=noenddot,
 \setlength{\overviewExtra}{0pt}
 \newenvironment{overview}[1][]%
 % vspace{-24.5pt} should align Overview baseline with chapter baseline
-  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Overview}\label{chap:Overview}\addtolength{\columnsep}{\overviewExtra}\begin{multicols}{2}}%
   {\end{multicols}\addtolength{\columnsep}{-\overviewExtra}\vss\egroup\hfill\twocolumn}
   
 \newenvironment{summary}%
@@ -902,7 +902,7 @@ numbers=noenddot,
 \newlength{\recommendationExtra}
 \setlength{\recommendationExtra}{0pt}
 \newenvironment{recommendations}[1][]%
-  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Recommendations}\addtolength{\columnsep}{\recommendationExtra}\begin{multicols}{2}}%
+  {\onecolumn\vtop to 0pt\bgroup\ifstrempty{#1}{\vspace{-24.5pt}}{\vspace{#1}}\addchap{Recommendations}\label{chap:Recommendations}\addtolength{\columnsep}{\recommendationExtra}\begin{multicols}{2}}%
   {\end{multicols}\addtolength{\columnsep}{-\recommendationExtra}\vss\egroup\hfill\twocolumn}
 
 \newcounter{reco}
