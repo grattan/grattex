@@ -43,9 +43,10 @@ Some text under a recommendation.
 This demonstrates the markup commands for sectioning. 
 If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as above and below.
 Although \LaTeX{} doesn't require it, every label must have a specific prefix followed by a colon, as throughout this document.
-Furthermore, every chapter must be labeled, even if it is never referenced.
+Furthermore, every chapter must be labelled, even if it is never referenced.
 
-To refer to a chapter, use \Chapref{chap:example}, not \Vref{chap:example}, as the latter's hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
+To refer to a chapter, use \Chapref{chap:example}, % not \Vref{chap:example}, 
+otherwise the hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
 To refer to a chapter range, \Chaprefrange{chap:example}{chap:citations}.
 
 \section{Section title}\label{sec:example}
