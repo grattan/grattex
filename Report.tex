@@ -42,7 +42,8 @@ Some text under a recommendation.
 \chapter{Chapter title}\label{chap:example}
 This demonstrates the markup commands for sectioning. 
 If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as above and below.
-Although \LaTeX{} doesn't require it, you \emph{must} label all chapters, and every label must have a specific prefix followed by a colon, as throughout this document.
+Although \LaTeX{} doesn't require it, Grattan requires every label must have a specific prefix followed by a colon, as throughout this document.
+Furthermore, every chapter must be labeled, even if it is never referenced.
 
 To refer to a chapter, use \Chapref{chap:example}, not \Vref{chap:example}, as the latter's hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
 To refer to a chapter range, \Chaprefrange{chap:example}{chap:citations}.
