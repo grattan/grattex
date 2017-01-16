@@ -22,6 +22,9 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2016-01-17
+* New option 'submission'.
+
 ### 2016-01-06
 * Add `\Chapref` and friends for neater hyperlinks to chapters
 * Add `\ie` `\eg` `\etc` macros.
