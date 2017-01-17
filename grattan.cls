@@ -14,6 +14,19 @@ numbers=noenddot,
 
 % Continuous numbering
 \RequirePackage{chngcntr}
+\RequirePackage{etoolbox}
+\RequirePackage{footmisc}
+\RequirePackage{tablefootnote} % for footnotes within tables
+
+% Record number and page of footnote:
+% http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
+% This must be before hyperref and after
+% etoolbox footmisc tablefootnote
+\patchcmd{\@footnotetext}
+  {#1}
+  {#1\label{footnote@@@\thefootnote}}
+  {}
+  {\ddt}
 
 % avoid non-discretionary hyphens 
 \exhyphenpenalty=100
@@ -45,7 +58,6 @@ numbers=noenddot,
      \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
    }
 \fi
-\RequirePackage{footmisc}
 \RequirePackage[document]{ragged2e}
 % ------
 % Grattan colors
@@ -77,7 +89,6 @@ numbers=noenddot,
 % ------
 \RequirePackage{colortbl}
 \RequirePackage{array}
-\RequirePackage{tablefootnote} % for footnotes within tables
 \newcommand{\myhline}{\noalign{\global\arrayrulewidth1pt}\hline
                       \noalign{\global\arrayrulewidth1pt}}
 
@@ -121,6 +132,11 @@ numbers=noenddot,
 \newcommand*{\Chapref}[1]{Chapter~\topref{#1}}
 \newcommand*{\Chapsref}[1]{Chapters~\topref{#1}}
 \newcommand*{\Chaprefrange}[2]{Chapters~\topref{#1} to~\topref{#2}}
+
+% Footnote layout (koma)
+% \makebox left-aligned numbers.
+\deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
+\addtokomafont{footnotereference}{\small}
 
 % Make url formatting the same
 \urlstyle{same}
@@ -380,7 +396,6 @@ numbers=noenddot,
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
-\RequirePackage{etoolbox}
 % Add extra hyper target for chapter: chapter..\thechapter
 \renewcommand*{\chapterformat}{%
   \mbox{\raisebox{25pt}[0pt][0pt]{\hypertarget{chapter..\thechapter}{}}% Add 
@@ -418,10 +433,7 @@ numbers=noenddot,
 %% ---------------------------------
 \RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
 
-% Footnote layout (koma)
-% \makebox left-aligned numbers.
-\deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
-\addtokomafont{footnotereference}{\small}
+
 
 \clearscrheadings
 \clearscrplain
@@ -975,8 +987,10 @@ numbers=noenddot,
   \global\let\@textbottom\mytextbottom
   \global\let\@texttop\mytexttop}}
 
+
+
 % Placed just before footnote exceeds 100. 
-\newcommand*{\CenturyFootnote}{\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
+\newcommand*{\CenturyFootnote}{\label{@CenturyFootnote}\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
 
 % Discretionary commands for consistent treatment of common abbreviations
 \newcommand*{\eg}{\emph{e.g.}}
