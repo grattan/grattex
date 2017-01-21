@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2016/10/05 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/01/21 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -17,6 +17,7 @@ numbers=noenddot,
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
+\RequirePackage{zref-savepos}
 
 % Record number and page of footnote:
 % http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
@@ -24,7 +25,7 @@ numbers=noenddot,
 % etoolbox footmisc tablefootnote
 \patchcmd{\@footnotetext}
   {#1}
-  {#1\label{footnote@@@\thefootnote}}
+  {\zsavepos{footnote@@@\thefootnote}\label{footnote@@@\thefootnote}#1}
   {}
   {\ddt}
 
@@ -990,7 +991,7 @@ numbers=noenddot,
 
 
 % Placed just before footnote exceeds 100. 
-\newcommand*{\CenturyFootnote}{\label{@CenturyFootnote}\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
+\newcommand*{\CenturyFootnote}{\label{@CenturyFootnote@@@\thefootnote}\zsavepos{@CenturyFootnote@z}\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
 
 % Discretionary commands for consistent treatment of common abbreviations
 \newcommand*{\eg}{\emph{e.g.}}
