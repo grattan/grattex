@@ -1003,3 +1003,5 @@ numbers=noenddot,
 \newcommand*{\ie}{\emph{i.e.}}
 \newcommand*{\etc}{\emph{etc.}}
 
+% To detect user's current version
+\listfiles
