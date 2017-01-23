@@ -28,6 +28,12 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
+# Documentation only Rnw and pdf
+doc/*
+!doc/*.pdf
+!doc/*.Rnw
+
+
 # Thumbnails
 ._*
 
