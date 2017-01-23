@@ -67,7 +67,8 @@ classoffset=0
 
 \usepackage{bbding}
 
-\usepackage{upquote}  % for ``
+\usepackage{upquote}  % for `` ''%
+
 \usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
 \captionsetup[table]{belowskip=5pt}
 
@@ -688,7 +689,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \section{Cross-references}
-  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
+  There are three \LaTeX{} commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
   The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
   For example, to refer to some figure, use the following template.
@@ -705,11 +706,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \lstinline!\Vref{fig:key}! will expand to Figure N shows that ... 
 
   % \begin{center}
-  {{Your labels should be evocative of what is displayed, {not} the number.} }
+  {{Your labels should be evocative of what is displayed, \emph{not} the number.} }
   {You will end up moving or removing a figure, table, or box and confuse your labels.}
   % \end{center}
 
   If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??! and the log file will contain a warning.
+
+  If you are referring to a chapter, you must use \lstinline!\Chapref!.
 
   The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
   The house style requires the use of the prefixes in \Vref{tbl:prefixes-by-float-type}. 
@@ -731,6 +734,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   footnote       & fn:        & \verb=\footnote{A footnote.\label{fn:my-footnote}}= \\
   chapter        & chap:      & \verb=\chapter{Introduction}\label{chap:intro}= \\
   addchap        & chap:      & \verb=\section{Or can it}\label{subsubsec:Or-can-it}= \\
+  recommendation & rec:       & \verb=\recommendation{Do it}\label{rec:Do-it}= \\
   section        & sec:       & \verb=\chapter{The budget problem}\label{sec:budget-problem}= \\
   subsection     & subsec:    & \verb=\section{Change}\label{subsec:Change}= \\
   subsubsection  & subsubsec: & \verb=\subsection{Or can it}\label{subsubsec:Or-can-it}= \\
@@ -1012,11 +1016,11 @@ and follow the prompts until you receive the console message:
 Additional arguments are provided for additional checks
 \begin{enumerate}
   \item For daily checking of citation keys, bibliography data model validation, and mistyped cross-references.
-<<gr-synopsis>>=
+<<gr-synopsis-compile>>=
 checkGrattanReport(compile = TRUE)
 @
   \item For checks of a report that is intended for distribution, but not necessarily for release: that the template is up-to-date, the 100th footnote and beyond are correctly formatted, the ISBN is inserted and valid, and there are no editorial marks in the document
-<<gr-synopsis>>=
+<<gr-synopsis-final>>=
 checkGrattanReport(compile = TRUE, final = TRUE)
 @
   \item For checks of a report for release: embeds the fonts and copies the file to the \texttt{RELEASE} folder.
