@@ -1059,7 +1059,68 @@ and follow the prompts until you receive the console message:
 \CheckmarkBold\ \texttt{Report checked.}
 \end{quote}
 
+Additional arguments are provided for increasingly thorough checks
+\begin{enumerate}
+  \item For daily checking of citation keys, bibliography data model validation, and mistyped cross-references.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  \item For checks of a report that is intended for (possibly embargoed) distribution, but not necessarily for release: that the template is up-to-date, the 100th footnote and beyond are correctly formatted, the ISBN is inserted and valid, and there are no editorial marks in the document
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{final} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  \item For checks of a report for release: embeds the fonts and copies the file to the \texttt{RELEASE} folder. Also ensures the embargo marks are absent.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{final} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{release} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
 
+\section{System requirements for release}
+\begin{enumerate}
+\item R and the package \texttt{grattanReporter}, installable via:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"hughparsonage/grattanReporter"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\item An up-to-date \LaTeX{} distribution.%
+  \footnote{See \url{http://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution} for instructions on updating your \LaTeX{} distribution.}
+In particular, you must have \lstinline!biber! version 2.6 or greater.
+\item Ghostscript (\url{https://ghostscript.com/download/gsdnld.html}) and the corresponding system environment set. For example in Windows, following successful installation of Ghostscript:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{Sys.setenv}\hlstd{(}\hlkwc{R_GSCMD} \hlstd{=} \hlstr{'C:/Program Files/gs/gs9.20/bin/gswin64c.exe'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\item Internet access (or the latest version of the \lstinline!grattan.cls!).
+\end{enumerate}
+
+\section{Project folder structure required for release}
+Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must contain
+\begin{enumerate}
+\item The folder \lstinline!./travis/grattanReport/! (which ships with \texttt{grattex}).
+\item A folder \lstinline!./RELEASE!. (If it is not present, it will be created, with a warning.)
+\item A \emph{unique} \lstinline!.tex! file, being your report. 
+(Any other \lstinline!.tex! files should be placed in \lstinline!./tex!.)
+\end{enumerate}
 
 
 
