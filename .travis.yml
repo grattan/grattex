@@ -50,7 +50,7 @@ script:
   - biber -V --onlylog Report
   - Rscript -e 'library(grattanReporter);grattanReporter::check_biber()'
   - pdflatex -interaction=batchmode Report.tex
-  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
+  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
