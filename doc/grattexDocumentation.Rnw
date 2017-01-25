@@ -105,6 +105,7 @@ classoffset=0
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand*{\etc}{\emph{etc}}
 
+\newcommand*{\rationale}[1]{\hfill{\small\itshape #1}}
 
 
 \usepackage{realboxes}
@@ -1021,15 +1022,16 @@ checkGrattanReport(compile = TRUE)
 @
   \item For checks of a report that is intended for distribution, but not necessarily for release: that the template is up-to-date, the 100th footnote and beyond are correctly formatted, the ISBN is inserted and valid, and there are no editorial marks in the document
 <<gr-synopsis-final>>=
-checkGrattanReport(compile = TRUE, final = TRUE)
+checkGrattanReport(compile = TRUE, pre_release = TRUE)
 @
   \item For checks of a report for release: embeds the fonts and copies the file to the \texttt{RELEASE} folder. Also ensures the embargo marks are absent.
 <<gr-synopsis-release>>=
-checkGrattanReport(compile = TRUE, final = TRUE, release = TRUE)
+checkGrattanReport(compile = TRUE, pre_release = TRUE, release = TRUE)
 @
 \end{enumerate}
 
-\section{System requirements for release}
+\section{Requirements}
+\subsection{System requirements for release}
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via:
 <<install-grattanReporter>>=
@@ -1047,7 +1049,7 @@ Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
 \item Internet access (or the latest version of the \lstinline!grattan.cls!).
 \end{enumerate}
 
-\section{Project folder structure required for release}
+\subsection{Project folder structure required for release}
 Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must contain
 \begin{enumerate}
 \item The folder \lstinline!./travis/grattanReport/! (which ships with \texttt{grattex}).
@@ -1060,8 +1062,117 @@ Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must 
 
 
 
+\section{Style requirements}
+\subsubsection{Preliminary}
+\paragraph{One \texttt{.tex} file} The top-level of your directory must contain one and only one \texttt{.tex} file. 
+This requirement is to ensure the correct file is checked and to enable to command to be run non-interactively.
 
+\paragraph{At least one author must be a staff member at Grattan} A member of Grattan staff must appear in the preamble of the \code{.tex} file.
 
+\subsubsection{Postnotes in citations} 
+\begin{enumerate}
+\item A citation which references a page or section within the opus must reference this in the \emph{postnote} field of the cite command:
+
+\begin{lstlisting}
+% Correct:
+\textcite[][45--50]{Daleyetal2016}  
+
+% Wrong:
+\textcite[45--50]{Daleyetal2016} 
+\end{lstlisting}
+
+\item A reference to a page must include the page number only; a reference to a page range should use numbers separated by two hyphens. 
+The letter p should not be used.
+
+\begin{lstlisting}
+% Correct:
+\textcite[][45]{Daleyetal2016}  
+\textcite[][45--50]{Daleyetal2016}  
+
+% Wrong: (uses letter p)
+\textcite[][p. 45]{Daleyetal2016}
+% Wrong (uses single hyphen)
+\textcite[][45-50]{Daleyetal2016}
+\end{lstlisting}
+
+\rationale{Consistent formatting of page references}
+\end{enumerate}
+
+\subsubsection{Escapes}
+\begin{enumerate}
+\item A dollar sign is only allowed if it is preceded by a backslash. Math-mode can only be enabled by \lstinline!\(...\)!
+\begin{lstlisting}
+% Correct:
+We spent \$10 million giving \$1 to a million people. 
+
+% Wrong: formatted as an equation
+We spent $10 million giving $1 to a million people.
+% Wrong correctly formatted but indistinguishable to the parser 
+If $x, y, z$ are the sides of a right-triangle then $z > y > x$ implies $z^2 = y^2 + x^2$.
+\end{lstlisting}
+\rationale{Avoiding accidental formatting of sentences as equations}
+
+\item An ellipsis must be invoked using \lstinline!\dots{}! not three periods (\lstinline!...!) or a unicode symbol.
+
+\begin{lstlisting}
+% Correct:
+But then \dots{} drama!
+
+% Wrong:
+But then ... drama!
+\end{lstlisting}
+\rationale{Consistent kerning and spacing}
+\item A space must not occur after the command \lstinline!\label!:
+\begin{enumerate}
+  \item Spaces must not occur within \lstinline!\label!
+  \item A new line is mandatory after \lstinline!\label! 
+\end{enumerate}
+\rationale{Technical: enables assumptions to be made about hyphens and labels' contents.}
+\item Dashes must be inserted using two hyphens.
+\begin{lstlisting}
+% Correct:
+This is a dash -- no question.
+
+% Wrong:
+This is a dash - actually just a hyphen.
+% Wrong:
+This is a dash --- but an em-dash, which is a bit much.
+\end{lstlisting}
+\rationale{Consistency}
+\item Closing quotes must not be used to open a quote:
+\begin{lstlisting}
+% Correct:
+So-called `grayfare'.
+
+% Wrong:
+These quote marks look 'odd' somehow.
+\end{lstlisting}
+\rationale{Correctness}
+\end{enumerate}
+
+\subsection{Footnotes}
+\begin{enumerate}
+  \item The commands \lstinline!\footnote! and \lstinline!\footcite! must not occur on the same line in the source. 
+\begin{lstlisting}
+% Not permitted:
+A sentence.\footnote{With a footnote} Another sentence.\footnote{With another.}
+
+% OK:
+A sentence.\footnote{With a footnote}
+Another sentence.\footnote{With another.}
+\end{lstlisting}
+Note: putting a paragraph over multiple lines has no effect.
+\rationale{Technical: allows checks to run.}
+
+\item Punctuation must not occur after a footnote mark
+\begin{lstlisting}
+% Correct
+A sentence.\footnote{With a footnote}
+
+% Wrong:
+A sentence\footnote{With a footnote}.
+\end{lstlisting}
+\end{enumerate}
 
 
 

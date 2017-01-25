@@ -114,7 +114,8 @@ classoffset=0
 
 \usepackage{bbding}
 
-\usepackage{upquote}  % for ``
+\usepackage{upquote}  % for `` ''%
+
 \usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
 \captionsetup[table]{belowskip=5pt}
 
@@ -151,6 +152,7 @@ classoffset=0
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand*{\etc}{\emph{etc}}
 
+\newcommand*{\rationale}[1]{\hfill{\small\itshape #1}}
 
 
 \usepackage{realboxes}
@@ -734,7 +736,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \section{Cross-references}
-  There are three commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
+  There are three \LaTeX{} commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
   The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
   For example, to refer to some figure, use the following template.
@@ -751,11 +753,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \lstinline!\Vref{fig:key}! will expand to Figure N shows that ... 
 
   % \begin{center}
-  {{Your labels should be evocative of what is displayed, {not} the number.} }
+  {{Your labels should be evocative of what is displayed, \emph{not} the number.} }
   {You will end up moving or removing a figure, table, or box and confuse your labels.}
   % \end{center}
 
   If you refer to a cross-reference that doesn't exist, the pdf will contain a bold \lstinline!??! and the log file will contain a warning.
+
+  If you are referring to a chapter, you must use \lstinline!\Chapref!.
 
   The contents of \lstinline!\label! can be anything containing letters, underscores, or hyphens. 
   The house style requires the use of the prefixes in \Vref{tbl:prefixes-by-float-type}. 
@@ -777,6 +781,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   footnote       & fn:        & \verb=\footnote{A footnote.\label{fn:my-footnote}}= \\
   chapter        & chap:      & \verb=\chapter{Introduction}\label{chap:intro}= \\
   addchap        & chap:      & \verb=\section{Or can it}\label{subsubsec:Or-can-it}= \\
+  recommendation & rec:       & \verb=\recommendation{Do it}\label{rec:Do-it}= \\
   section        & sec:       & \verb=\chapter{The budget problem}\label{sec:budget-problem}= \\
   subsection     & subsec:    & \verb=\section{Change}\label{subsec:Change}= \\
   subsubsection  & subsubsec: & \verb=\subsection{Or can it}\label{subsubsec:Or-can-it}= \\
@@ -1069,11 +1074,11 @@ Additional arguments are provided for increasingly thorough checks
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-  \item For checks of a report that is intended for (possibly embargoed) distribution, but not necessarily for release: that the template is up-to-date, the 100th footnote and beyond are correctly formatted, the ISBN is inserted and valid, and there are no editorial marks in the document
+  \item For checks of a report that is intended for distribution, but not necessarily for release: that the template is up-to-date, the 100th footnote and beyond are correctly formatted, the ISBN is inserted and valid, and there are no editorial marks in the document
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{final} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{pre_release} \hlstd{=} \hlnum{TRUE}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1081,13 +1086,14 @@ Additional arguments are provided for increasingly thorough checks
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{final} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{release} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlkwd{checkGrattanReport}\hlstd{(}\hlkwc{compile} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{pre_release} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{release} \hlstd{=} \hlnum{TRUE}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 \end{enumerate}
 
-\section{System requirements for release}
+\section{Requirements}
+\subsection{System requirements for release}
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via:
 \begin{knitrout}
@@ -1113,7 +1119,7 @@ In particular, you must have \lstinline!biber! version 2.6 or greater.
 \item Internet access (or the latest version of the \lstinline!grattan.cls!).
 \end{enumerate}
 
-\section{Project folder structure required for release}
+\subsection{Project folder structure required for release}
 Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must contain
 \begin{enumerate}
 \item The folder \lstinline!./travis/grattanReport/! (which ships with \texttt{grattex}).
@@ -1126,8 +1132,87 @@ Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must 
 
 
 
+\section{Style requirements}
+\subsubsection{Preliminary}
+\paragraph{One \texttt{.tex} file} The top-level of your directory must contain one and only one \texttt{.tex} file. 
+This requirement is to ensure the correct file is checked and to enable to command to be run non-interactively.
 
+\paragraph{At least one author must be a staff member at Grattan} A member of Grattan staff must appear in the preamble of the \code{.tex} file.
 
+\subsubsection{Postnotes in citations} 
+\begin{enumerate}
+\item A citation which references a page or section within the opus must reference this in the \emph{postnote} field of the cite command:
+
+\begin{lstlisting}
+% Correct:
+\textcite[][45--50]{Daleyetal2016}  
+
+% Wrong:
+\textcite[45--50]{Daleyetal2016} 
+\end{lstlisting}
+
+\item A reference to a page must include the page number only; a reference to a page range should use numbers separated by two hyphens. 
+The letter p should not be used.
+
+\begin{lstlisting}
+% Correct:
+\textcite[][45]{Daleyetal2016}  
+\textcite[][45--50]{Daleyetal2016}  
+
+% Wrong: (uses letter p)
+\textcite[][p. 45]{Daleyetal2016}
+% Wrong (uses single hyphen)
+\textcite[][45-50]{Daleyetal2016}
+\end{lstlisting}
+
+\rationale{Consistent formatting of page references}
+\end{enumerate}
+
+\subsubsection{Escapes}
+\begin{enumerate}
+\item A dollar sign is only allowed if it is preceded by a backslash. Math-mode can only be enabled by \lstinline!\(...\)!
+\begin{lstlisting}
+% Correct:
+We spent \$10 million giving \$1 to a million people. 
+
+% Wrong: formatted as an equation
+We spent $10 million giving $1 to a million people.
+% Wrong correctly formatted but indistinguishable to the parser 
+If $x, y, z$ are the sides of a right-triangle then $z > y > x$ implies $z^2 = y^2 + x^2$.
+\end{lstlisting}
+\rationale{Avoiding accidental formatting of sentences as equations}
+
+\item An ellipsis must be invoked using \lstinline!\dots{}! not three periods (\lstinline!...!) or a unicode symbol.
+
+\begin{lstlisting}
+% Correct:
+But then \dots{} drama!
+
+% Wrong:
+But then ... drama!
+\end{lstlisting}
+\rationale{Consistent kerning and spacing}
+\item Dashes must be inserted using two hyphens.
+\begin{lstlisting}
+% Correct:
+This is a dash -- no question.
+
+% Wrong:
+This is a dash - actually just a hyphen.
+% Wrong:
+This is a dash --- but an em-dash, which is a bit much.
+\end{lstlisting}
+\rationale{Consistency}
+\item Closing quotes must not be used to open a quote:
+\begin{lstlisting}
+% Correct:
+So-called `grayfare'.
+
+% Wrong:
+These quote marks look 'odd' somehow.
+\end{lstlisting}
+\rationale{Correctness}
+\end{enumerate}
 
 
 
