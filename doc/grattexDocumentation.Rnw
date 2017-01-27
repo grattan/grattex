@@ -5,6 +5,9 @@ library(knitr)
 opts_chunk$set(echo = TRUE, eval = FALSE)
 @
 
+\let\oldLaTeX\LaTeX
+\renewcommand{\LaTeX}{\textrm{\oldLaTeX}}
+
 
 \usepackage{scrhack}
 \usepackage{makeidx}
@@ -28,9 +31,9 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 \lstset{
 language=[LaTeX]TeX,
 basicstyle=\ttfamily,
-commentstyle=\ttfamily,
+commentstyle=\color{black!60}\ttfamily,
 texcsstyle=*\color{blue},
-moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites,Chapref,topref,Vref,Cref},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
@@ -54,14 +57,15 @@ classoffset=0
 
 \lstdefinelanguage{BibTeX}
   {keywords={%
-      @article,@book,@collectedbook,@conference,@electronic,@ieeetranbstctl,%
+      @Article,@book,@collectedbook,@conference,@electronic,@ieeetranbstctl,%
       @inbook,@incollectedbook,@incollection,@injournal,@inproceedings,%
       @manual,@mastersthesis,@misc,@patent,@periodical,@phdthesis,@preamble,%
-      @proceedings,@standard,@string,@techreport,@unpublished%
+      @proceedings,@standard,@string,@TechReport,@unpublished%
       },
    comment=[l][\itshape]{@comment},
    sensitive=false,
    autogobble=true,
+   keywordstyle = \color{red}\bfseries,
    moredelim = [is][\slshape\color{violet}]{@@}{@@},
   }
 
@@ -105,7 +109,7 @@ classoffset=0
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand*{\etc}{\emph{etc}}
 
-\newcommand*{\rationale}[1]{\hfill{\small\itshape #1}}
+\newcommand*{\rationale}[1]{\par\hfill{\small\itshape\raise1.5ex\hbox{#1}}\vspace{11pt plus 5.5pt}}
 
 
 \usepackage{realboxes}
@@ -1033,10 +1037,13 @@ checkGrattanReport(compile = TRUE, pre_release = TRUE, release = TRUE)
 \section{Requirements}
 \subsection{System requirements for release}
 \begin{enumerate}
-\item R and the package \texttt{grattanReporter}, installable via:
+\item R and the package \texttt{grattanReporter}, installable via my drat repository:
 <<install-grattanReporter>>=
-devtools::install_github("hughparsonage/grattanReporter")
+install.packages("grattanReporter",
+                  repos = "https://hughparsonage.github.io/drat",
+                  type = "source")
 @
+This will ensure you have the latest version of the package that successfully built on the master branch.
 
 
 \item An up-to-date \LaTeX{} distribution.%
@@ -1067,7 +1074,9 @@ Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must 
 \paragraph{One \texttt{.tex} file} The top-level of your directory must contain one and only one \texttt{.tex} file. 
 This requirement is to ensure the correct file is checked and to enable to command to be run non-interactively.
 
-\paragraph{At least one author must be a staff member at Grattan} A member of Grattan staff must appear in the preamble of the \code{.tex} file.
+\paragraph{At least one author must be a staff member at Grattan} A member of Grattan staff must appear in the preamble of the \code{.tex} file 
+and must be the first author in \lstinline!\author!.
+\rationale{Avoid misspelling staff names}
 
 \subsubsection{Postnotes in citations} 
 \begin{enumerate}
@@ -1150,8 +1159,13 @@ These quote marks look 'odd' somehow.
 \rationale{Correctness}
 \end{enumerate}
 
+
+
+
+
 \subsection{Footnotes}
 \begin{enumerate}
+  \item The commands \lstinline!\footnote! and \lstinline!\footcite! must not occur in the overview. 
   \item The commands \lstinline!\footnote! and \lstinline!\footcite! must not occur on the same line in the source. 
 \begin{lstlisting}
 % Not permitted:
@@ -1160,21 +1174,553 @@ A sentence.\footnote{With a footnote} Another sentence.\footnote{With another.}
 % OK:
 A sentence.\footnote{With a footnote}
 Another sentence.\footnote{With another.}
+
+% Not permitted:
+Sentence 1.\footnote{With a footnote.} Sentence 2.\footcite{key}
+% OK
+A sentence.%
+  \footnote{With a footnote.} 
+Another sentence.\footcite{key}
 \end{lstlisting}
-Note: putting a paragraph over multiple lines has no effect.
+Note: putting a paragraph over multiple lines has no visible effect: 
+they will still be printed as paragraphs.
+
 \rationale{Technical: allows checks to run.}
+\item Not checked: If your footnote contains multiple paragraphs, please invoke \lstinline!\par! rather than a blank line at the paragraph border.
+My code may not able to run the following checks on footnotes over multiple paragraphs -- and may throw arcane error messages.
 
 \item Punctuation must not occur after a footnote mark
 \begin{lstlisting}
 % Correct
-A sentence.\footnote{With a footnote}
+A sentence.\footnote{With a footnote.}
 
 % Wrong:
 A sentence\footnote{With a footnote}.
 \end{lstlisting}
+\rationale{Correctness}
+\item Footnotes must end with a full stop.
+\begin{lstlisting}
+% Correct
+A sentence.\footnote{With a footnote.}
+
+% Wrong:
+A sentence\footnote{With a footnote}
+\end{lstlisting}
+\rationale{Consistency}
+\item Footnote marks must not be preceded by a printable space.
+\begin{lstlisting}
+% OK
+A sentence.\footnote{With a footnote.}
+% Also OK (due to %)
+A sentence.%
+\footnote{With a footnote.}
+% Also OK (due to %)
+A sentence.%
+  \footnote{With a footnote.}
+
+% Wrong:
+A sentence. \footnote{With a footnote.}
+% Wrong (not protected by %):
+A sentence. 
+\footnote{With a footnote.}
+% Wrong (protection by % is too late):
+A sentence. %
+\footnote{With a footnote.}
+
+\end{lstlisting}
+\rationale{Correctness}
 \end{enumerate}
 
 
+\subsection{Labels}
+Labels are invoked by \lstinline!\label! and are used to anchor cross-references.
+\begin{enumerate}
+\item All labels must have a prefix and the prefix must follow the style in \Vref{tbl:prefixes-by-float-type}.
+\begin{lstlisting}
+% Correct
+\section{Clarity and structure}\label{sec:clarity-and-structure}
+
+% Wrong:
+\section{Clarity and structure}\label{clarity-and-structure}
+\end{lstlisting}
+\rationale{Clarity for authors. Easier autocompletion.}
+\item All captions (to figures and tables) must have a \lstinline!\label!
+\begin{lstlisting}
+% Correct
+\begin{figure}
+\caption{What teachers can do to reduce behaviour problems in the classroom\label{fig:what-teachers-can-do}}%
+\includegraphics[page=11]{atlas/Charts.pdf}
+\end{figure}
+
+% Wrong (no label)
+\begin{figure}
+\caption{What teachers can do to reduce behaviour problems in the classroom}%
+\includegraphics[page=11]{atlas/Charts.pdf}
+\end{figure}
+\end{lstlisting}
+\rationale{Eases cross-referencing later. Req.\ to check all figs/tbls have been referenced.}
+\item All caption labels must occur on the same line as \lstinline!\caption!
+\begin{lstlisting}
+% Wrong (label too late)
+\begin{figure}
+\caption{What teachers can do to reduce behaviour problems in the classroom}%
+\includegraphics[page=11]{atlas/Charts.pdf} \label{fig:what-teachers-can-do}
+\end{figure}
+\end{lstlisting}
+\rationale{Avoid wrong anchoring point. Easier to code.}
+\item Cross-references to chapters must use \lstinline!\Chapref! or \lstinline!\topref!.
+\begin{lstlisting}
+% Correct
+See \Chapref{chap:intro}.
+
+% Wrong:
+See \Vref{chap:intro}.
+\end{lstlisting}
+\rationale{Correct hyperlinks.}
+\end{enumerate}
+\subsection{Hard-coded cross-references}
+\begin{enumerate}
+  \item All cross-references must be encoded in a macro 
+  (\lstinline!\Vref! and \lstinline!\Cref!, 
+  and \lstinline!\Chapref! or \lstinline!\topref! 
+  for chapters, or \lstinline!\ref! for footnotes).%
+    \footnote{To verify compliance with this rule, the code checks whether there is a cross-reference `name' 
+    (\ie~chapter, section, figure \etc) 
+    followed by a number.
+    Postnotes to citations are excluded, \emph{provided the postnote is correctly entered}. 
+    There may be other occasions where such a pattern is valid, but the error is still raised. 
+    Such instances constitute a bug, so please file.}
+\begin{lstlisting}
+% Correct
+See \Chapref{chap:intro} and \Vref{fig:what-teachers-can-do}.
+
+% Wrong:
+See Chapter 1 and Figure 3.2.
+
+% Wrong (should be in citation)
+This is explained in \textcite{Knuth}, Chapter 2.
+
+% Correct:
+This is explained in \textcite[][Chapter 2]{Knuth}.
+\end{lstlisting}
+\rationale{Avoid incorrect or unlinked cross-references.}
+\end{enumerate}
+\subsection{Sentence-ending periods}
+\begin{enumerate}
+  \item Sentences which end with a capital letter and are followed by a sentence (\ie~are not the last sentence in a paragraph) must be specially marked:
+\begin{lstlisting}
+% Correct
+Many governments have tried to change the GST\@. 
+But few have succeeded.
+
+% Wrong
+Many governments have tried to change the GST. 
+But few have succeeded.
+
+% Wrong
+Many governments have tried to change the GST. But few have succeeded.
+\end{lstlisting}
+Note: if this error is spurious (\ie~the period does not end a sentence), you should use \lstinline!.\@ ! (\ie~put the \lstinline!\@! \emph{after} the period).
+This is rare.
+
+\rationale{Respects English spacing}
+\end{enumerate}
+
+\subsection{Bibliography validation}
+This should be regularly checked: problems with the entry of the \lstinline!.bib! file are often time-consuming if left in a broken state.
+\begin{enumerate}
+  \item Each field line in each \lstinline!.bib! file used must end with a comma
+\begin{lstlisting}[language=BibTeX]
+% Correct
+@TechReport{Stiglitz1991invisiblehandmodern,
+  author       = {Stiglitz, Joseph E},
+  title        = {The invisible hand and modern welfare economics},
+  year         = {1991},
+  institution  = {National Bureau of Economic Research},
+}
+
+% Wrong (no comma after institution)
+@TechReport{Stiglitz1991invisiblehandmodern,
+  author       = {Stiglitz, Joseph E},
+  title        = {The invisible hand and modern welfare economics},
+  year         = {1991},
+  institution  = {National Bureau of Economic Research}
+}
+\end{lstlisting}
+\rationale{Permit reordering of the file.}
+\item Institutional authors must be abbreviated when in the author field. See \Vref{tbl:institutional-abbreviations}.
+\item Newspaper articles should use the entry type \lstinline!@Article{! with the name of the newspaper in the \lstinline!journal! field.
+\item Prefer using the \lstinline!date! field. If the \lstinline!date! field is present, the fields \lstinline!month! and \lstinline!year! must be absent.
+\end{enumerate}
+\rationale{Consistency of output, \emph{ibid}, \emph{idem}, and duplicate avoidance}
+
+
+
+
+
+\subsection{Spelling}
+You cannot release a document until it has been checked for spelling. 
+You may add words%
+  \footnote{Although the distinction will be irrelevant for most additions, by \emph{words} I mean \textsc{pcre} regular expressions.} 
+to the dictionary if the spell check throws spurious errors and you may also limit the scope of the spell check during drafting.
+Furthermore, you may prohibit certain words to mandate consistency in style.
+\begin{enumerate}
+  \item Spell check is run using the \lstinline!hunspell en_GB! dictionary.%
+    \footnote{An Australian-English dictionary is available in R but not yet on Travis where the package is tested.}
+  \item Use the macros \lstinline!\eg!, \lstinline!\ie!, \lstinline!\etc! rather than the hard-coded forms.
+  \rationale{Consistency}
+  \item \textbf{\texttt{stop\_if\_present:}} You may prohibit any set of space-separated patterns using the \lstinline!% stop_if_present:! directive. For example, the following document will fail:\index{\texttt{stop\_if\_present:}}
+\begin{lstlisting}
+\documentclass{grattan}
+
+% stop_if_present: skillset
+
+\begin{document}
+Many teachers rely on many skill sets, but there is one skillset that is the best.
+\end{document}
+\end{lstlisting}
+  \item \textbf{\texttt{add\_to\_dictionary:}} You may use the \lstinline!% add_to_dictionary:! directive to add space-separated words to the set of words to skip in the spell check.\index{\texttt{add\_to\_dictionary:}}
+
+  \lstinline!% stop_if_present: ! takes precedence over \lstinline!% add_to_dictionary: !. The following document still fails.
+\begin{lstlisting}
+\documentclass{grattan}
+
+% stop_if_present: skillset
+% add_to_dictionary: skillset
+
+\begin{document}
+Many teachers rely on many skill sets, but there is one skillset that is the best.
+\end{document}
+\end{lstlisting}
+In addition, \lstinline!% stop_if_present: ! in the document preamble has global scope; 
+if you use \lstinline!\input! to import sections of text, \lstinline!% stop_if_present: ! applies to those sections too. 
+By contrast, the scope of \lstinline!% add_to_dictionary: ! is only the current \lstinline!.tex! file. 
+This is by design: to enable the case where a word should only be permitted in a particular section of text, 
+and to avoid inadvertent additions to the dictionary.
+\item \textbf{\texttt{ignore\_spelling\_in:}} You may use the \lstinline!% ignore_spelling_in: ! directive to ignore spelling within
+the first argument of the given commands. For example, the following document will pass (the spell check):
+\begin{lstlisting}
+\documentclass{grattan}
+
+\newcommand*{\hl}[1]{\textcolor{red}{#1}}
+% ignore_spelling_in: hl
+% add_to_dictionary: skillset
+
+\begin{document}
+Many teachers rely on many skill sets, but there is one skillset that is the best.
+
+\hl{i can taip whatever i wan here!!}
+\end{document}
+\end{lstlisting} 
+This is provided for convenience during drafting -- to allow comments that are printable but still fenced-off from the main document.
+In that spirit, the directive is not permitted when \lstinline[language=R]{pre_release = TRUE} (\ie~you must clean up your comments before seeking a pre-release version).
+
+Some commands' and environments' arguments are excluded regardless, \emph{viz.} \lstinline!\label! (including the third argument of boxes) \lstinline!\*cite! \lstinline!\*ref! 
+\lstinline!tabularx! \lstinline!tabular! \lstinline!table! \lstinline!captionsetup! \lstinline!\phantom! \lstinline!\gls!.
+
+\item If you introduce a new acronym or initialism using capital letters within parentheses following its full form (\ie~the usual way), the abbreviation will be automatically added to the dictionary. For example, the following will pass:
+\begin{lstlisting}
+The Quebec Xylophone Enterprise Foundation (QXEF) is fictional.
+\end{lstlisting}
+the words \emph{and}, \emph{of}, and \emph{the} are excluded when backtracking from the abbreviation. The following will still pass:
+\begin{lstlisting}
+The Quebec Xylophone Enterprise Foundation of Canada (QXEFC) is fictional.
+\end{lstlisting}
+but if those three words form part of the abbreviation, a spelling error may be raised and you will have to \lstinline!% add_to_dictionary: !
+\begin{lstlisting}
+% Will fail:
+The Quebec Xylophone Enterprise Foundation of Canada (QXEFoC) is fictional.
+\end{lstlisting}
+\item If a spelling error is suspected during parsing and the suspect word begins with a capital letter, but can't be matched with
+any provided words, the bibliography is consulted. If the word is an author in the bibliography, the word is skipped with a NOTE 
+reminding you to use \lstinline!\citeauthor! or use \lstinline!% add_to_dictionary: !. 
+Author names will \emph{not} be skipped at pre-release -- they must be included with \lstinline!\citeauthor! or asserted as correct via \lstinline!% add_to_dictionary: !.
+
+\item A lower-case letter followed by a full stop followed by a capital letter is treated as an erroneously entered sentence break.
+This was a common error, and has not been observed to throw a spurious error yet.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\subsection{All labels and figures referenced}
+\begin{enumerate}
+  \item For every figure and table in the document, you must have a cross-reference anchored thereto.
+  \rationale{Avoid confusing reader. Ensure no errant figures.}
+
+  During drafting, an unreferenced figure is a NOTE.
+\end{enumerate}
+
+
+
+
+
+
+\section{Compile requirements}
+\subsection{\LaTeX{} must compile}
+Your document must compile on an arbitrary machine with an up-to-date \TeX{} distribution. 
+
+\subsection{No missing citations or badly-entered bibliographies}
+
+  Your project must be capable of running 
+  \begin{lstlisting}[language=sh]
+  biber -V Report
+  \end{lstlisting}
+  with no errors and limited warnings. In practice this means you must correctly enter the reference keys in your document.  In particular,
+  \begin{enumerate}
+    \item You must use Biber version 2.6 or greater
+    \item You must use a valid date \verb=YYYY-MM-DD= for each \verb|date = {}| entry. 
+    Alternatively, you must include a year and this year must be an integer for every \verb|year = {}| field, 
+    unless:
+    \begin{enumerate}
+    \item you are citing a piece of legislation, in which case you must insert the legislation's jurisdiction in the \verb|year = {}| field (and put the year in the title):
+    \begin{lstlisting}
+@Misc{GST-Act-1999,
+  title = {A New Tax System (Goods and Services Tax) Act 1999},
+  year  = {Cth},
+}
+    \end{lstlisting}
+    The key of such entries must contain one of the strings \verb=Act=, \verb=Reg=, or \verb=Bill=. 
+    The jurisdiction must be one 
+    \begin{lstlisting}
+    Cth    NSW    Vic    SA    Tas    Qld    WA    ACT    NT    NZ
+    \end{lstlisting}
+    This kludge may be avoided in future versions.
+    \item You use the literal \lstinline!{n.d.}! for which the date of publication is unknown.\footnote{This is expected to change in Biber 2.8.}
+
+    For forthcoming works put the (expected) date of publication and use the \lstinline!pubstate = {forthcoming}! field to the entry.
+  \end{enumerate}
+    \item If biber emits any other warnings, you must address them, even if doing so appears to have no visible effect.
+    \rationale{Ensures true warnings are not masked. Ensures citation portability.}
+\end{enumerate}
+
+\subsection{No missing cross-references}
+The log file written by \LaTeX{} must not emit a warning about \texttt{Undefined references} or \texttt{multiply-defined labels}. 
+These occur when a cross-reference or citation has been made using the wrong (likely misspelled or relabelled) key:
+\begin{lstlisting}
+% Wrong:
+I'd like to refer to the next section, \Cref{sec:next-section}.
+
+\section{This section}\label{sec:this-section}
+\end{lstlisting}
+
+\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}}
+Our footnote style provides ample space between the number and the text in the footnote for the first 99 footnotes.
+At the 100th footnote, there is not enough space, so the format must be redefined. 
+The reformat cannot necessarily take place simply between the 99th footnote and 100th footnote, because this would 
+create an unsightly kink in the text in the footnote if they occur in the same column.
+Instead, the rule is that the command must be placed after the last footnote in the column immediately preceding 
+the footnote in which the 100th footnote is placed. 
+Note that this is something that must occur after full compilation as expansion of citations and cross-references 
+may alter the columns in which the footnotes fall. 
+
+The command \lstinline!\CenturyFootnote! correctly reformats the footnote, but cannot know whether it's in the right place.
+\LaTeX{} can provide this information, but moving the command would be too rude.
+
+The function \lstinline[language=R]!check_CenturyFootnote()! runs within \lstinline[language=R]!checkGrattanReport(...)!, echoing a 
+check mark if it is correctly placed (or if it is absent but not needed), or an error if it thinks the command has not been correctly placed, and
+a suggested location for it.
+
+\emph{Don't trust Hugh:} This was a bit of a beast to code so please visually check the 100th footnote column and report any errors. 
+
+
+
+
+\newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
+\begin{longtable}{>{\small}r>{\small\arraybackslash}l}
+\captionsetup{justification=centering}
+\toprule
+\caption{List of all institutional abbreviations}\label{tbl:institutional-abbreviations} \\ 
+\midrule
+\endfirsthead
+  \toprule
+author & Institution \\ 
+  \midrule
+  \endhead
+  \bottomrule 
+  \multicolumn{2}{r}{\textit{\footnotesize Continued on next page\dots}} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+AAP                               & \\
+ABARES                            & Australian Bureau of Agricultural and Resource Economics and Sciences \\
+ABC                               & ABC entities   \\
+ABS                               & Australian Bureau of Statistics \\
+ACARA                             & Australian Curriculum, Assessment and Reporting Authority \\
+ACCC                              & Australian Competition and Consumer Commission \\
+ACDS                              & Australian Council of Deans of Science \\
+ACER                              & Australian Council for Educational Research \\
+ACNC                              & \\
+ACODS                             & Australian Council of Dental Schools \\
+ACOLA                             & Australian Council of Learned Academies \\
+ACOSS                             & Australian Council of Social Service \\
+ACPET                             & Australian Council for Private Education and Training \\
+ACT Treasury                      & \\
+AEC                               & \\
+AEI                               & Australian Education International \\
+AIFS                              & Australian Institute of Family Studies \\
+AIG                               & Australian Industry Group \\
+AIHW                              & Australian Institute of Health and Welfare \\
+AIIA                              & Australian Information Industry Association \\
+AIST                              & The Australian Institute of Superannuation Trustees \\
+AITSL                             & Australian Institute for Teaching and School Leadership \\
+ALP                               & \\
+AMA                               & Australian Medical Association \\
+AMWAC                             & Australian Medical Workforce Advisory Committee \\
+ANAO                              & \\
+ANU                               & Australian National University \\
+ANZ                               & ANZ \\
+APEC                              & Asia-Pacific Economic Cooperation \\
+APRA                              & \\
+AQF                               & Australian Qualifications Framework \\
+ARC                               & Australian Research Council \\
+ASFA                              & \\
+ASIC                              & \\
+ASX                               & ASX \\
+ATN                               & Australian Technology Network of Universities \\
+ATO                               & \\
+ATSE                              & Australian Academy of Technological Sciences and Engineering \\
+AVCC                              & Australian Vice-Chancellors' Committee \\
+AWPA                              & Australian Workforce and Productivity Agency \\
+BCA                               & \\
+BCG                               & The Boston Consulting Group \\
+BIHECC                            & Business, Industry and Higher Education Collaboration Council \\
+BITRE                             & \\
+BITRE                             & Bureau of Infrastructure, Transport and Regional Economics \\
+BREE                              & \\
+BTRE                              & Bureau of Transport and Regional Economics, Department of Transport and Regional Services \\
+CIRES                             & Centre for International Research on Education Systems \\
+COAG                              & Council of Australian Governments \\
+CSIRO                             & Commonwealth Science  and Industrial Research Organisation \\
+DEECD                             & Department of Education and Early Childhood Development \\
+DEET                              & Department of Employment, Education and Training \\
+DEEWR                             & Department of Education, Employment and Workplace Relations \\
+DEST                              & Department of Education, Science and Training \\
+DET                               & Department of Education and Training \\
+DETYA                             & Department of Education, Training and Youth Affairs \\
+DFAT                              & Department of Foreign Affairs and Trade \\
+DHS                               & Department of Human Services \\
+DIAC                              & Australian Department of Immigration and Citizenship \\
+DIBP                              & Department of Immigration and Border Protection \\
+DIBP                              & Department of Immigration and Border Protection \\
+DIICCSRTE                         & Department of Industry, Innovation, Science, Research and Tertiary Education \\
+DIIS                              & Office of Chief Economist / Department of Industry, Innovation and Science \\
+DIISR                             & Australian Department of Innovation, Industry, Science and Research \\
+DIISRTE                           & Department of Industry, Innovation, Science, Research and Tertiary Education \\
+DIS                               & Department of Industry and Science \\
+DMO                               & Defence Materiel Organisation \\
+DOHA                              & Department of Health and Ageing \\
+DPMC                              & Department of Prime Minister and Cabinet \\
+DRET                              & Department of Resources, Energy and Tourism \\
+DSS                               & Department of Social Services \\
+DTF NT                            & \\
+DTF SA                            & \\
+DTF Tasmania                      & \\
+DTF Victoria                      & \\
+DTIRE NSW                         & \\
+DTRS                              & \\
+EC                                & European Commission \\
+ESA                               & Economic Society of Australia \\
+EY                                & Ernst \& Young \\
+FIRB                              & Foreign Investment Review Board \\
+FWC                               & Fair Work Commission \\
+GCA                               & Graduate Careers Australia \\
+GHD                               & \\
+GMAC                              & Graduate Management Admission Council \\
+TRAC Development Group            & TRAC Development Group \\
+HILDA                             & Melbourne Institute of Applied Economic and Social Research, University of Melbourne \\
+HM Revenue \& Customs             & \\
+HM Treasury                       & \\
+HSBC                              & HSBC \\
+HWA                               & Health Workforce Australia \\
+IBISWorld                         & \\
+ICAC                              & Independent Commission Against Corruption \\
+IHPA                              & \\
+IMF                               & International Monetary Fund \\
+IRS                               & \\
+IRU                               & Innovative Research Universities \\
+ITS Global                        & \\
+KPMG                              & KPMG \\
+KPMG Econtech                     & Universities Australia \\
+MCEETYA                           & Ministerial Council on Education, Employment and Youth Affairs \\
+NPS MedicineWise                  & \\
+NAB                               & National Australia Bank \\
+NACUBO                            & National Association of College and University Business Officers \\
+NAO                               & National Audit Office (UK) \\
+NAP                               & National Assessment Program \\
+NATSEM                            & AMP \\
+NBN Co                            & \\
+NCSEHE                            & National Centre for Student Equity in Higher Education, Curtin University \\
+NCVER                             & National Centre for Vocational Education Research \\
+NHMRC                             & National Health and Medical Research Council \\
+NICE                              & \\
+NMC                               & New Media Consortium \\
+NSSE                              & Indiana University Center for Postsecondary Research \\
+NSW Auditor-General               & Audit NSW \\
+NSW DEC                           & Department of Education and Communities \\
+NSW Ombudsman                     & \\
+NSW Parliament                    & \\
+NSW RMS                           & NSW Roads and Maritime Services \\
+NSW Treasury                      & \\
+NTEU                              & National Tertiary Education Union \\
+NZ Inland Revenue                 & \\
+NZ Ministry of Education          & Ministry of Education, New Zealand \\
+NZ Ministry of Social Development & New Zealand Government \\
+NZ Parliament                     & New Zealand Parliament \\
+OCS                               & Office of the Chief Scientist \\
+OECD                              & \\
+  \multicolumn{2}{>{\footnotesize}l}{OECD/Korea Institute of Public Finance} \\ 
+OUA                               & Open Universities Australia \\
+PBO                               & \\
+PBO                               & Parliamentary Budget Office \\
+PBS                               & \\
+PC                                & \\
+PC                                & Productivity Commission \\
+PGA                               & Parkville Global Advisory \\
+PHARMAC                           & Government of New Zealand \\
+PHIAC                             & \\
+PMC                               & PMC \\
+PWC                               & Price Waterhouse Coopers \\
+LJ Perry                          & \\
+QUT                               & Queensland University of Technology \\
+RBA                               & \\
+RDL WA                            & \\
+RP Data Core Logic                & \\
+RUN                               & Regional Universities Network \\
+SA DPTI                           & South Australian Department of Planning, Transport and Infrastructure \\
+SA DTF                            & South Australian Department of Treasury and Finance \\
+SA Government                     & \\
+SEEK                              & SEEK Limited \\
+SHRM                              & Society for Human Resource Management \\
+SMSF Association                  & \\
+TEQSA                             & Tertiary Education Quality and Standards Agency \\
+TRAC Development Group            & TRAC Development Group \\
+ACIL Tasman                       & ACIL Tasman \\
+UCAS                              & Universities and Colleges Admissions Service \\
+UK Behavioural Insights Team      & \\
+UK Department of Health           & \\
+UK JCPSG                          & Joint Costing and Pricing Steering Group \\
+UNSW                              & \\
+US CBO                            & Congressional Budget Office, US \\
+  \multicolumn{2}{>{\footnotesize}l}{US Department of Agriculture}\\
+  \multicolumn{2}{>{\footnotesize}l}{US Department of Agriculture}\\
+  \multicolumn{2}{>{\footnotesize}l}{US Department of Health and Human Services}\\ 
+  \multicolumn{2}{>{\footnotesize}l}{US Department of Education}\\
+USyd                              & University of Sydney \\
+UWA                               & University of Western Australia \\
+UWS                               & University of Western Sydney \\
+VCEC                              & Victorian Competition \& Efficiency Commission \\
+VRQA                              & Victorian Registration and Qualifications Authority \\
+WA Government                     & \\
+WA Parliament                     & \\
+WA Treasury                       & \\
+WHO                               & World Health Organisation \\
+\end{longtable}
+\restoregeometry{}
 
 
 
