@@ -784,11 +784,11 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   box            & box:       & \verb=\begin{smallbox}{A short history of dogs}{box:dogs}= \\
   footnote       & fn:        & \verb=\footnote{A footnote.\label{fn:my-footnote}}= \\
   chapter        & chap:      & \verb=\chapter{Introduction}\label{chap:intro}= \\
-  addchap        & chap:      & \verb=\section{Or can it}\label{subsubsec:Or-can-it}= \\
+  addchap        & chap:      & \verb=\addchap{Or can it}\label{chap:Or-can-it}= \\
   recommendation & rec:       & \verb=\recommendation{Do it}\label{rec:Do-it}= \\
-  section        & sec:       & \verb=\chapter{The budget problem}\label{sec:budget-problem}= \\
-  subsection     & subsec:    & \verb=\section{Change}\label{subsec:Change}= \\
-  subsubsection  & subsubsec: & \verb=\subsection{Or can it}\label{subsubsec:Or-can-it}= \\
+  section        & sec:       & \verb=\section{The budget problem}\label{sec:budget-problem}= \\
+  subsection     & subsec:    & \verb=\subsection{Change}\label{subsec:Change}= \\
+  subsubsection  & subsubsec: & \verb=\subsubsection{No}\label{subsubsec:No}= \\
   phantomsection & paragraph: & \verb=\phantomsection\label{paragraph:PROP-land-taxes}=\\
   \bottomrule
   \end{tabular}
@@ -1328,7 +1328,7 @@ Labels are invoked by \lstinline!\label! and are used to anchor cross-references
 \includegraphics[page=11]{atlas/Charts.pdf}
 \end{figure}
 \end{lstlisting}
-\rationale{Eases cross-referencing later. Req.\ to check all figs/tbls have been referenced.}
+\rationale{Ease cross-referencing. Requisite of check that all figs/tbls have been referenced.}
 \item All caption labels must occur on the same line as \lstinline!\caption!
 \begin{lstlisting}
 % Wrong (label too late)
@@ -1393,7 +1393,7 @@ Many governments have tried to change the GST. But few have succeeded.
 Note: if this error is spurious (\ie~the period does not end a sentence), you should use \lstinline!.\@ ! (\ie~put the \lstinline!\@! \emph{after} the period).
 This is rare.
 
-\rationale{Respects English spacing}
+\rationale{Respect English spacing}
 \end{enumerate}
 
 \subsection{Bibliography validation}
@@ -1559,13 +1559,13 @@ Your document must compile on an arbitrary machine with an up-to-date \TeX{} dis
     \begin{lstlisting}
     Cth    NSW    Vic    SA    Tas    Qld    WA    ACT    NT    NZ
     \end{lstlisting}
-    This kludge may be avoided in future versions.
+    \LaTeX{} has support for the AGLC but not in combination with other styles, so this kludge may be avoided in future versions.
     \item You use the literal \lstinline!{n.d.}! for which the date of publication is unknown.\footnote{This is expected to change in Biber 2.8.}
 
     For forthcoming works put the (expected) date of publication and use the \lstinline!pubstate = {forthcoming}! field to the entry.
   \end{enumerate}
     \item If biber emits any other warnings, you must address them, even if doing so appears to have no visible effect.
-    \rationale{Ensures true warnings are not masked. Ensures citation portability.}
+    \rationale{Ensure true warnings are not masked. Improve citation portability and longevity.}
 \end{enumerate}
 
 \subsection{No missing cross-references}
