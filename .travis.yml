@@ -46,10 +46,6 @@ before_script:
 
 script: 
   - set -e
-  - pdflatex -interaction=batchmode Report.tex
-  - biber -V --onlylog Report
-  - Rscript -e 'library(grattanReporter);grattanReporter::check_biber()'
-  - pdflatex -interaction=batchmode Report.tex
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
