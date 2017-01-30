@@ -624,6 +624,35 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   %}%
   \end{table}
 
+
+  \subsection{Table styles}
+  Rules of thumb:
+  \begin{enumerate}
+    \item Never use vertical rules in a table.
+    \item If a column should be in a particular font, use the array specifier, rather than manually specifying the column. 
+    \begin{lstlisting}
+    % Wrong:
+    \begin{tabularx}{Xl}
+    \textbf{State} & Population \\
+    \textbf{NSW}   & Very high \\
+    \textbf{Vic}   & High\\
+    \dots 
+    \textbf{Tas}   & Low
+    \end{tabularx}
+
+    % OK:
+    \begin{tabularx}{>{\bfseries}Xl}
+    State & Population \\
+    NSW   & Very high \\
+    Vic   & High\\
+    \dots 
+    Tas   & Low
+    \end{tabularx}
+    \end{lstlisting}
+  \end{enumerate}
+
+
+
   \subsection{Boxes}
   \subsubsection{smallbox}\index{smallbox}\index{boxes!smallbox}
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
