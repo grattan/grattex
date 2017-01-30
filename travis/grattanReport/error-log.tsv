@@ -1,0 +1,5 @@
+Time	build_status	error_message
+2017-01-26 01:26:58	Fixed	NA
+2017-01-26 01:27:12	OK	NA
+2017-01-26 10:41:23	Broken	Each field line in .bib must end with a comma (to allow reordering).
+2017-01-26 10:41:37	Still failing	Each field line in .bib must end with a comma (to allow reordering).

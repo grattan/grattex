@@ -4,18 +4,41 @@
 
 \addbibresource{bib/Grattan-Master-Bibliography.bib}
 
-\author{}
-\title{}
+\author{John Daley}
+\title{1 Orange Balloon}
 
 \GrattanReportNumber{2017-00}
 
 \acknowledgements{%
-This 
-%
+This report was written by Peter Goss, Julie Sonnemann, and Kate Griffiths.
+Carmela Chivers provided extensive research assistance and made substantial contributions to the report.
+
+We would like to thank the members of Grattan Institute's School Education Program Reference Group for their helpful comments, as well as numerous government and industry participants and officials for their input.
+
+The opinions in this report are those of the authors and do not necessarily represent the views of Grattan Institute's founding members, affiliates, individual board members reference group members or reviewers.
+Any remaining errors or omissions are the responsibility of the authors.
+
+Grattan Institute is an independent think-tank focused on Australian public policy.
+Our work is independent, practical and rigorous.
+We aim to improve policy outcomes by engaging with both decision-makers and the community.
+
+For further information on the Institute's programs, or to join our mailing list, please go to: \textcolor{blue}{\url{http://www.grattan.edu.au/}}.
+
+{\footnotesize
+This report may be cited as:
+Daley, J., Goss, P., Sonnemann, J., Griffiths, K., and Chivers, C. (2017). \emph{\mytitle}. Grattan Institute.
+
+ISBN: 978-1-925015-96-6
+
+All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\par
+}
 }
 
 
+
+
 \begin{document}
+
 
 \begin{overview}
 This is the overview. 
@@ -42,9 +65,11 @@ Some text under a recommendation.
 \chapter{Chapter title}\label{chap:example}
 This demonstrates the markup commands for sectioning. 
 If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as above and below.
-Although \LaTeX{} doesn't require it, you \emph{must} label all chapters, and every label must have a specific prefix followed by a colon, as throughout this document.
+Although \LaTeX{} doesn't require it, every label must have a specific prefix followed by a colon, as throughout this document.
+Furthermore, every chapter must be labelled, even if it is never referenced.
 
-To refer to a chapter, use \Chapref{chap:example}, not \Vref{chap:example}, as the latter's hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
+To refer to a chapter, use \Chapref{chap:example}, % not \Vref{chap:example}, 
+otherwise the hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
 To refer to a chapter range, \Chaprefrange{chap:example}{chap:citations}.
 
 \section{Section title}\label{sec:example}
@@ -157,6 +182,10 @@ the label command \emph{must} be inside the footnote.%
 
 A cross-reference to \Vref{fig:2nd-example-figure}, with a different cross-reference that will never print the page number: \Cref{fig:first-example-figure}.
 
+If a sentence ends with a capital letter, you must use backslash-@ immediately before the full stop.
+Many governments have tried to change the GST\@. 
+But few have succeeded.
+
 \begin{figure}
 \caption{A second figure caption\label{fig:2nd-example-figure}}
 \units{Figure units}
@@ -212,7 +241,7 @@ But nothing the copy said could convince her and so it didn't take long until a 
 \end{bigbox*}
 
 \chapter{Citations}\label{chap:citations}
-The database is contained in a .bib file. 
+The database is contained in a .bib file.\footnote{A footnote.} 
 Citations to appear in-line with the text are inserted like: \textcite{Daley-etal-2016-SAPTO}.
 Citations to appear in a footnote use the structure of this sentence.\footcite{Daley-etal-2016-Assessing-2016-super-tax-reforms}
 To refer to a page number: \textcite[][30]{Daley-etal-2016-SAPTO}.
@@ -226,5 +255,6 @@ The above command cites \emph{all} entries in the document.
 You should remove this line before compiling. 
 
 \printbibliography
+
 
 \end{document}

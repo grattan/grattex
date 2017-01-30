@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2016/10/05 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/01/21 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -14,6 +14,20 @@ numbers=noenddot,
 
 % Continuous numbering
 \RequirePackage{chngcntr}
+\RequirePackage{etoolbox}
+\RequirePackage{footmisc}
+\RequirePackage{tablefootnote} % for footnotes within tables
+\RequirePackage{zref-savepos}
+
+% Record number and page of footnote:
+% http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
+% This must be before hyperref and after
+% etoolbox footmisc tablefootnote
+\patchcmd{\@footnotetext}
+  {#1}
+  {\zsavepos{footnote@@@\thefootnote}\label{footnote@@@\thefootnote}#1}
+  {}
+  {\ddt}
 
 % avoid non-discretionary hyphens 
 \exhyphenpenalty=100
@@ -45,7 +59,6 @@ numbers=noenddot,
      \textendash = {-25, }, \textemdash = {-25, }  % cancel out left protrusion
    }
 \fi
-\RequirePackage{footmisc}
 \RequirePackage[document]{ragged2e}
 % ------
 % Grattan colors
@@ -77,7 +90,6 @@ numbers=noenddot,
 % ------
 \RequirePackage{colortbl}
 \RequirePackage{array}
-\RequirePackage{tablefootnote} % for footnotes within tables
 \newcommand{\myhline}{\noalign{\global\arrayrulewidth1pt}\hline
                       \noalign{\global\arrayrulewidth1pt}}
 
@@ -121,6 +133,20 @@ numbers=noenddot,
 \newcommand*{\Chapref}[1]{Chapter~\topref{#1}}
 \newcommand*{\Chapsref}[1]{Chapters~\topref{#1}}
 \newcommand*{\Chaprefrange}[2]{Chapters~\topref{#1} to~\topref{#2}}
+
+% Footnote layout (koma)
+% \makebox left-aligned numbers.
+\deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
+\addtokomafont{footnotereference}{\small}
+
+% Detect the footnote immediately prior to CenturyFootnote
+\newwrite\fnC
+\immediate\openout\fnC=\jobname.fn100
+\let\oldfootnote\footnote
+\renewcommand{\footnote}[1]{\oldfootnote{#1}\immediate\write\fnC{\thefootnote}}
+% Placed just before footnote exceeds 100. 
+\newcommand*{\CenturyFootnote}{\label{@CenturyFootnote@@@\thefootnote}\zsavepos{@CenturyFootnote@z}\immediate\closeout\fnC\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
+
 
 % Make url formatting the same
 \urlstyle{same}
@@ -212,17 +238,10 @@ numbers=noenddot,
 
 % Big boxes -- over the whole page
 % It is recommended to surround this with an \afterpage{% 
-\newenvironment{bigbox}[2]{\onecolumn\setlength{\currentparskip}{\parskip}
-\begin{boxe}
-\begin{mdframed}[style=GrattanFrameBox]%
-\setlength{\columnsep}{33pt}
-\begin{multicols}{2}
-\setlength{\parskip}{\currentparskip}% restore the value
- \captionsetup{labelfont={bf,Orange}, font={bf,Orange}, format=plain,justification=raggedright,singlelinecheck=false}
- \caption{#1}\label{#2}%
- %\RaggedRight
+\newenvironment{bigbox}[2]{
+\begin{bigbox*}{#1}{#2}
 }{
-\end{multicols}\end{mdframed}\end{boxe}\twocolumn}
+\end{bigbox*}}
 
 % dbl floats
 \newenvironment{bigbox*}[2]{%
@@ -380,7 +399,6 @@ numbers=noenddot,
 
 % Ensures hyperlinked chapter headings refer to their referent headings
 % not the preceding baseline
-\RequirePackage{etoolbox}
 % Add extra hyper target for chapter: chapter..\thechapter
 \renewcommand*{\chapterformat}{%
   \mbox{\raisebox{25pt}[0pt][0pt]{\hypertarget{chapter..\thechapter}{}}% Add 
@@ -418,10 +436,7 @@ numbers=noenddot,
 %% ---------------------------------
 \RequirePackage[headsepline=1pt,plainheadsepline,footsepline=1pt,plainfootsepline]{scrlayer-scrpage}
 
-% Footnote layout (koma)
-% \makebox left-aligned numbers.
-\deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
-\addtokomafont{footnotereference}{\small}
+
 
 \clearscrheadings
 \clearscrplain
@@ -566,6 +581,100 @@ numbers=noenddot,
   \addtocontents{lot}{\linespread{1.3}\selectfont}% optical
   \counterwithout{figure}{chapter}
   \counterwithout{table}{chapter}
+}
+
+\newcommand*{\@pagetwo}{%
+  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
+  \subsection*{Grattan Institute Support}  
+  \begin{multicols}{2}
+  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
+  \vspace{-5pt} 
+  {\centering  
+  
+  \IfFileExists{aus-gov-logo-stacked-black.pdf}%
+    {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}%
+    {\includegraphics[width=3.75cm]{./logos/aus-gov-logo-stacked-black}}
+  
+  \IfFileExists{Vic_Gov_Logo-2016.pdf}%
+    {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}%
+    {\includegraphics[width=3.25cm]{./logos/Vic_Gov_Logo-2016}}
+  
+  \IfFileExists{UOM-Pos_S_PMS.pdf}%
+    % Too much whitespace on top:
+    % l t r b
+    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}%
+    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{./logos/UOM-Pos_S_PMS}}%
+
+  
+  \IfFileExists{Bhp.pdf}%
+    % Bhp original a little too much whitespace on bottom:
+    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
+    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
+  }
+  \columnbreak\par
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
+  \footnotesize 
+
+  Google 
+
+  Medibank Private
+
+  Susan McKinnon Foundation
+
+  \vspace{27pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
+
+  EY
+
+  PwC
+
+  The Scanlon Foundation
+
+  Wesfarmers
+
+  \vspace{27pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
+
+  Ashurst
+
+  Corrs
+
+  Deloitte
+
+  GE ANZ
+
+  The Myer Foundation
+
+  Urbis
+
+  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  \end{multicols}
+  \end{minipage} 
+  \eject \normalsize
+  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
+    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+    \setlength{\parskip}{5.5pt plus 2pt}
+    \raggedright\@acknowledgements
+  \end{minipage}
+  \twocolumn
+}
+
+\newcommand*{\@checkGrattanReportNumberdefined}{
+  \ifdefempty{\@GrattanReportNumber}%
+    {\ClassError{You have not provided a Grattan Report Number}}%
+    {}%
+}
+
+\DeclareOption{submission}{
+  % A submission has no special page two
+  \renewcommand*{\@pagetwo}{
+    \ifdefempty{\@acknowledgements}{}{\ClassWarning{grattan}{Using option 'submission', but 'acknowledgements' defined.}}
+    \ifdefempty{\@GrattanReportNumber}{}{\ClassWarning{grattan}{Using option 'submission', but 'GrattanReportNumber' defined.}} 
+  }
+  \renewcommand*{\@checkGrattanReportNumberdefined}{}
 }
 
 \ProcessOptions\relax
@@ -750,9 +859,7 @@ numbers=noenddot,
 \newcommand{\@GrattanReportNumber}{}
 
 \AtBeginDocument{%
-  \ifdefempty{\@GrattanReportNumber}%
-    {\ClassError{You have not provided a Grattan Report Number}}%
-    {}%
+  \@checkGrattanReportNumberdefined{}
 }
 
 %% BibLaTeX needs to precede acknowledgements (otherwise acknowledgements can't contain citations).
@@ -807,82 +914,7 @@ numbers=noenddot,
 	%
 % Following page.
 \pagestyle{scrheadings}
-\begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-  \subsection*{Grattan Institute Support}  
-  \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-5pt} 
-  {\centering  
-  
-  \IfFileExists{aus-gov-logo-stacked-black.pdf}%
-    {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}%
-    {\includegraphics[width=3.75cm]{./logos/aus-gov-logo-stacked-black}}
-  
-  \IfFileExists{Vic_Gov_Logo-2016.pdf}%
-    {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}%
-    {\includegraphics[width=3.25cm]{./logos/Vic_Gov_Logo-2016}}
-  
-  \IfFileExists{UOM-Pos_S_PMS.pdf}%
-    % Too much whitespace on top:
-    % l t r b
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}%
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{./logos/UOM-Pos_S_PMS}}%
-
-  
-  \IfFileExists{Bhp.pdf}%
-    % Bhp original a little too much whitespace on bottom:
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
-  }
-  \columnbreak\par
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
-  \footnotesize 
-
-  Google 
-
-  Medibank Private
-
-  Susan McKinnon Foundation
-
-  \vspace{27pt}
-
-  \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
-
-  EY
-
-  PwC
-
-  The Scanlon Foundation
-
-  Wesfarmers
-
-  \vspace{27pt}
-
-  \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
-
-  Ashurst
-
-  Corrs
-
-  Deloitte
-
-  GE ANZ
-
-  The Myer Foundation
-
-  Urbis
-
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
-  \end{multicols}
-  \end{minipage} 
-  \eject \normalsize
-  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
-    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
-    \setlength{\parskip}{5.5pt plus 2pt}
-    \raggedright\@acknowledgements
-  \end{minipage}
-  \twocolumn
+\@pagetwo
 }
 
 % Table of contents
@@ -959,11 +991,11 @@ numbers=noenddot,
   \global\let\@textbottom\mytextbottom
   \global\let\@texttop\mytexttop}}
 
-% Placed just before footnote exceeds 100. 
-\newcommand*{\CenturyFootnote}{\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
 
 % Discretionary commands for consistent treatment of common abbreviations
 \newcommand*{\eg}{\emph{e.g.}}
 \newcommand*{\ie}{\emph{i.e.}}
 \newcommand*{\etc}{\emph{etc.}}
 
+% To detect user's current version
+\listfiles

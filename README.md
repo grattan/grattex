@@ -16,11 +16,14 @@ Staff starting a new report should do the following:
   7. Visit [sharelatex.com](https://sharelatex.com).
   7. Click `New Project > Import from GitHub`.
   7. Locate the repository you just created, and click `Import to ShareLaTeX`. 
-  7. If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed.
+  7. If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
   7. At the top right, click `Share`.
   7. Add collaborators as desired. 
 
 ## Changelog
+
+### 2016-01-17
+* New option 'submission'.
 
 ### 2016-01-06
 * Add `\Chapref` and friends for neater hyperlinks to chapters

@@ -28,6 +28,12 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
+# Documentation only Rnw and pdf
+doc/*
+!doc/*.pdf
+!doc/*.Rnw
+
+
 # Thumbnails
 ._*
 
@@ -62,3 +68,5 @@ Example-report.lof
 Example-report.txt
 *.lof
 *.pdf
+*.fn100
+Report.txt
