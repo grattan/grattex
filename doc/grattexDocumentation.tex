@@ -88,7 +88,8 @@ literate={~} {\(\sim\)}{1},
 moredelim = [is][\slshape\color{violet}]{@@}{@@},
 classoffset=1,
 morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
-classoffset=0
+classoffset=0,
+escapechar={\^*}{*}
 }
 \usepackage{fancyvrb}
 \newcommand{\nverb}[1]{
@@ -157,7 +158,8 @@ classoffset=0
 \newcommand*{\etc}{\emph{etc}}
 
 \newcommand*{\rationale}[1]{\par\hfill{\small\itshape\raise1.5ex\hbox{#1}}\vspace{11pt plus 5.5pt}}
-
+\newcommand*{\prereleaseonly}{\marginpar{\footnotesize\lstinline[language=R]!pre_release!}}
+\newcommand*{\releaseonly}{\marginpar{\footnotesize\lstinline[language=R]!release!}}
 
 \usepackage{realboxes}
 \usepackage{manfnt}
@@ -1144,9 +1146,64 @@ Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must 
 \paragraph{One \texttt{.tex} file} The top-level of your directory must contain one and only one \texttt{.tex} file. 
 This requirement is to ensure the correct file is checked and to enable to command to be run non-interactively.
 
-\paragraph{At least one author must be a staff member at Grattan} A member of Grattan staff must appear in the preamble of the \code{.tex} file 
-and must be the first author in \lstinline!\author!.
-\rationale{Avoid misspelling staff names}
+\subsection{Preamble}
+The preamble is all the lines of the \texttt{.tex} file before \lstinline!\begin{document}!. 
+The bulk of these requirements are met with the template.
+\begin{enumerate}
+  \item Line 1 must be the \lstinline!\documentclass[@@<options>@@]{grattan}! line.
+  \rationale{Confirms the report is intended as a Grattan Report. Easier to code.}
+  \item The line \lstinline!\begin{document}! must occur in the document.
+  \rationale{Determine which lines comprise the preamble}
+  \item All your \lstinline!\addbibresource! invocations must be in the preamble and not in an \lstinline!\input!.
+  \rationale{Easier to detect bib files used. Support autocompletion.}
+  \item You must \prereleaseonly
+  have one and only one invocation of \lstinline!\author{@@<author names>@@}! in the preamble, and the first two words in \lstinline!\author{@@<author names>@@}!
+   must be the forename and surname of a member of Grattan staff.
+  \rationale{Avoid misspelling staff names}
+  \item You must \prereleaseonly
+  have one and only one invocation of \lstinline!\title{@@<title of the report>@@}! in the preamble, and the title must have at least three characters.
+  \rationale{Ensure title is present}
+  \item You may use \lstinline!\input! within \lstinline!\acknowledgements{@@<This report was written by etc.>@@}! but if you do you must only use \lstinline!\input{tex/acknowledgements}!.
+  \item If you invoke \lstinline!\ReportOrWorkingPaper{Working Paper}!, you must have the phrase \lstinline!This report was written by! in the preamble.
+  \item If you have the phrase \lstinline!This working paper was written by! in your preamble, you must invoke \lstinline!\ReportOrWorkingPaper{Working Paper}! in the preamble.
+  \rationale{Ensure working paper/report distinction is made}
+  \item You must \releaseonly
+   not have the string \lstinline!embargo! in any line in the preamble if you are attempting a release.
+  \item The first \prereleaseonly four characters of \lstinline!\GrattanReportNumber! must be:
+  \begin{enumerate}
+    \item the current year, or
+    \item if you used \lstinline!\YEAR! in the preamble (to specify the year)---the year specified
+  \end{enumerate} 
+  \item The characters \prereleaseonly
+   after the first five (year + \lstinline!-!) must be an integer.
+  \item The end \prereleaseonly 
+  of the acknowledgements from \lstinline!This report may be cited as:! to the licence line must be \lstinline!\footnotesize!.
+  \rationale{Consistency}
+  \item You must \prereleaseonly
+  have the following line as a single line in the acknowledgements (including the \lstinline!\par!).
+  \begin{lstlisting}
+All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\par
+  \end{lstlisting}
+  \item The line \prereleaseonly
+  after the licence line must be a closing brace.
+  \item The line \prereleaseonly
+  two lines before the licence line must start with the string \lstinline!ISBN: ! and there must be only one such line in the preamble.
+  \item The ISBN \prereleaseonly 
+  must not be the ISBN provided in the template.
+  \item The ISBN \prereleaseonly 
+  must have 13 digits.
+  \item The ISBN \prereleaseonly 
+  must have a valid checksum.
+  \item The string \prereleaseonly 
+  \lstinline!This report may be cited as! must be present on the 3rd or 4th line prior to the ISBN line. 
+  \item The line \prereleaseonly 
+  two lines before the ISBN line must be the recommended citation in the correct form, given the authors, title, and year provided. 
+  \item You cannot \prereleaseonly
+  use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
+  \rationale{Ensure editorial comments/markup are gone}
+\end{enumerate}
+
+
 
 \subsubsection{Postnotes in citations} 
 \begin{enumerate}
@@ -1508,6 +1565,10 @@ Author names will \emph{not} be skipped at pre-release -- they must be included 
 
 \item A lower-case letter followed by a full stop followed by a capital letter is treated as an erroneously entered sentence break.
 This was a common error, and has not been observed to throw a spurious error yet.
+
+\item Contractions should not result in an error, 
+but only when it is typed with an ASCII apostrophe, not Unicode symbol U+2019 and friends (also known as `smart quotes').
+In the tex file, the correct, ASCII apostrophe will look plain and vertical, whereas the others will look angled, curved, or serifed. 
 \end{enumerate}
 
 
@@ -1517,7 +1578,7 @@ This was a common error, and has not been observed to throw a spurious error yet
 
 
 
-\subsection{All labels and figures referenced}
+\subsection{All tables and figures should be referenced}
 \begin{enumerate}
   \item For every figure and table in the document, you must have a cross-reference anchored thereto.
   \rationale{Avoid confusing reader. Ensure no errant figures.}
@@ -1560,10 +1621,24 @@ Your document must compile on an arbitrary machine with an up-to-date \TeX{} dis
     Cth    NSW    Vic    SA    Tas    Qld    WA    ACT    NT    NZ
     \end{lstlisting}
     \LaTeX{} has support for the AGLC but not in combination with other styles, so this kludge may be avoided in future versions.
-    \item You use the literal \lstinline!{n.d.}! for which the date of publication is unknown.\footnote{This is expected to change in Biber 2.8.}
+    \item You use the literal \lstinline!{n.d.}! when the entry's date of publication is unknown.\footnote{This is expected to change in Biber 2.8.}
 
     For forthcoming works put the (expected) date of publication and use the \lstinline!pubstate = {forthcoming}! field to the entry.
   \end{enumerate}
+  \item Warnings concerning \lstinline!junk found! are usually brought on by text outside entries.
+  This is an error as it may indicate an entry has been splinched or prematurely closed. In the following, 
+  the junk characters are from \lstinline!year! onwards, as the previous line's closing brace ends the entry
+  (even though subsequent lines were intended to be included).
+  \begin{lstlisting}[language=BibTeX]
+  @TechReport{Stiglitz1991invisiblehandmodern,
+  author       = {Stiglitz, Joseph E},
+  title        = {The invisible hand and modern welfare economics},
+  }
+  year         = {1991},
+  institution  = {National Bureau of Economic Research},
+}
+  \end{lstlisting}
+
     \item If biber emits any other warnings, you must address them, even if doing so appears to have no visible effect.
     \rationale{Ensure true warnings are not masked. Improve citation portability and longevity.}
 \end{enumerate}
