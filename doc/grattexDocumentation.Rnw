@@ -1036,8 +1036,15 @@ checkGrattanReport(compile = TRUE, pre_release = TRUE, release = TRUE)
 @
 \end{enumerate}
 
+
+
+
+
+
+
+
 \section{Requirements}
-\subsection{System requirements for release}
+\subsection{System requirements for release validation}
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via my drat repository:
 <<install-grattanReporter>>=
@@ -1046,6 +1053,11 @@ install.packages("grattanReporter",
                   type = "source")
 @
 This will ensure you have the latest version of the package that successfully built on the master branch.
+
+\textbf{Installation instructions:}
+\begin{enumerate}
+  \item Install R for your operating system from CRAN. Google \lstinline!R for @@<your operating system>@@!
+\end{enumerate}
 
 
 \item An up-to-date \LaTeX{} distribution.%
