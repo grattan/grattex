@@ -437,13 +437,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   \end{enumerate}
 
-  \subsection{Package options}
+  \subsection{Class options}
   \begin{description}
     \item[embargoed] Issues an embargoed mark on the title page and in the running heads. Enlivens the following commands:
     \begin{enumerate}
       \item \relax\lstinline!\EmbargoDate! The date printed in the embargo fields. By default, \lstinline!XXXX!.
-      \item \relax\lstinline!\EmbargoText! The embargo field. By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
-      \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page. By default, \lstinline!\EmbargoText{}!.
+      \item \relax\lstinline!\EmbargoText! The embargo field printed in the running heads and on the title page (unless \lstinline!\EmbargoTitleText! is set). 
+      By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
+      \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page (as distinct from the running heads). By default, \lstinline!\EmbargoText{}!.
     \end{enumerate}
   \end{description}
 
