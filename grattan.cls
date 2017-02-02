@@ -130,9 +130,9 @@ numbers=noenddot,
 \newcommand{\topref}[1]% #1 = label
 {\hyperlink{page.\getpagerefnumber{#1}}{\getrefnumber{#1}}}
 
-\newcommand*{\Chapref}[1]{Chapter~\topref{#1}}
-\newcommand*{\Chapsref}[1]{Chapters~\topref{#1}}
-\newcommand*{\Chaprefrange}[2]{Chapters~\topref{#1} to~\topref{#2}}
+\newcommand*{\Chapref}[1]{\nameCref{#1}~\topref{#1}}
+\newcommand*{\Chapsref}[1]{\nameCrefs{#1}~\topref{#1}}
+\newcommand*{\Chaprefrange}[2]{\nameCrefs{#1}~\topref{#1} to~\topref{#2}}
 
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
