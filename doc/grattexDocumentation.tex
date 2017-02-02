@@ -443,10 +443,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
 \end{document}
   \end{lstlisting}
+
+
+
+
   \subsection{Grattan-specific preamble}
   The \verb=grattan= package will not compile without additional lines of code. Your preamble must have the following lines.
   \begin{lstlisting}
-   \documentclass{grattan}
+   \documentclass[@@<options>@@]{grattan}
    
    \title{@@<Title of the report>@@}
    \author{@@<Authors>@@}
@@ -465,7 +469,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \begin{enumerate}
     \item A file \verb=FrontPage.pdf=
    \end{enumerate}
-   \item The following files:
+   \item The following files (possibly in a subdirectory \verb=logos/=:
     \begin{verbatim}
     aus-gov-logo-stacked-black.pdf
     Bhp.pdf
@@ -478,6 +482,17 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \end{enumerate}
+
+  \subsection{Class options}
+  \begin{description}
+    \item[embargoed] Issues an embargoed mark on the title page and in the running heads. Enlivens the following commands:
+    \begin{enumerate}
+      \item \relax\lstinline!\EmbargoDate! The date printed in the embargo fields. By default, \lstinline!XXXX!.
+      \item \relax\lstinline!\EmbargoText! The embargo field printed in the running heads and on the title page (unless \lstinline!\EmbargoTitleText! is set). 
+      By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
+      \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page (as distinct from the running heads). By default, \lstinline!\EmbargoText{}!.
+    \end{enumerate}
+  \end{description}
 
 
 
@@ -707,6 +722,34 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{tabular}%
   %}%
   \end{table}
+
+  \subsection{Table styles}
+  Rules of thumb:
+  \begin{enumerate}
+    \item Never use vertical rules in a table.
+    \item If a column should be in a particular font, use the array specifier, rather than manually specifying the column. 
+    \begin{lstlisting}
+    % Wrong:
+    \begin{tabularx}{Xl}
+    \textbf{State} & Population \\
+    \textbf{NSW}   & Very high \\
+    \textbf{Vic}   & High\\
+    \dots 
+    \textbf{Tas}   & Low
+    \end{tabularx}
+
+    % OK:
+    \begin{tabularx}{>{\bfseries}Xl}
+    State & Population \\
+    NSW   & Very high \\
+    Vic   & High\\
+    \dots 
+    Tas   & Low
+    \end{tabularx}
+    \end{lstlisting}
+  \end{enumerate}
+
+
 
   \section{Boxes}
   \subsection{smallbox}\index{smallbox}\index{boxes!smallbox}
@@ -1098,8 +1141,15 @@ Additional arguments are provided for increasingly thorough checks
 \end{knitrout}
 \end{enumerate}
 
+
+
+
+
+
+
+
 \section{Requirements}
-\subsection{System requirements for release}
+\subsection{System requirements for release validation}
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via my drat repository:
 \begin{knitrout}
@@ -1112,6 +1162,11 @@ Additional arguments are provided for increasingly thorough checks
 \end{kframe}
 \end{knitrout}
 This will ensure you have the latest version of the package that successfully built on the master branch.
+
+\textbf{Installation instructions:}
+\begin{enumerate}
+  \item Install R for your operating system from CRAN. Google \lstinline!R for @@<your operating system>@@!
+\end{enumerate}
 
 
 \item An up-to-date \LaTeX{} distribution.%

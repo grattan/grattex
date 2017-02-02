@@ -452,9 +452,10 @@ numbers=noenddot,
 \newcommand*{\@EmbargoTitleText}{\null}
 \DeclareOption{embargoed}{
   \newcommand*{\EmbargoDate}[1]{\renewcommand{\@EmbargoDate}{#1}}
-  \newcommand*{\EmbargoTitleText}[1]{\renewcommand{\@EmbargoTitleText}{#1}}
   \newcommand*{\@EmbargoDate}{XXXX}
+  \newcommand*{\EmbargoText}[1]{\renewcommand{\@EmbargoText}{#1}}
   \renewcommand*{\@EmbargoText}{Embargoed until 9 pm \@EmbargoDate}
+  \newcommand*{\EmbargoTitleText}[1]{\renewcommand{\@EmbargoTitleText}{#1}}
   \renewcommand*{\@EmbargoTitleText}{\@EmbargoText}
 }
 
