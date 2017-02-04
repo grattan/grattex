@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/01/21 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/02/04 Reports of the Grattan Institute, Melbourne v1.2.0]
 
 \LoadClass[%
 a4paper,
@@ -622,11 +622,13 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{27pt}
+  \vspace{25pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
   EY
+
+  Maddocks
 
   PwC
 
@@ -634,7 +636,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{27pt}
+  \vspace{25pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
