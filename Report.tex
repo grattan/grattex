@@ -26,7 +26,7 @@ For further information on the Institute's programs, or to join our mailing list
 
 {\footnotesize
 This report may be cited as:
-Daley, J., Goss, P., Sonnemann, J., Griffiths, K., and Chivers, C. (2017). \emph{\mytitle}. Grattan Institute.
+Daley, J., Goss, P., Sonnemann, J., Griffiths, K., and Chivers, C\@. (2017). \emph{\mytitle}. Grattan Institute.
 
 ISBN: 978-1-925015-96-6
 
@@ -75,6 +75,18 @@ Furthermore, every chapter must be labelled, even if it is never referenced.
 To refer to a chapter, use \Chapref{chap:example}, % not \Vref{chap:example}, 
 otherwise the hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
 To refer to a chapter range, \Chaprefrange{chap:example}{chap:citations}.
+
+Hugh forgot that you want to use the word `appendix', not `chapter' when referring to a chapter-level heading in the appendix.
+If you can see this text, that bug should be fixed.
+Thanks to Carmela for filing. 
+For a bit more information about appendices, see \Chapref{chap:appendices} on \vpageref{chap:appendices}. 
+
+(Do you see what we did there?
+Sometimes you might want to refer something on a page not connected to a heading or caption,\footnote{Known generally as `counters'.} such as a paragraph in the middle of a section.
+To do so, you have to mark the location with a `phantom section', as demonstrated in \Vref{paragraph:sentence-ending-periods}.
+Note that the hyperlink with the cross-reference points to the location of the paragraph, not merely to the whole page.
+To mention the page number, we say \vpageref{paragraph:sentence-ending-periods}.
+This command is safe in one important respect: it will expand to `on this page', if the locations converge on the same page, so that the page number's appearance is never jarring.)
 
 \section{Section title}\label{sec:example}
 \subsection{Subsection title}\label{subsec:example}
@@ -186,6 +198,7 @@ the label command \emph{must} be inside the footnote.%
 
 A cross-reference to \Vref{fig:2nd-example-figure}, with a different cross-reference that will never print the page number: \Cref{fig:first-example-figure}.
 
+\phantomsection\label{paragraph:sentence-ending-periods}
 If a sentence ends with a capital letter, you must use backslash-@ immediately before the full stop.
 Many governments have tried to change the GST\@. 
 But few have succeeded.
@@ -254,9 +267,19 @@ To refer to something other than page number.\footcite[][Chapter~4]{Daley-etal-2
 Use the plural forms of these commands to cite multiple works (\textcites{Piketty2013}{Leigh-2013-BattlersBillionaires}) at the same point.
 Square brackets / optional arguments are placed before the key.\footcites{AtkinsonStiglitz1976}[][42]{MirrleesAdamBesleyEtAl2011}
 
-You can include a document in the bibliography without it appearing in the main matter: \nocite{*}. 
+% You can include a document in the bibliography without it appearing in the main matter: \nocite{*}. 
 The above command cites \emph{all} entries in the document. 
 You should remove this line before compiling. 
+
+\appendix
+
+\chapter{Appendices and back matter}\label{chap:appendices}
+To start the appendix area, just invoke \verb=\appendix= as above. 
+There's nothing else special about it.
+Elements such as glossaries and indexes are not supported by this class file, though can be implemented.
+
+The bibliography is not an appendix, but appears after the appendix. 
+
 
 \printbibliography
 

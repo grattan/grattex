@@ -150,6 +150,7 @@ escapechar={\^*}{*}
 \usepackage{cleveref}
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
+\subtitle{Manual for \texttt{grattex} v1.2.0 and \texttt{grattanReporter} v0.14.0}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -221,7 +222,7 @@ escapechar={\^*}{*}
 
 \maketitle
 \tableofcontents
-\newpage
+\newpage 
 % \subsection*{Interpreting code examples}
 % \addcontentsline{toc}{subsection}{Interpreting code examples}
 \addsec{Interpreting code examples}
@@ -1108,12 +1109,13 @@ Run
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-and follow the prompts until you receive the console message:
+
+\noindent and follow the prompts until you receive the console message:
 \begin{quote}
 \CheckmarkBold\ \texttt{Report checked.}
 \end{quote}
 
-Additional arguments are provided for increasingly thorough checks
+\noindent Additional arguments are provided for increasingly thorough checks
 \begin{enumerate}
   \item For daily checking of citation keys, bibliography data model validation, and mistyped cross-references.
 \begin{knitrout}
@@ -1140,6 +1142,10 @@ Additional arguments are provided for increasingly thorough checks
 \end{kframe}
 \end{knitrout}
 \end{enumerate}
+
+\noindent You must \emph{fix} all errors with \lstinline[language=R]!release = TRUE! before a report can be released to the main report area on \url{http://grattan.edu.au/}. 
+Ideally, a report should pass the check with no warnings or notes of any kind.
+If the check emits a \texttt{NOTE}, you must \emph{address} this \texttt{NOTE} before report acceptance. 
 
 
 
@@ -1253,6 +1259,10 @@ All material published or otherwise created by Grattan Institute is licensed und
   \lstinline!This report may be cited as! must be present on the 3rd or 4th line prior to the ISBN line. 
   \item The line \prereleaseonly 
   two lines before the ISBN line must be the recommended citation in the correct form, given the authors, title, and year provided. 
+
+  All members of Grattan staff in the preamble must be included in the recommended citations. 
+  If you have an author that did not contribute to the intellectual substance of the report, but contributed to the preparation of the document, 
+  use the directive \lstinline!% editorial_author_only: ! followed by the person's name.
   \item You cannot \prereleaseonly
   use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
   \rationale{Ensure editorial comments/markup are gone}
@@ -1608,9 +1618,9 @@ the words \emph{and}, \emph{of}, and \emph{the} are excluded when backtracking f
 \begin{lstlisting}
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFC) is fictional.
 \end{lstlisting}
-but if those three words form part of the abbreviation, a spelling error may be raised and you will have to \lstinline!% add_to_dictionary: !
+further, if those stop words form part of the abbreviation,\marginpar{\footnotesize From v0.8.3} that combination will also be considered and added to the dictionary:
 \begin{lstlisting}
-% Will fail:
+% Still succeeds:
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFoC) is fictional.
 \end{lstlisting}
 \item If a spelling error is suspected during parsing and the suspect word begins with a capital letter, but can't be matched with
@@ -1676,7 +1686,7 @@ Your document must compile on an arbitrary machine with an up-to-date \TeX{} dis
     Cth    NSW    Vic    SA    Tas    Qld    WA    ACT    NT    NZ
     \end{lstlisting}
     \LaTeX{} has support for the AGLC but not in combination with other styles, so this kludge may be avoided in future versions.
-    \item You use the literal \lstinline!{n.d.}! when the entry's date of publication is unknown.\footnote{This is expected to change in Biber 2.8.}
+    \item You use the literal \lstinline!{n.d.}! when the entry's date of publication is unknown.\footnote{This is expected to not throw a warning with a change in Biber 2.8. You should nonetheless endeavour to find out the publication date. For online material, you can do this by interrogating the PDF metadata or by visiting \lstinline!https://www.google.com.au/search?q=inurl:@@<URL>@@&as_qdr=y20!.}
 
     For forthcoming works put the (expected) date of publication and use the \lstinline!pubstate = {forthcoming}! field to the entry.
   \end{enumerate}

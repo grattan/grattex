@@ -67,6 +67,6 @@ Example-report.lof
 *.xml
 Example-report.txt
 *.lof
-*.pdf
+/*.pdf
 *.fn100
 Report.txt

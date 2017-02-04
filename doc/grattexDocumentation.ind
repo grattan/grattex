@@ -1,44 +1,59 @@
 \begin{theindex}
 
-  \item appendix, \hyperpage{9}
+  \item \texttt{add\_to\_dictionary:}, \hyperpage{49}
+  \item \texttt{stop\_if\_present:}, \hyperpage{49}
 
   \indexspace
 
-  \item bigbox*, \hyperpage{14}
+  \item bigbox*, \hyperpage{20}
   \item boxes
-    \subitem bigbox*, \hyperpage{14}
-    \subitem smallbox, \hyperpage{13}
+    \subitem bigbox*, \hyperpage{20}
+    \subitem smallbox, \hyperpage{20}
+    \subitem verysmallbox, \hyperpage{20}
 
   \indexspace
 
-  \item chapter, \hyperpage{9}
-  \item contentspage, \hyperpage{9}
-  \item Cref, \hyperpage{14}
-  \item cross-references, \hyperpage{14}
+  \item chapter, \hyperpage{15}
+  \item citations, \hyperpage{24}
+  \item contentspage, \hyperpage{15}
+  \item Cref, \hyperpage{21}
+  \item cross-references, \hyperpage{21}
 
   \indexspace
 
-  \item enumerate, \hyperpage{11}
+  \item enumerate, \hyperpage{16}
 
   \indexspace
 
-  \item itemize, \hyperpage{11}
+  \item footcite, \hyperpage{24}
+  \item footcites, \hyperpage{24}
 
   \indexspace
 
-  \item label, \hyperpage{14}
+  \item itemize, \hyperpage{16}
 
   \indexspace
 
-  \item overview, \hyperpage{9}
+  \item label, \hyperpage{21}
 
   \indexspace
 
-  \item section, \hyperpage{9}
-  \item smallbox, \hyperpage{13}
+  \item overview, \hyperpage{14}
 
   \indexspace
 
-  \item Vref, \hyperpage{14}
+  \item section, \hyperpage{15}
+  \item smallbox, \hyperpage{20}
+
+  \indexspace
+
+  \item tabularx, \hyperpage{18}
+  \item textcite, \hyperpage{24}
+  \item textcites, \hyperpage{24}
+
+  \indexspace
+
+  \item verysmallbox, \hyperpage{20}
+  \item Vref, \hyperpage{21}
 
 \end{theindex}
