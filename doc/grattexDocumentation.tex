@@ -444,10 +444,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
 \end{document}
   \end{lstlisting}
+
+
+
+
   \subsection{Grattan-specific preamble}
   The \verb=grattan= package will not compile without additional lines of code. Your preamble must have the following lines.
   \begin{lstlisting}
-   \documentclass{grattan}
+   \documentclass[@@<options>@@]{grattan}
    
    \title{@@<Title of the report>@@}
    \author{@@<Authors>@@}
@@ -466,7 +470,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \begin{enumerate}
     \item A file \verb=FrontPage.pdf=
    \end{enumerate}
-   \item The following files:
+   \item The following files (possibly in a subdirectory \verb=logos/=:
     \begin{verbatim}
     aus-gov-logo-stacked-black.pdf
     Bhp.pdf
@@ -479,6 +483,17 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \end{enumerate}
+
+  \subsection{Class options}
+  \begin{description}
+    \item[embargoed] Issues an embargoed mark on the title page and in the running heads. Enlivens the following commands:
+    \begin{enumerate}
+      \item \relax\lstinline!\EmbargoDate! The date printed in the embargo fields. By default, \lstinline!XXXX!.
+      \item \relax\lstinline!\EmbargoText! The embargo field printed in the running heads and on the title page (unless \lstinline!\EmbargoTitleText! is set). 
+      By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
+      \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page (as distinct from the running heads). By default, \lstinline!\EmbargoText{}!.
+    \end{enumerate}
+  \end{description}
 
 
 

@@ -43,6 +43,7 @@ All material published or otherwise created by Grattan Institute is licensed und
 \begin{overview}
 This is the overview. 
 The word \textbf{Overview} appears in the contentspage at \verb=\contentspage= as an unnumbered entry.
+The gap between the overview heading and the overview text should be the same as in regular chapters. 
 Set over two columns, the first and last baseline of the text in each column have the same vertical positions.
 
 (But only if the overview is large enough!
@@ -53,10 +54,13 @@ The first line of the overview starts at a fixed vertical position but the heigh
 In particular if the overview is too large, it will overflow the page.
 
 Footnotes are not permitted in the overview.
+
+Note that neither \LaTeX{} nor any other checks will stop or even warn you if the overview text overflows the bottom margin.
+This is probably something that I could do, but it's not really my fault if you're that inattentive\dots . 
 \end{overview}
 
 \begin{recommendations}
-\recommendation{Recommendation}
+\recommendation{Recommendation}\label{rec:use-labels}
 Some text under a recommendation.
 \end{recommendations}
 
@@ -64,7 +68,7 @@ Some text under a recommendation.
 
 \chapter{Chapter title}\label{chap:example}
 This demonstrates the markup commands for sectioning. 
-If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as above and below.
+If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as on the line two lines (in the source) above this, and throughout.
 Although \LaTeX{} doesn't require it, every label must have a specific prefix followed by a colon, as throughout this document.
 Furthermore, every chapter must be labelled, even if it is never referenced.
 
