@@ -1,59 +1,71 @@
 \begin{theindex}
 
-  \item \texttt{add\_to\_dictionary:}, \hyperpage{49}
-  \item \texttt{stop\_if\_present:}, \hyperpage{49}
+  \item \texttt{add\_to\_dictionary:}, \hyperpage{51}
+  \item \texttt{stop\_if\_present:}, \hyperpage{51}
 
   \indexspace
 
-  \item bigbox*, \hyperpage{20}
+  \item bigbox*, \hyperpage{22}
   \item boxes
-    \subitem bigbox*, \hyperpage{20}
-    \subitem smallbox, \hyperpage{20}
-    \subitem verysmallbox, \hyperpage{20}
+    \subitem bigbox*, \hyperpage{22}
+    \subitem smallbox, \hyperpage{22}
+    \subitem verysmallbox, \hyperpage{22}
 
   \indexspace
 
-  \item chapter, \hyperpage{15}
-  \item citations, \hyperpage{24}
-  \item contentspage, \hyperpage{15}
-  \item Cref, \hyperpage{21}
-  \item cross-references, \hyperpage{21}
+  \item \texttt{CenturyFootnote}, \hyperpage{54}
+  \item chapter, \hyperpage{16}
+  \item citations, \hyperpage{26}
+    \subitem legislation, \hyperpage{53}
+  \item contentspage, \hyperpage{16}
+  \item Cref, \hyperpage{22}
+  \item cross-references, \hyperpage{22}
 
   \indexspace
 
-  \item enumerate, \hyperpage{16}
+  \item directives
+    \subitem \texttt{add\_to\_dictionary:}, \hyperpage{51}
+    \subitem spelling, \hyperpage{50}
+    \subitem \texttt{stop\_if\_present:}, \hyperpage{51}
 
   \indexspace
 
-  \item footcite, \hyperpage{24}
-  \item footcites, \hyperpage{24}
+  \item enumerate, \hyperpage{18}
 
   \indexspace
 
-  \item itemize, \hyperpage{16}
+  \item footcite, \hyperpage{26}
+  \item footcites, \hyperpage{26}
+  \item footnotes
+    \subitem 100th, \hyperpage{54}
 
   \indexspace
 
-  \item label, \hyperpage{21}
+  \item itemize, \hyperpage{18}
 
   \indexspace
 
-  \item overview, \hyperpage{14}
+  \item label, \hyperpage{22}
 
   \indexspace
 
-  \item section, \hyperpage{15}
-  \item smallbox, \hyperpage{20}
+  \item overview, \hyperpage{16}
 
   \indexspace
 
-  \item tabularx, \hyperpage{18}
-  \item textcite, \hyperpage{24}
-  \item textcites, \hyperpage{24}
+  \item section, \hyperpage{16}
+  \item smallbox, \hyperpage{22}
+  \item Spell check, \hyperpage{50}
 
   \indexspace
 
-  \item verysmallbox, \hyperpage{20}
-  \item Vref, \hyperpage{21}
+  \item tabularx, \hyperpage{20}
+  \item textcite, \hyperpage{26}
+  \item textcites, \hyperpage{26}
+
+  \indexspace
+
+  \item verysmallbox, \hyperpage{22}
+  \item Vref, \hyperpage{22}
 
 \end{theindex}
