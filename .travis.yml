@@ -21,6 +21,13 @@ packages:
   - testthat
   - devtools
   - grattanReporter
+  - readr
+  - zoo
+  - gmailr
+  - twitteR
+  - crayon
+  - clisymbols
+  - stringi
 
 r_github_packages:
   - hughparsonage/grattanReporter
