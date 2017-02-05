@@ -380,7 +380,24 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   }
   \end{table}
   %
-  \chapter{Writing a report}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \chapter{Drafting a report}
   \section{The preamble}
   The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything after \verb=\begin{document}=. 
   
