@@ -689,7 +689,7 @@ numbers=noenddot,
   backend=biber,
   singletitle,
   style=authoryear-ibid,
-  ibidtracker=strict, 
+  ibidtracker=constrict, % avoid ibids from figures being confusing
   autocite=footnote, 
   maxcitenames=1, 
   maxbibnames=9, 
