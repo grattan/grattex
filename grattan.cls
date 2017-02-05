@@ -665,19 +665,12 @@ numbers=noenddot,
   \twocolumn
 }
 
-\newcommand*{\@checkGrattanReportNumberdefined}{
-  \ifdefempty{\@GrattanReportNumber}%
-    {\ClassError{You have not provided a Grattan Report Number}}%
-    {}%
-}
-
 \DeclareOption{submission}{
   % A submission has no special page two
   \renewcommand*{\@pagetwo}{
     \ifdefempty{\@acknowledgements}{}{\ClassWarning{grattan}{Using option 'submission', but 'acknowledgements' defined.}}
     \ifdefempty{\@GrattanReportNumber}{}{\ClassWarning{grattan}{Using option 'submission', but 'GrattanReportNumber' defined.}} 
   }
-  \renewcommand*{\@checkGrattanReportNumberdefined}{}
 }
 
 \ProcessOptions\relax
@@ -859,11 +852,7 @@ numbers=noenddot,
 \newcommand{\@Report}{Report}
 
 \newcommand*{\GrattanReportNumber}[1]{\renewcommand*{\@GrattanReportNumber}{#1}}
-\newcommand{\@GrattanReportNumber}{}
-
-\AtBeginDocument{%
-  \@checkGrattanReportNumberdefined{}
-}
+\newcommand{\@GrattanReportNumber}{2017-02}
 
 %% BibLaTeX needs to precede acknowledgements (otherwise acknowledgements can't contain citations).
 
