@@ -115,6 +115,8 @@ escapechar={\^*}{*}
 \newcommand*{\prereleaseonly}{\marginpar{\footnotesize\lstinline[language=R]!pre_release!}}
 \newcommand*{\releaseonly}{\marginpar{\footnotesize\lstinline[language=R]!release!}}
 
+\newcommand*{\fromversion}[1]{\marginpar{\footnotesize From v#1}}
+
 \usepackage{realboxes}
 \usepackage{manfnt}
 
@@ -1558,7 +1560,7 @@ the words \emph{and}, \emph{of}, and \emph{the} are excluded when backtracking f
 \begin{lstlisting}
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFC) is fictional.
 \end{lstlisting}
-further, if those stop words form part of the abbreviation,\marginpar{\footnotesize From v0.8.3} that combination will also be considered and added to the dictionary:
+further, if those stop words form part of the abbreviation,\fromversion{0.8.3} that combination will also be considered and added to the dictionary:
 \begin{lstlisting}
 % Still succeeds:
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFoC) is fictional.
