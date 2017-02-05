@@ -1473,8 +1473,18 @@ This should be regularly checked: problems with the entry of the \lstinline!.bib
 \item Institutional authors must be abbreviated when in the author field. See \Vref{tbl:institutional-abbreviations}.
 \item Newspaper articles should use the entry type \lstinline!@Article{! with the name of the newspaper in the \lstinline!journal! field.
 \item Prefer using the \lstinline!date! field. If the \lstinline!date! field is present, the fields \lstinline!month! and \lstinline!year! must be absent.
-\end{enumerate}
 \rationale{Consistency of output, \emph{ibid}, \emph{idem}, and duplicate avoidance}
+\item Duplicate\fromversion{0.14.0} entries in the bibliography are an error.
+
+An entry is a duplicate if its author, year, and title are all identical (ignoring case) to another entry. 
+Note that this will not catch all duplicates (and likely it is not possible to catch all duplicates).
+\end{enumerate}
+
+
+
+
+
+
 
 
 
