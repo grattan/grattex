@@ -433,13 +433,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item Click the Settings Tab.
 
       \makebox[\textwidth][r]{\includegraphics[width=0.9\paperwidth]{figure/github-settings-tab.PNG}}
-      \item On the left, click `Collaborators`. 
-      \item Add `HughParsonage` and any other authors as desired.
-      \item Visit [sharelatex.com](https://sharelatex.com).
-      \item Click `New Project > Import from GitHub`.
-      \item Locate the repository you just created, and click `Import to ShareLaTeX`. 
+      \item On the left, click \verb=Collaborators=. 
+      \item Add \verb=HughParsonage= and any other authors as desired.
+      \item Visit \href{https://sharelatex.com}{sharelatex.com}.
+      \item Click \verb=New Project > Import from GitHub=.
+      \item Locate the repository you just created, and click \verb=Import to ShareLaTeX=. 
       \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
-      \item At the top right, click `Share`.
+      \item At the top right, click \verb=Share=.
       \item Add collaborators as desired. 
     \end{enumerate}
   \end{enumerate}
@@ -550,7 +550,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   After the \lstinline!overview! environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
   
-  \section{Body text}
+  \subsection{Body text}
   \subsection{Sectioning}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
@@ -599,12 +599,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{document}
   \end{lstlisting}
   
-  \section{Boldface, italics}
+  \subsection{Boldface, italics}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
   That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
   
-  \section{Paragraphs}
+  \subsection{Paragraphs}
   Use a blank line to mark a new paragraph. For example
   \begin{center}
   \begin{minipage}{\textwidth}
@@ -626,7 +626,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   
-  \section{Numbered / bulleted lists}
+  \subsection{Numbered / bulleted lists}
   Use \verb=enumerate= (for numbered lists) and \verb=itemize= (for bulleted lists) \index{enumerate}\index{itemize}
   \begin{lstlisting}
    \begin{enumerate}
