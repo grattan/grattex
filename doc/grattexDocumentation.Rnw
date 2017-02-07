@@ -102,6 +102,14 @@ escapechar={\^*}{*}
 \usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
 \usepackage{cleveref}
 
+% For previous page for 'varioref'
+% space after second -2 is important here.
+\makeatletter
+\patchcmd\cref@old@@vpageref
+{\advance\@tempcnta-2}
+{\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
+\makeatother
+
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
 \subtitle{Manual for \texttt{grattex} v1.2.0 and \texttt{grattanReporter} v0.14.0}
 \author{Cameron Chisholm \and Hugh Parsonage}
@@ -114,6 +122,8 @@ escapechar={\^*}{*}
 \newcommand*{\rationale}[1]{\par\hfill{\small\itshape\raise1.5ex\hbox{#1}}\vspace{11pt plus 5.5pt}}
 \newcommand*{\prereleaseonly}{\marginpar{\footnotesize\lstinline[language=R]!pre_release!}}
 \newcommand*{\releaseonly}{\marginpar{\footnotesize\lstinline[language=R]!release!}}
+
+\newcommand*{\fromversion}[1]{\marginpar{\footnotesize From v#1}}
 
 \usepackage{realboxes}
 \usepackage{manfnt}
@@ -378,7 +388,61 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   }
   \end{table}
   %
-  \chapter{Writing a report}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \chapter{Drafting a Grattan report}
+  \section{Getting started}\label{sec:getting-started}
+  To start a Grattan report, working paper, or submission, you can either
+  \begin{enumerate}
+  \item email Hugh Parsonage, Cameron Chisholm, Andrew McDonald, or Brigitte Phelan and ask to be setup, letting them know:
+  \begin{enumerate}
+    \item a suitable name for the repository
+    \item the contributors 
+  \end{enumerate}
+  The contributors can be changed after the report is set up. 
+  But the repo name cannot. 
+  Accordingly, it is important that you choose a name that is evocative of the project, unique, and will have a long shelf-life.
+  This can be difficult, and a naming convention has not yet been established; however, names like `HigherEd-report' or `Inquiry-submission' will be rejected---or purged if they slip through.
+  \item or, follow the following steps on your own:
+    \begin{enumerate}
+      \item Visit \url{https://travis-ci.org/HughParsonage/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
+      If it shows another image (or no image), please do not proceed.
+      \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and \href{https://sharelatex.com}{sharelatex.com}.
+      \item Copy \verb=https://github.com/HughParsonage/grattex= to your clipboard
+      \item Visit \url{https://github.com/new/import}
+      \item Paste \verb=https://github.com/HughParsonage/grattex= into the \verb=Your old repository's clone URL= field.
+      \item Choose an evocative name for your repository under \verb=Name=
+      \item Select \textbf{Private}
+      \item Click \textbf{Begin Import}.
+      \item You will be taken to a new page showing import progress. After the import is complete, follow the link which appears.
+      \item Click the Settings Tab.
+
+      \makebox[\textwidth][r]{\includegraphics[width=0.9\paperwidth]{figure/github-settings-tab.PNG}}
+      \item On the left, click `Collaborators`. 
+      \item Add `HughParsonage` and any other authors as desired.
+      \item Visit [sharelatex.com](https://sharelatex.com).
+      \item Click `New Project > Import from GitHub`.
+      \item Locate the repository you just created, and click `Import to ShareLaTeX`. 
+      \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
+      \item At the top right, click `Share`.
+      \item Add collaborators as desired. 
+    \end{enumerate}
+  \end{enumerate}
   \section{The preamble}
   The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything after \verb=\begin{document}=. 
   
@@ -403,7 +467,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \subsection{Grattan-specific preamble}
-  The \verb=grattan= package will not compile without additional lines of code. Your preamble must have the following lines.
+  So that reports look alike, a particular preamble is required that load the Grattan style.
+  If you imported the package from GitHub using the instructions in \Vref{sec:getting-started} your report already meets the requirements described below.
+
+  Your preamble must have the following lines.
   \begin{lstlisting}
    \documentclass[@@<options>@@]{grattan}
    
@@ -420,7 +487,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \begin{enumerate}
    \item The \verb=grattan.cls= file, which creates the document according to the Grattan template.
    \item The \verb=bibliography.bib= file, containing your bibliography database.
-   \item The folder \verb=FrontPage= which must contain:
+   \item The folder \verb=FrontPage= which\releaseonly must contain:
    \begin{enumerate}
     \item A file \verb=FrontPage.pdf=
    \end{enumerate}
@@ -439,14 +506,26 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{enumerate}
 
   \subsection{Class options}
+  You can invoke one of the following options by writing 
+  \begin{lstlisting}
+  \documentclass[@@<options>@@]{grattan}
+  \end{lstlisting}
+  for example, 
+  \begin{lstlisting}
+  \documentclass[FrontPage]{grattan}
+  \documentclass[FrontPage,continuous]{grattan}
+  \end{lstlisting}
   \begin{description}
-    \item[embargoed] Issues an embargoed mark on the title page and in the running heads. Enlivens the following commands:
+    \item[embargoed] Issue an embargoed mark on the title page and in the running heads. Enlivens the following commands:
     \begin{enumerate}
       \item \relax\lstinline!\EmbargoDate! The date printed in the embargo fields. By default, \lstinline!XXXX!.
       \item \relax\lstinline!\EmbargoText! The embargo field printed in the running heads and on the title page (unless \lstinline!\EmbargoTitleText! is set). 
       By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
       \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page (as distinct from the running heads). By default, \lstinline!\EmbargoText{}!.
     \end{enumerate}
+    \item[submission] Document is a submission to inquiries. Omits page 2.
+    \item[FrontPage] Use the pdf in the location \lstinline!./FrontPage/FrontPage.pdf! as page 1, rather than a generic one.
+    \item[continuous] Use continuous numbering for figures and tables, rather than resetting after each chapter. 
   \end{description}
 
 
@@ -734,10 +813,6 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   to insert a figure.
   
   Note the \lstinline![H]! which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
-
-  \section{Footnotes in boxes}
-  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
-  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \section{Cross-references}
   There are three \LaTeX{} commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
@@ -798,6 +873,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   \section{Footnotes and referencing}
   Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
+
+  \subsection{Footnotes in boxes}
+  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
+  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \subsection{\texttt{bibliography.bib}}
   The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
@@ -813,7 +892,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
    \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
 
-   Bad (who knows that 2016c is):
+   Bad (who knows what 2016c is):
 
    \begin{lstlisting}[language=BibTeX]
    @Misc{DaleyEtAl2016c,
@@ -836,7 +915,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
 
 
-   \item[\lstinline!author=@@<author name>@@!] each of these lines designate the fields of the reference %
+   \item[] each of the \lstinline!author=@@<author name>@@! lines designate the fields of the reference %
    
   \end{enumerate}
 
@@ -1238,7 +1317,7 @@ We spent \$10 million giving \$1 to a million people.
 
 % Wrong: formatted as an equation
 We spent $10 million giving $1 to a million people.
-% Wrong correctly formatted but indistinguishable to the parser 
+% Wrong: correctly formatted but indistinguishable to the parser 
 If $x, y, z$ are the sides of a right-triangle then $z > y > x$ implies $z^2 = y^2 + x^2$.
 \end{lstlisting}
 \rationale{Avoiding accidental formatting of sentences as equations}
@@ -1473,15 +1552,25 @@ This should be regularly checked: problems with the entry of the \lstinline!.bib
 \item Institutional authors must be abbreviated when in the author field. See \Vref{tbl:institutional-abbreviations}.
 \item Newspaper articles should use the entry type \lstinline!@Article{! with the name of the newspaper in the \lstinline!journal! field.
 \item Prefer using the \lstinline!date! field. If the \lstinline!date! field is present, the fields \lstinline!month! and \lstinline!year! must be absent.
-\end{enumerate}
 \rationale{Consistency of output, \emph{ibid}, \emph{idem}, and duplicate avoidance}
+\item Duplicate\fromversion{0.14.0} entries in the bibliography are an error.
+
+An entry is a duplicate if its author, year, and title are all identical (ignoring case) to another entry. 
+Note that this will not catch all duplicates (and likely it is not possible to catch all duplicates).
+\end{enumerate}
+
+
+
+
+
+
 
 
 
 
 
 \subsection{Spelling}
-You cannot release a document until it has been checked for spelling. 
+You cannot release a document until it has been checked for spelling.\index{Spell check}\index{directives!spelling}
 You may add words%
   \footnote{Although the distinction will be irrelevant for most additions, by \emph{words} I mean \textsc{pcre} regular expressions.} 
 to the dictionary if the spell check throws spurious errors and you may also limit the scope of the spell check during drafting.
@@ -1491,7 +1580,8 @@ Furthermore, you may prohibit certain words to mandate consistency in style.
     \footnote{An Australian-English dictionary is available in R but not yet on Travis where the package is tested.}
   \item Use the macros \lstinline!\eg!, \lstinline!\ie!, \lstinline!\etc! rather than the hard-coded forms.
   \rationale{Consistency}
-  \item \textbf{\texttt{stop\_if\_present:}} You may prohibit any set of space-separated patterns using the \lstinline!% stop_if_present:! directive. For example, the following document will fail:\index{\texttt{stop\_if\_present:}}
+  \item \textbf{\texttt{stop\_if\_present:}}\index{directives!stop if present@\texttt{stop\_if\_present:}} 
+  You may prohibit any set of space-separated patterns using the \lstinline!% stop_if_present:! directive. For example, the following document will fail:\index{\texttt{stop\_if\_present:}}
 \begin{lstlisting}
 \documentclass{grattan}
 
@@ -1501,7 +1591,7 @@ Furthermore, you may prohibit certain words to mandate consistency in style.
 Many teachers rely on many skill sets, but there is one skillset that is the best.
 \end{document}
 \end{lstlisting}
-  \item \textbf{\texttt{add\_to\_dictionary:}} You may use the \lstinline!% add_to_dictionary:! directive to add space-separated words to the set of words to skip in the spell check.\index{\texttt{add\_to\_dictionary:}}
+  \item \textbf{\texttt{add\_to\_dictionary:}}\index{directives!add to dictionary@\texttt{add\_to\_dictionary:}} You may use the \lstinline!% add_to_dictionary:! directive to add space-separated words to the set of words to skip in the spell check.\index{\texttt{add\_to\_dictionary:}}
 
   \lstinline!% stop_if_present: ! takes precedence over \lstinline!% add_to_dictionary: !. The following document still fails.
 \begin{lstlisting}
@@ -1548,7 +1638,7 @@ the words \emph{and}, \emph{of}, and \emph{the} are excluded when backtracking f
 \begin{lstlisting}
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFC) is fictional.
 \end{lstlisting}
-further, if those stop words form part of the abbreviation,\marginpar{\footnotesize From v0.8.3} that combination will also be considered and added to the dictionary:
+further, if those stop words form part of the abbreviation,\fromversion{0.8.3} that combination will also be considered and added to the dictionary:
 \begin{lstlisting}
 % Still succeeds:
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFoC) is fictional.
@@ -1603,8 +1693,8 @@ Your document must compile on an arbitrary machine with an up-to-date \TeX{} dis
     Alternatively, you must include a year and this year must be an integer for every \verb|year = {}| field, 
     unless:
     \begin{enumerate}
-    \item you are citing a piece of legislation, in which case you must insert the legislation's jurisdiction in the \verb|year = {}| field (and put the year in the title):
-    \begin{lstlisting}
+    \item you are citing a piece of legislation, in which case you must insert the legislation's jurisdiction in the \verb|year = {}| field (and put the year in the title):\index{citations!legislation}
+    \begin{lstlisting}[language=BibTeX]
 @Misc{GST-Act-1999,
   title = {A New Tax System (Goods and Services Tax) Act 1999},
   year  = {Cth},
@@ -1648,13 +1738,13 @@ I'd like to refer to the next section, \Cref{sec:next-section}.
 \section{This section}\label{sec:this-section}
 \end{lstlisting}
 
-\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}}
+\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
 Our footnote style provides ample space between the number and the text in the footnote for the first 99 footnotes.
 At the 100th footnote, there is not enough space, so the format must be redefined. 
 The reformat cannot necessarily take place simply between the 99th footnote and 100th footnote, because this would 
-create an unsightly kink in the text in the footnote if they occur in the same column.
+create an unsightly kink in the text in the footnote area if the two footnotes occur in the same column.
 Instead, the rule is that the command must be placed after the last footnote in the column immediately preceding 
-the footnote in which the 100th footnote is placed. 
+the column in which the 100th footnote is placed. 
 Note that this is something that must occur after full compilation as expansion of citations and cross-references 
 may alter the columns in which the footnotes fall. 
 
@@ -1662,10 +1752,13 @@ The command \lstinline!\CenturyFootnote! correctly reformats the footnote, but c
 \LaTeX{} can provide this information, but moving the command would be too rude.
 
 The function \lstinline[language=R]!check_CenturyFootnote()! runs within \lstinline[language=R]!checkGrattanReport(...)!, echoing a 
-check mark if it is correctly placed (or if it is absent but not needed), or an error if it thinks the command has not been correctly placed, and
+check mark if it is correctly placed (or if it is absent but not needed), or an NOTE if it thinks the command has not been correctly placed, and
 a suggested location for it.
 
-\emph{Don't trust Hugh:} This was a bit of a beast to code so please visually check the 100th footnote column and report any errors. 
+A NOTE may appear even when \lstinline!\CenturyFootnote! has been correctly placed if the column preceding the 100th footnote is empty or contains a figure, table, or box.
+If the column containing the 100th footnote looks good (\ie~the number and footnote text aren't too cramped, and there are no kinks in the footnote text) and the previous column containing numbered footnotes also looks good (\ie~spacing normal, and no kinks in the footnote text), then the NOTE does not need to be addressed.
+
+\emph{Don't trust Hugh:} This was a bit of a beast to code so please visually check the 100th footnote columns before release and report any errors. 
 
 
 

@@ -20,10 +20,13 @@ packages:
   - hunspell
   - testthat
   - devtools
-  - grattanReporter
-
-r_github_packages:
-  - hughparsonage/grattanReporter
+  - readr
+  - zoo
+  - gmailr
+  - twitteR
+  - crayon
+  - clisymbols
+  - stringi
 
 before_install:
   - source ./travis/texlive.sh
@@ -41,8 +44,7 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
-    - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (TRUE || !requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'install.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat", type = "source")'
 
 script: 
   - set -e
