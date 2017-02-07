@@ -967,10 +967,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsection{Citations}\index{citations}\index{footcite}\index{footcites}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
-  Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{key2}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
+  Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{@@<key2>@@}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
   
-  Use \lstinline!\textcite{<key>}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
-  Similarly \verb=\textcites= and \verb=\textcite[][18--24]{key}= as with footcite. 
+  Use \lstinline!\textcite{@@<key>@@}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
+  Similarly \verb=\textcites= and \verb=\textcite[][18--24]{@@<key>@@}= as with footcite. 
   
   \chapter{More advanced macros}
   \section{New commands}
