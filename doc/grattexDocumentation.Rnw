@@ -879,7 +879,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
   \subsection{\texttt{bibliography.bib}}
-  The \texttt{bibliography.bib} file is a plain text containing the bibliography databases. The database contains several lines for each entry:
+  The \texttt{bibliography.bib} file is a plain text\footnote{Please use UTF-8 encoding.} containing the bibliography databases. The database contains several lines for each entry:
   \begin{lstlisting}[language=BibTeX]
   @@<@type>@@{@@<key>@@,
     author={@@<author name>@@},
@@ -945,20 +945,23 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   Use \emph{Hansard} in the author field for proceedings of the Parliament of Australia.
 
-  \subsection{ABS entries}
+  \subsubsection{ABS entries}
   If you are citing an catalogue entry from the ABS:
   \begin{itemize}
     \item Include the catalogue number as a \lstinline!note = !, not in the title.
     \item Only the most up-to-date version of time series data should be used, unless you are making a point about revisions to the entry. 
   \end{itemize}
 
-  \subsection{R packages}
+  \subsubsection{R packages}
   You should cite the R core team and all R packages that were attached for any analysis reaching publication. 
   Use \texttt{knitr::write\_bib} to generate the entries. 
   If an R package has a poorly-written DESCRIPTION file that precludes a neat output from \texttt{knitr::write\_bib}, \emph{leave as-is}.
 
-  \subsection{\LaTeX}
+  \subsubsection{\LaTeX}
   Do not cite your use of \LaTeX, except in books as a colophon.
+
+  \section{Miscellaneous bibliography entry quirks}
+  If your URL contains special characters, \emph{do not escape them}. They will be printable but point to the wrong address. 
   
   
   \subsection{Citations}\index{citations}\index{footcite}\index{footcites}
@@ -1028,28 +1031,6 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \item Using \Code{\\textcite\{blah\} and \\textcite\{foo\}} instead of \Code{\\textcites\{blah\}\{foo\}}.
   \end{enumerate}
 
-
-  \chapter{Known bugs in the \texttt{grattan.cls} file}
-  \section{\texttt{microtype}'s spacing and \texttt{ragged2e}} 
-  Currently, \texttt{spacing=true} and \texttt{ragged2e} are used. 
-  This is not supported by \texttt{microtype}, which issues a warning. 
-  Indeed, it can cause catastrophically bad typesetting.
-
-  If you see words being put on top of other words, it is due to this bug. 
-
-  \includegraphics[width=\textwidth]{figure/ragged-spacing-bug.png}
-
-  The fix depends on the context: if it occurs within an environment \texttt{EE}, use \lstinline!\AtBeginEnvironment{EE}{\RaggedRight}!. 
-  If it occurs close to a list, a paragraph break (\ie~a blank line) before the list environment may be necessary. 
-
-  \section{Big boxes}
-  \subsection{Caption baseline does not match matching column baseline}
-  Solved: \url{http://tex.stackexchange.com/questions/305450/align-caption-baseline-in-second-column-with-baseline-of-first-column}
-  \section{Footnotes in big boxes extend across the entire page}
-  
-  
-  \chapter{pdflink errors}
-  Use \lstinline!\nocite{*}! and delete all auxiliary files to escape the error.
   \part{Notes for the typesetter}
   \chapter{Moving floats}
   \begin{enumerate}
@@ -2511,11 +2492,6 @@ not provided:
 To fix this error, you need to find where a number is expected so that
 you can provide the correct one.
 
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "reader"
-%%% End: 
-
 \newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
 \caption{List of all commands} \\
@@ -2532,6 +2508,7 @@ you can provide the correct one.
     textcites & Multiple citations to be placed inline & Citations \& bibliography \\[5pt]
     Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
     Cref  & Subsequent cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    Chapref  & Cross-reference to a chapter & Cross-referencing \\
     label & The target of a cross-reference. & Cross-referencing \\
     phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it is just text in a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
     bottomrule & Final horizontal rule in a table & Figures and tables \\
@@ -2555,6 +2532,8 @@ you can provide the correct one.
     textit & Italic font (oblique font for Arial) & Fonts \\[5pt]
     item  & Commence new number or bullet in an enumerate or itemize environment & Lists \\[5pt]
     ie    & Macro for consistent use of `i.e.' & Misc \\
+    eg    & Macro for consistent use of `e.g.' & Misc \\
+    etc    & Macro for consistent use of `etc.' & Misc \\
     input & Used to insert raw .tex code from another file & Misc \\[5pt]
     addchap & Chapter without number & Sections \\
     chapter & Begins a new chapter, first argument the title of the chapter & Sections \\
@@ -2565,12 +2544,12 @@ you can provide the correct one.
     author & The authors of the report & Single-use \\
     contentspage & Load after the overview. Prints the table of contents and the list of figures & Single-use \\
     documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
-    GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
+    % GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
     %GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
     listoffigures & Print list of figures  & Single-use \\
     listoftables & Prints list of tables & Single-use \\
     printbibliography & Prints bibliography & Single-use \\
-    printendnotes & Prints endnotes if requested & Single-use \\
+    %printendnotes & Prints endnotes if requested & Single-use \\
     %printfigurenotes & Prints list of `long figure notes' by \textbackslash{}fnotes & Single-use \\
     %printtablenotes & Prints list of `long table notes' by \textbackslash{}tnotes & Single-use \\
     title & The title of the report & Single-use \\[5pt]
