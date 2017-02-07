@@ -859,7 +859,7 @@ numbers=noenddot,
 \newcommand{\@Report}{Report}
 
 \newcommand*{\GrattanReportNumber}[1]{\renewcommand*{\@GrattanReportNumber}{#1}}
-\newcommand{\@GrattanReportNumber}{}
+\newcommand{\@GrattanReportNumber}{2017-02}
 
 \AtBeginDocument{%
   \@checkGrattanReportNumberdefined{}
