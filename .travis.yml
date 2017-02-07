@@ -48,7 +48,9 @@ before_script:
 
 script: 
   - set -e
-  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
+  - pdflatex -interaction=nonstopmode Report.tex
+  - Rscript -e 'cat("\n", Sys.getenv("TRAVIS_REPO_SLUG"), "\n")'
+  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3, update_grattan.cls = FALSE)'
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
