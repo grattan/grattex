@@ -8,7 +8,7 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 \let\oldLaTeX\LaTeX
 \renewcommand{\LaTeX}{\textrm{\oldLaTeX}}
 
-
+% \usepackage{showexpl}
 \usepackage{scrhack}
 \usepackage{makeidx}
   \makeindex
@@ -55,6 +55,9 @@ escapechar={\^*}{*}
 \RedeclareSectionCommand[tocnumwidth=2em]{chapter}
 \RedeclareSectionCommand[tocnumwidth=2.5em, tocindent=2em]{section}
 \RedeclareSectionCommand[tocindent=4.7em]{subsection}
+
+\usepackage[titles]{tocloft}
+\renewcommand\cftpartfont{\hfill\large\scshape}
 
 \lstdefinelanguage{BibTeX}
   {keywords={%
@@ -111,7 +114,7 @@ escapechar={\^*}{*}
 \makeatother
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\subtitle{Manual for \texttt{grattex} v1.2.0 and \texttt{grattanReporter} v0.14.0}
+\subtitle{Manual for \texttt{grattex} v1.2.0 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -404,9 +407,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
-
-  \chapter{Drafting a Grattan report}
-  \section{Getting started}\label{sec:getting-started}
+  \part{User guide for report authors}
+  \addsec{Getting started}\label{sec:getting-started}
   To start a Grattan report, working paper, or submission, you can either
   \begin{enumerate}
   \item email Hugh Parsonage, Cameron Chisholm, Andrew McDonald, or Brigitte Phelan and ask to be setup, letting them know:
@@ -444,7 +446,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \end{enumerate}
   \end{enumerate}
   \section{The preamble}
-  The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything after \verb=\begin{document}=. 
+  The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything before \verb=\begin{document}=. 
   
   In every \LaTeX\ document, you must have 
   \begin{enumerate}
@@ -467,8 +469,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   \subsection{Grattan-specific preamble}
-  So that reports look alike, a particular preamble is required that load the Grattan style.
-  If you imported the package from GitHub using the instructions in \Vref{sec:getting-started} your report already meets the requirements described below.
+  So that reports look alike, a particular preamble is required that loads the Grattan style.
+  If you imported the package from GitHub using the instructions \vpageref{sec:getting-started} your report already meets the requirements described below.
 
   Your preamble must have the following lines.
   \begin{lstlisting}
@@ -487,7 +489,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \begin{enumerate}
    \item The \verb=grattan.cls= file, which creates the document according to the Grattan template.
    \item The \verb=bibliography.bib= file, containing your bibliography database.
-   \item The folder \verb=FrontPage= which\releaseonly must contain:
+   \item The folder \verb=FrontPage= which \releaseonly must contain:
    \begin{enumerate}
     \item A file \verb=FrontPage.pdf=
    \end{enumerate}
@@ -528,20 +530,40 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \item[continuous] Use continuous numbering for figures and tables, rather than resetting after each chapter. 
   \end{description}
 
+  \chapter{Basic report elements}  
+  \section{Front matter}
+  \subsection{Acknowledgements page}
+  Acknowledgements \index{acknowledgements} are written in the preamble of your document, using the command \lstinline!\acknowledgements!:
+  \begin{lstlisting}
+  \acknowledgements{%
+  This report was written by no-one.
+  Hugh Parsonage made significant contributions to the report.
 
+  We are grateful to everyone.
 
-  
-  \section{Frontmatter}
+  Please do not cite this work.
+  }
+  \end{lstlisting}
   \subsection{Overview / Summary / Preface}
   Use \index{overview}
   \begin{lstlisting}
-   \begin{overview}[-35pt]
+   \begin{overview}
     ...
    \end{overview}
   \end{lstlisting}
-  for your overview. The \lstinline![-35pt]! is a fudge factor that adjusts the position of the title to vertically balance the overview on the page. It may be abolished in future versions. 
+  for your overview.
   
-  You can also use \lstinline!\begin{summary}! as required. If you want to change the name of the frontmatter, ask us --- it is straight-forward to amend.
+  You can also use \lstinline!\begin{summary}! as required. If you want to change the name of the title, ask us --- it is straight-forward to amend.
+
+  \subsection{Recommendations page}
+  Similarly, use \index{recommendations}
+  \begin{lstlisting}
+   \begin{recommendations}
+    ...
+   \end{recommendations}
+  \end{lstlisting}
+  for your page or pages of recommendations. 
+  You can use \lstinline!\recommendation! to title individual recommendations within this environment.
 
   \subsection{Contents page(s)}
   Write \index{contentspage}
@@ -549,9 +571,18 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \contentspage
   \end{lstlisting}
   After the \lstinline!overview! environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
+
+  \subsection{Lists of figures and tables}
+  Use \index{figures!list of}\index{list of figures}\index{tables!list of}\index{list of tables}\index{boxes!list of}\index{list of boxes}
+  \begin{lstlisting}
+   \listoffigures
+   \listoftables
+   \listofboxes
+  \end{lstlisting}
+  as desired.
   
-  \subsection{Body text}
-  \subsection{Sectioning}
+  \section{Main matter}
+  \subsection{Chapters, section, subsections}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
    \chapter{@@<chapter title>@@}
@@ -562,43 +593,9 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \section{@@<subsection title>@@}
    \subsection{@@<subsubsection title>@@}
   \end{lstlisting}
-  Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter.
+  Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter (\ie~it is printed without a number).
   
-  To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
-
-  \begin{lstlisting}
-   \appendix
-  \end{lstlisting}
-
-  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{@@<appendix title>@@}! to title the appendices.
-  
-  For example:
-  \begin{lstlisting}
-  \documentclass{grattan}
-  
-  \title{Brief report}
-  \author{Me}
-  
-  \begin{document}
-  
-  \begin{overview}
-  In this report, we found all is well.
-  \end{overview}
-  \contentspage
-  \chapter{Australia is fine}
-  Australia is fine.
-  \chapter{How do we know this}
-  Grattan analysis of ABS (2016).
-  \section{Limitations of analysis}
-  Our analysis is wrong.
-  
-  \chapter{Options for reform}
-  Tidy desk.
-  \appendix
-  \chapter{International comparisons}
-  \end{document}
-  \end{lstlisting}
-  
+  \section{Miscellaneous text elements and font}
   \subsection{Boldface, italics}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
@@ -647,9 +644,54 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \end{itemize}
   \end{lstlisting}
 
+  \section{Back matter}
+  \subsection{Appendices}
+  To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
+
+  \begin{lstlisting}
+   \appendix
+  \end{lstlisting}
+
+  to mark the end of the main matter and the start of the appendices. Then use \lstinline!\chapter{@@<appendix title>@@}! to title the appendices.
+
+  \subsection{Bibliography}
+  Invoke
+  \begin{lstlisting}
+   \printbibliography
+  \end{lstlisting}
+
+  where you want the bibliography (almost always at the end of the document). See \Vref{chap:citations-and-bibliography} for help on actual citation and bibliography management.
   
-  \section{Floats}
-  \subsection{Figures}
+  For example:
+  \begin{lstlisting}
+  \documentclass{grattan}
+  
+  \title{Brief report}
+  \author{Me}
+  
+  \begin{document}
+  
+  \begin{overview}
+  In this report, we found all is well.
+  \end{overview}
+  \contentspage
+  \chapter{Australia is fine}
+  Australia is fine.
+  \chapter{How do we know this}
+  Grattan analysis of ABS (2016).
+  \section{Limitations of analysis}
+  Our analysis is wrong.
+  
+  \chapter{Options for reform}
+  Tidy desk.
+  \appendix
+  \chapter{International comparisons}
+  \printbibliography
+  \end{document}
+  \end{lstlisting}
+
+  \chapter{Figures, floats and boxes}
+  \section{Figures}
   Before you insert a figure, you need to create your image (say in PowerPoint).
   Your file should be saved as a pdf, though almost all image types are supported. 
   If you are going through an external program, ensure the file is moved to the atlas directory of your report. 
@@ -677,7 +719,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Use \lstinline!\noteswithsource! to put the notes and source under a figure (or table). Note this command has two mandatory arguments. 
   Use \lstinline!\notes! if you have notes but no source; and \lstinline!\source! if you have a source but no notes. 
 
-  \subsection{Tables}
+  \section{Tables}
     Tables are tricky in \LaTeX. Most tables will have the following construction:
 
     \begin{lstlisting}
@@ -716,13 +758,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     To start using Excel2LaTeX:
 
   \begin{enumerate}
-  	\item Go to \url{https://www.ctan.org/pkg/excel2latex?lang=en}
-  	\item Download the contents of this package
-  	\item Unzip the archive. 
-  	\item Enable the add-in for your version of Excel. (\eg~\url{https://support.office.com/en-us/article/Add-or-remove-add-ins-0af570c4-5cf3-4fa9-9b88-403625a0b460})
-  	\item Activate the add-in (see Excel documentation for your version).
-  	\item Open the Add-Ins tab in Excel, and, with the sheet containing your table open, click \texttt{Convert table to LaTeX}.
-  	\item The defaults are usually sensible. Click Copy to clipboard and paste into your \texttt{.tex} source file. 
+    \item Go to \url{https://www.ctan.org/pkg/excel2latex?lang=en}
+    \item Download the contents of this package
+    \item Unzip the archive. 
+    \item Enable the add-in for your version of Excel. (\eg~\url{https://support.office.com/en-us/article/Add-or-remove-add-ins-0af570c4-5cf3-4fa9-9b88-403625a0b460})
+    \item Activate the add-in (see Excel documentation for your version).
+    \item Open the Add-Ins tab in Excel, and, with the sheet containing your table open, click \texttt{Convert table to LaTeX}.
+    \item The defaults are usually sensible. Click Copy to clipboard and paste into your \texttt{.tex} source file. 
   \end{enumerate}
 
   Once you have copied the table, you should make the following adjustments:
@@ -813,8 +855,65 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   to insert a figure.
   
   Note the \lstinline![H]! which specifies that the figure is to be placed here (or rather, \emph{HERE!}). 
+
+
   
   \section{Cross-references}
+  Each cross-reference has two elements:
+  \begin{enumerate}
+    \item An anchor for the cross-reference; where the reader is directed
+    \item The text of the cross-reference itself.
+  \end{enumerate}
+  The anchor is always marked by \lstinline!\label!.\index{\texttt{label}}
+  In most cases, the reader is being directed to an \emph{numbered} element of the report -- a section, a figure, a table, a box, \etc.
+  Such elements are known as \defi{counters}.
+  The label needs to be placed after the counter being referenced and before any other counter.
+
+  \begin{lstlisting}
+  % OK:
+  \section{A section title}
+  See \Vref{fig:point-here}
+
+  \begin{figure}
+  \caption{The reader should see this figure}\label{fig:point-here}
+  \includegraphics{path/to/figure}
+  \notes{blah blah}
+  \end{figure}
+
+  % Wrong:
+  \section{A section title}
+  See \Vref{fig:point-here}
+
+  \begin{figure}
+  \label{fig:point-here}
+  \caption{The reader should see this figure}
+  \includegraphics{path/to/figure}
+  \notes{blah blah}
+  \end{figure}
+  \end{lstlisting}
+  In the latter example, the cross-reference would be to the section \verb=A section title= because that was the most recent counter \emph{before} the label.
+
+  In general, put the \lstinline!\label! immediately after (or inside) the cross-reference target and on the same line. 
+  Putting the label on the same line is mandatory as a matter of style for references to \lstinline!\captions! or chapters.
+
+  Whereas \lstinline!\label! is the only way to anchor a cross-reference, there are multiple ways to create the text for the cross-reference text.
+  \begin{enumerate}
+    \item \lstinline!\Cref! for a reference to the counter and the counter type (\eg~Figure 1.1)
+    \item \lstinline!\Vref! for \lstinline!\Cref! plus a phrase indicating the location of the counter if it occurs on a different page (\eg~Figure 1.1 on the following page)
+    \item \lstinline!\Chapref! same as \lstinline!\Cref! but mandatory for references to chapters
+    \item \lstinline!\vpageref! for a page reference only -- without the counter (\eg~`on the following page'). N.B. \lstinline!\vpageref! includes a preposition so shouldn't follow a preposition.
+    \begin{lstlisting}
+    % OK:
+    See the overview \vpageref{chap:overview}. 
+    %% ==> See the overview on page 3.
+
+    % Wrong:
+    See the overview on \vpageref{chap:overview}. 
+    %% ==> See the overview on on page 3.
+    %%                         ^^^^^
+    \end{lstlisting}
+  \end{enumerate}
+
   There are three \LaTeX{} commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
   The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
@@ -871,65 +970,84 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
-  \section{Footnotes and referencing}
-  Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
-
-  \subsection{Footnotes in boxes}
-  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
-  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
-  
-  \subsection{\texttt{bibliography.bib}}
-  The \texttt{bibliography.bib} file is a plain text\footnote{Please use UTF-8 encoding.} containing the bibliography databases. The database contains several lines for each entry:
-  \begin{lstlisting}[language=BibTeX]
-  @@<@type>@@{@@<key>@@,
-    author={@@<author name>@@},
-    title={@@<title>@@},
-    year={@@<year>@@}
-  }
-  \end{lstlisting}
-  There are several elements to a bibliography:
-  \begin{enumerate}[leftmargin=5em]
-   \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
-   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
-
-   Bad (who knows what 2016c is):
-
-   \begin{lstlisting}[language=BibTeX]
-   @Misc{DaleyEtAl2016c,
-   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
-   		title  = {Hot Property},
-   		year   = {2016},
-   	}
-   \end{lstlisting}
-
-   Good:
-
-   \begin{lstlisting}[language=BibTeX]
-   @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
-   		author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
-   		title  = {Hot Property},
-   		year   = {2016},
-   	}
-   \end{lstlisting}
-
-   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
 
 
-   \item[] each of the \lstinline!author=@@<author name>@@! lines designate the fields of the reference %
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \chapter{Citations and bibliography}\label{chap:citations-and-bibliography}
+  To cite works in \LaTeX{}, you perform two steps:
+  \begin{enumerate}
+    \item create a database of the works you are citing, separate to the report, where each entry has a unique \emph{key}, and then
+    \item cite the entry in the report using \lstinline!\textcite{@@<key>@@}! or \lstinline!\footcite{@@<key>@@}!
   \end{enumerate}
 
-  \subsection{Which entry type to use?}
-  \begin{description}
-    \item[\texttt{@Article}] For newspaper articles, academic journal articles. If a newspaper, put the newspaper's name in the \lstinline!journal! field.
-    \item[\texttt{@TechReport}] Anything written by members of an institution. If the authors, contributors, \etc\ are named in the document, these should be in the author field \emph{even if the work says the institution should be the named author}. 
-    \item[\texttt{@Book}] A work whose author is distinct from the publisher/editor.
-    \item[\texttt{@Misc}] Anything not falling into the above categories. 
-  \end{description}
+  \section{\texttt{bibliography.bib}}
+  The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
+  \begin{lstlisting}[language=BibTeX]
+  @@<@type>@@{@@<key>@@,
+    @@<field 1>@@={@@<field 1 value>@@},
+    @@<field 2>@@={@@<field 2 value>@@},
+  }
+  \end{lstlisting}
+  For example,
+ \begin{lstlisting}[language=BibTeX]  
+  @TechReport{Minifie-Savage-Cameron-2014-Super-sting,
+    author       = {Jim Minifie and Jim Savage and Tim Cameron},
+    title        = {Super sting: how to stop Australians paying too much for superannuation},
+    year         = {2014},
+    institution  = {Grattan Institute},
+    url          = {https://grattan.edu.au/report/super-sting-how-to-stop-australians-paying-too-much-for-superannuation/},
+  }
+\end{lstlisting}
+\subsection{Entering authors}
+\begin{enumerate}
+  \item To enter multiple authors, separate each name with \lstinline! and ! (as above)
+  \item You can enter the authors in \lstinline!Forename Surname! or \lstinline!Surname, Forename! form (even within the same entry). 
+  Note that a comma means the previous word is interpreted as a surname. In particular, you may write any of the following
+  \begin{lstlisting}[language=BibTeX]
+  author = {John Daley and Danielle Wood}
+  author = {John Daley and Wood, Danielle}
+  author = {Daley, John and Wood, Danielle}
+  \end{lstlisting}
+  but \emph{not} any of the following
+\begin{lstlisting}[language=BibTeX]
+  author = {John Daley, and Danielle Wood}
+  author = {Daley, John, and Wood, Danielle}
+  \end{lstlisting}
+  this will cause a \texttt{Biber subsystem error}, which are notoriously difficult to track down.
 
-  In general, ignore the recommended citation, except perhaps to respect the precedence of authors.
+  \item To enter a author literally (\ie~prevent Bib\LaTeX{} interpreting it as a name), you \defi{protect} it using double braces:
+  \begin{lstlisting}[language=BibTeX]
+@TechReport{RMS2016Hunter,
+  author       = {{NSW RMS}},
+  title        = {The Hunter Expressway},
+  year         = {2016},
+  institution  = {NSW Roads and Maritime Services},
+  url          = {http://www.rms.nsw.gov.au/projects/hunter/the-hunter-expressway/index.html},
+}
+  \end{lstlisting}
+  \item I recommend entering authors in Forename Surname form. You should also endeavour to enter the first name of each author in full.
 
-  \subsection{Nonstandard authors}
+  \rationale{Prevent erroneous idems and ibidems}
+
+  \item Please enter human authors for institutional works, even if the work urges you to cite the institution as the author.
+\end{enumerate}
+
+\subsection{Nonstandard authors}
   Abbreviate the names of institutions when they appear in the author field:
 
   \begin{tabularx}{\linewidth}{lX}
@@ -960,17 +1078,86 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsubsection{\LaTeX}
   Do not cite your use of \LaTeX, except in books as a colophon.
 
-  \section{Miscellaneous bibliography entry quirks}
+\subsection{Dates and years}
+\begin{enumerate}
+  \item[] Enter the date if possible; the year if not. If you only have the month and year, you can enter the month as an integer.
+
+  Enter dates in standard unambiguous form \verb=YYYY-MM-DD=
+\end{enumerate}
+
+
+
+  \section{Footnotes and referencing}
+  Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
+
+  \subsection{Footnotes in boxes}
+  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
+  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
+  
+  \subsection{\texttt{bibliography.bib}}
+  The \texttt{bibliography.bib} file is a plain text\footnote{Please use UTF-8 encoding.} containing the bibliography databases. The database contains several lines for each entry:
+  \begin{lstlisting}[language=BibTeX]
+  @@<@type>@@{@@<key>@@,
+    author={@@<author name>@@},
+    title={@@<title>@@},
+    year={@@<year>@@}
+  }
+  \end{lstlisting}
+  There are several elements to a bibliography:
+  \begin{enumerate}[leftmargin=5em]
+   \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
+   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
+
+   Bad (who knows what 2016c is):
+
+   \begin{lstlisting}[language=BibTeX]
+   @Misc{DaleyEtAl2016c,
+      author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+      title  = {Hot Property},
+      year   = {2016},
+    }
+   \end{lstlisting}
+
+   Good:
+
+   \begin{lstlisting}[language=BibTeX]
+   @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
+      author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
+      title  = {Hot Property},
+      year   = {2016},
+    }
+   \end{lstlisting}
+
+   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
+
+
+   \item[] each of the \lstinline!author=@@<author name>@@! lines designate the fields of the reference %
+   
+  \end{enumerate}
+
+  \subsection{Which entry type to use?}
+  \begin{description}
+    \item[\texttt{@Article}] For newspaper articles, academic journal articles. If a newspaper, put the newspaper's name in the \lstinline!journal! field.
+    \item[\texttt{@TechReport}] Anything written by members of an institution. If the authors, contributors, \etc\ are named in the document, these should be in the author field \emph{even if the work says the institution should be the named author}. 
+    \item[\texttt{@Book}] A work whose author is distinct from the publisher/editor.
+    \item[\texttt{@Misc}] Anything not falling into the above categories. 
+  \end{description}
+
+  In general, ignore the recommended citation, except perhaps to respect the precedence of authors.
+
+  
+
+  \subsection{Miscellaneous bibliography entry quirks}
   If your URL contains special characters, \emph{do not escape them}. They will be printable but point to the wrong address. 
   
   
-  \subsection{Citations}\index{citations}\index{footcite}\index{footcites}
+  \section{Citations}\index{citations}\index{footcite}\index{footcites}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
   Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{@@<key2>@@}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
   
   Use \lstinline!\textcite{@@<key>@@}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
-  Similarly \verb=\textcites= and \verb=\textcite[][18--24]{@@<key>@@}= as with footcite. 
+  Similarly \verb=\textcites= and \lstinline!\textcite[][18--24]{@@<key>@@}! as with footcite. 
   
   \chapter{More advanced macros}
   \section{New commands}
@@ -1110,7 +1297,44 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   \end{enumerate}
 
-\part{Style requirement: \texttt{grattanReporter}}
+  \chapter{Balancing text across columns}
+  Use \lstinline!\oneraggedpage\eject\addtolength{\parskip}{@@<extra-para-stretch>@@}! N.B. in many instances (such as where the page contains a section title) it is not possible to balance columns. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Style requirement: {\bfseries\texttt{grattanReporter}}}
 
 \chapter{User guide}
 \section{Synopsis}
@@ -1151,7 +1375,6 @@ If the check emits a \texttt{NOTE}, you must \emph{address} this \texttt{NOTE} b
 
 
 
-
 \section{Requirements}
 \subsection{System requirements for release validation}
 \begin{enumerate}
@@ -1180,7 +1403,7 @@ Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
 \end{enumerate}
 
 \subsection{Project folder structure required for release}
-Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must contain
+Let \Code{.} be the folder in the top-level directory of your project. Then \Code{.} must contain
 \begin{enumerate}
 \item The folder \lstinline!./travis/grattanReport/! (which ships with \texttt{grattex}).
 \item A folder \lstinline!./RELEASE!. (If it is not present, it will be created, with a warning.)
@@ -1193,13 +1416,15 @@ Let \Code{.} be the folder in the top-level of your project. Then \Code{.} must 
 
 
 \section{Style requirements}
+\subsection*{How to read this style guide}
+Marginal notes \releaseonly \prereleaseonly beside a rule signify that the rule is only enforced at release or pre-release. 
 \subsubsection{Preliminary}
-\paragraph{One \texttt{.tex} file} The top-level of your directory must contain one and only one \texttt{.tex} file. 
-This requirement is to ensure the correct file is checked and to enable to command to be run non-interactively.
+\paragraph{One \texttt{.tex} file} The top-level directory of your project must contain one and only one \texttt{.tex} file. 
+This requirement is to ensure the correct file is checked and to enable the command to be run non-interactively.
 
 \subsection{Preamble}
 The preamble is all the lines of the \texttt{.tex} file before \lstinline!\begin{document}!. 
-The bulk of these requirements are met with the template.
+The bulk of these rules will be met if the default template is used.
 \begin{enumerate}
   \item Line 1 must be the \lstinline!\documentclass[@@<options>@@]{grattan}! line.
   \rationale{Confirms the report is intended as a Grattan Report. Easier to code.}
@@ -1259,7 +1484,7 @@ All material published or otherwise created by Grattan Institute is licensed und
 \end{enumerate}
 
 
-
+\subsection{Citations}
 \subsubsection{Postnotes in citations} 
 \begin{enumerate}
 \item A citation which references a page or section within the opus must reference this in the \emph{postnote} field of the cite command:
@@ -1287,6 +1512,7 @@ The letter p should not be used.
 \end{lstlisting}
 
 \rationale{Consistent formatting of page references}
+\item Furthermore, use of a singular citation command (\ie~the command \lstinline!\textcite! or \lstinline!\footcite!) when there appears to be more than one citation requested will thrown an error: \texttt{Use of singular form of textcite or footcite}.
 \end{enumerate}
 
 \subsubsection{Escapes}
