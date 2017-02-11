@@ -57,7 +57,7 @@ escapechar={\^*}{*}
 \RedeclareSectionCommand[tocindent=4.7em]{subsection}
 
 \usepackage[titles]{tocloft}
-\renewcommand\cftpartfont{\hfill\large\scshape}
+\renewcommand\cftpartfont{\hfill\large{\huge\strut}\scshape}
 
 \lstdefinelanguage{BibTeX}
   {keywords={%
@@ -1515,6 +1515,12 @@ The letter p should not be used.
 \item Furthermore, use of a singular citation command (\ie~the command \lstinline!\textcite! or \lstinline!\footcite!) when there appears to be more than one citation requested will thrown an error: \texttt{Use of singular form of textcite or footcite}.
 \end{enumerate}
 
+
+
+
+
+
+
 \subsubsection{Escapes}
 \begin{enumerate}
 \item A dollar sign is only allowed if it is preceded by a backslash. Math-mode can only be enabled by \lstinline!\(...\)!
@@ -1530,7 +1536,6 @@ If $x, y, z$ are the sides of a right-triangle then $z > y > x$ implies $z^2 = y
 \rationale{Avoiding accidental formatting of sentences as equations}
 
 \item An ellipsis must be invoked using \lstinline!\dots{}! not three periods (\lstinline!...!) or a unicode symbol.
-
 \begin{lstlisting}
 % Correct:
 But then \dots{} drama!
@@ -1539,12 +1544,10 @@ But then \dots{} drama!
 But then ... drama!
 \end{lstlisting}
 \rationale{Consistent kerning and spacing}
-\item A space must not occur after the command \lstinline!\label!:
-\begin{enumerate}
-  \item Spaces must not occur within \lstinline!\label!
-  \item A new line is mandatory after \lstinline!\label! 
 \end{enumerate}
-\rationale{Technical: enables assumptions to be made about hyphens and labels' contents.}
+
+\subsection{Dashes}
+\begin{enumerate}
 \item Dashes must be inserted using two hyphens.
 \begin{lstlisting}
 % Correct:
@@ -1555,7 +1558,34 @@ This is a dash - actually just a hyphen.
 % Wrong:
 This is a dash --- but an em-dash, which is a bit much.
 \end{lstlisting}
+\item A hyphen adjacent to an en-dash is an error.
 \rationale{Consistency}
+\end{enumerate}
+
+
+
+\subsection{Spacing}
+\begin{enumerate}
+  \item The commands \lstinline!\eg!, \lstinline!\etc!, and \lstinline!\ie! must be followed by a punctuation mark or a non-breaking space.
+  \rationale{Prevent incorrectly omitting printable space}
+
+
+
+
+
+\item A space must not occur after the command \lstinline!\label!:
+\begin{enumerate}
+  \item Spaces must not occur within \lstinline!\label!
+  \item A new line is mandatory after \lstinline!\label! 
+\end{enumerate}
+\rationale{Technical: enables assumptions to be made about hyphens and labels' contents.}
+\end{enumerate}
+
+
+
+
+\subsection{Quote marks}
+\begin{enumerate}
 \item Closing quotes must not be used to open a quote:
 \begin{lstlisting}
 % Correct:
@@ -1686,7 +1716,14 @@ See \Vref{chap:intro}.
 \end{lstlisting}
 \rationale{Correct hyperlinks.}
 \end{enumerate}
-\subsection{Hard-coded cross-references}
+
+
+
+
+
+
+
+\subsection{Cross-references}
 \begin{enumerate}
   \item All cross-references must be encoded in a macro 
   (\lstinline!\Vref! and \lstinline!\Cref!, 
@@ -1712,7 +1749,31 @@ This is explained in \textcite{Knuth}, Chapter 2.
 This is explained in \textcite[][Chapter 2]{Knuth}.
 \end{lstlisting}
 \rationale{Avoid incorrect or unlinked cross-references.}
+\item All instances of \lstinline!\Cref! and \lstinline!\Vref! must use the upper-case forms.
+\begin{lstlisting}
+% Correct
+See \Cref{fig:look-here}.
+
+% Wrong:
+See \cref{fig:look-here}.
+\end{lstlisting}
+\rationale{Consistency}
+\item All instances of \lstinline!\Cref!, \lstinline!\Vref!, and \lstinline!\Chapref! must not be preceded by the words section, figure, table, or box.
+\rationale{Prevent repeated word in cross-reference}
+\item Do not place a preposition before \lstinline!\vpageref!
+\rationale{Prevent repeated word in cross-reference}
+
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
 \subsection{Sentence-ending periods}
 \begin{enumerate}
   \item Sentences which end with a capital letter and are followed by a sentence (\ie~are not the last sentence in a paragraph) must be specially marked:
@@ -1733,6 +1794,14 @@ This is rare.
 
 \rationale{Respect English spacing}
 \end{enumerate}
+
+
+
+
+
+
+
+
 
 \subsection{Bibliography validation}
 This should be regularly checked: problems with the entry of the \lstinline!.bib! file are often time-consuming if left in a broken state.
