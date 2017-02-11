@@ -27,6 +27,7 @@ packages:
   - crayon
   - clisymbols
   - stringi
+  - grattanReporter
 
 before_install:
   - source ./travis/texlive.sh
@@ -48,6 +49,7 @@ before_script:
 
 script: 
   - set -e
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
