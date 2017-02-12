@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{scrreprt}
+\documentclass[a4paper,numbers=noenddot,11pt]{scrreprt}
 
 <<knitrOpts, echo=FALSE>>=
 library(knitr)
@@ -33,7 +33,7 @@ language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\color{black!60}\ttfamily,
 texcsstyle=*\color{blue},
-moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites,Chapref,topref,Vref,Cref},
+moretexcs={setlength,chapter,subsection,subsubsection,appendix,addbibresource,FloatBarrier,contentspage,units,includegraphics,noteswithsource,notes,source,bottomrule,midrule,toprule,footcite,footcites,textcite,textcites,Chapref,topref,Vref,Cref,vpageref,acknowledgements,cmidrule},
 columns=flexible,
 breaklines=true,
 backgroundcolor=\color{black!5},
@@ -52,12 +52,41 @@ escapechar={\^*}{*}
 
 }
 
-\RedeclareSectionCommand[tocnumwidth=2em]{chapter}
-\RedeclareSectionCommand[tocnumwidth=2.5em, tocindent=2em]{section}
-\RedeclareSectionCommand[tocindent=4.7em]{subsection}
+% https://tex.stackexchange.com/questions/93944/using-lstinline-inside-a-item
+\makeatletter
+\let\orig@item\item
+
+\def\item{%
+    \@ifnextchar{[}%
+        {\lstinline@item}%
+        {\orig@item}%
+}
+
+\begingroup
+\catcode`\]=\active
+\gdef\lstinline@item[{%
+    \setbox0\hbox\bgroup
+        \catcode`\]=\active
+        \let]\lstinline@item@end
+}
+\endgroup
+
+\def\lstinline@item@end{%
+    \egroup
+    \orig@item[\usebox0]%
+}
+
+\makeatother
+
 
 \usepackage[titles]{tocloft}
 \renewcommand\cftpartfont{\hfill\large{\huge\strut}\scshape}
+
+\RedeclareSectionCommand[tocnumwidth=2em]{chapter}
+\RedeclareSectionCommand[tocnumwidth=2.5em, tocindent=2.0em]{section}
+\RedeclareSectionCommand[tocnumwidth=3.7em, tocindent=4.7em]{subsection}
+
+
 
 \lstdefinelanguage{BibTeX}
   {keywords={%
@@ -825,6 +854,23 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \end{lstlisting}
   \end{enumerate}
 
+  \section{Advanced tables}
+  \subsection{Column formatting}
+  For example, 
+  \begin{lstlisting}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{0.1\linewidth}lrRX>{\centering\arraybackslash}p{0.1\linewidth}}
+  \end{lstlisting}
+  This designates a six-column table:
+  \begin{description} 
+    \item[\lstinline!>{\bfseries}p{0.1\linewidth}!] the first column is 10\% of the width of the table with boldface text, with a moderately ragged right justification (`wrapped'),
+    \item[\lstinline!l!] left-aligned text occupying the maximum width of the text,
+    \item[\lstinline!r!] right-aligned text occupying the maximum width of the text,
+    \item[\lstinline!R!] right-aligned paragraph text occupying the same width as \lstinline!X!
+    \item[\lstinline!X!] left-aligned paragraph text occupying the same width as \lstinline!R!. 
+    Note that \lstinline!R! and \lstinline!X! columns stretch or shrink depending on the width of other columns to ensure the total width of the table equals \lstinline!\linewidth!.
+    \item[\lstinline!>{\centering\arraybackslash}p{0.1\linewidth}!] A centred column of paragraph text with 10\% of the width of the table.
+  \end{description}
+
 
 
   \section{Boxes}
@@ -901,7 +947,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \item \lstinline!\Cref! for a reference to the counter and the counter type (\eg~Figure 1.1)
     \item \lstinline!\Vref! for \lstinline!\Cref! plus a phrase indicating the location of the counter if it occurs on a different page (\eg~Figure 1.1 on the following page)
     \item \lstinline!\Chapref! same as \lstinline!\Cref! but mandatory for references to chapters
-    \item \lstinline!\vpageref! for a page reference only -- without the counter (\eg~`on the following page'). N.B. \lstinline!\vpageref! includes a preposition so shouldn't follow a preposition.
+    \item \lstinline!\vpageref! for a page reference only -- without the counter (\eg~`on the following page'). 
+    Whereas \lstinline!\Vref! will suppress the page reference phrase if the target occurs on the same page, \lstinline!\vpageref! will expand to `on this page'.
+
+     N.B. \lstinline!\vpageref! includes a preposition so shouldn't follow a preposition.
     \begin{lstlisting}
     % OK:
     See the overview \vpageref{chap:overview}. 
@@ -1070,6 +1119,17 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \item Only the most up-to-date version of time series data should be used, unless you are making a point about revisions to the entry. 
   \end{itemize}
 
+  \begin{lstlisting}[language=BibTeX] 
+@TechReport{ABS-2016-CPI-Dec,
+  author       = {ABS},
+  title        = {Consumer Price Index, Australia, Dec 2016},
+  date         = {2017-01-25},
+  institution  = {Australian Bureau of Statistics},
+  note         = {Cat. 6401.0},
+  url          = {http://www.abs.gov.au/ausstats/abs@.nsf/mf/6401.0},
+}
+  \end{lstlisting}
+
   \subsubsection{R packages}
   You should cite the R core team and all R packages that were attached for any analysis reaching publication. 
   Use \texttt{knitr::write\_bib} to generate the entries. 
@@ -1079,11 +1139,10 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Do not cite your use of \LaTeX, except in books as a colophon.
 
 \subsection{Dates and years}
-\begin{enumerate}
-  \item[] Enter the date if possible; the year if not. If you only have the month and year, you can enter the month as an integer.
+Enter the date if possible; the year if not. If you only have the month and year, you can enter the month as an integer.
 
   Enter dates in standard unambiguous form \verb=YYYY-MM-DD=
-\end{enumerate}
+
 
 
 
@@ -1094,57 +1153,6 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
   The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
   
-  \subsection{\texttt{bibliography.bib}}
-  The \texttt{bibliography.bib} file is a plain text\footnote{Please use UTF-8 encoding.} containing the bibliography databases. The database contains several lines for each entry:
-  \begin{lstlisting}[language=BibTeX]
-  @@<@type>@@{@@<key>@@,
-    author={@@<author name>@@},
-    title={@@<title>@@},
-    year={@@<year>@@}
-  }
-  \end{lstlisting}
-  There are several elements to a bibliography:
-  \begin{enumerate}[leftmargin=5em]
-   \item[\texttt{@type}] This specifies the type of reference, such as an article, report, book.
-   \item[\texttt{<key>}] This is a string of text or numbers (no spaces or special characters) which represent the \emph{key} which is referenced in the text (as shown below). You are \emph{strongly} recommended to use a descriptive key, so that your source \texttt{.tex} file is easy to read:
-
-   Bad (who knows what 2016c is):
-
-   \begin{lstlisting}[language=BibTeX]
-   @Misc{DaleyEtAl2016c,
-      author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
-      title  = {Hot Property},
-      year   = {2016},
-    }
-   \end{lstlisting}
-
-   Good:
-
-   \begin{lstlisting}[language=BibTeX]
-   @Misc{Daley-Wood-2016-Hot-Property-Negative-Gearing-report,
-      author = {John Daley and Danielle Wood and Brendan Coates and Hugh Parsonage},
-      title  = {Hot Property},
-      year   = {2016},
-    }
-   \end{lstlisting}
-
-   (Using an evocative Bib\TeX\ key will also improve the performance of your IDE's autocompletion.) 
-
-
-   \item[] each of the \lstinline!author=@@<author name>@@! lines designate the fields of the reference %
-   
-  \end{enumerate}
-
-  \subsection{Which entry type to use?}
-  \begin{description}
-    \item[\texttt{@Article}] For newspaper articles, academic journal articles. If a newspaper, put the newspaper's name in the \lstinline!journal! field.
-    \item[\texttt{@TechReport}] Anything written by members of an institution. If the authors, contributors, \etc\ are named in the document, these should be in the author field \emph{even if the work says the institution should be the named author}. 
-    \item[\texttt{@Book}] A work whose author is distinct from the publisher/editor.
-    \item[\texttt{@Misc}] Anything not falling into the above categories. 
-  \end{description}
-
-  In general, ignore the recommended citation, except perhaps to respect the precedence of authors.
-
   
 
   \subsection{Miscellaneous bibliography entry quirks}
@@ -1217,6 +1225,66 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \end{enumerate}
     \item Using \Code{\\textcite\{blah\} and \\textcite\{foo\}} instead of \Code{\\textcites\{blah\}\{foo\}}.
   \end{enumerate}
+
+\chapter{Non-standard report elements}
+\section{Comments, issues}\index{comments}\index{editing}
+We do not recommend using \LaTeX{} to handle project-management, issue-tracking, or editing, as it fails to keep the publishable report elements separate from the production elements, and because \LaTeX{} is not the best tool for such tasks.
+We recommend:
+\begin{enumerate}
+  \item A formal issue tracker, in combination with a version control system, such as GitHub + git, integrated with a political structure to assign, review, and close issues.
+  \item Using the \LaTeX{} comment character \lstinline!%! to mark comments. 
+\end{enumerate}
+
+However, if you decide to mark up your pdf with these sort of editorial marks, you should clearly fence-off such usage from the content of your report you intend to publish.
+
+\subsection{\texttt{todotnotes}}\index{\texttt{todonotes}}
+The package \lstinline!todonotes! provides handsome comment features
+
+The following should be put in \verb=tex/preamble=
+\begin{lstlisting}
+\usepackage{todonotes}
+% Person-specific margin comments
+\newcommand{\cam}[1]{\todo[color=Color2,size=\scriptsize]{\textbf{Cam:} #1}\ }
+\newcommand{\jim}[1]{\todo[color=Color3,size=\scriptsize]{\textbf{Jim:} #1}\ }
+\newcommand{\lucy}[1]{\todo[color=pink,size=\scriptsize]{\textbf{Lucy:} #1}\ }
+\newcommand{\james}[1]{\todo[color=Color1,size=\scriptsize]{\textbf{James:} #1}\ }
+
+% Inline comments (for environments)
+\newcommand{\cami}[1]{\todo[color=Color2,size=\scriptsize,inline]{\textbf{Cam:} #1}}
+\newcommand{\jimi}[1]{\todo[color=Color3,size=\scriptsize,inline]{\textbf{Jim:} #1}}
+\newcommand{\lucyi}[1]{\todo[color=pink,size=\scriptsize,inline]{\textbf{Lucy:} #1}}
+\newcommand{\jamesi}[1]{\todo[color=Color1,size=\scriptsize,inline]{\textbf{James:} #1}}
+\end{lstlisting}
+
+Then place \lstinline=\cam{This paragraph is great!}= for a margin note, clearly authored by \verb=Cam:=, or \lstinline=\cami{This line is great!}= for an inline comment. 
+Note that you must use inline comments whenever the comment appears in a float, or a footnote. 
+
+
+\subsection{\texttt{soul}}\index{\texttt{soul}}
+The package \texttt{soul} provides the commend \lstinline!\hl! which highlights text.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   \part{Notes for the typesetter}
   \chapter{Moving floats}
@@ -2037,6 +2105,26 @@ If the column containing the 100th footnote looks good (\ie~the number and footn
 \emph{Don't trust Hugh:} This was a bit of a beast to code so please visually check the 100th footnote columns before release and report any errors. 
 
 
+\chapter{Travis Continuous Integration}
+Continuous integration is provided to provide timely notifications of input errors, such as typos.
+
+Travis Continuous Integration is a SaaS testing service. 
+
+\subsection{Synopsis}
+\subsubsection{For authors}
+In ShareLaTeX, click the hambuger menu button at top left, then \verb=GitHub=, \verb=Push changes to GitHub=, then \verb=Commit=.
+
+\subsubsection{Implementation}
+
+\subsection{Annunciation}
+By default, any problems with your report will be annuciated only at grattex slack \verb=grattex.slack.com=. 
+
+
+
+
+
+
+
 
 
 \newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
@@ -2794,8 +2882,9 @@ you can provide the correct one.
     \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
     \midrule
     \endhead
-    boxsources & Source matter within boxes & Boxes \\[5pt]
-    citetitle & Inserts the title of a citation, as well as including the reference in the bibliography. & Citations \& bibliography \\
+    boxsources & Source matter (not footnotes) within boxes & Boxes \\[5pt]
+    citeauthor & Inserts the author of a citation. & Citations \& bibliography \\
+    citetitle & Inserts the title (possibly shortened) of a citation. & Citations \& bibliography \\
     footcite & Citation to be placed in a footnote & Citations \& bibliography \\
     footcites & Multiple citations to be placed in a footnote & Citations \& bibliography \\
     footnote & Insert a footnote. & Citations \& bibliography \\
@@ -2804,6 +2893,8 @@ you can provide the correct one.
     Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
     Cref  & Subsequent cross-reference (to a \textbackslash{}label) & Cross-referencing \\
     Chapref  & Cross-reference to a chapter & Cross-referencing \\
+    ref & The counter of a target (say a footnote) & Cross-referencing \\
+    vpageref & Refernce to a page (including preposition). & Cross-referencing \\
     label & The target of a cross-reference. & Cross-referencing \\
     phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it is just text in a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
     bottomrule & Final horizontal rule in a table & Figures and tables \\
@@ -2839,7 +2930,7 @@ you can provide the correct one.
     author & The authors of the report & Single-use \\
     contentspage & Load after the overview. Prints the table of contents and the list of figures & Single-use \\
     documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
-    % GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
+    GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
     %GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
     listoffigures & Print list of figures  & Single-use \\
     listoftables & Prints list of tables & Single-use \\
