@@ -1,4 +1,4 @@
-\documentclass[a4paper,numbers=noenddot,11pt]{scrreprt}
+\documentclass[a4paper,numbers=noenddot,11pt, parskip=half]{scrreprt}
 
 <<knitrOpts, echo=FALSE>>=
 library(knitr)
@@ -8,7 +8,7 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 \let\oldLaTeX\LaTeX
 \renewcommand{\LaTeX}{\textrm{\oldLaTeX}}
 
-% \usepackage{showexpl}
+\usepackage{adjustbox}
 \usepackage{scrhack}
 \usepackage{makeidx}
   \makeindex
@@ -20,6 +20,8 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+% Font:
+\usepackage{tgpagella,eulervm}
 \usepackage{tabularx}
 \usepackage{listings}
 \usepackage{lstautogobble}
@@ -42,6 +44,7 @@ moredelim = [is][\slshape\color{violet}]{@@}{@@},
 classoffset=1,
 morekeywords={grattan}, keywordstyle = \color{Orange}\bfseries, 
 classoffset=0,
+belowskip=0\baselineskip,
 escapechar={\^*}{*}
 }
 \lstdefinestyle{cls}{language=[LaTeX]TeX,
@@ -99,7 +102,9 @@ escapechar={\^*}{*}
 
 \RedeclareSectionCommand[tocnumwidth=2em]{chapter}
 \RedeclareSectionCommand[tocnumwidth=2.5em, tocindent=2.0em]{section}
-\RedeclareSectionCommand[tocnumwidth=3.7em, tocindent=4.7em]{subsection}
+\RedeclareSectionCommand[tocnumwidth=3.7em, tocindent=4.7em, beforeskip=1\baselineskip, afterskip=0.4\baselineskip]{subsection}
+
+
 
 
 
@@ -121,8 +126,9 @@ escapechar={\^*}{*}
 
 \usepackage{upquote}  % for `` ''%
 
-\usepackage[justification=justified, singlelinecheck=false, position=above]{caption}
-\captionsetup[table]{belowskip=5pt}
+\usepackage[justification=justified, position=above, font={sf}, labelfont={sf,bf}]{caption}
+%\captionsetup[table]{belowskip=6pt}
+\captionsetup[figure]{belowskip=5pt}
 
 % \usepackage{titlesec}     % for customizing sections
 % % customize section
@@ -144,6 +150,13 @@ escapechar={\^*}{*}
 \renewcommand\sectionlinesformat[4]{%
   \makebox[0pt][r]{#3}#4%
 }
+\renewcommand\chapterlinesformat[3]{%
+  \makebox[0pt][r]{#2}#3%
+}
+
+% Removes glue around section titles. 
+\usepackage{xpatch}
+\xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
 
 \usepackage{varioref}
 \usepackage[colorlinks, urlcolor=blue, linkcolor=blue]{hyperref}
@@ -166,7 +179,7 @@ escapechar={\^*}{*}
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand*{\etc}{\emph{etc}}
 
-\newcommand*{\rationale}[1]{\par\hfill{\small\itshape\raise1.5ex\hbox{#1}}\vspace{11pt plus 5.5pt}}
+\newcommand*{\rationale}[1]{\nopagebreak\par\nopagebreak\hfill{\small\itshape\raise1.5ex\hbox{#1}}\vspace{11pt plus 5.5pt}}
 \newcommand*{\prereleaseonly}{\marginpar{\footnotesize\lstinline[language=R]!pre_release!}}
 \newcommand*{\releaseonly}{\marginpar{\footnotesize\lstinline[language=R]!release!}}
 
@@ -190,17 +203,35 @@ escapechar={\^*}{*}
 \usepackage{enumitem}
 
 \usepackage{tikz}
-  \usetikzlibrary{shapes,arrows}
+  \usetikzlibrary{shapes,shapes.geometric,arrows, calc, positioning}
 
 % Define block styles
 \tikzstyle{decision} = [
     rectangle, 
     draw, 
     fill=Orange, 
-    text width=4.5em, 
+    minimum width=4.5em, 
+    minimum height=2em,
     text badly centered, 
-    node distance=3cm, 
-    inner sep=0pt ]
+    inner sep=1.2ex ]
+
+\tikzstyle{user} = [
+    circle, 
+    draw, 
+    fill=Orange, 
+    minimum width=4.5em, 
+    minimum height=2em,
+    text badly centered, 
+    inner sep=1.2ex ]
+
+\tikzstyle{DarkOrange} = [
+    rectangle, 
+    draw, 
+    fill=DarkOrange, 
+    minimum width=4.5em, 
+    minimum height=2em,
+    text badly centered, 
+    inner sep=1.2ex ]
 
 \tikzstyle{block} = [
   rectangle, 
@@ -234,10 +265,179 @@ escapechar={\^*}{*}
 \maketitle
 \tableofcontents
 \newpage 
+\newgeometry{left=0.125cm,right=0.25cm}
+\addchap{Quick-reference}
+
+\begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
+\caption{List of all commands} \\
+    \toprule
+    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    boxsources & Source matter (not footnotes) within boxes & Boxes \\[5pt]
+    citeauthor & Inserts the author of a citation. & Citations \& bibliography \\
+    citetitle & Inserts the title (possibly shortened) of a citation. & Citations \& bibliography \\
+    footcite & Citation to be placed in a footnote & Citations \& bibliography \\
+    footcites & Multiple citations to be placed in a footnote & Citations \& bibliography \\
+    footnote & Insert a footnote. & Citations \& bibliography \\
+    textcite & Inline citation & Citations \& bibliography \\
+    textcites & Multiple citations to be placed inline & Citations \& bibliography \\[5pt]
+    Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    Cref  & Subsequent cross-reference (to a \textbackslash{}label) & Cross-referencing \\
+    Chapref  & Cross-reference to a chapter & Cross-referencing \\
+    ref & The counter of a target (say a footnote) & Cross-referencing \\
+    vpageref & Reference to a page (including preposition). & Cross-referencing \\
+    label & The target of a cross-reference. & Cross-referencing \\
+    phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it is just text in a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
+    bottomrule & Final horizontal rule in a table & Figures and tables \\
+    caption & General caption (grey, bold) & Figures and tables \\
+    %captionwithunits & Caption with first argument top line and second argument units for chart & Figures and tables \\
+    cmidrule & Horizontal rule over a subset of columns & Figures and tables \\
+    columnwidth & Supplies the current width of the column  & Figures and tables \\
+    doublecolumnfigure & Put two figures adjacent on the one page & Figures and tables \\ 
+    %fnotes & Figure notes that are long & Figures and tables \\
+    %tnotes & Table notes that are long & Figures and tables \\
+    includegraphics & inserts an image (typically a pdf) using the file provided & Figures and tables \\
+    linewidth & Current width of line & Figures and tables \\
+    midrule & Horizontal rule separating heading from contents in a table & Figures and tables \\
+    multicolumn & Spread a cell over multiple columns (merge cells) & Figures and tables \\
+    notes & Puts notes under a chart & Figures and tables \\
+    source & Puts source text under a chart & Figures and tables \\
+    noteswithsource & Puts notes and source under a chart/table & Figures and tables \\ 
+    toprule & First horizontal rule in a table & Figures and tables \\
+    units & Units for charts & Figures and tables\\[5pt]
+    emph  & Emphasize text with an oblique font & Fonts \\
+    textbf & Boldface & Fonts \\
+    textit & Italic font (oblique font for helvet) & Fonts \\[5pt]
+    item  & New number or bullet in an enumerate or itemize environment & Lists \\[5pt]
+    ie    & Macro for consistent use of `i.e.' & Misc \\
+    eg    & Macro for consistent use of `e.g.' & Misc \\
+    etc    & Macro for consistent use of `etc.' & Misc \\
+    input & Used to insert raw .tex code from another file & Misc \\[5pt]
+    addchap & Chapter without number & Sections \\
+    chapter & Begins a new chapter, first argument the title of the chapter & Sections \\
+    section & Section title & Sections \\
+    subsection & Subsection title & Sections \\[5pt]
+    addbibresource & The path of the bibliography (.bib) file containing the references & Single-use \\
+    acknowledgements & Text appearing in second column of page 2 & Single-use \\ 
+    author & The authors of the report & Single-use \\
+    contentspage & Prints the table of contents and the list of figures & Single-use \\
+    documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
+    GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
+    %GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
+    listoffigures & Print list of figures  & Single-use \\
+    listoftables & Prints list of tables & Single-use \\
+    printbibliography & Prints bibliography & Single-use \\
+    %printendnotes & Prints endnotes if requested & Single-use \\
+    %printfigurenotes & Prints list of `long figure notes' by \textbackslash{}fnotes & Single-use \\
+    %printtablenotes & Prints list of `long table notes' by \textbackslash{}tnotes & Single-use \\
+    title & The title of the report & Single-use \\[5pt]
+    \$    & \textbackslash{}\$ for a (literal) dollar sign & Special characters \\
+    \%    & \textbackslash{}\% for a (literal) percentage sign & Special characters \\
+    \&    & Literal ampersand logogram & Special characters \\ 
+    dots  & ellipsis (\dots{}) & Special characters \\[5pt]
+    ,     & Half-space kern & Technical \\ 
+    @     & Use \textbackslash{}@ before a sentence-ending full stop preceded by a capital letter & Technical \\
+    (     & Use \textbackslash{}( to begin math-mode. You should type \textbackslash{}(-\textbackslash{}) if you want a negative symbol. & Technical \\
+    \textbackslash{} & Line break in table & Technical \\
+    \end{longtable}
+
+\begin{table}
+\caption{List of environments}
+\begin{tabular}{p{0.45\textwidth}l}
+\toprule
+Places a floating figure with caption, notes, and source. & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{figure}
+\caption{Title}\label{xrefkey}
+\units{Units}
+\includegraphics{path/to/figure}
+\noteswithsource{Notes}%
+{Source}
+\end{lstlisting}
+\end{minipage} \\[100pt]
+Places a floating table with caption, notes, and source. &
+\begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{table}
+\caption{Table caption}
+\begin{tabularx}{\linewidth}
+\toprule
+ColumnHeader1 & ColumnHeader2 \\
+\midrule
+Table entry 1 & Table entry 2 \\
+\bottomrule
+\end{tabularx}
+\notes{}
+\source{}
+\end{table}
+\end{lstlisting}
+\end{minipage} \\[150pt]
+Page of overview and recommendations. &
+\begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{overview}
+
+\end{overview}
+\begin{recommendations}
+
+\end{recommendations}
+\end{lstlisting}
+\end{minipage} \\[75pt]
+Enumerated and bulleted lists & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{enumerate}
+  \item 
+  \item 
+\end{enumerate}
+
+\begin{itemize}
+  \item 
+  \item 
+\end{itemize}
+\end{lstlisting}
+\end{minipage} \\ 
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}
+\caption{List of boxes}
+\begin{tabular}{p{0.45\textwidth}l}
+\toprule
+Full-page box & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{bigbox*}{@@<Box title>@@}{box:@@<xref-key>@@}
+
+\end{bigbox*}
+\end{lstlisting}
+\end{minipage} \\ 
+One-column box & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{smallbox}{@@<Box title>@@}{box:@@<xref-key>@@}
+
+\end{smallbox}
+\end{lstlisting}
+\end{minipage} \\ 
+Box sharing column with body text & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{verysmallbox}{@@<Box title>@@}{box:@@<xref-key>@@}
+
+\end{verysmallbox}
+\end{lstlisting}
+\end{minipage}  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\restoregeometry
+\part{\LaTeX{} in general}
+\chapter{Prologue}
 % \subsection*{Interpreting code examples}
 % \addcontentsline{toc}{subsection}{Interpreting code examples}
 \addsec{Interpreting code examples}
-Example code are written using a listing:
+In this manual, examples of code are written using a listing:
 \begin{lstlisting}
 LaTeX code with some \markup.  
 \begin{environment}
@@ -252,7 +452,7 @@ Code examples can be, for want of better terms, \emph{complete} or \emph{illustr
 \setlength{\overviewextra}{2mm}
 \addtolength{\columnsep}{\overviewextra}
 \end{lstlisting}
-Whereas in an illustrative version of the above, the author is offered a choice for the gap between columns. In illustrative code examples, such options are coloured violet, slanted, and delimited with chevrons:
+In contrast, in an illustrative version of the above, the author is offered a choice for the gap between columns. In illustrative code examples, such options are coloured violet, slanted, and delimited with chevrons:
 \begin{lstlisting}
 \newlength{\overviewextra}
 \setlength{\overviewextra}{@@<extra column width>@@}
@@ -263,7 +463,7 @@ Whereas in an illustrative version of the above, the author is offered a choice 
 Text coloured blue is simply syntax highlighting and has no special meaning. All \TeX{} documents are written in plain text (although your text editor/\textsc{IDE} may offer or display similar syntax highlighting). 
 
 \newpage
-\chapter{The name of the game}
+\addsec{The name of the game}
 \LaTeX\ is technically a package of the 1978 computer programme \TeX. 
 The language used by your computer to set the words on the page is called \TeX; the \emph{engine} used to convert this to a pdf is called pdf\TeX, and the language you write in is called \LaTeX. 
 
@@ -275,7 +475,7 @@ Your interface in which you write \LaTeX\ is called an IDE (integrated developme
 
 \newpage
 
- \chapter{Some principles for erstwhile MS Word users}
+ \addsec{Some principles for erstwhile MS Word users}
  Learning \LaTeX{} as an MS Word user is a frustrating, confusing, rewarding, and ecstatic experience.  There are some principles that are inviolate for novices.
  \begin{enumerate}
   \item Don't worry about the appearance of your document as your write. Write what you mean. MS Word is a What You See Is What You Get editor. \LaTeX\ is a What You See Is What You \emph{Mean}.
@@ -325,6 +525,26 @@ Your interface in which you write \LaTeX\ is called an IDE (integrated developme
   \item The grattan class file assumes your input is encoded in \texttt{UTF-8}. Avoid copying from MS Word to \verb=.tex= files. Otherwise, special characters above will creep in silently. If you must, use \verb=pandoc=.
   \item Use \texttt{\%} for comments.
  \end{enumerate}
+
+ \addsec{Getting help (if this manual doesn't)}
+ Consult us. Our preferred way is via the slack channel: \url{grattex.slack.com}\@ You can use code-markup there to share your code (or alternatively the link to your project). Doing this way allows knowledge to be shared throughout the organization.
+
+ Alternatively, googling \lstinline!latex @@<what the problem is>@@! is generally fruitful. 
+
+ The site \url{tex.stackexchange.com} is an excellent resource for \LaTeX{} problems.
+ It is not generally suitable for debugging problems specific problems (like where you have misspelled a command name, or forgotten to close a brace), but is ideal for learning how to solve a general typesetting issue using \LaTeX{}.\footnote{Hugh has used this a lot: you can see the questions he's asked as examples of what kinds of questions are suitable: \url{https://tex.stackexchange.com/users/18414/hugh?tab=questions} } 
+ As with any community, take a bit of time to understand the etiquette and rules before posting.  
+ In particular, you should understand the concept of a \emph{minimal working example} before you post.
+ If your question is well-intentioned but not clear, expect prompt, firm but constructive criticism.
+ That being said, they are one of the kinder and more forgiving coding forums in the stackexchange system. 
+
+ For ShareLaTeX problems, use their Contact Us facility.
+ We have found them very prompt and helpful. 
+
+
+
+
+
 
  \chapter{Basics of \textrm{\LaTeX}}
  \section{Compilation}
@@ -451,8 +671,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
-  \part{User guide for report authors}
-  \addsec{Getting started}\label{sec:getting-started}
+  \part{User guide to the Grattan report class}
+  \section{Starting a report}\label{sec:getting-started}
   To start a Grattan report, working paper, or submission, you can either
   \begin{enumerate}
   \item email Hugh Parsonage, Cameron Chisholm, Andrew McDonald, or Brigitte Phelan and ask to be setup, letting them know:
@@ -464,21 +684,31 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   But the repo name cannot. 
   Accordingly, it is important that you choose a name that is evocative of the project, unique, and will have a long shelf-life.
   This can be difficult, and a naming convention has not yet been established; however, names like `HigherEd-report' or `Inquiry-submission' will be rejected---or purged if they slip through.
-  \item or, follow the following steps on your own:
+  \item They will perform the following steps:
     \begin{enumerate}
       \item Visit \url{https://travis-ci.org/HughParsonage/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
-      If it shows another image (or no image), please do not proceed.
-      \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and \href{https://sharelatex.com}{sharelatex.com}.
+      If it shows another image (or no image), please do not proceed (as the report template is broken) and contact Hugh Parsonage as the repository owner. 
+      \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and `publisher@grattan.edu.au' at \href{https://sharelatex.com}{sharelatex.com}.
       \item Copy \verb=https://github.com/HughParsonage/grattex= to your clipboard
       \item Visit \url{https://github.com/new/import}
-      \item Paste \verb=https://github.com/HughParsonage/grattex= into the \verb=Your old repository's clone URL= field.
-      \item Choose an evocative name for your repository under \verb=Name=
+      \item Paste \verb=https://github.com/HughParsonage/grattex= into the \textbf{Your old repository's clone URL} field.
+      \item Choose an evocative name for your repository under \textbf{Name}
       \item Select \textbf{Private}
       \item Click \textbf{Begin Import}.
       \item You will be taken to a new page showing import progress. After the import is complete, follow the link which appears.
+      \pagebreak 
+      \item Click the \texttt{.travis.yml} file and edit the notifications section as indicated in the image below. See \Vref{sec:travis-annunciation} for the notifications settings.
+      Add authors' emails and \lstinline!#@@<programme channel>@@! to the slack notifications line. 
+
+      Choose \textbf{Commit directly to the \texttt{master} branch} and press \textbf{Commit changes}. 
+
+      \makebox[\textwidth][r]{\includegraphics[width=0.9\paperwidth]{figure/edit-travis.PNG}}
+      \vspace{1\baselineskip}
+
       \item Click the Settings Tab.
 
       \makebox[\textwidth][r]{\includegraphics[width=0.9\paperwidth]{figure/github-settings-tab.PNG}}
+      \vspace{1\baselineskip}
       \item On the left, click \verb=Collaborators=. 
       \item Add \verb=HughParsonage= and any other authors as desired.
       \item Visit \href{https://sharelatex.com}{sharelatex.com}.
@@ -487,8 +717,30 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
       \item At the top right, click \verb=Share=.
       \item Add collaborators as desired. 
+      \item Go to \url{https://travis-ci.com/profile/grattaninstitute/}. 
+      Find the repository you just added and flick the switch on. 
     \end{enumerate}
   \end{enumerate}
+
+\begin{figure}[h]
+\caption{Report infrastructure schematic}
+\tikzset{every loop/.style={min distance=10mm,in=-45,out=-135,looseness=7}}
+\begin{tikzpicture}
+\node (ShareLaTeX) [DarkOrange]  at (0,0){ShareLaTeX};
+\node (User2) [user, below of = ShareLaTeX, node distance = 4cm] {Users};
+\draw[thick, -latex] (User2) edge[out = 90, in = -90] (ShareLaTeX);
+\draw[thick, -latex] (User2) edge[out = 135, in = -135] (ShareLaTeX);
+\draw[thick, -latex] (User2) edge[out = 45, in = -45] (ShareLaTeX);
+\node (GitHub) [decision, right of = ShareLaTeX, node distance = 6cm, text width = 4cm]{GitHub report repository (\url{https://github.com/grattaninstitute/} \lstinline!@@<repo-name>@@!)};
+\draw[thick, latex-latex] (ShareLaTeX) --node[anchor=south, inner sep = 1ex]{push-pull} (GitHub);
+\node (grattex-GitHub) [decision, above of = GitHub, node distance = 6cm, text width = 5cm]{\url{https://github.com/hughparsonage/grattex} Template elements and configuration files};
+\node (grattex-GitHub-future) [decision, right = 5cm of {$(grattex-GitHub)!0.5!(GitHub)$}, node distance = 3.5cm, fill = black!10]{\textcolor{black!50}{subsequent changes}};
+\draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 90] node[anchor = east, text width = 4cm, text ragged left, inner sep = 1em]{GitHub Import (\url{import.github.com})} (GitHub);
+\draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 180]  (grattex-GitHub-future);
+\end{tikzpicture}
+\end{figure}
+
+
   \section{The preamble}
   The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything before \verb=\begin{document}=. 
   
@@ -532,23 +784,17 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The \verb=.tex= file must be in a directory containing:
   \begin{enumerate}
    \item The \verb=grattan.cls= file, which creates the document according to the Grattan template.
-   \item The \verb=bibliography.bib= file, containing your bibliography database.
    \item The folder \verb=FrontPage= which \releaseonly must contain:
    \begin{enumerate}
     \item A file \verb=FrontPage.pdf=
    \end{enumerate}
-   \item The following files (possibly in a subdirectory \verb=logos/=:
+   \item The following files (possibly in a subdirectory \verb=logos/=):
     \begin{verbatim}
-    aus-gov-logo-stacked-black.pdf
-    Bhp.pdf
-    GrattanSVGLogo.pdf
-    TMF_logo_green-eps-converted-to.pdf
-    TMF_logo_green.pdf
-    UOM-Pos_S_PMS.pdf
-    Vic_Gov_Logo-2016.pdf
+    aus-gov-logo-stacked-black.pdf        Bhp.pdf
+    GrattanSVGLogo.pdf                    
+    UOM-Pos_S_PMS.pdf                     Vic_Gov_Logo-2016.pdf
     \end{verbatim}
-
-
+  \item For almost all reports, you will need to have a \texttt{.bib} file. The grattex repository comes with a \texttt{Grattan-Master-Bibliography.bib} file in the \texttt{bib} subdirectory, containing most extant works previously cited in reports. 
   \end{enumerate}
 
   \subsection{Class options}
@@ -562,16 +808,16 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \documentclass[FrontPage,continuous]{grattan}
   \end{lstlisting}
   \begin{description}
-    \item[embargoed] Issue an embargoed mark on the title page and in the running heads. Enlivens the following commands:
+    \item[\textbf{\textsf{embargoed}}] Issue an embargoed mark on the title page and in the running heads. Enlivens the following commands:
     \begin{enumerate}
       \item \relax\lstinline!\EmbargoDate! The date printed in the embargo fields. By default, \lstinline!XXXX!.
       \item \relax\lstinline!\EmbargoText! The embargo field printed in the running heads and on the title page (unless \lstinline!\EmbargoTitleText! is set). 
       By default \lstinline!Embargoed until 9 pm \EmbargoDate{}!.
       \item \relax\lstinline!\EmbargoTitleText! The text printed on the title page (as distinct from the running heads). By default, \lstinline!\EmbargoText{}!.
     \end{enumerate}
-    \item[submission] Document is a submission to inquiries. Omits page 2.
-    \item[FrontPage] Use the pdf in the location \lstinline!./FrontPage/FrontPage.pdf! as page 1, rather than a generic one.
-    \item[continuous] Use continuous numbering for figures and tables, rather than resetting after each chapter. 
+    \item[\textbf{\textsf{submission}}] Document is a submission to inquiries. Omits page 2.
+    \item[\textbf{\textsf{FrontPage}}] Use the pdf in the location \lstinline!./FrontPage/FrontPage.pdf! as page 1, rather than a generic one.
+    \item[\textbf{\textsf{continuous}}] Use continuous numbering for figures and tables, rather than resetting after each chapter. 
   \end{description}
 
   \chapter{Basic report elements}  
@@ -588,6 +834,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Please do not cite this work.
   }
   \end{lstlisting}
+  Acknowledgements are not printed when the \textbf{\textsf{submission}} option is selected, and selecting this option while also invoking \lstinline!acknowledgements! will result in a warning.
+
   \subsection{Overview / Summary / Preface}
   Use \index{overview}
   \begin{lstlisting}
@@ -597,7 +845,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   for your overview.
   
-  You can also use \lstinline!\begin{summary}! as required. If you want to change the name of the title, ask us --- it is straight-forward to amend.
+  You can also use \lstinline!\begin{summary}! as required. If you want to use a different word to \emph{Overview}, ask us --- it is straight-forward to amend.
 
   \subsection{Recommendations page}
   Similarly, use \index{recommendations}
@@ -607,14 +855,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \end{recommendations}
   \end{lstlisting}
   for your page or pages of recommendations. 
-  You can use \lstinline!\recommendation! to title individual recommendations within this environment.
+  Use \lstinline!\recommendation! to title individual recommendations within this environment.
 
   \subsection{Contents page(s)}
   Write \index{contentspage}
   \begin{lstlisting}
    \contentspage
   \end{lstlisting}
-  After the \lstinline!overview! environment. This produces a list of figures and a list of boxes. If you don't want some of these lists, again, ask us --- it is straight-forward to omit, but it is a matter for the class file maintainer.
+  After your overview and recommendations.
 
   \subsection{Lists of figures and tables}
   Use \index{figures!list of}\index{list of figures}\index{tables!list of}\index{list of tables}\index{boxes!list of}\index{list of boxes}
@@ -623,7 +871,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \listoftables
    \listofboxes
   \end{lstlisting}
-  as desired.
+  after \lstinline!\contentspage! to insert the lists as desired.
   
   \section{Main matter}
   \subsection{Chapters, section, subsections}
@@ -734,11 +982,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{document}
   \end{lstlisting}
 
-  \chapter{Figures, floats and boxes}
+  \chapter{Floats: figures, tables and boxes}
   \section{Figures}
   Before you insert a figure, you need to create your image (say in PowerPoint).
   Your file should be saved as a pdf, though almost all image types are supported. 
-  If you are going through an external program, ensure the file is moved to the atlas directory of your report. 
+  If you are using PowerPoint to create your charts, ensure the pdf has the fonts embedded.
+  Move the pdf file to the atlas directory of your report. 
   This directory should be placed in the same directory as your \verb=.tex= file.
   
   Once the image is ready, use the following structure to insert a figure.
@@ -763,8 +1012,29 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Use \lstinline!\noteswithsource! to put the notes and source under a figure (or table). Note this command has two mandatory arguments. 
   Use \lstinline!\notes! if you have notes but no source; and \lstinline!\source! if you have a source but no notes. 
 
+  To set two figures on the same page use the \lstinline!\doublecolumnfigure! command:
+
+  \begin{lstlisting}
+  \doublecolumnfigure{%
+      \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
+      \units{@@<secondary caption/y-axis label>@@}
+      \includegraphics{atlas/@@1st-image-filename@@}
+      \noteswithsource{@@<Notes of the chart>@@}%  
+      {@@<Source information>@@}
+   }{
+      \caption{@@<main caption>@@\label{@@<cross-reference key>@@}}%
+      \units{@@<secondary caption/y-axis label>@@}
+      \includegraphics{atlas/@@2nd-image-filename@@}
+      \noteswithsource{@@<Notes of the chart>@@}%  
+      {@@<Source information>@@}
+   }
+  \end{lstlisting}
+
+  Note that you do not use the \lstinline!figure! environment in this command. 
+  (The figure environment is part of the command definition.)
+
   \section{Tables}
-    Tables are tricky in \LaTeX. Most tables will have the following construction:
+  To construct a table, use the \lstinline!table! and \lstinline!tabularx! environments.
 
     \begin{lstlisting}
     \begin{table}
@@ -791,12 +1061,30 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The actual construction of the table is handled by \Code{tabularx}\index{tabularx} which is very similar to the standard \Code{tabular} environment. 
   Its first argument is the width of the table and its second argument is the \emph{alignment parameters} of the tabular's columns:
 
-  The \lstinline!@@<alignment parameters>! determine the alignment of the columns, \verb=l= for left-aligned, \verb=c= for centre-aligned, \verb=r= for right-aligned. Others are available. 
+  The \lstinline!@@<alignment parameters>@@! determine the alignment of the columns,
+
+\begin{table}[h]
+\caption{Alignment parameters and their meanings}
+\begin{adjustbox}{center}
+  \begin{tabular}{r>{\raggedright\arraybackslash}p{10cm}}
+  \toprule 
+  \texttt{l}                                              & left-aligned text \\
+  \texttt{c}                                              & centred text \\
+  \texttt{r}                                              & right-aligned text \\
+  \lstinline!p{@@<width>@@}!                              & left-aligned wrapped text of width \lstinline!@@<width>@@! \\
+  \lstinline!m{@@<width>@@}!                              & left-aligned wrapped text of width \lstinline!@@<width>@@!, vertically centred-aligned  \\
+  \lstinline!b{@@<width>@@}!                              & left-aligned wrapped text of width \lstinline!@@<width>@@!, vertically bottom-aligned  \\
+  \lstinline!>{\centering\arraybackslash}p{@@<width>@@}!  & centred wrapped text  of width \lstinline!@@<width>@@!\\
+  \lstinline!>{\raggedleft\arraybackslash}p{@@<width>@@}! & right-aligned wrapped text  of width \lstinline!@@<width>@@! \\
+  \bottomrule
+  \end{tabular}
+\end{adjustbox}
+\end{table}   
 
   Inside the tabular, use the ampersand \verb=&= to move to the next column and the double-backslash \verb=\\= to move to the next row. 
   Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
-\subsection{Excel}
+\subsection{From Excel}
     Most authors would be well-advised to quickly write their tables in Excel and then use Excel2LaTeX.
 
     To start using Excel2LaTeX:
@@ -846,26 +1134,40 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \subsection{Table styles}
   Rules of thumb:
   \begin{enumerate}
-    \item Never use vertical rules in a table.
+    \item Never use vertical rules in a table:
+    \begin{enumerate}
+      \item right-align numeric columns,
+      \item when comparing things across columns, use equal-width columns
+    \end{enumerate}
+    \item Avoid using horizontal rules except the mandatory \lstinline!\toprule! above the header, \lstinline!\midrule! below the header, and \lstinline!\bottomrule! below the table. 
+    To provide visual emphasis of grouped rows, use \lstinline!\\[@@<x>@@pt]! on the last row of each group to specify the exact row skip, adjusting \lstinline!@@<x>@@pt! optically.
+    \item Avoid repetition. 
+    \begin{enumerate}
+      \item If an element is repeated in a column header, put the repeated element above a \lstinline!cmidrule! and the unique elements below.
+      \item If an element is repeated down rows, group the rows, and put the repeated element in an eastern column. Experiment with \lstinline!\multicolumn! so that the row heading appears to hang over the other rows. If your table has no natural order, sort by an element repeated down rows. 
+      \item Consider omitting repeated words altogether. 
+    \end{enumerate} 
     \item If a column should be in a particular font, use the array specifier, rather than manually specifying the column. 
+    \item Numeric columns should be written in math mode (\ie~should be in tabular, lining font). In particular, digits should align vertically. 
+    \item 
     \begin{lstlisting}
-    % Wrong:
-    \begin{tabularx}{Xl}
-    \textbf{State} & Population \\
-    \textbf{NSW}   & Very high \\
-    \textbf{Vic}   & High\\
-    \dots 
-    \textbf{Tas}   & Low
-    \end{tabularx}
+% Wrong:
+\begin{tabularx}{Xl}
+\textbf{State} & Population \\
+\textbf{NSW}   & Very high \\
+\textbf{Vic}   & High\\
+\dots 
+\textbf{Tas}   & Low
+\end{tabularx}
 
-    % OK:
-    \begin{tabularx}{>{\bfseries}Xl}
-    State & Population \\
-    NSW   & Very high \\
-    Vic   & High\\
-    \dots 
-    Tas   & Low
-    \end{tabularx}
+% OK:
+\begin{tabularx}{>{\bfseries}Xl}
+State & Population \\
+NSW   & Very high \\
+Vic   & High\\
+\dots 
+Tas   & Low
+\end{tabularx}
     \end{lstlisting}
   \end{enumerate}
 
@@ -888,8 +1190,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
+
+
+
+
+
+
   \section{Boxes}
-  \subsection{smallbox}\index{smallbox}\index{boxes!smallbox}
+  \subsection{\texttt{smallbox}}\index{smallbox}\index{boxes!smallbox}
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
 
   \begin{lstlisting}
@@ -899,11 +1207,11 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
   \end{lstlisting}
 
-  \subsection{verysmallbox}\index{verysmallbox}\index{boxes!verysmallbox}
+  \subsection{\texttt{verysmallbox}}\index{verysmallbox}\index{boxes!verysmallbox}
   The very small box is used for boxes which may be sufficiently shorter than a column to share the column with paragraphs from the body text. 
   Such boxes would contain two or fewer paragraphs. 
   
-  \subsection{bigbox*} \index{bigbox*}\index{boxes!bigbox*}
+  \subsection{\texttt{bigbox*}} \index{bigbox*}\index{boxes!bigbox*}
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
 
   \subsubsection*{Figures in boxes must use [H]}
@@ -919,7 +1227,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
   
-  \section{Cross-references}
+  \section{Cross-references}\index{cross-references}
   Each cross-reference has two elements:
   \begin{enumerate}
     \item An anchor for the cross-reference; where the reader is directed
@@ -977,9 +1285,6 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     %%                         ^^^^^
     \end{lstlisting}
   \end{enumerate}
-
-  There are three \LaTeX{} commands used in cross-referencing: \lstinline!\label!, \lstinline!\Vref! and \lstinline!\Cref!. \index{Vref}\index{Cref}\index{cross-references}\index{label}
-  The first designates the target of a cross-reference; the other two are for making a cross-reference to such a target. 
 
   For example, to refer to some figure, use the following template.
 
@@ -1156,90 +1461,34 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 \subsection{Dates and years}
 Enter the date if possible; the year if not. If you only have the month and year, you can enter the month as an integer.
 
-  Enter dates in standard unambiguous form \verb=YYYY-MM-DD=
+  Enter dates in standard unambiguous form \verb=YYYY-MM-DD=.
 
 
 
 
-  \section{Footnotes and referencing}
-  Use the command \lstinline!\footnote! to mark a footnote. Use \lstinline!\textcite! for a citation within a footnote.
 
-  \subsection{Footnotes in boxes}
-  Insert footnotes (and \lstinline!\footcite!s) as if they were part of the main body text. 
-  The footnotemarks will be letters, not numbers, and the footnote area will be within the box.
-  
-  
 
-  \subsection{Miscellaneous bibliography entry quirks}
-  If your URL contains special characters, \emph{do not escape them}. They will be printable but point to the wrong address. 
-  
-  
   \section{Citations}\index{citations}\index{footcite}\index{footcites}
+  \subsection{\LaTeX{} commands to insert a citation}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
   Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{@@<key2>@@}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
   
   Use \lstinline!\textcite{@@<key>@@}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
   Similarly \verb=\textcites= and \lstinline!\textcite[][18--24]{@@<key>@@}! as with footcite. 
-  
-  \chapter{More advanced macros}
-  \section{New commands}
-  Use \lstinline!\newcommand! to create a new command. 
-  \begin{lstlisting}
-   \newcommand{@@<command name>@@}{@@<what the command does>@@}
-   \newcommand{@@<command name>@@}[@@<number of arguments>@@]{@@<what the command does as a function of #>@@}
-  \end{lstlisting}
-  For example,
-  \begin{lstlisting}
-   \newcommand{\eg}{\emph{e.g.}}
-  \end{lstlisting}
-  Creates a new command \verb=\eg= which prints \emph{e.g.} when it is called. Another one I often use is:
-  \begin{lstlisting}
-   \newcommand{\gao}{Grattan analysis of}
-  \end{lstlisting}
-  Slightly more advanced is
-  \begin{lstlisting}
-   \newcommand{\defi}[1]{\textbf{#1}\index{#1}}
-  \end{lstlisting}
-  This makes the argument of \verb=\defi= bold and places it in the index. 
-  
-  \chapter{Compiling a final document}
-  \section{Citations and references}
-  \begin{enumerate}
-    \item If your file is called \lstinline!YourReport.tex!
-    \begin{lstlisting}
-    texify --pdf --clean YourReport.tex
-    \end{lstlisting}
-    \item Update bibliography
-    \begin{lstlisting}
-    biber YourReport
-    \end{lstlisting}
-    Note that you should not provide the extension for \lstinline!biber!.
-    \item Re-run:
-    \begin{lstlisting}
-    texify --pdf --clean YourReport.tex
-    \end{lstlisting}
-  \end{enumerate}
 
-  \chapter{Common mistakes made by novices}
-  \begin{enumerate}
-    \item Not regularly compiling your document.
-    \item Not fixing errors revealed through compilation.
-    \item Not checking citations have been correctly rendered:
-    \begin{enumerate}
-      \item Making sure you've hit the right reference.
-      \item Making sure the references have been entered correctly. 
-    \end{enumerate}
-    \item Using \Code{Figure \\Vref} instead of just \Code{\\Vref}.
-    \item Putting \Code{\\label} in the wrong position. (It should be immediately after the counter is updated.)
-    \item Manually specifying figure position, column breaks, white space.
-    \item Using \Code{\\footcite} instead of \Code{\\textcite}:
-    \begin{enumerate}
-      \item In notes and sources or
-      \item In footnotes themselves. 
-    \end{enumerate}
-    \item Using \Code{\\textcite\{blah\} and \\textcite\{foo\}} instead of \Code{\\textcites\{blah\}\{foo\}}.
-  \end{enumerate}
+  \subsection{ShareLaTeX}
+  You should harness the bibliography search function in ShareLaTeX, rather than switching back and forth between your \texttt{.bib} file and your source file.
+  To enliven the search function type \lstinline!\textcite{! or \lstinline!\footcite{! (as the case may be), then click Ctrl + Space or Cmd + Space on a mac (or as directed). 
+  In the search box that appears, start typing words from the document you want to cite.
+
+  Using the search box is not only more convenient, it also makes it more likely you will find an existing entry before adding a duplicate.
+
+
+
+
+
+
 
 \chapter{Non-standard report elements}
 \section{Comments, issues}\index{comments}\index{editing}
@@ -1252,23 +1501,21 @@ We recommend:
 
 However, if you decide to mark up your pdf with these sort of editorial marks, you should clearly fence-off such usage from the content of your report you intend to publish.
 
-\subsection{\texttt{todotnotes}}\index{\texttt{todonotes}}
-The package \lstinline!todonotes! provides handsome comment features
-
-The following should be put in \verb=tex/preamble=
+\subsection{\texttt{todonotes}}\index{\texttt{todonotes}}
+The package \lstinline!todonotes! provides handsome comment features.
+To use todonotes, add the following in \verb=tex/preamble=
 \begin{lstlisting}
 \usepackage{todonotes}
 % Person-specific margin comments
-\newcommand{\cam}[1]{\todo[color=Color2,size=\scriptsize]{\textbf{Cam:} #1}\ }
-\newcommand{\jim}[1]{\todo[color=Color3,size=\scriptsize]{\textbf{Jim:} #1}\ }
-\newcommand{\lucy}[1]{\todo[color=pink,size=\scriptsize]{\textbf{Lucy:} #1}\ }
-\newcommand{\james}[1]{\todo[color=Color1,size=\scriptsize]{\textbf{James:} #1}\ }
+\newcommand{\cam}[1]{\todo[color=Color2,size=\tiny]{\textbf{Cam:} #1}\ }
+\newcommand{\jim}[1]{\todo[color=Color3,size=\tiny]{\textbf{Jim:} #1}\ }
+\newcommand{\lucy}[1]{\todo[color=pink,size=\tiny]{\textbf{Lucy:} #1}\ }
 
 % Inline comments (for environments)
-\newcommand{\cami}[1]{\todo[color=Color2,size=\scriptsize,inline]{\textbf{Cam:} #1}}
-\newcommand{\jimi}[1]{\todo[color=Color3,size=\scriptsize,inline]{\textbf{Jim:} #1}}
-\newcommand{\lucyi}[1]{\todo[color=pink,size=\scriptsize,inline]{\textbf{Lucy:} #1}}
-\newcommand{\jamesi}[1]{\todo[color=Color1,size=\scriptsize,inline]{\textbf{James:} #1}}
+\newcommand{\cami}[1]{\todo[color=Color2,size=\tiny,inline]{\textbf{Cam:} #1}}
+\newcommand{\jimi}[1]{\todo[color=Color3,size=\tiny,inline]{\textbf{Jim:} #1}}
+\newcommand{\lucyi}[1]{\todo[color=pink,size=\tiny,inline]{\textbf{Lucy:} #1}}
+\newcommand{\jamesi}[1]{\todo[color=Color1,size=\tiny,inline]{\textbf{James:} #1}}
 \end{lstlisting}
 
 Then place \lstinline=\cam{This paragraph is great!}= for a margin note, clearly authored by \verb=Cam:=, or \lstinline=\cami{This line is great!}= for an inline comment. 
@@ -1448,9 +1695,15 @@ checkGrattanReport(compile = TRUE, pre_release = TRUE, release = TRUE)
 @
 \end{enumerate}
 
-\noindent You must \emph{fix} all errors with \lstinline[language=R]!release = TRUE! before a report can be released to the main report area on \url{http://grattan.edu.au/}. 
+You must \emph{fix} all errors with \lstinline[language=R]!release = TRUE! before a report can be released to the main report area on \url{http://grattan.edu.au/}. 
 Ideally, a report should pass the check with no warnings or notes of any kind.
 If the check emits a \texttt{NOTE}, you must \emph{address} this \texttt{NOTE} before report acceptance. 
+
+\subsection*{How to read this part}
+Marginal notes \releaseonly \prereleaseonly beside a rule mean that the rule is only enforced at release or pre-release. 
+
+A Flush-right italic note immediately following a rule is the rationale behind the rule.
+A rationale prefixed by `Technical:' or stating `Easier to code' are weak -- their presence indicates that the rule could be dropped if Hugh had greater coding skill / more time. 
 
 
 
@@ -1499,8 +1752,6 @@ Let \Code{.} be the folder in the top-level directory of your project. Then \Cod
 
 
 \section{Style requirements}
-\subsection*{How to read this style guide}
-Marginal notes \releaseonly \prereleaseonly beside a rule signify that the rule is only enforced at release or pre-release. 
 \subsubsection{Preliminary}
 \paragraph{One \texttt{.tex} file} The top-level directory of your project must contain one and only one \texttt{.tex} file. 
 This requirement is to ensure the correct file is checked and to enable the command to be run non-interactively.
@@ -1523,7 +1774,7 @@ The bulk of these rules will be met if the default template is used.
   have one and only one invocation of \lstinline!\title{@@<title of the report>@@}! in the preamble, and the title must have at least three characters.
   \rationale{Ensure title is present}
   \item You may use \lstinline!\input! within \lstinline!\acknowledgements{@@<This report was written by etc.>@@}! but if you do you must only use \lstinline!\input{tex/acknowledgements}!.
-  \item If you invoke \lstinline!\ReportOrWorkingPaper{Working Paper}!, you must have the phrase \lstinline!This report was written by! in the preamble.
+  \item If you invoke \lstinline!\ReportOrWorkingPaper{Working Paper}!, you must not also have the phrase \lstinline!This report was written by! in the preamble.
   \item If you have the phrase \lstinline!This working paper was written by! in your preamble, you must invoke \lstinline!\ReportOrWorkingPaper{Working Paper}! in the preamble.
   \rationale{Ensure working paper/report distinction is made}
   \item You must \releaseonly
@@ -1568,6 +1819,7 @@ All material published or otherwise created by Grattan Institute is licensed und
 
 
 \subsection{Citations}
+\index{citations!style requirement}
 \subsubsection{Postnotes in citations} 
 \begin{enumerate}
 \item A citation which references a page or section within the opus must reference this in the \emph{postnote} field of the cite command:
@@ -1581,7 +1833,7 @@ All material published or otherwise created by Grattan Institute is licensed und
 \end{lstlisting}
 
 \item A reference to a page must include the page number only; a reference to a page range should use numbers separated by two hyphens. 
-The letter p should not be used.
+The letter p should not be used.\index{citations!page references}
 
 \begin{lstlisting}
 % Correct:
@@ -1592,6 +1844,18 @@ The letter p should not be used.
 \textcite[][p. 45]{Daleyetal2016}
 % Wrong (uses single hyphen)
 \textcite[][45-50]{Daleyetal2016}
+\end{lstlisting}
+\item When it is necessary to use `p' for a page reference (for example, because the postnote contains additional text), you must use a consistent format, namely a full stop with a non-breaking space:
+
+\begin{lstlisting}
+% Correct:
+\textcite[][Table~7 on p.~4]{bentley:1999}
+
+% Wrong
+\textcite[][Table~7 on p. 4]{bentley:1999}
+\textcite[][Table~7 on p~4]{bentley:1999}
+\textcite[][Table~7 on p 4]{bentley:1999}
+\textcite[][Table~7 on p.4]{bentley:1999}
 \end{lstlisting}
 
 \rationale{Consistent formatting of page references}
@@ -1604,7 +1868,8 @@ The letter p should not be used.
 
 
 
-\subsubsection{Escapes}
+
+\subsection{Escapes}
 \begin{enumerate}
 \item A dollar sign is only allowed if it is preceded by a backslash. Math-mode can only be enabled by \lstinline!\(...\)!
 \begin{lstlisting}
@@ -1757,6 +2022,7 @@ A sentence. %
 Labels are invoked by \lstinline!\label! and are used to anchor cross-references.
 \begin{enumerate}
 \item All labels must have a prefix and the prefix must follow the style in \Vref{tbl:prefixes-by-float-type}.
+\begin{samepage}
 \begin{lstlisting}
 % Correct
 \section{Clarity and structure}\label{sec:clarity-and-structure}
@@ -1765,6 +2031,7 @@ Labels are invoked by \lstinline!\label! and are used to anchor cross-references
 \section{Clarity and structure}\label{clarity-and-structure}
 \end{lstlisting}
 \rationale{Clarity for authors. Easier autocompletion.}
+\end{samepage}
 \item All captions (to figures and tables) must have a \lstinline!\label!
 \begin{lstlisting}
 % Correct
@@ -1908,7 +2175,7 @@ This should be regularly checked: problems with the entry of the \lstinline!.bib
 }
 \end{lstlisting}
 \rationale{Permit reordering of the file.}
-\item Institutional authors must be abbreviated when in the author field. See \Vref{tbl:institutional-abbreviations}.
+\item Institutional authors should be abbreviated when in the author field.\marginpar{\footnotesize in progress}
 \item Newspaper articles should use the entry type \lstinline!@Article{! with the name of the newspaper in the \lstinline!journal! field.
 \item Prefer using the \lstinline!date! field. If the \lstinline!date! field is present, the fields \lstinline!month! and \lstinline!year! must be absent.
 \rationale{Consistency of output, \emph{ibid}, \emph{idem}, and duplicate avoidance}
@@ -2015,6 +2282,7 @@ but only when it is typed with an ASCII apostrophe, not Unicode symbol U+2019 an
 In the tex file, the correct, ASCII apostrophe will look plain and vertical, whereas the others will look angled, curved, or serifed. 
 \end{enumerate}
 
+If \texttt{grattanReporter} throws a spurious spelling error on a word that is likely to occur in other reports, please file this is as an issue at \url{https://github.com/hughparsonage/grattanReporter/issues} or submit a pull request to \url{https://github.com/HughParsonage/grattanReporter/blob/master/data-raw/correctly_spelled_words.txt}.
 
 
 
@@ -2125,15 +2393,84 @@ Continuous integration is provided to provide timely notifications of input erro
 
 Travis Continuous Integration is a SaaS testing service. 
 
-\subsection{Synopsis}
-\subsubsection{For authors}
-In ShareLaTeX, click the hambuger menu button at top left, then \verb=GitHub=, \verb=Push changes to GitHub=, then \verb=Commit=.
+\section{Synopsis}
+\subsection{For authors}
+To trigger a build test on Travis, you push to GitHub.
+To push to GitHub in ShareLaTeX, click the hamburger menu button at top left, then \texttt{GitHub} > \texttt{Push changes to GitHub} >  \texttt{Commit}.
 
-\subsubsection{Implementation}
+\subsection{Implementation}
 
-\subsection{Annunciation}
-By default, any problems with your report will be annuciated only at grattex slack \verb=grattex.slack.com=. 
+\tikzset{every loop/.style={min distance=10mm,in=-45,out=-135,looseness=4}}
+\begin{tikzpicture}
+\node (ShareLaTeX) [DarkOrange]  at (0,0){ShareLaTeX};
+\node (GitHub) [decision, right of = ShareLaTeX, node distance = 6cm]{GitHub};
+\draw[thick, -latex] (ShareLaTeX) --node[anchor=south west, inner sep = 1ex]{push} (GitHub);
+\node (Travis) [decision, below of = GitHub, node distance = 2.5cm, text width = 3.5cm]{Travis \url{https://travis-ci.com/grattaninstitute}};
+\node (ShareLaTeX2Travis) at ($(ShareLaTeX)!0.4!(GitHub)$){};
+\draw[thick, -latex] (ShareLaTeX2Travis) edge[out=0, in=180] node[anchor=east, inner sep = 1ex]{hook} (Travis);
+\draw[thick, -latex] (Travis) edge[loop below] node{\texttt{checkGrattanReport()}} (Travis);
+\node (Slack) [decision, right of = Travis, node distance = 7.5cm]{\url{grattex.slack.com}};
+\draw[thick, -latex] (Travis) -- node[anchor=south]{\texttt{notifications}} (Slack);
+\node (Travis2Slack) at ($(Travis)!0.5!(Slack)$){};
+\node (Emails) [decision, below of = Slack, node distance = 2cm]{Emails};
+\draw[thick, -latex] (Travis2Slack) edge[out=0, in=180] node[anchor=east, inner sep = 1ex]{} (Emails);
+\end{tikzpicture}
 
+
+\section{Annunciation}\label{sec:travis-annunciation}
+By default, any problems with your report will be annunciated only on the \texttt{general} channel at \url{https://grattex.slack.com}. 
+I recommend setting a more drastic and sonorous annunciation, such as notification for your slack channel, or emails on \texttt{change}.
+
+To change the channel on which Travis notifications will be broadcast, you need to edit the following part of the \texttt{.travis.yml} file.
+
+\begin{lstlisting}
+notifications:
+  slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
+  on_success: change
+\end{lstlisting}
+
+For example, to change to the aust-perspectives channel
+\begin{lstlisting}
+notifications:
+  slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG#aust-perspectives
+  on_success: change
+\end{lstlisting}
+
+Add email addresses, set up to receive build notifications whenever a build fails, and whenever a previously failed build is fixed. 
+\begin{lstlisting}
+notifications:
+  slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG#aust-perspectives
+  on_success: change
+  email: 
+    recipients:
+      - john.daley@grattan.edu.au
+      - danielle.wood@grattan.edu.au
+    on_success: change
+    on_failure: always
+\end{lstlisting}
+
+For more information, see \url{https://docs.travis-ci.com/user/notifications}. 
+
+\subsection{Travis-CI build failures should be assigned high precedence}
+You should treat Travis build failures with greater urgency than \emph{any other work} for the following reasons:
+
+\begin{enumerate}
+  \item \textbf{It's a small task} Travis build failures are designed to be easy to fix: they are discrete, unambiguous, and are issued with a clear error message and clear advice.\footnote{If you encounter unclear error messages or advice, or if, despite frequent checking and not unusual clumsiness, errors seem to be time-consuming to resolve, please let me know.}
+   And when they're not both, you only have to report this to HughParsonage and your duty is done -- \ie~even when they're not quick and easy to fix, they're still quick and easy. Thinking about whether you have time to fix it will take about the same time as fixing it. 
+
+  In addition, errors are infrequent -- you won't be frequently fixing errors. 
+
+  \item \textbf{It's the only way to prevent typos being published.} Although reports are proof-read,\footnote{\dots{} and still need to be: \texttt{grattanReporter} can't check (all) grammar and content.} it is a task that has never been done perfectly; put less euphemistically, all reports have had typos. In addition, a substantial amount of typing is done downstream of editing and proof-reading. 
+  \item \textbf{Hugh will fix them anyway.} Consecutively broken builds will be assigned to Hugh if there is no evidence the team is endeavouring to fix them.
+  \item \textbf{It is easier if done frequently.} It is easier to understand an error you have just made than one made weeks ago. And as you see the errors you made, you will become trained to not make them again.
+  \item \textbf{It is courteous to your collaborators.} Failing to fix a mistake you've made means your collaborators have to. And just as it's harder to fix an error you made weeks ago than one you made today, it's harder to fix someone else's error than one's own. (\emph{Is that the real author's name, or has John just made a typo?})
+  \item \textbf{It will improve the predictability of release time.} It is far easier to predict the release of a report which \lstinline[language=R]!checkGrattanReport(release = TRUE)! returns a pass. By contrast, it is not possible to know in general how long it will take to debug a report that has been left for weeks in a broken state.
+  \item \textbf{It's good practice in software development --- and a rule even more applicable to report writing.} ``Fix bugs before applying new features'' is a proven maxim. But in software development it is hard to fix bugs and hard to predict the time it will take to do so. In contrast, provided you are frequently checking, it will take at most a minute to fix a broken grattanReporter build.
+\end{enumerate}
+
+Note that this advice does not entail continuously checking for Travis errors. On the contrary, while
+you should avoid making errors while drafting, you should not wait for Travis to check your report before continuing.
+You should simply synchronize with GitHub frequently -- every time you get up from your desk -- and act immediately when you are notified of errors.
 
 
 
@@ -2158,7 +2495,7 @@ author & Institution \\
   \endfoot
   \bottomrule
   \endlastfoot
-AAP                               & \\
+AAP                               & Australian Associated Press\\
 ABARES                            & Australian Bureau of Agricultural and Resource Economics and Sciences \\
 ABC                               & ABC entities   \\
 ABS                               & Australian Bureau of Statistics \\
@@ -2166,13 +2503,12 @@ ACARA                             & Australian Curriculum, Assessment and Report
 ACCC                              & Australian Competition and Consumer Commission \\
 ACDS                              & Australian Council of Deans of Science \\
 ACER                              & Australian Council for Educational Research \\
-ACNC                              & \\
+ACNC                              & Australian Charities and Not-for-profits Commission \\
 ACODS                             & Australian Council of Dental Schools \\
 ACOLA                             & Australian Council of Learned Academies \\
 ACOSS                             & Australian Council of Social Service \\
 ACPET                             & Australian Council for Private Education and Training \\
-ACT Treasury                      & \\
-AEC                               & \\
+AEC                               & Australian Electoral Commission\\
 AEI                               & Australian Education International \\
 AIFS                              & Australian Institute of Family Studies \\
 AIG                               & Australian Industry Group \\
@@ -2180,31 +2516,31 @@ AIHW                              & Australian Institute of Health and Welfare \
 AIIA                              & Australian Information Industry Association \\
 AIST                              & The Australian Institute of Superannuation Trustees \\
 AITSL                             & Australian Institute for Teaching and School Leadership \\
-ALP                               & \\
+ALP                               & Australian Labor Party\\
 AMA                               & Australian Medical Association \\
 AMWAC                             & Australian Medical Workforce Advisory Committee \\
-ANAO                              & \\
+ANAO                              & Australian National Audit Office \\
 ANU                               & Australian National University \\
 ANZ                               & ANZ \\
 APEC                              & Asia-Pacific Economic Cooperation \\
-APRA                              & \\
+APRA                              & Australian Prudential Regulation Authority \\
 AQF                               & Australian Qualifications Framework \\
 ARC                               & Australian Research Council \\
-ASFA                              & \\
-ASIC                              & \\
-ASX                               & ASX \\
+ASFA                              & Association of Superannuation Funds of Australia\\
+ASIC                              & Australian Securities and Investments Commission \\
+ASX                               & Australian Stock Exchange \\
 ATN                               & Australian Technology Network of Universities \\
-ATO                               & \\
+ATO                               & Australian Taxation Office\\
 ATSE                              & Australian Academy of Technological Sciences and Engineering \\
 AVCC                              & Australian Vice-Chancellors' Committee \\
 AWPA                              & Australian Workforce and Productivity Agency \\
-BCA                               & \\
+BCA                               & Business Council of Australia \\
 BCG                               & The Boston Consulting Group \\
 BIHECC                            & Business, Industry and Higher Education Collaboration Council \\
-BITRE                             & \\
 BITRE                             & Bureau of Infrastructure, Transport and Regional Economics \\
-BREE                              & \\
+BREE                              & Bureau of Resources and Energy Economics \\
 BTRE                              & Bureau of Transport and Regional Economics, Department of Transport and Regional Services \\
+CBO                               & Congressional Budget Office \\
 CIRES                             & Centre for International Research on Education Systems \\
 COAG                              & Council of Australian Governments \\
 CSIRO                             & Commonwealth Science  and Industrial Research Organisation \\
@@ -2229,107 +2565,77 @@ DOHA                              & Department of Health and Ageing \\
 DPMC                              & Department of Prime Minister and Cabinet \\
 DRET                              & Department of Resources, Energy and Tourism \\
 DSS                               & Department of Social Services \\
-DTF NT                            & \\
-DTF SA                            & \\
+DTF NT                            & Department of Treasury \&\ Finance, NT\\
+DTF SA                            & \etc\\
 DTF Tasmania                      & \\
 DTF Victoria                      & \\
-DTIRE NSW                         & \\
-DTRS                              & \\
+DIRE NSW                          & NSW Department of Trade and Investment Resources and Energy \\
 EC                                & European Commission \\
 ESA                               & Economic Society of Australia \\
 EY                                & Ernst \& Young \\
 FIRB                              & Foreign Investment Review Board \\
 FWC                               & Fair Work Commission \\
 GCA                               & Graduate Careers Australia \\
-GHD                               & \\
 GMAC                              & Graduate Management Admission Council \\
-TRAC Development Group            & TRAC Development Group \\
 HILDA                             & Melbourne Institute of Applied Economic and Social Research, University of Melbourne \\
-HM Revenue \& Customs             & \\
+HMRC                              & HM Revenue \& Customs   \\
 HM Treasury                       & \\
 HSBC                              & HSBC \\
 HWA                               & Health Workforce Australia \\
-IBISWorld                         & \\
 ICAC                              & Independent Commission Against Corruption \\
-IHPA                              & \\
+IHPA                              & Independent Hospital Pricing Authority \\
 IMF                               & International Monetary Fund \\
-IRS                               & \\
+IRS                               & Internal Revenue Service \\
 IRU                               & Innovative Research Universities \\
 ITS Global                        & \\
 KPMG                              & KPMG \\
 KPMG Econtech                     & Universities Australia \\
 MCEETYA                           & Ministerial Council on Education, Employment and Youth Affairs \\
-NPS MedicineWise                  & \\
 NAB                               & National Australia Bank \\
 NACUBO                            & National Association of College and University Business Officers \\
-NAO                               & National Audit Office (UK) \\
+UK                                & National Audit Office (UK) \\
 NAP                               & National Assessment Program \\
-NATSEM                            & AMP \\
+NATSEM                            & National Centre for Social and Economic Modelling \\
 NBN Co                            & \\
 NCSEHE                            & National Centre for Student Equity in Higher Education, Curtin University \\
 NCVER                             & National Centre for Vocational Education Research \\
 NHMRC                             & National Health and Medical Research Council \\
-NICE                              & \\
+UK NICE                           & UK National Institute for Health and Care Excellence\\
 NMC                               & New Media Consortium \\
 NSSE                              & Indiana University Center for Postsecondary Research \\
-NSW Auditor-General               & Audit NSW \\
 NSW DEC                           & Department of Education and Communities \\
-NSW Ombudsman                     & \\
-NSW Parliament                    & \\
 NSW RMS                           & NSW Roads and Maritime Services \\
-NSW Treasury                      & \\
 NTEU                              & National Tertiary Education Union \\
-NZ Inland Revenue                 & \\
-NZ Ministry of Education          & Ministry of Education, New Zealand \\
-NZ Ministry of Social Development & New Zealand Government \\
-NZ Parliament                     & New Zealand Parliament \\
 OCS                               & Office of the Chief Scientist \\
-OECD                              & \\
-  \multicolumn{2}{>{\footnotesize}l}{OECD/Korea Institute of Public Finance} \\ 
+OECD                              & Organization of Economic Cooperation and Development \\
 OUA                               & Open Universities Australia \\
-PBO                               & \\
 PBO                               & Parliamentary Budget Office \\
 PBS                               & \\
-PC                                & \\
 PC                                & Productivity Commission \\
 PGA                               & Parkville Global Advisory \\
-PHARMAC                           & Government of New Zealand \\
-PHIAC                             & \\
-PMC                               & PMC \\
+PHARMAC                           & NZ Pharmaceutical Management Agency \\
+PHIAC                             & Private Health Insurance Administration Council \\
+PMC                               & Department of Prime Minister and Cabinet \\
 PWC                               & Price Waterhouse Coopers \\
 LJ Perry                          & \\
 QUT                               & Queensland University of Technology \\
-RBA                               & \\
+RBA                               & Reserve Bank of Australia\\
 RDL WA                            & \\
-RP Data Core Logic                & \\
 RUN                               & Regional Universities Network \\
 SA DPTI                           & South Australian Department of Planning, Transport and Infrastructure \\
 SA DTF                            & South Australian Department of Treasury and Finance \\
-SA Government                     & \\
+SA Government                     & South Australian Government\\
 SEEK                              & SEEK Limited \\
 SHRM                              & Society for Human Resource Management \\
-SMSF Association                  & \\
 TEQSA                             & Tertiary Education Quality and Standards Agency \\
-TRAC Development Group            & TRAC Development Group \\
-ACIL Tasman                       & ACIL Tasman \\
 UCAS                              & Universities and Colleges Admissions Service \\
-UK Behavioural Insights Team      & \\
-UK Department of Health           & \\
 UK JCPSG                          & Joint Costing and Pricing Steering Group \\
-UNSW                              & \\
-US CBO                            & Congressional Budget Office, US \\
-  \multicolumn{2}{>{\footnotesize}l}{US Department of Agriculture}\\
-  \multicolumn{2}{>{\footnotesize}l}{US Department of Agriculture}\\
-  \multicolumn{2}{>{\footnotesize}l}{US Department of Health and Human Services}\\ 
-  \multicolumn{2}{>{\footnotesize}l}{US Department of Education}\\
+UNSW                              & University of NSW \\
 USyd                              & University of Sydney \\
 UWA                               & University of Western Australia \\
 UWS                               & University of Western Sydney \\
 VCEC                              & Victorian Competition \& Efficiency Commission \\
 VRQA                              & Victorian Registration and Qualifications Authority \\
-WA Government                     & \\
-WA Parliament                     & \\
-WA Treasury                       & \\
 WHO                               & World Health Organisation \\
 \end{longtable}
 \restoregeometry{}
@@ -2890,128 +3196,12 @@ not provided:
 To fix this error, you need to find where a number is expected so that
 you can provide the correct one.
 
-\newgeometry{left=0.125cm,right=0.25cm,top=1cm,bottom=1cm}
-\begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
-\caption{List of all commands} \\
-    \toprule
-    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
-    \midrule
-    \endhead
-    boxsources & Source matter (not footnotes) within boxes & Boxes \\[5pt]
-    citeauthor & Inserts the author of a citation. & Citations \& bibliography \\
-    citetitle & Inserts the title (possibly shortened) of a citation. & Citations \& bibliography \\
-    footcite & Citation to be placed in a footnote & Citations \& bibliography \\
-    footcites & Multiple citations to be placed in a footnote & Citations \& bibliography \\
-    footnote & Insert a footnote. & Citations \& bibliography \\
-    textcite & Inline citation & Citations \& bibliography \\
-    textcites & Multiple citations to be placed inline & Citations \& bibliography \\[5pt]
-    Vref  & Initial cross-reference (to a \textbackslash{}label) & Cross-referencing \\
-    Cref  & Subsequent cross-reference (to a \textbackslash{}label) & Cross-referencing \\
-    Chapref  & Cross-reference to a chapter & Cross-referencing \\
-    ref & The counter of a target (say a footnote) & Cross-referencing \\
-    vpageref & Refernce to a page (including preposition). & Cross-referencing \\
-    label & The target of a cross-reference. & Cross-referencing \\
-    phantomsection & If the target of a cross-reference is not a figure, table, or section (\emph{i.e.} it is just text in a paragraph), use \textbackslash{}phantomsection\textbackslash{}label{<key>} to anchor the cross-reference & Cross-referencing \\[30pt] 
-    bottomrule & Final horizontal rule in a table & Figures and tables \\
-    caption & General caption (grey, bold) & Figures and tables \\
-    captionwithunits & Caption with first argument top line and second argument units for chart & Figures and tables \\
-    cmidrule & Horizontal rule over a subset of columns & Figures and tables \\
-    columnwidth & Supplies the current width of the column  & Figures and tables \\
-    %fnotes & Figure notes that are long & Figures and tables \\
-    %tnotes & Table notes that are long & Figures and tables \\
-    includegraphics & inserts an image (typically a pdf) using the file provided & Figures and tables \\
-    linewidth & Current width of line & Figures and tables \\
-    midrule & Horizontal rule separating heading from contents in a table & Figures and tables \\
-    multicolumn & Spread a cell over multiple columns (merge cells) & Figures and tables \\
-    notes & Puts notes under a chart & Figures and tables \\
-    source & Puts source text under a chart & Figures and tables \\
-    noteswithsource & Puts notes and source under a chart/table & Figures and tables \\ 
-    toprule & First horizontal rule in a table & Figures and tables \\
-    units & Units for charts & Figures and tables\\[5pt]
-    emph  & Emphasize text with an oblique font & Fonts \\
-    textbf & Boldface & Fonts \\
-    textit & Italic font (oblique font for Arial) & Fonts \\[5pt]
-    item  & Commence new number or bullet in an enumerate or itemize environment & Lists \\[5pt]
-    ie    & Macro for consistent use of `i.e.' & Misc \\
-    eg    & Macro for consistent use of `e.g.' & Misc \\
-    etc    & Macro for consistent use of `etc.' & Misc \\
-    input & Used to insert raw .tex code from another file & Misc \\[5pt]
-    addchap & Chapter without number & Sections \\
-    chapter & Begins a new chapter, first argument the title of the chapter & Sections \\
-    section & Section title & Sections \\
-    subsection & Subsection title & Sections \\[5pt]
-    addbibresource & The path of the bibliography (.bib) file containing the references & Single-use \\
-    acknowledgements & Text appearing in second column of page 2 & Single-use \\ 
-    author & The authors of the report & Single-use \\
-    contentspage & Load after the overview. Prints the table of contents and the list of figures & Single-use \\
-    documentclass & Used at the top document. Loads the class (grattan) & Single-use \\
-    GrattanReportNumber & Prints the report number on page 2. Use \textbackslash{}GrattanWorkingPaperNumber for working papers & Single-use \\
-    %GrattanWorkingPaperNumber & Prints the working paper number on page 2 & Single-use \\
-    listoffigures & Print list of figures  & Single-use \\
-    listoftables & Prints list of tables & Single-use \\
-    printbibliography & Prints bibliography & Single-use \\
-    %printendnotes & Prints endnotes if requested & Single-use \\
-    %printfigurenotes & Prints list of `long figure notes' by \textbackslash{}fnotes & Single-use \\
-    %printtablenotes & Prints list of `long table notes' by \textbackslash{}tnotes & Single-use \\
-    title & The title of the report & Single-use \\[5pt]
-    \$    & \textbackslash{}\$ for a (literal) dollar sign & Special characters \\
-    \%    & \textbackslash{}\% for a (literal) percentage sign & Special characters \\
-    \&    & Literal ampersand logogram & Special characters \\[5pt]
-    ,     & Half-space kern & Technical \\
-    @     & Use \textbackslash{}@ before a sentence-ending full stop preceded by a capital letter & Technical \\
-    (     & Use \textbackslash{}( to begin math-mode. You should type \textbackslash{}(-\textbackslash{}) if you want a negative symbol. & Technical \\
-    \textbackslash{} & Line break in table & Technical \\
-    \bottomrule
-    \end{longtable}
-\part{Quick-reference}
-\begin{tabular}{>{\ttfamily}lp{0.6\textwidth}}
-\toprule
-\begin{minipage}[t]{0.4\linewidth}
-\begin{verbatim}
-\begin{figure}
-\Caption{Title}%
-{Units}%
-{xrefkey}
-\includegraphics{path/to/figure}
-\notes{Notes}
-\source{Source}
-\end{verbatim}
-\end{minipage} & Places a floating figure with caption, notes, and source. \\[100pt]
+\part{Implementation and maintenance}
+\addsec{Changing affiliates}
+The best way in practice to change the affiliations page is to search for some of the current affiliates and insert the new affiliate at the location.
+The main thing is to ensure the affiliate's columns are balanced.
 
-\begin{minipage}[t]{0.4\linewidth}
-\begin{verbatim}
-\begin{table}
-\caption{Table caption}
-\begin{tabularx}{\linewidth}
-\toprule
-ColumnHeader1 & ColumnHeader2 \\
-\midrule
-Table entry 1 & Table entry 2 \\
-\bottomrule
-\end{tabularx}
-\notes{}
-\source{}
-\end{table}
-\end{verbatim}
-\end{minipage} & Places a floating table with caption, notes, and source. \\[150pt]
-
-\begin{minipage}[t]{0.4\linewidth}
-\begin{verbatim}
-\begin{overview}[-25pt]
-
-\end{overview}
-\begin{recommendations}[-25pt]
-
-\end{recommendations}
-\end{verbatim}
-\end{minipage} & Page of overview and recommendations.\\
-\bottomrule
-\end{tabular}
-
-\restoregeometry
-
-\part{Implementation}
-\chapter{\texttt{grattan.cls}}
+\addchap{\texttt{grattan.cls}}
 
 
 \begin{lstlisting}[style=cls]
