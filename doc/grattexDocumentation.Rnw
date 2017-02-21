@@ -2084,7 +2084,7 @@ See \Vref{chap:intro}.
     followed by a number.
     Postnotes to citations are excluded, \emph{provided the postnote is correctly entered}. 
     There may be other occasions where such a pattern is valid, but the error is still raised. 
-    Such instances constitute a bug, so please file.}
+    In those instances, use a non-breaking space, \eg~`Section~81 of the Constitution'. Thanks OE for filing.}
 \begin{lstlisting}
 % Correct
 See \Chapref{chap:intro} and \Vref{fig:what-teachers-can-do}.
