@@ -491,7 +491,7 @@ numbers=noenddot,
 
 \newenvironment{figureTop}{
 \begin{figure}
-\begin{minipage}[\textheight]{\linewidth}
+\begin{minipage}[t][\textheight]{\linewidth}
 \vspace{1pt}
 }{%
 \end{minipage}
