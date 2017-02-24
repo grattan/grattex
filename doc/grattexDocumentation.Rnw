@@ -1414,6 +1414,8 @@ Tas   & Low
   \rationale{Prevent erroneous idems and ibidems}
 
   \item Please enter human authors for institutional works, even if the work urges you to cite the institution as the author.
+
+  \item Avoid using \lstinline!author = {{Commonwealth of Australia}}!, except in the context of international relations. 
 \end{enumerate}
 
 \subsection{Nonstandard authors}
