@@ -1365,7 +1365,7 @@ Tas   & Low
   \end{enumerate}
 
   \section{\texttt{bibliography.bib}}
-  The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
+  In \LaTeX, The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
   \begin{lstlisting}[language=BibTeX]
   @@<@type>@@{@@<key>@@,
     @@<field 1>@@={@@<field 1 value>@@},
@@ -1382,6 +1382,10 @@ Tas   & Low
     url          = {https://grattan.edu.au/report/super-sting-how-to-stop-australians-paying-too-much-for-superannuation/},
   }
 \end{lstlisting}
+
+The \texttt{grattex} repository ships with a file \texttt{bib/Grattan-Master-Bibliography.bib}, containing nearly 3000 prepared entries.
+Simply add new entries to this file as required.
+
 \subsection{Entering authors}
 \begin{enumerate}
   \item To enter multiple authors, separate each name with \lstinline! and ! (as above)
