@@ -1365,7 +1365,7 @@ Tas   & Low
   \end{enumerate}
 
   \section{\texttt{bibliography.bib}}
-  The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
+  In \LaTeX, The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
   \begin{lstlisting}[language=BibTeX]
   @@<@type>@@{@@<key>@@,
     @@<field 1>@@={@@<field 1 value>@@},
@@ -1382,6 +1382,10 @@ Tas   & Low
     url          = {https://grattan.edu.au/report/super-sting-how-to-stop-australians-paying-too-much-for-superannuation/},
   }
 \end{lstlisting}
+
+The \texttt{grattex} repository ships with a file \texttt{bib/Grattan-Master-Bibliography.bib}, containing nearly 3000 prepared entries.
+Simply add new entries to this file as required.
+
 \subsection{Entering authors}
 \begin{enumerate}
   \item To enter multiple authors, separate each name with \lstinline! and ! (as above)
@@ -1414,6 +1418,8 @@ Tas   & Low
   \rationale{Prevent erroneous idems and ibidems}
 
   \item Please enter human authors for institutional works, even if the work urges you to cite the institution as the author.
+
+  \item Avoid using \lstinline!author = {{Commonwealth of Australia}}!, except in the context of international relations. 
 \end{enumerate}
 
 \subsection{Nonstandard authors}
@@ -1810,8 +1816,12 @@ All material published or otherwise created by Grattan Institute is licensed und
   two lines before the ISBN line must be the recommended citation in the correct form, given the authors, title, and year provided. 
 
   All members of Grattan staff in the preamble must be included in the recommended citations. 
-  If you have an author that did not contribute to the intellectual substance of the report, but contributed to the preparation of the document, 
+  If you have an author that did not contribute to the intellectual substance of the report, but contributed to the preparation of the document,\index{authorship}\index{editorial author only} 
   use the directive \lstinline!% editorial_author_only: ! followed by the person's name.
+
+  If you need to add an non-staff member to the recommended citation,\index{authorship!adding non-staff member authors}
+  use the directive \lstinline!% add_author_to_recommended_citation: ! followed by the person's name.\footnote{Note that the authorship policy contemplates this only in exceptional circumstances.} 
+
   \item You cannot \prereleaseonly
   use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
   \rationale{Ensure editorial comments/markup are gone}
@@ -2084,7 +2094,7 @@ See \Vref{chap:intro}.
     followed by a number.
     Postnotes to citations are excluded, \emph{provided the postnote is correctly entered}. 
     There may be other occasions where such a pattern is valid, but the error is still raised. 
-    Such instances constitute a bug, so please file.}
+    In those instances, use a non-breaking space, \eg~`Section~81 of the Constitution'. Thanks OE for filing.}
 \begin{lstlisting}
 % Correct
 See \Chapref{chap:intro} and \Vref{fig:what-teachers-can-do}.
