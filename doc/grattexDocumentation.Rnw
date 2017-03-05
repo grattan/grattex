@@ -1816,8 +1816,12 @@ All material published or otherwise created by Grattan Institute is licensed und
   two lines before the ISBN line must be the recommended citation in the correct form, given the authors, title, and year provided. 
 
   All members of Grattan staff in the preamble must be included in the recommended citations. 
-  If you have an author that did not contribute to the intellectual substance of the report, but contributed to the preparation of the document, 
+  If you have an author that did not contribute to the intellectual substance of the report, but contributed to the preparation of the document,\index{authorship}\index{editorial author only} 
   use the directive \lstinline!% editorial_author_only: ! followed by the person's name.
+
+  If you need to add an non-staff member to the recommended citation,\index{authorship!adding non-staff member authors}
+  use the directive \lstinline!% add_author_to_recommended_citation: ! followed by the person's name.\footnote{Note that the authorship policy contemplates this only in exceptional circumstances.} 
+
   \item You cannot \prereleaseonly
   use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
   \rationale{Ensure editorial comments/markup are gone}
