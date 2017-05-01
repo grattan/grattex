@@ -47,6 +47,7 @@ classoffset=0,
 belowskip=0\baselineskip,
 escapechar={\^*}{*}
 }
+
 \lstdefinestyle{cls}{language=[LaTeX]TeX,
 basicstyle=\ttfamily,
 commentstyle=\color{black!60}\ttfamily,
@@ -265,9 +266,21 @@ escapechar={\^*}{*}
 \maketitle
 \tableofcontents
 \newpage 
-\newgeometry{left=0.125cm,right=0.25cm}
 \addchap{Quick-reference}
+\addsec{Releasing a report}
+\begin{enumerate}
+  \item Push any outstanding changes to GitHub.
+  \item Verify the build is passing on Travis.
+  \item Go to your GitHub repository. 
+  \item Click the \texttt{.travis.yml} file and edit it as follows
 
+  \makebox[\textwidth]{\includegraphics[width=0.95\paperwidth]{figure/Edit-travis-for-release.PNG}}\par
+  \item Commit it to the master branch 
+  \item Push any fixes from ShareLaTeX to GitHub until the build passes on Travis.
+  \item If your report was started before February 2007---run \lstinline{library(grattanReporter); checkGrattanReport('@@<path/to/your/project>@@', compile = TRUE, pre_release = TRUE, release = TRUE, embed = @@<TRUE|FALSE>@@)} and then deploy the file written in the \texttt{RELEASE} subdirectory.
+  \item If your report was started after February 2007---click download in ShareLaTeX.
+\end{enumerate} 
+\newgeometry{left=0.125cm,right=0.25cm}
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
 \caption{List of all commands} \\
     \toprule
