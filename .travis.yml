@@ -29,6 +29,9 @@ packages:
   - stringi
   - grattanReporter
 
+r_github_packages:
+  - hughparsonage/grattanReporter
+
 before_install:
   - source ./travis/texlive.sh
   - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
@@ -45,7 +48,8 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
-    - Rscript -e 'install.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat", type = "source")'
+    - Rscript -e 'if (requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+    - Rscript -e 'if (requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
   - set -e
