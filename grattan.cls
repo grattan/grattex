@@ -633,6 +633,8 @@ numbers=noenddot,
   Maddocks
 
   PwC
+  
+  McKinsey \& Company
 
   The Scanlon Foundation
 
@@ -692,7 +694,7 @@ numbers=noenddot,
   style=authoryear-ibid,
   ibidtracker=constrict, % avoid ibids from figures being confusing
   autocite=footnote, 
-  maxcitenames=1, 
+  maxcitenames=2, 
   maxbibnames=9, 
   uniquelist=false, 
   uniquename=init,
