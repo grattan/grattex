@@ -365,6 +365,14 @@ numbers=noenddot,
 \RequirePackage{xpatch}
 \xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
 
+% Named appendix: Appendix A not just 'A'
+\providecommand*\appendixmore{}
+\renewcommand*\appendixmore{%
+    \renewcommand*{\chapterformat}{%
+      \mbox{\appendixname~\thechapter\autodot:\enskip}%
+    }%
+}
+
   
 % --------------
 %
