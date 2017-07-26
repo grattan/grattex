@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/HughParsonage/grattex.svg?branch=master)](https://travis-ci.org/HughParsonage/grattex)
+
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
 Staff starting a new report should do the following:
