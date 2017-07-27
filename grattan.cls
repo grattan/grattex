@@ -63,6 +63,7 @@ numbers=noenddot,
 % ------
 % Grattan colors
 \definecolor{Orange}{RGB}{243,144,29}
+\definecolor{DarkOrange}{RGB}{212,88,42}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
