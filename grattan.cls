@@ -599,7 +599,7 @@ numbers=noenddot,
   \begin{multicols}{2}
   \setlength{\parskip}{5pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-5pt} 
+  \vspace{-20pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -618,10 +618,10 @@ numbers=noenddot,
 
   
   \IfFileExists{Bhp.pdf}%
-    % Bhp original a little too much whitespace on bottom:
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
-  }
+    {\includegraphics[width=3.25cm]{Bhp}}%
+    {\includegraphics[width=3.25cm]{./logos/Bhp}}%
+  % par is necessary to centre the last logo
+  \par}
   \columnbreak\par
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
