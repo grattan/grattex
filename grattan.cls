@@ -63,6 +63,7 @@ numbers=noenddot,
 % ------
 % Grattan colors
 \definecolor{Orange}{RGB}{243,144,29}
+\definecolor{DarkOrange}{RGB}{212,88,42}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
@@ -365,6 +366,14 @@ numbers=noenddot,
 \RequirePackage{xpatch}
 \xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
 
+% Named appendix: Appendix A not just 'A'
+\providecommand*\appendixmore{}
+\renewcommand*\appendixmore{%
+    \renewcommand*{\chapterformat}{%
+      \mbox{\appendixname~\thechapter\autodot:\enskip}%
+    }%
+}
+
   
 % --------------
 %
@@ -591,7 +600,7 @@ numbers=noenddot,
   \begin{multicols}{2}
   \setlength{\parskip}{5pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-5pt} 
+  \vspace{-20pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -610,10 +619,10 @@ numbers=noenddot,
 
   
   \IfFileExists{Bhp.pdf}%
-    % Bhp original a little too much whitespace on bottom:
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
-  }
+    {\includegraphics[width=3.25cm]{Bhp}}%
+    {\includegraphics[width=3.25cm]{./logos/Bhp}}%
+  % par is necessary to centre the last logo
+  \par}
   \columnbreak\par
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
@@ -633,6 +642,8 @@ numbers=noenddot,
   Maddocks
 
   PwC
+  
+  McKinsey \& Company
 
   The Scanlon Foundation
 
@@ -649,6 +660,8 @@ numbers=noenddot,
   Deloitte
 
   GE ANZ
+
+  Jemena
 
   The Myer Foundation
 
@@ -692,7 +705,7 @@ numbers=noenddot,
   style=authoryear-ibid,
   ibidtracker=constrict, % avoid ibids from figures being confusing
   autocite=footnote, 
-  maxcitenames=1, 
+  maxcitenames=2, 
   maxbibnames=9, 
   uniquelist=false, 
   uniquename=init,
