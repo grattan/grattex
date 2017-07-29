@@ -2283,7 +2283,7 @@ Some commands' and environments' arguments are excluded regardless, \emph{viz.} 
 \begin{lstlisting}
 The Quebec Xylophone Enterprise Foundation (QXEF) is fictional.
 \end{lstlisting}
-the words \emph{and}, \emph{of}, and \emph{the} are excluded when backtracking from the abbreviation. The following will still pass:
+the words \emph{and}, \emph{of}, \emph{the}, \emph{to}, and \emph{in}, are excluded when backtracking from the abbreviation. The following will still pass:
 \begin{lstlisting}
 The Quebec Xylophone Enterprise Foundation of Canada (QXEFC) is fictional.
 \end{lstlisting}
@@ -2305,7 +2305,9 @@ but only when it is typed with an ASCII apostrophe, not Unicode symbol U+2019 an
 In the tex file, the correct, ASCII apostrophe will look plain and vertical, whereas the others will look angled, curved, or serifed. 
 \end{enumerate}
 
-If \texttt{grattanReporter} throws a spurious spelling error on a word that is likely to occur in other reports, please file this is as an issue at \url{https://github.com/hughparsonage/grattanReporter/issues} or submit a pull request to \url{https://github.com/HughParsonage/grattanReporter/blob/master/data-raw/correctly_spelled_words.txt}.
+If \texttt{grattanReporter} throws a spurious spelling error on a word that is likely to occur in other reports, please file this is as an issue at 
+
+{\raggedleft\url{https://github.com/hughparsonage/grattanReporter/issues}} 
 
 
 
@@ -2319,6 +2321,23 @@ If \texttt{grattanReporter} throws a spurious spelling error on a word that is l
   \rationale{Avoid confusing reader. Ensure no errant figures.}
 
   During drafting, an unreferenced figure is a NOTE.
+
+  If a figure or table does not need to be referenced,\fromversion{0.19.0} you may exclude it from the check using the \lstinline!% may_be_left_unreferenced:! directive.
+  \begin{lstlisting}
+  % OK:
+  \documentclass{article}
+
+  % may_be_left_unreferenced: fig:magritte
+
+  \begin{document}
+  There are no figures in this document.
+
+  \begin{figure}
+  \caption{ceci n'est pas une figure}\label{fig:magritte}
+  \end{figure}
+  \end{document}
+  \end{lstlisting}
+
 \end{enumerate}
 
 
