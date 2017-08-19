@@ -172,7 +172,7 @@ escapechar={\^*}{*}
 \makeatother
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\subtitle{Manual for \texttt{grattex} v1.2.0 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
+\subtitle{Manual for \texttt{grattex} v1.3.0 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -2406,6 +2406,26 @@ I'd like to refer to the next section, \Cref{sec:next-section}.
 
 \section{This section}\label{sec:this-section}
 \end{lstlisting}
+
+\subsection{Infinite loops}
+\lstinline[language=R]!checkGrattanReport(compile = TRUE)! will recompile the document as often as is required to stabilize cross-references.
+In some cases, it is not possible with the text provided to do so. 
+For example, consider a cross reference using \lstinline!\Vref! to the document's second figure on page 8. 
+If \lstinline!\Vref! ends up in a sentence on the file line of page 9, \LaTeX{} has two options:
+\begin{enumerate}
+  \item Use the phrase ``Figure 2 on the previous page'' over page 9 and page 10; or
+  \item Use the phrase ``Figure 2 on page 8'' on page 9.
+\end{enumerate}
+neither of which are appropriate.
+
+In such an instance, you will receive an error message:\fromversion{0.20.0}\prereleaseonly
+\begin{quote}
+Unstable Vref. (LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.)
+\end{quote}
+above which there should be advice about which page boundaries have a straddling \lstinline!\Vref!. 
+You should change these to \lstinline!\Cref! if appropriate or reword the paragraph if \lstinline!\Vref! is necessary.
+
+
 
 \subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
 Our footnote style provides ample space between the number and the text in the footnote for the first 99 footnotes.
