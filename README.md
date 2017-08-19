@@ -24,9 +24,11 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2017-08-18 v1.3.0
+* Enable the detection of page-straddling cross-references via additional entries in `.log`
+
 ### 2017-07-18
 * Appendix chapter titles are named 'Appendix A' etc.
-* 
 
 ### 2017-01-17
 * New option 'submission'.
