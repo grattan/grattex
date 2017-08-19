@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/02/04 v1.2.0 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/08/19 v1.3.0 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -1013,6 +1013,17 @@ numbers=noenddot,
 \newcommand*{\eg}{\emph{e.g.}}
 \newcommand*{\ie}{\emph{i.e.}}
 \newcommand*{\etc}{\emph{etc.}}
+
+% Helpful for determining which labels are causing infinite reruns.
+% https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
+
+\def\@testdef #1#2#3{%
+  \def\reserved@a{#3}\expandafter \ifx \csname #1@#2\endcsname
+ \reserved@a  \else
+\typeout{^^Jlabel #2 changed:^^J%
+\meaning\reserved@a^^J%
+\expandafter\meaning\csname #1@#2\endcsname^^J}%
+\@tempswatrue \fi}
 
 % To detect user's current version
 \listfiles
