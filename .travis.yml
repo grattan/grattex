@@ -49,11 +49,11 @@ before_script:
     - export PATH=$PATH:$PWD
     - tlmgr update biber
     - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
   - set -e
-  - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
