@@ -49,7 +49,7 @@ before_script:
     - export PATH=$PATH:$PWD
     - tlmgr update biber
     - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (!requireNamespace("grattanReporter", quietly = TRUE)) devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
   - set -e
