@@ -235,6 +235,22 @@ numbers=noenddot,
 \end{boxe}
 } 
 
+% smallbox but centred in the one page
+\newenvironment{centredsmallbox}[2]{%
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}
+  \centering
+    \begin{minipage}[\textheight]{0.5\linewidth}
+      \begin{mdframed}[style=GrattanFrameBox]%
+      \setlength{\parskip}{\currentparskip} % restore the value
+      \@boxcaption{#1\label{#2}}
+      \RaggedRight
+}{%
+      \end{mdframed}%
+    \null\vfill\null%
+  \end{minipage}%
+\end{boxe}
+}
 
 
 % Big boxes -- over the whole page
