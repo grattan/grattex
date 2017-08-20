@@ -24,6 +24,9 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2017-08-20
+* Add `centredsmallbox`.
+
 ### 2017-08-18 v1.3.0
 * Enable the detection of page-straddling cross-references via additional entries in `.log`
 
