@@ -433,6 +433,13 @@ One-column box & \begin{minipage}[t]{0.45\linewidth}
 \end{smallbox}
 \end{lstlisting}
 \end{minipage} \\ 
+Small box centred in the page & \begin{minipage}[t]{0.45\linewidth}
+\begin{lstlisting}
+\begin{centredsmallbox}{@@<Box title>@@}{box:@@<xref-key>@@}
+
+\end{centredsmallbox}
+\end{lstlisting}
+\end{minipage} \\ 
 Box sharing column with body text & \begin{minipage}[t]{0.45\linewidth}
 \begin{lstlisting}
 \begin{verysmallbox}{@@<Box title>@@}{box:@@<xref-key>@@}
@@ -1223,6 +1230,10 @@ Tas   & Low
   \subsection{\texttt{verysmallbox}}\index{verysmallbox}\index{boxes!verysmallbox}
   The very small box is used for boxes which may be sufficiently shorter than a column to share the column with paragraphs from the body text. 
   Such boxes would contain two or fewer paragraphs. 
+
+  \subsection{\texttt{centredsmallbox}}\index{centredsmallbox}\index{boxes!centredsmallbox}
+  The centred small box is used for a box the same size as \lstinline!smallbox! but centred on one page, rather than being constrained to the left or right half of the page.
+  Use this if a \lstinline!smallbox! would otherwise be on a page on its own.
   
   \subsection{\texttt{bigbox*}} \index{bigbox*}\index{boxes!bigbox*}
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 

@@ -132,6 +132,33 @@ An initial cross-reference to \Vref{fig:first-example-figure}.
 \end{figure}
 
 A cross-reference to \Vref{box:example}.
+Sometimes you want two figures on the same page, use the code in \Vrefrange{fig:dbl-example-figure-A}{fig:dbl-example-figure-B}.
+Other times you want a small box on one page (such as at the end of a chapter when the text ends on the right column).
+See the code for \Vref{box:centred-box}.
+
+\doublecolumnfigure{
+\caption{Figure caption\label{fig:dbl-example-figure-A}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\notes{Notes}
+}{
+\caption{Figure caption\label{fig:dbl-example-figure-B}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\source{Source}
+}
+
+\begin{centredsmallbox}{A centred small box}{box:centred-box}
+A centred small box.
+A centred small box.
+A centred small box.
+A centred small box.
+
+A centred small box.
+A centred small box.
+A centred small box.
+A centred small box.
+\end{centredsmallbox}
 
 \begin{verysmallbox}{A very small box}{box:very-small-box-example}
 Contents of very smallbox.
