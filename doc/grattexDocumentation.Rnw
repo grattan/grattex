@@ -172,7 +172,7 @@ escapechar={\^*}{*}
 \makeatother
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\subtitle{Manual for \texttt{grattex} v1.3.0 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
+\subtitle{Manual for \texttt{grattex} v1.3.1 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -1227,7 +1227,7 @@ Tas   & Low
 
   \end{lstlisting}
 
-  \subsection{\texttt{verysmallbox}}\index{verysmallbox}\index{boxes!verysmallbox}
+  \subsection{\texttt{verysmallbox}}\label{subsec:verysmallbox}\index{verysmallbox}\index{boxes!verysmallbox}
   The very small box is used for boxes which may be sufficiently shorter than a column to share the column with paragraphs from the body text. 
   Such boxes would contain two or fewer paragraphs. 
 
@@ -2436,6 +2436,11 @@ Unstable Vref. (LaTeX Warning: Label(s) may have changed. Rerun to get cross-ref
 above which there should be advice about which page boundaries have a straddling \lstinline!\Vref!. 
 You should change these to \lstinline!\Cref! if appropriate or reword the paragraph if \lstinline!\Vref! is necessary.
 
+\subsection{Ensuring \texttt{smallbox}es of a certain size do not intrude on the chapter title}\index{\texttt{smallbox!collision with chapter titles}}
+If a box has around 22~lines of text, has a title/caption that extends over more than one line, occurs on the first page of a sufficiently large chapter,
+you must use a \hyperref[subsec:verysmallbox]{\lstinline!verysmallbox!} (perhaps with the optional parameter \lstinline![p]!)
+if the vertical position of the caption exceeds 166,160,000 nanometres from the bottom of the page 
+(\ie~if the caption is set higher than the bottom of the space allocated for the chapter title).\fromversion{0.21.0}
 
 
 \subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
