@@ -72,3 +72,4 @@ Example-report.txt
 Report.txt
 grattex.sublime-project
 *.sublime-workspace
+*.log2
