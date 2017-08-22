@@ -70,3 +70,5 @@ Example-report.txt
 /*.pdf
 *.fn100
 Report.txt
+grattex.sublime-project
+*.sublime-workspace
