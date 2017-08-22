@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/19 v1.3.0 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -226,7 +226,7 @@ numbers=noenddot,
     \begin{minipage}[\textheight]{\linewidth}
       \begin{mdframed}[style=GrattanFrameBox]%
       \setlength{\parskip}{\currentparskip} % restore the value
-      \@boxcaption{#2\label{#3}}
+      \@boxcaption{\zsavepos{smallbox@@@#3}#2\label{#3}\label{smallbox@@@#3}}
       \RaggedRight
 }{%
       \end{mdframed}%
@@ -238,9 +238,9 @@ numbers=noenddot,
 % smallbox but centred in the one page
 \newenvironment{centredsmallbox}[2]{%
   \setlength{\currentparskip}{\parskip}% save the value
-  \begin{boxe}
+  \@dblfloat{boxe}
   \centering
-    \begin{minipage}[\textheight]{0.5\linewidth}
+    \begin{minipage}[\textheight]{\columnwidth}
       \begin{mdframed}[style=GrattanFrameBox]%
       \setlength{\parskip}{\currentparskip} % restore the value
       \@boxcaption{#1\label{#2}}
@@ -249,7 +249,7 @@ numbers=noenddot,
       \end{mdframed}%
     \null\vfill\null%
   \end{minipage}%
-\end{boxe}
+\end@dblfloat
 }
 
 
