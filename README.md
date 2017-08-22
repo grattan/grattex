@@ -27,6 +27,9 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2017-08-22
+* Add `\note(s)withsource(s)` permutations. Closes #81
+
 ### 2017-08-20
 * Add `centredsmallbox`.
 
