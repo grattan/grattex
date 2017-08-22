@@ -353,9 +353,20 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Source:\ #1\@addpunct{.}}
 }
+
 \newcommand*{\notes}[1]{%
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\sources}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Sources:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\note}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
 }
 
 \newcommand*{\noteswithsource}[2]{%
@@ -363,6 +374,27 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
   \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsource}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsource' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\noteswithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\noteswithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Notes:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
 }
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}

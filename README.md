@@ -2,6 +2,9 @@
 
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
+
+See https://github.com/HughParsonage/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
+
 Staff starting a new report should do the following:
 
   1. Login as the `grattaninstitute` super user in [github.com](https://github.com) and [sharelatex.com](https://sharelatex.com).
@@ -23,6 +26,9 @@ Staff starting a new report should do the following:
   7. Add collaborators as desired. 
 
 ## Changelog
+
+### 2017-08-22
+* Add `\note(s)withsource(s)` permutations. Closes #81
 
 ### 2017-08-20
 * Add `centredsmallbox`.
