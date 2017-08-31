@@ -30,7 +30,9 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=100
+\exhyphenpenalty=900
+\hyphenpenalty=800
+\brokenpenalty=1000
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
