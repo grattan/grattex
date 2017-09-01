@@ -27,6 +27,9 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
+### 2017-09-01
+* Increase hyphenation penalties (Closes #85)
+
 ### 2017-08-22
 * Add `\note(s)withsource(s)` permutations. Closes #81
 

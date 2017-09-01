@@ -30,7 +30,10 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=100
+\exhyphenpenalty=900
+\hyphenpenalty=800
+\brokenpenalty=3000
+
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
@@ -252,6 +255,23 @@ numbers=noenddot,
 \end@dblfloat
 }
 
+\newcommand{\@addboxcaption}[1]{%
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false, skip=0ex, position=above}
+\caption*{#1}
+\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
+}
+
+\newenvironment{addsmallbox}[3][htb]{%
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}[#1]
+  \begin{mdframed}[style=GrattanFrameBox]%
+  \setlength{\parskip}{\currentparskip}% restore the value
+  \@addboxcaption{#2\label{#3}}%
+  \RaggedRight
+}{
+  \end{mdframed}%
+  \end{boxe}%
+}
 
 % Big boxes -- over the whole page
 % It is recommended to surround this with an \afterpage{% 
