@@ -32,7 +32,8 @@ numbers=noenddot,
 % avoid non-discretionary hyphens 
 \exhyphenpenalty=900
 \hyphenpenalty=800
-\brokenpenalty=1000
+\brokenpenalty=3000
+
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}

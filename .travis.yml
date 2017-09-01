@@ -30,7 +30,7 @@ before_script:
     - export PATH=$PATH:$PWD
     - tlmgr update biber
     - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'install.packages(c("fastmatch", "knitr"))'
+    - Rscript -e 'if (!requireNamespace("fastmatch", quietly = TRUE)) install.packages(c("fastmatch", "knitr"))'
     - Rscript -e 'install.packages("hutils", repos = "https://hughparsonage.github.io/drat/", type = "source")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
