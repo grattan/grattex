@@ -45,6 +45,11 @@ before_script:
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
     - Rscript -e 'grattanReporter::setup_travis()'
 
+# Not that important but will be quicker
+# Disadvantage: queued jobs won't interrupt running builds
+git:
+  depth: 3
+
 script: 
   - set -e
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
