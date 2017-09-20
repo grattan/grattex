@@ -7,27 +7,49 @@ cache:
   - /$HOME/.texlive
 warnings_are_errors: false
 
+r_binary_packages:
+  - data.table
+  - magrittr
+  - fastmatch
+  - stringi
+  - Rcpp
+  - tibble
+  - hms
+  - R6
+  - BH
+  - rlang
+  - readr  
+  - zoo
+
+r_packages: 
+  - clisymbols
+  - crayon
+
 addons:
   apt:
     packages:
       - libhunspell-dev
       # - hunspell-en-au Wait :-)
 
-packages:
+r_binary_packages:
   - magrittr
-  - dplyr
   - data.table
   - hunspell
+  - fastmatch
   - testthat
   - devtools
   - readr
   - zoo
-  - gmailr
-  - twitteR
   - crayon
-  - clisymbols
   - stringi
-  - grattanReporter
+  - hutils
+
+r_packages:
+  - clisymbols
+  
+r_github_packages:
+  - HughParsonage/TeXCheckR
+  - HughParsonage/grattanReporter
 
 before_install:
   - source ./travis/texlive.sh
@@ -45,11 +67,17 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
-    - Rscript -e 'install.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat", type = "source")'
+    - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+    - Rscript -e 'if (!requireNamespace("fastmatch", quietly = TRUE)) install.packages(c("fastmatch", "knitr"))'
+    - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("data.table"))'
+    - Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"))'
+    - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
+    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
   - set -e
-  - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:

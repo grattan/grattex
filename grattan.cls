@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/02/04 v1.2.0 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -30,7 +30,10 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=100
+\exhyphenpenalty=900
+\hyphenpenalty=800
+\brokenpenalty=3000
+
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
@@ -63,6 +66,7 @@ numbers=noenddot,
 % ------
 % Grattan colors
 \definecolor{Orange}{RGB}{243,144,29}
+\definecolor{DarkOrange}{RGB}{212,88,42}
 \definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
 \definecolor{Color1}{RGB}{255,224,127}
 \definecolor{Color2}{RGB}{255,195,90}
@@ -225,7 +229,7 @@ numbers=noenddot,
     \begin{minipage}[\textheight]{\linewidth}
       \begin{mdframed}[style=GrattanFrameBox]%
       \setlength{\parskip}{\currentparskip} % restore the value
-      \@boxcaption{#2\label{#3}}
+      \@boxcaption{\zsavepos{smallbox@@@#3}#2\label{#3}\label{smallbox@@@#3}}
       \RaggedRight
 }{%
       \end{mdframed}%
@@ -234,7 +238,40 @@ numbers=noenddot,
 \end{boxe}
 } 
 
+% smallbox but centred in the one page
+\newenvironment{centredsmallbox}[2]{%
+  \setlength{\currentparskip}{\parskip}% save the value
+  \@dblfloat{boxe}
+  \centering
+    \begin{minipage}[\textheight]{\columnwidth}
+      \begin{mdframed}[style=GrattanFrameBox]%
+      \setlength{\parskip}{\currentparskip} % restore the value
+      \@boxcaption{#1\label{#2}}
+      \RaggedRight
+}{%
+      \end{mdframed}%
+    \null\vfill\null%
+  \end{minipage}%
+\end@dblfloat
+}
 
+\newcommand{\@addboxcaption}[1]{%
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false, skip=0ex, position=above}
+\caption*{#1}
+\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
+}
+
+\newenvironment{addsmallbox}[3][htb]{%
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}[#1]
+  \begin{mdframed}[style=GrattanFrameBox]%
+  \setlength{\parskip}{\currentparskip}% restore the value
+  \@addboxcaption{#2\label{#3}}%
+  \RaggedRight
+}{
+  \end{mdframed}%
+  \end{boxe}%
+}
 
 % Big boxes -- over the whole page
 % It is recommended to surround this with an \afterpage{% 
@@ -319,9 +356,20 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Source:\ #1\@addpunct{.}}
 }
+
 \newcommand*{\notes}[1]{%
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\sources}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Sources:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\note}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
 }
 
 \newcommand*{\noteswithsource}[2]{%
@@ -329,6 +377,27 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
   \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsource}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsource' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\noteswithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\noteswithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Notes:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
 }
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
@@ -364,6 +433,14 @@ numbers=noenddot,
 % Removes glue around section titles. 
 \RequirePackage{xpatch}
 \xapptocmd{\sectionlinesformat}{\vspace*{-\parskip}}{}{\PatchFailed}
+
+% Named appendix: Appendix A not just 'A'
+\providecommand*\appendixmore{}
+\renewcommand*\appendixmore{%
+    \renewcommand*{\chapterformat}{%
+      \mbox{\appendixname~\thechapter\autodot:\enskip}%
+    }%
+}
 
   
 % --------------
@@ -591,7 +668,7 @@ numbers=noenddot,
   \begin{multicols}{2}
   \setlength{\parskip}{5pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-5pt} 
+  \vspace{-20pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -610,10 +687,10 @@ numbers=noenddot,
 
   
   \IfFileExists{Bhp.pdf}%
-    % Bhp original a little too much whitespace on bottom:
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{Bhp}}%
-    {\includegraphics[trim = {0 3.8cm 0 0}, clip, width=3.5cm]{./logos/Bhp}}%
-  }
+    {\includegraphics[width=3.25cm]{Bhp}}%
+    {\includegraphics[width=3.25cm]{./logos/Bhp}}%
+  % par is necessary to centre the last logo
+  \par}
   \columnbreak\par
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
@@ -633,6 +710,8 @@ numbers=noenddot,
   Maddocks
 
   PwC
+  
+  McKinsey \& Company
 
   The Scanlon Foundation
 
@@ -649,6 +728,8 @@ numbers=noenddot,
   Deloitte
 
   GE ANZ
+
+  Jemena
 
   The Myer Foundation
 
@@ -692,7 +773,7 @@ numbers=noenddot,
   style=authoryear-ibid,
   ibidtracker=constrict, % avoid ibids from figures being confusing
   autocite=footnote, 
-  maxcitenames=1, 
+  maxcitenames=2, 
   maxbibnames=9, 
   uniquelist=false, 
   uniquename=init,
@@ -1000,6 +1081,17 @@ numbers=noenddot,
 \newcommand*{\eg}{\emph{e.g.}}
 \newcommand*{\ie}{\emph{i.e.}}
 \newcommand*{\etc}{\emph{etc.}}
+
+% Helpful for determining which labels are causing infinite reruns.
+% https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
+
+\def\@testdef #1#2#3{%
+  \def\reserved@a{#3}\expandafter \ifx \csname #1@#2\endcsname
+ \reserved@a  \else
+\typeout{^^Jlabel #2 changed:^^J%
+\meaning\reserved@a^^J%
+\expandafter\meaning\csname #1@#2\endcsname^^J}%
+\@tempswatrue \fi}
 
 % To detect user's current version
 \listfiles
