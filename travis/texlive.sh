@@ -20,7 +20,7 @@ if ! command -v texlua > /dev/null; then
 fi
 
 # Needed for any use of texlua even if not testing LuaTeX
-tlmgr install luatex
+# tlmgr install luatex
 
 # Required to build plain and LaTeX formats:
 # TeX90 plain for unpacking, pdfLaTeX, LuaLaTeX and XeTeX for tests
@@ -42,52 +42,52 @@ tlmgr install metafont mfware
 # picking up l3kernel, etc.
 #
 # fontspec comes first as other packages tested have it as a dep
-tlmgr install --no-depends fontspec
-tlmgr install euenc graphics graphics-cfg graphics-def ifluatex lm lualibs \
-  luaotfload oberdiek  xunicode
+# tlmgr install --no-depends fontspec
+# tlmgr install euenc graphics graphics-cfg graphics-def ifluatex lm lualibs \
+#   luaotfload oberdiek  xunicode
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # Dependencies other than the core l3build set up, metafont, fontspec and the
 # 'graphics stack' (itself needed by fontspec) are listed below
-tlmgr install --no-depends \
-  chemformula \
-  ctex        \
-  mhchem      \
-  siunitx     \
-  unicode-math
-tlmgr install --no-depends cjk
-tlmgr install   \
-  adobemapping  \
-  amsfonts      \
-  amsmath       \
-  chemgreek     \
-  cjkpunct      \
-  ctablestack   \
-  ec            \
-  environ       \
-  etoolbox      \
-  fandol        \
-  filehook      \
-  ifxetex       \
-  lm-math       \
-  lualatex-math \
-  luatexbase    \
-  luatexja      \
-  ms            \
-  pgf           \
-  tools         \
-  trimspaces    \
-  ucharcat      \
-  ulem          \
-  units         \
-  was           \
-  xcolor        \
-  xecjk         \
-  zhmetrics     \
-  zhnumber
+# tlmgr install --no-depends \
+#   chemformula \
+#   ctex        \
+#   mhchem      \
+#   siunitx     \
+#   unicode-math
+# tlmgr install --no-depends cjk
+# tlmgr install   \
+#   adobemapping  \
+#   amsfonts      \
+#   amsmath       \
+#   chemgreek     \
+#   cjkpunct      \
+#   ctablestack   \
+#   ec            \
+#   environ       \
+#   etoolbox      \
+#   fandol        \
+#   filehook      \
+#   ifxetex       \
+#   lm-math       \
+#   lualatex-math \
+#   luatexbase    \
+#   luatexja      \
+#   ms            \
+#   pgf           \
+#   tools         \
+#   trimspaces    \
+#   ucharcat      \
+#   ulem          \
+#   units         \
+#   was           \
+#   xcolor        \
+#   xecjk         \
+#   zhmetrics     \
+#   zhnumber
 
-# Keep no backups (not required, simply makes cache bigger)
-tlmgr option -- autobackup 0
+# # Keep no backups (not required, simply makes cache bigger)
+# tlmgr option -- autobackup 0
 
-# Update the TL install but add nothing new
+# # Update the TL install but add nothing new
 tlmgr update --self --all --no-auto-install
