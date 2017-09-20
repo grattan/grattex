@@ -35,14 +35,10 @@ r_github_packages:
   - HughParsonage/TeXCheckR
   - HughParsonage/grattanReporter
 
-before_install:
-  - Rscript -e 'grattanReporter::setup_travis()'
-
-install: echo Installation step #do not remove this line!
-
 before_script:
     # as somehow no biber package is available for ubuntu 12.04 via apt, let's just download it directly
     # - wget "http://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/0.9.9/binaries/Linux/biber-linux_x86_64.tar.gz"
+    - Rscript -e 'grattanReporter::setup_travis()'
     - wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
