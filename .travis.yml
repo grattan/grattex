@@ -35,6 +35,9 @@ r_github_packages:
   - HughParsonage/TeXCheckR
   - HughParsonage/grattanReporter
 
+# Do not omit this step or travis will think you're checking a package
+install: echo Installation step
+
 before_script:
     # as somehow no biber package is available for ubuntu 12.04 via apt, let's just download it directly
     # - wget "http://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/0.9.9/binaries/Linux/biber-linux_x86_64.tar.gz"
