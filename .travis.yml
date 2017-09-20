@@ -3,6 +3,7 @@ language: r
 sudo: true
 cache: 
   - packages
+  - /travis/grattanReport
   - /tmp/texlive
   - /$HOME/.texlive
 warnings_are_errors: false
