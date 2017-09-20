@@ -7,7 +7,7 @@
 
 # See if there is a cached version of TL available
 export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
-if ! command -v texlua > /dev/null; then
+if ! command -v pdflatex > /dev/null; then
   # Obtain TeX Live
   wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
   tar -xzf install-tl-unx.tar.gz
@@ -24,17 +24,17 @@ fi
 
 # Required to build plain and LaTeX formats:
 # TeX90 plain for unpacking, pdfLaTeX, LuaLaTeX and XeTeX for tests
-tlmgr install cm etex knuth-lib latex-bin tex tex-ini-files unicode-data \
-  xetex
+# tlmgr install cm etex knuth-lib latex-bin tex tex-ini-files unicode-data \
+#   xetex
   
 # Additional requirements for (u)pLaTeX, done with no dependencies to
 # avoid large font payloads
-tlmgr install --no-depends babel ptex uptex ptex-base uptex-base ptex-fonts \
-  uptex-fonts platex uplatex
+# tlmgr install --no-depends babel ptex uptex ptex-base uptex-base ptex-fonts \
+#   uptex-fonts platex uplatex
 
 # Assuming a 'basic' font set up, metafont is required to avoid
 # warnings with some packages and errors with others
-tlmgr install metafont mfware
+# tlmgr install metafont mfware
 
 # Contrib packages for testing
 #
@@ -90,10 +90,10 @@ tlmgr install metafont mfware
 # tlmgr option -- autobackup 0
 
 # # Update the TL install but add nothing new
-tlmgr update --self --all --no-auto-install
+# tlmgr update --self --all --no-auto-install
 
-tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize pgfplots environ
-tlmgr update --all
-sudo apt-get update
-sudo apt-get install texlive-bibtex-extra
+# tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize pgfplots environ
+# tlmgr update --all
+# sudo apt-get update
+# sudo apt-get install texlive-bibtex-extra
 
