@@ -91,3 +91,9 @@ tlmgr install metafont mfware
 
 # # Update the TL install but add nothing new
 tlmgr update --self --all --no-auto-install
+
+tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize pgfplots environ
+tlmgr update --all
+sudo apt-get update
+sudo apt-get install texlive-bibtex-extra
+
