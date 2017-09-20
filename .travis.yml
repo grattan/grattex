@@ -58,8 +58,8 @@ git:
 script: 
   - set -e
   - Rscript -e 'Sys.which("pdflatex")'
-  - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
-  #- for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
+  # - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
