@@ -8,6 +8,23 @@ cache:
   - /tmp/texlive
   - /$HOME/.texlive
   - /$HOME/travis/texlive/
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/acronym
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/bigfoot
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/blindtext
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/chngcntr
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/cmap
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/nowidow
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/mdframed
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/navigator
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/needspace
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/tablefootnote
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/tocloft
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/xpatch
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/multirow
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/bbding
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/mathastext
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/isomath
+  - /$HOME/travis/texlive/texmf-dist/tex/latex/relsize
 warnings_are_errors: false
 
 
