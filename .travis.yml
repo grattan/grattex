@@ -7,7 +7,7 @@ cache:
   - /travis/grattanReport
   - /tmp/texlive
   - /$HOME/.texlive
-  - /home/travis/texlive/
+  - /$HOME/travis/texlive/
 warnings_are_errors: false
 
 
