@@ -692,15 +692,21 @@ numbers=noenddot,
   % par is necessary to centre the last logo
   \par}
   \columnbreak\par
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
+  \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+  The Myer Foundation
+
+  National Australia Bank
+
+  Susan McKinnon Foundation
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Google 
 
   Medibank Private
 
-  Susan McKinnon Foundation
-
+  
   \vspace{26pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
