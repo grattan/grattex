@@ -2,6 +2,9 @@
 
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
+
+See https://github.com/HughParsonage/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
+
 Staff starting a new report should do the following:
 
   1. Login as the `grattaninstitute` super user in [github.com](https://github.com) and [sharelatex.com](https://sharelatex.com).
@@ -24,10 +27,25 @@ Staff starting a new report should do the following:
 
 ## Changelog
 
-### 2016-01-17
+### 2017-09-01
+* Increase hyphenation penalties (Closes #85)
+
+### 2017-08-22
+* Add `\note(s)withsource(s)` permutations. Closes #81
+
+### 2017-08-20
+* Add `centredsmallbox`.
+
+### 2017-08-18 v1.3.0
+* Enable the detection of page-straddling cross-references via additional entries in `.log`
+
+### 2017-07-18
+* Appendix chapter titles are named 'Appendix A' etc.
+
+### 2017-01-17
 * New option 'submission'.
 
-### 2016-01-06
+### 2017-01-06
 * Add `\Chapref` and friends for neater hyperlinks to chapters
 * Add `\ie` `\eg` `\etc` macros.
 
