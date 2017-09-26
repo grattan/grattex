@@ -666,7 +666,7 @@ numbers=noenddot,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
   \vspace{-40pt} 
   {\centering  
@@ -701,7 +701,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{16pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -709,7 +709,7 @@ numbers=noenddot,
 
   Medibank Private
   
-  \vspace{16pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
@@ -725,7 +725,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{16pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
