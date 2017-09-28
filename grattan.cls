@@ -666,9 +666,9 @@ numbers=noenddot,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-20pt} 
+  \vspace{-40pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -694,20 +694,22 @@ numbers=noenddot,
   \columnbreak\par
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+
   The Myer Foundation
 
   National Australia Bank
 
   Susan McKinnon Foundation
 
+  \vspace{17pt}
+
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Google 
 
   Medibank Private
-
   
-  \vspace{26pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
@@ -723,7 +725,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{26pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
