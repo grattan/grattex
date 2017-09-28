@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
-
+\ProvidesClass{grattan}[2017/09/26 v1.3.2 Reports of the Grattan Institute, Melbourne]
+% >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
+% for png files
 \LoadClass[%
 a4paper,
 11pt,
