@@ -740,8 +740,6 @@ numbers=noenddot,
 
   Jemena
 
-  The Myer Foundation
-
   Urbis
 
   Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
