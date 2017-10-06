@@ -67,7 +67,7 @@ before_script:
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
     #- Rscript -e 'grattanReporter::setup_travis()'
     - docker pull blang/latex
-    - ./dockercmd/sh kpsewhich chngcntr.sty
+    - ./travis/dockercmd.sh kpsewhich chngcntr.sty
     - wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
@@ -82,7 +82,7 @@ script:
   - set -e
   - Rscript -e 'Sys.which("pdflatex")'
   # - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
-  - for i in *.tex; do ./dockercmd/sh pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
+  - for i in *.tex; do ./travis/dockercmd.sh pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
 
 notifications:
