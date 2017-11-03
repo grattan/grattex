@@ -714,8 +714,6 @@ numbers=noenddot,
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
-  EY
-
   Maddocks
 
   PwC
