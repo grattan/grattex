@@ -1855,6 +1855,12 @@ All material published or otherwise created by Grattan Institute is licensed und
 
   If you need to add an non-staff member to the recommended citation,\index{authorship!adding non-staff member authors}
   use the directive \lstinline!% add_author_to_recommended_citation: ! followed by the person's name.\footnote{Note that the authorship policy contemplates this only in exceptional circumstances.} 
+  By default, non-staff members are listed last.\fromversion{0.24.0}
+  If you require the author to be placed ahead of staff members, use the directive 
+  \begin{lstlisting}
+add_author_to_recommended_citation_at: @@<author>@@ @@<order>@@
+  \end{lstlisting}
+  where \lstinline!@@<order>@@! is an integer specifying the position in the citation for the author.
 
   \item You cannot \prereleaseonly
   use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
