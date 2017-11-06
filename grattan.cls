@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/09/26 v1.3.2 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/11/03 v1.3.2 Reports of the Grattan Institute, Melbourne]
 % >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
 % for png files
 \LoadClass[%
@@ -713,8 +713,6 @@ numbers=noenddot,
   \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
-
-  EY
 
   Maddocks
 
