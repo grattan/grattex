@@ -815,11 +815,11 @@ numbers=noenddot,
       \iftoggle{bbx:dowehavemorenames}
         {\printnames{labelname}%
          \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extrayear}%
+         \usebibmacro{date+extradate}%
          \space\space\newunit\newblock}
         {}%
     \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
   }
 }
 
