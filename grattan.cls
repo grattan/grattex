@@ -783,6 +783,7 @@ numbers=noenddot,
   uniquelist=false, 
   uniquename=init,
   sorting=anyt,
+  date=year, % else bibliography will be e.g. ATO (Jul. 10, 2016c)
   labelalpha,
   maxalphanames=1
 ]{biblatex}
@@ -814,11 +815,11 @@ numbers=noenddot,
       \iftoggle{bbx:dowehavemorenames}
         {\printnames{labelname}%
          \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extrayear}%
+         \usebibmacro{date+extradate}%
          \space\space\newunit\newblock}
         {}%
     \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
   }
 }
 
