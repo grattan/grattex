@@ -789,39 +789,76 @@ numbers=noenddot,
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
-  \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-  \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-  \ExecuteBibliographyOptions{sorting=gratt}
+  \@ifpackagelater{biblatex}{2017/11/04}{
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
 
-  \newtoggle{bbx:dowehavemorenames}
-  \DeclareNameFormat{dowehavemorenames}{%
-   \ifboolexpr{
-     test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-     and
-     test \ifmorenames
-   }
-     {\global\toggletrue{bbx:dowehavemorenames}}
-     {\global\togglefalse{bbx:dowehavemorenames}}}
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
 
-  \newcounter{mymaxcitenames}
-  \AtBeginDocument{%
-   \setcounter{mymaxcitenames}{\value{maxnames}}%
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extradate}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    }
+  }{
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
+
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
+
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extradate}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    }
   }
-
-  \renewbibmacro*{begentry}{%
-    \begingroup
-      \defcounter{maxnames}{\value{mymaxcitenames}}%
-      \printnames[dowehavemorenames]{labelname}%
-      \iftoggle{bbx:dowehavemorenames}
-        {\printnames{labelname}%
-         \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extradate}%
-         \space\space\newunit\newblock}
-        {}%
-    \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
-  }
-}
+}%
+% do nothing
+{}
 
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
