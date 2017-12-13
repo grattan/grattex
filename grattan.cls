@@ -815,11 +815,23 @@ numbers=noenddot,
       \iftoggle{bbx:dowehavemorenames}
         {\printnames{labelname}%
          \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extradate}%
+         % Maintain backwards compatibility with biblatex 3.7
+         \@ifpackagelater{biblatex}{2017/11/04}{%
+           \usebibmacro{date+extradate}%
+         }{%
+           \usebibmacro{date+extrayear}%
+         }%
          \space\space\newunit\newblock}
         {}%
     \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    \iftoggle{bbx:dowehavemorenames}{%
+      \@ifpackagelater{biblatex}{2017/11/04}{
+        \renewbibmacro*{date+extradate}{}
+      }{
+        \renewbibmacro*{date+extrayear}{}
+      }%
+    }%
+    {}%
   }
 }
 
