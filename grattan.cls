@@ -789,6 +789,7 @@ numbers=noenddot,
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
+% Maintain backwards-compatibility between these dates
   \@ifpackagelater{biblatex}{2017/11/04}{
     \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
     \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
@@ -823,6 +824,7 @@ numbers=noenddot,
       \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
     }
   }{
+  %% biblatex version 3.7
     \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
     \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
     \ExecuteBibliographyOptions{sorting=gratt}
@@ -849,11 +851,11 @@ numbers=noenddot,
         \iftoggle{bbx:dowehavemorenames}
           {\printnames{labelname}%
            \setunit{\printdelim{nameyeardelim}}%
-           \usebibmacro{date+extradate}%
+           \usebibmacro{date+extrayear}%
            \space\space\newunit\newblock}
           {}%
       \endgroup
-      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
     }
   }
 }%
