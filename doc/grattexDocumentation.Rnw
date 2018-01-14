@@ -2,11 +2,19 @@
 
 <<knitrOpts, echo=FALSE>>=
 library(knitr)
+library(data.table)
+library(magrittr)
+library(kableExtra)
+library(hutils)
+library(TeXCheckR)
 opts_chunk$set(echo = TRUE, eval = FALSE)
 @
 
 \let\oldLaTeX\LaTeX
+\let\oldTeX\TeX
 \renewcommand{\LaTeX}{\textrm{\oldLaTeX}}
+\renewcommand{\TeX}{\textrm{\oldTeX}}
+
 
 \usepackage{adjustbox}
 \usepackage{scrhack}
@@ -23,6 +31,8 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 % Font:
 \usepackage{tgpagella,eulervm}
 \usepackage{tabularx}
+  \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+  
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage{xcolor}
@@ -283,7 +293,52 @@ update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat
   \item If your report was started before February 2017---run \lstinline{library(grattanReporter); checkGrattanReport('@@<path/to/your/project>@@', compile = TRUE, pre_release = TRUE, release = TRUE, embed = @@<TRUE|FALSE>@@)} and then deploy the file written in the \texttt{RELEASE} subdirectory.
   \item If your report was started after February 2017---click download in ShareLaTeX.
 \end{enumerate} 
+\addsec{Expected \LaTeX{} competencies}
+
+<<expected-competencies, results='asis', echo=FALSE, eval=TRUE>>=
+Expected_Competency <-
+  fread("expected-competencies.tsv", showProgress = FALSE) %>%
+  .[, big_group := factor(big_group, 
+                          levels = c("Initial report stage/conversion/general",
+                                     "Editing stage",
+                                     "Final stage/publication"),
+                          ordered = TRUE)] %>%
+  # Won't be santized:
+  .[, Competency := gsub("(?<!(?:\\\\verb.))\\\\((?!verb)\\w+)\\b", "\\\\verb!\\\\\\1!", Competency, perl = TRUE)] %>%
+  setorderv(c("big_group", "PD/Fellow/Editor", "Associate", "LaTeX guru"),
+            order = c(1, -1, -1, -1)) %>%
+  # str
+  .[, lapply(.SD, if_else, "\\parbox[c]{2cm}{\\centering\\CheckmarkBold}", ""), by = c("big_group", "Competency")]
+
+first_groups <-
+  copy(Expected_Competency)[, I := .I][, .(R = range(I)), keyby = "big_group"]
+
+res <- 
+  kable(Expected_Competency[, big_group := NULL],
+        format = "latex",
+        align = c("p{0.5\\linewidth}", "R", "R", "R"),
+        escape = FALSE,
+        booktabs = TRUE) %>%
+  kable_styling() %>%
+  group_rows(first_groups[["big_group"]][1],
+             first_groups[["R"]][1],
+             first_groups[["R"]][2]) %>%
+  group_rows(first_groups[["big_group"]][3],
+             first_groups[["R"]][3],
+             first_groups[["R"]][4]) %>%
+  group_rows(first_groups[["big_group"]][5],
+             first_groups[["R"]][5],
+             first_groups[["R"]][6])
+
+cat(c(as.character(res), "\n"), file = "expected-competencies-tabularx.tex")
+@
+
 \newgeometry{left=0.125cm,right=0.25cm}
+% kable not perfect, needs to be modified
+\input{expected-competencies-tabularx-manual}
+
+
+
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
 \caption{List of all commands} \\
     \toprule
