@@ -307,6 +307,7 @@ Expected_Competency <-
   .[, Competency := gsub("(?<!(?:\\\\verb.))\\\\((?!verb)\\w+)\\b", "\\\\verb!\\\\\\1!", Competency, perl = TRUE)] %>%
   setorderv(c("big_group", "PD/Fellow/Editor", "Associate", "LaTeX guru"),
             order = c(1, -1, -1, -1)) %>%
+  .[, lapply(.SD, function(x) if (is.integer(x) && uniqueN(x) <= 2L) as.logical(x) else x)] %>%
   # str
   .[, lapply(.SD, if_else, "\\parbox[c]{2cm}{\\centering\\CheckmarkBold}", ""), by = c("big_group", "Competency")]
 
