@@ -702,7 +702,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{17pt}
+  \vspace{16pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -710,7 +710,7 @@ numbers=noenddot,
 
   Medibank Private
   
-  \vspace{17pt}
+  \vspace{16pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
@@ -724,7 +724,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{17pt}
+  \vspace{16pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -740,7 +740,9 @@ numbers=noenddot,
 
   Urbis
 
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Westpac
+
+  Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \eject \normalsize
