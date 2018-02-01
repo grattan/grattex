@@ -1,0 +1,11 @@
+\documentclass[TikZ]{standalone}
+
+\begin{document}
+
+
+\begin{tabular}{l}
+\textbf{LaTeX guru}
+
+
+\end{document}
+

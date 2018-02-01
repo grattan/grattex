@@ -974,7 +974,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter (\ie~it is printed without a number).
   
   \section{Miscellaneous text elements and font}
-  \subsection{Boldface, italics}
+  \subsection{Boldface, italics}\label{subsec:bf-it}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
   That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
@@ -1069,7 +1069,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
 
   \chapter{Floats: figures, tables and boxes}
-  \section{Figures}
+  \section{Figures}\label{sec:Figures}
   Before you insert a figure, you need to create your image (say in PowerPoint).
   Your file should be saved as a pdf, though almost all image types are supported. 
   If you are using PowerPoint to create your charts, ensure the pdf has the fonts embedded.
@@ -1568,7 +1568,7 @@ Enter the date if possible; the year if not. If you only have the month and year
 
 
   \section{Citations}\index{citations}\index{footcite}\index{footcites}
-  \subsection{\LaTeX{} commands to insert a citation}
+  \subsection{\LaTeX{} commands to insert a citation}\label{subsec:insert-cite}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
   Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{@@<key2>@@}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
@@ -1815,7 +1815,21 @@ A rationale prefixed by `Technical:' or stating `Easier to code' are weak -- the
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via my drat repository:
 <<install-grattanReporter>>=
+if ("grattanReporter" %in% loadedNamespaces()) {
+  stop("Restart R: packages currently loaded will need to be updated.")
+}
+
+myLibrary <- .libPaths()[1]
+# If the library is on an UNC server \\uom.. it is not writeable:
+if (identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- .libPaths()[2]
+}
+if (!is.na(myLibrary) && identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- tempdir()  # guaranteed to be writeable, if it is possible to install anything
+}
+install.packages("TeXCheckR", lib = myLibrary)
 install.packages("grattanReporter",
+                  lib = myLibrary,
                   repos = "https://hughparsonage.github.io/drat",
                   type = "source")
 @
