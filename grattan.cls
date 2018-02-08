@@ -951,6 +951,7 @@ numbers=noenddot,
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\boolfalse{cbx:parens}}
   {\usebibmacro{citeindex}%
+  % \ifciteibid{\usebibmacro{cite:ibid}}{%  % for ibidem
   \ifciteibid{Ibid.}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
