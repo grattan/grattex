@@ -293,6 +293,7 @@ update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat
   \item If your report was started before February 2017---run \lstinline{library(grattanReporter); checkGrattanReport('@@<path/to/your/project>@@', compile = TRUE, pre_release = TRUE, release = TRUE, embed = @@<TRUE|FALSE>@@)} and then deploy the file written in the \texttt{RELEASE} subdirectory.
   \item If your report was started after February 2017---click download in ShareLaTeX.
 \end{enumerate} 
+\clearpage
 \addsec{Expected \LaTeX{} competencies}
 
 <<expected-competencies, results='asis', echo=FALSE, eval=TRUE>>=
@@ -339,9 +340,13 @@ cat(c(as.character(res), "\n"), file = "expected-competencies-tabularx.tex")
 \input{expected-competencies-tabularx-manual}
 
 
-
+\clearpage
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
-\caption{List of all commands} \\
+\caption{List of all commands}\label{tbl:all-cmds} \\
+    \toprule
+    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
+    \midrule
+    \endfirsthead
     \toprule
     \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
     \midrule
@@ -769,15 +774,24 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The contributors can be changed after the report is set up. 
   But the repo name cannot. 
   Accordingly, it is important that you choose a name that is evocative of the project, unique, and will have a long shelf-life.
-  This can be difficult, and a naming convention has not yet been established; however, names like `HigherEd-report' or `Inquiry-submission' will be rejected---or purged if they slip through.
+
+  Experience has shown that it can be difficult to predict the final title or even publication \emph{year}, it's best to refer to the subject of the report rather than a quippy title.
+  Use the following repository naming convention: 
+  \begin{quote}
+  \lstinline!@@<Program>@@-@@<Start year>@@-@@<Report subject>@@!
+  \end{quote}
+
+  Archived reports should use the prefix \lstinline!zzz!.
+
   \item They will perform the following steps:
     \begin{enumerate}
       \item Visit \url{https://travis-ci.org/HughParsonage/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
       If it shows another image (or no image), please do not proceed (as the report template is broken) and contact Hugh Parsonage as the repository owner. 
-      \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and `publisher@grattan.edu.au' at \href{https://sharelatex.com}{sharelatex.com}.
+      \item Ensure you have been added to the \url{https://github.com/grattan} organizational account.
       \item Copy \verb=https://github.com/HughParsonage/grattex= to your clipboard
       \item Visit \url{https://github.com/new/import}
       \item Paste \verb=https://github.com/HughParsonage/grattex= into the \textbf{Your old repository's clone URL} field.
+      \item Change \textbf{Owner} to \texttt{grattan}.
       \item Choose an evocative name for your repository under \textbf{Name}
       \item Select \textbf{Private}
       \item Click \textbf{Begin Import}.
@@ -803,8 +817,9 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
       \item At the top right, click \verb=Share=.
       \item Add collaborators as desired. 
-      \item Go to \url{https://travis-ci.com/profile/grattaninstitute/}. 
+      \item Go to \url{https://travis-ci.com/profile/grattan/}. 
       Find the repository you just added and flick the switch on. 
+      \item Return to Share\LaTeX{}, comment out the \lstinline!\nocite{*}! and sync to GitHub.
     \end{enumerate}
   \end{enumerate}
 
@@ -825,6 +840,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 \draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 180]  (grattex-GitHub-future);
 \end{tikzpicture}
 \end{figure}
+
+\section{Using \texttt{pandoc}}\label{sec:using-pandoc}
+\texttt{pandoc} comes installed with RStudio.
+To convert \texttt{orig.docx} to \texttt{new.tex}, run from the directory containing \texttt{orig.docx}.
+\begin{lstlisting}[language=bash]
+pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
+\end{lstlisting}
+
 
 
   \section{The preamble}
@@ -850,7 +873,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
-  \subsection{Grattan-specific preamble}
+  \subsection{Grattan-specific preamble}\label{subsec:Grattan-specific-preamble}
   So that reports look alike, a particular preamble is required that loads the Grattan style.
   If you imported the package from GitHub using the instructions \vpageref{sec:getting-started} your report already meets the requirements described below.
 
@@ -959,7 +982,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   after \lstinline!\contentspage! to insert the lists as desired.
   
-  \section{Main matter}
+  \section{Main matter}\label{sec:main-matter}
   \subsection{Chapters, section, subsections}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
@@ -979,7 +1002,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   
   That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
   
-  \subsection{Paragraphs}
+  \subsection{Paragraphs}\label{subsec:para}
   Use a blank line to mark a new paragraph. For example
   \begin{center}
   \begin{minipage}{\textwidth}
@@ -993,15 +1016,19 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{center}
   In the above example, \emph{Proposals to extend} will begin on a new paragraph. 
 
-  \subsection{Non-breaking spaces}
+  \subsection{Non-breaking spaces}\label{subsec:non-breaking-space}\index{non-breaking space}
   Use \lstinline!~! for a non-breaking space: \lstinline!\$40~million!. 
 
-  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!. 
+  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!.
+
+  \subsection{Footnotes}\label{subsec:footnote}\index{footnote}
+  Use \lstinline!\\footnote{@@<text>@@}! to insert \lstinline!@@<text>@@! into a footnote.
+
 
 
 
   
-  \subsection{Numbered / bulleted lists}
+  \subsection{Numbered / bulleted lists}\label{subsec:lists}\index{itemize}\index{enumerate}\index{lists}\index{bullets}
   Use \verb=enumerate= (for numbered lists) and \verb=itemize= (for bulleted lists) \index{enumerate}\index{itemize}
   \begin{lstlisting}
    \begin{enumerate}
@@ -1068,8 +1095,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{document}
   \end{lstlisting}
 
-  \chapter{Floats: figures, tables and boxes}
-  \section{Figures}\label{sec:Figures}
+  \chapter{Floats: figures, tables and boxes}\label{chap:floats}
+  \section{Figures}\label{sec:Figures}\index{figures}\index{charts}
   Before you insert a figure, you need to create your image (say in PowerPoint).
   Your file should be saved as a pdf, though almost all image types are supported. 
   If you are using PowerPoint to create your charts, ensure the pdf has the fonts embedded.
@@ -1282,7 +1309,7 @@ Tas   & Low
 
 
 
-  \section{Boxes}
+  \section{Boxes}\label{sec:boxes}
   \subsection{\texttt{smallbox}}\index{smallbox}\index{boxes!smallbox}
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
 
@@ -1458,11 +1485,11 @@ Tas   & Low
   \end{enumerate}
 
   \section{\texttt{bibliography.bib}}
-  In \LaTeX, The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
+  In \LaTeX, The database is a text file, customarily having file extension \lstinline!.bib!, containing entries for each work to be cited:
   \begin{lstlisting}[language=BibTeX]
   @@<@type>@@{@@<key>@@,
-    @@<field 1>@@={@@<field 1 value>@@},
-    @@<field 2>@@={@@<field 2 value>@@},
+    @@<field 1>@@ = {@@<field 1 value>@@},
+    @@<field 2>@@ = {@@<field 2 value>@@},
   }
   \end{lstlisting}
   For example,
@@ -1479,7 +1506,7 @@ Tas   & Low
 The \texttt{grattex} repository ships with a file \texttt{bib/Grattan-Master-Bibliography.bib}, containing nearly 3000 prepared entries.
 Simply add new entries to this file as required.
 
-\subsection{Entering authors}
+\subsection{Entering authors}\label{subsec:entering-bib-authors}
 \begin{enumerate}
   \item To enter multiple authors, separate each name with \lstinline! and ! (as above)
   \item You can enter the authors in \lstinline!Forename Surname! or \lstinline!Surname, Forename! form (even within the same entry). 
@@ -1674,6 +1701,17 @@ The package \texttt{soul} provides the commend \lstinline!\hl! which highlights 
   \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where \lstinline!@@<n>@@! is an integer multiple of $1/4$. 
   \end{enumerate}
 
+  \section{Avoiding a linebreak}
+  To avoid a linebreak, you should first revisit the paragraph or paragraphs prior to see if any of the text can be modified. 
+  (Remember that removing words may on rare occasions \emph{increase} the number of lines the paragraph occupies.)
+  If you cannot reword the paragraph, you can use non-breaking spaces \eg~\lstinline!no~break! or use \lstinline!\mbox{no break}! which creates an unbreakable box.
+
+  \subsection{In captions}\label{captionsetup}
+  If a caption is slightly too long to fit on one line (say by one word), it is acceptable (indeed preferable) to modify the margins to allow the word to overflow into the margins.
+  Use \lstinline!\captionsetup{oneside, margin={0em,@@<x>@@em}}!\index{captionsetup} for a suitable choice of \lstinline!@@<x>@@!, which equals the extra width in units of em-dashes by which the caption will expand.
+
+
+
   \chapter{Excessive whitespace between paragraphs}
   This occurs when there is insufficient text to fill a page (the page is \emph{underfull}) but moving text onto another page is not possible because:
   \begin{itemize}
@@ -1762,8 +1800,7 @@ The package \texttt{soul} provides the commend \lstinline!\hl! which highlights 
 
 
 
-
-\part{Style requirement: {\bfseries\texttt{grattanReporter}}}
+\part{Style requirement: {\bfseries\texttt{grattanReporter}}}\label{part:grattanReporter}
 
 \chapter{User guide}
 \section{Synopsis}
@@ -2055,7 +2092,7 @@ This is a dash --- but an em-dash, which is a bit much.
 
 
 
-\subsection{Quote marks}
+\subsection{Quote marks}\label{subsec:quotation-marks}\index{quotation marks}\index{inverted commas}
 \begin{enumerate}
 \item Closing quotes must not be used to open a quote:
 \begin{lstlisting}
@@ -2196,7 +2233,7 @@ See \Vref{chap:intro}.
 
 
 
-\subsection{Cross-references}
+\subsection{Cross-references}\label{cross-references}
 \begin{enumerate}
   \item All cross-references must be encoded in a macro 
   (\lstinline!\Vref! and \lstinline!\Cref!, 
@@ -2539,7 +2576,7 @@ if the vertical position of the caption exceeds 166,160,000 nanometres from the 
 (\ie~if the caption is set higher than the bottom of the space allocated for the chapter title).\fromversion{0.21.0}
 
 
-\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
+\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}}\label{subsec:check-Century} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
 Our footnote style provides ample space between the number and the text in the footnote for the first 99 footnotes.
 At the 100th footnote, there is not enough space, so the format must be redefined. 
 The reformat cannot necessarily take place simply between the 99th footnote and 100th footnote, because this would 
