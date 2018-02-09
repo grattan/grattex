@@ -294,7 +294,6 @@ update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat
   \item If your report was started after February 2017---click download in ShareLaTeX.
 \end{enumerate} 
 \clearpage
-\addsec{Expected \LaTeX{} competencies}
 
 <<expected-competencies, results='asis', echo=FALSE, eval=TRUE>>=
 Expected_Competency <-
@@ -335,7 +334,8 @@ res <-
 cat(c(as.character(res), "\n"), file = "expected-competencies-tabularx.tex")
 @
 
-\newgeometry{left=0.125cm,right=0.25cm}
+\newgeometry{left=0.25cm,right=0.25cm}
+\addsec{Expected \LaTeX{} competencies}
 % kable not perfect, needs to be modified
 \input{expected-competencies-tabularx-manual}
 
@@ -906,7 +906,7 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
   \item For almost all reports, you will need to have a \texttt{.bib} file. The grattex repository comes with a \texttt{Grattan-Master-Bibliography.bib} file in the \texttt{bib} subdirectory, containing most extant works previously cited in reports. 
   \end{enumerate}
 
-  \subsection{Class options}
+  \subsection{Class options}\label{cls-opts}
   You can invoke one of the following options by writing 
   \begin{lstlisting}
   \documentclass[@@<options>@@]{grattan}
@@ -1049,8 +1049,27 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
    \end{itemize}
   \end{lstlisting}
 
+  \subsection{Quotes and dicta}\label{quotes-dicta}
+  To insert an extended quote, use the \lstinline!quote! environment.
+
+  \begin{lstlisting}
+  \begin{quote}
+    One of the reasons that clinicians struggle to form
+    partnerships with patients and consumers is that 
+    there is inadequate information for proper informed
+    consent. The numbers that are collected don't filter
+    through to clinicians dealing with the patient, and
+    certainly not to the patient themselves. I encourage
+    people to ask doctors three questions: `What are my
+    options?', `What are the treatment outcomes -- both
+    benefits and risks?', and `How likely are those
+    outcomes to happen to me?'.  Doctors though say `We
+    just don't have that information'.
+  \end{quote}
+  \end{lstlisting}
+
   \section{Back matter}
-  \subsection{Appendices}
+  \subsection{Appendices}\label{subsec:appendix}
   To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
 
   \begin{lstlisting}
@@ -1197,7 +1216,7 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
   Inside the tabular, use the ampersand \verb=&= to move to the next column and the double-backslash \verb=\\= to move to the next row. 
   Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
-\subsection{From Excel}
+\subsection{From Excel}\label{Excel2LaTeX}
     Most authors would be well-advised to quickly write their tables in Excel and then use Excel2LaTeX.
 
     To start using Excel2LaTeX:
@@ -1603,7 +1622,7 @@ Enter the date if possible; the year if not. If you only have the month and year
   Use \lstinline!\textcite{@@<key>@@}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
   Similarly \verb=\textcites= and \lstinline!\textcite[][18--24]{@@<key>@@}! as with footcite. 
 
-  \subsection{ShareLaTeX}
+  \subsection{ShareLaTeX}\label{cite-in-sharelatex}
   You should harness the bibliography search function in ShareLaTeX, rather than switching back and forth between your \texttt{.bib} file and your source file.
   To enliven the search function type \lstinline!\textcite{! or \lstinline!\footcite{! (as the case may be), then click Ctrl + Space or Cmd + Space on a mac (or as directed). 
   In the search box that appears, start typing words from the document you want to cite.
