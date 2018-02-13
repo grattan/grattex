@@ -141,23 +141,7 @@ escapechar={\^*}{*}
 %\captionsetup[table]{belowskip=6pt}
 \captionsetup[figure]{belowskip=5pt}
 
-% \usepackage{titlesec}     % for customizing sections
-% % customize section
-% \titleformat{\section}%
-%   {\Large\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
-% \titleformat{\subsection}%
-%   {\large\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesubsection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
-% \titleformat{\subsubsection}%
-%   {\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesubsubsection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
+
 \renewcommand\sectionlinesformat[4]{%
   \makebox[0pt][r]{#3}#4%
 }
@@ -295,7 +279,7 @@ update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat
 \end{enumerate} 
 \clearpage
 
-<<expected-competencies, results='asis', echo=FALSE, eval=TRUE>>=
+<<expected-competencies, results='asis', echo=FALSE, eval=FALSE>>=
 Expected_Competency <-
   fread("expected-competencies.tsv", showProgress = FALSE) %>%
   .[, big_group := factor(big_group, 
@@ -338,7 +322,6 @@ cat(c(as.character(res), "\n"), file = "expected-competencies-tabularx.tex")
 \addsec{Expected \LaTeX{} competencies}
 % kable not perfect, needs to be modified
 \input{expected-competencies-tabularx-manual}
-
 
 \clearpage
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
@@ -1196,7 +1179,7 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
   The \lstinline!@@<alignment parameters>@@! determine the alignment of the columns,
 
 \begin{table}[h]
-\caption{Alignment parameters and their meanings}
+\caption{Alignment parameters and their meanings}\label{tbl:complex-tbls}
 \begin{adjustbox}{center}
   \begin{tabular}{r>{\raggedright\arraybackslash}p{10cm}}
   \toprule 
@@ -1258,6 +1241,7 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
   \toprule
   \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
   \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \lstinline!\begin{tabular}{m{2cm}b{2cm}p{2cm}}! starts a table with 3 columns vertical aligned to the middle, bottom, and top. 
   \bottomrule
   \end{tabular}%
   %}%
@@ -1281,7 +1265,8 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
     \end{enumerate} 
     \item If a column should be in a particular font, use the array specifier, rather than manually specifying the column. 
     \item Numeric columns should be written in math mode (\ie~should be in tabular, lining font). In particular, digits should align vertically. 
-    \item 
+    \item Use \verb=p= cells for the body, \verb=b= cells for the headings.
+    \item Don't push tables too far.
     \begin{lstlisting}
 % Wrong:
 \begin{tabularx}{Xl}
@@ -1353,7 +1338,7 @@ Tas   & Low
   \subsection{\texttt{bigbox*}} \index{bigbox*}\index{boxes!bigbox*}
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
 
-  \subsubsection*{Figures in boxes must use [H]}
+  \subsubsection*{Figures in boxes must use [H]}\label{figs-in-boxes}
   When you have a figure in a big box, you must use 
   \begin{lstlisting}
    \begin{figure}[H] 
@@ -2894,7 +2879,7 @@ WHO                               & World Health Organisation \\
 
 
 \appendix
-\part{Error messages}
+\part{Error messages}\label{part:error-messages}
 \chapter{Common \LaTeX{} Errors}
 \label{cha:common-errors}
 
@@ -3206,7 +3191,7 @@ verbatim environment.
 This can either mean:
 
 \begin{enumerate}
-\item You have forgotten to use \lstinline!\end{figure}! (or table etc) for a particular float; or
+\item You have forgotten to use \lstinline!\end{figure}! (or table \etc) for a particular float; or
 \item You have put a float inside another float. For example, you have put a todonote inside a figure, or you have put a figure inside a footnote, or you have put a figure (without using the \lstinline![H]!) inside a box.
 \end{enumerate}
 
