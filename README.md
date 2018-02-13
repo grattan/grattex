@@ -19,20 +19,20 @@ If **you do not have a ShareLaTeX account**:
   * Create a ShareLaTeX account at [sharelatex.com](https://sharelatex.com) using your @grattaninstitute email address.
 
 ### Part 1: Copy the template using Github
-  1. Logged into your github account, go to https://github.com/new/import
-  2. Copy `https://github.com/HughParsonage/grattex` and paste under `Your old repository’s clone URL`
-  3. Under `Your new repository details` choose `Grattan` as the owner
-  4. Under `Name` add a detailed name to your project. This needs to be able to identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`
-  5. Select `Private`
+  1. Logged into your github account, go to https://github.com/new/import.
+  2. Copy `https://github.com/HughParsonage/grattex` and paste under `Your old repository’s clone URL`.
+  3. Under `Your new repository details` choose `grattan` as the owner.
+  4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
+  5. Select `Private`.
   6. Click `Begin Import`. This will take a 2-5 minutes to copy. Grab a cuppa': Github will email you when it's finished. 
   7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in ShareLaTeX.
 
 ### Part 2: Open the template in ShareLaTeX
-  8. Log into your account at [sharelatex.com](https://sharelatex.com) 
-  9. Click `New Project > Import from GitHub`
-  10. Locate the file you just created, and click `Import to ShareLaTeX` 
-  11. If ShareLaTeX initially fails to compile, this is a bug that can be addressed by going to line 310 of the `Report.tex` file and deleting `\nocite{*}`
-  12. At the top right, click `Share` and add collaborators via their email address
+  8. Log into your account at [sharelatex.com](https://sharelatex.com).
+  9. Click `New Project > Import from GitHub`.
+  10. Locate the file you just created, and click `Import to ShareLaTeX`.
+  11. If ShareLaTeX initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
+  12. At the top right, click `Share` and add collaborators via their email address.
   13. And that's it. You've now created a new report on Github and ShareLaTeX. 
 
 ## Changelog
