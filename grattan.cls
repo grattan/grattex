@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
-
+\ProvidesClass{grattan}[2017/11/03 v1.3.2 Reports of the Grattan Institute, Melbourne]
+% >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
+% for png files
 \LoadClass[%
 a4paper,
 11pt,
@@ -620,37 +621,37 @@ numbers=noenddot,
 
 % Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
 \DeclareOption{FrontPage}{
-	\IfFileExists{./FrontPage/FrontPage.pdf}{%
-	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
-	  }{
-	    \ClassError{grattan}{%
-			'./FrontPage/FrontPage.pdf' does not exist
-	    }{%
-			You have asked for a fullpicture option, but we can't find 
-			a file at './FrontPage/FrontPage.pdf'. Try placing the image
-			there or not using the fullpicture option.
-		}
-	  }
-	\renewcommand\BackgroundPic{%
-		\put(0,0){%
-		\parbox[b][\paperheight]{\paperwidth}{%
-		\vfill
-		\centering
-		% Amend
-		\IfFileExists{./FrontPage/FrontPage.pdf}{%
-			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
-		}{
-			\ClassError{grattan}{%
-				'./FrontPage/FrontPage' does not exist
-			}{%
-				You have asked for a fullpicture option, but we can't find 
-				a file at './FrontPage/FrontPage'. Try placing the image
-				there or not using the fullpicture option.
-			}
-		}
-	\vfill
-	}}}
-	\renewcommand{\titleTH}{} % FrontPage should be entire.
+  \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+    }{
+      \ClassError{grattan}{%
+      './FrontPage/FrontPage.pdf' does not exist
+      }{%
+      You have asked for a fullpicture option, but we can't find 
+      a file at './FrontPage/FrontPage.pdf'. Try placing the image
+      there or not using the fullpicture option.
+    }
+    }
+  \renewcommand\BackgroundPic{%
+    \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    % Amend
+    \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+    }{
+      \ClassError{grattan}{%
+        './FrontPage/FrontPage' does not exist
+      }{%
+        You have asked for a fullpicture option, but we can't find 
+        a file at './FrontPage/FrontPage'. Try placing the image
+        there or not using the fullpicture option.
+      }
+    }
+  \vfill
+  }}}
+  \renewcommand{\titleTH}{} % FrontPage should be entire.
 
 }
 
@@ -666,9 +667,9 @@ numbers=noenddot,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-20pt} 
+  \vspace{-40pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -692,20 +693,28 @@ numbers=noenddot,
   % par is necessary to centre the last logo
   \par}
   \columnbreak\par
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
+  \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+
+  The Myer Foundation
+
+  National Australia Bank
+
+  Susan McKinnon Foundation
+
+  \vspace{15pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Google 
 
   Medibank Private
 
   Susan McKinnon Foundation
-
-  \vspace{26pt}
+  
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
-
-  EY
 
   Maddocks
 
@@ -717,7 +726,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{26pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -731,11 +740,11 @@ numbers=noenddot,
 
   Jemena
 
-  The Myer Foundation
-
   Urbis
 
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Westpac
+
+  Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \eject \normalsize
@@ -778,44 +787,84 @@ numbers=noenddot,
   uniquelist=false, 
   uniquename=init,
   sorting=anyt,
+  date=year, % else bibliography will be e.g. ATO (Jul. 10, 2016c)
   labelalpha,
   maxalphanames=1
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
-  \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-  \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-  \ExecuteBibliographyOptions{sorting=gratt}
+% Maintain backwards-compatibility between these dates
+  \@ifpackagelater{biblatex}{2017/11/04}{
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
 
-  \newtoggle{bbx:dowehavemorenames}
-  \DeclareNameFormat{dowehavemorenames}{%
-   \ifboolexpr{
-     test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-     and
-     test \ifmorenames
-   }
-     {\global\toggletrue{bbx:dowehavemorenames}}
-     {\global\togglefalse{bbx:dowehavemorenames}}}
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
 
-  \newcounter{mymaxcitenames}
-  \AtBeginDocument{%
-   \setcounter{mymaxcitenames}{\value{maxnames}}%
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extradate}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    }
+  }{
+  %% biblatex version 3.7
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
+
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
+
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extrayear}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+    }
   }
-
-  \renewbibmacro*{begentry}{%
-    \begingroup
-      \defcounter{maxnames}{\value{mymaxcitenames}}%
-      \printnames[dowehavemorenames]{labelname}%
-      \iftoggle{bbx:dowehavemorenames}
-        {\printnames{labelname}%
-         \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extrayear}%
-         \space\space\newunit\newblock}
-        {}%
-    \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
-  }
-}
+}%
+% do nothing
+{}
 
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
@@ -984,19 +1033,19 @@ numbers=noenddot,
   
 \AtBeginDocument{%
   \pagestyle{empty}
-	\let\mytitle\@title
-	\let\myauthor\@author
-	
-	% TitlePage
-	\onecolumn
-	\AddToShipoutPicture*{\BackgroundPic}
-	\phantom{.}\hfill\titleTH
-	\ClearShipoutPicture
-	\clearpage
-	\twocolumn
+  \let\mytitle\@title
+  \let\myauthor\@author
+  
+  % TitlePage
+  \onecolumn
+  \AddToShipoutPicture*{\BackgroundPic}
+  \phantom{.}\hfill\titleTH
+  \ClearShipoutPicture
+  \clearpage
+  \twocolumn
   % use microtype
   
-	%
+  %
 % Following page.
 \pagestyle{scrheadings}
 \@pagetwo

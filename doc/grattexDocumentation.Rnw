@@ -172,7 +172,10 @@ escapechar={\^*}{*}
 \makeatother
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-\subtitle{Manual for \texttt{grattex} v1.3.1 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
+<<update_grattanReporter, echo=FALSE>>=
+update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat")
+@
+\subtitle{Manual for \texttt{grattex} v1.3.2 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -1752,7 +1755,7 @@ A rationale prefixed by `Technical:' or stating `Easier to code' are weak -- the
 
 
 \section{Requirements}
-\subsection{System requirements for release validation}
+\subsection{System requirements for release validation}\label{subsec:system-reqs-release-validation}
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via my drat repository:
 <<install-grattanReporter>>=
@@ -1771,7 +1774,7 @@ This will ensure you have the latest version of the package that successfully bu
 \item An up-to-date \LaTeX{} distribution.%
   \footnote{See \url{http://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution} for instructions on updating your \LaTeX{} distribution.}
 In particular, you must have \lstinline!biber! version 2.6 or greater.
-\item Ghostscript (\url{https://ghostscript.com/download/gsdnld.html}) and the corresponding system environment set. For example in Windows, following successful installation of Ghostscript:
+\item Ghostscript (\url{https://ghostscript.com/}) and the corresponding system environment set. For example in Windows, following successful installation of Ghostscript:\label{phantom:Sys-setenv-ghostscript}
 <<set-RGSCMD>>=
 Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
 @
@@ -1855,6 +1858,12 @@ All material published or otherwise created by Grattan Institute is licensed und
 
   If you need to add an non-staff member to the recommended citation,\index{authorship!adding non-staff member authors}
   use the directive \lstinline!% add_author_to_recommended_citation: ! followed by the person's name.\footnote{Note that the authorship policy contemplates this only in exceptional circumstances.} 
+  By default, non-staff members are listed last.\fromversion{0.24.0}
+  If you require the author to be placed ahead of staff members, use the directive 
+  \begin{lstlisting}
+add_author_to_recommended_citation_at: @@<author>@@ @@<order>@@
+  \end{lstlisting}
+  where \lstinline!@@<order>@@! is an integer specifying the position in the citation for the author.
 
   \item You cannot \prereleaseonly
   use the \lstinline!todonotes! or \lstinline!soul! packages, or have the command \lstinline!\hl! anywhere in any file in your project. 
@@ -2416,6 +2425,13 @@ Your document must compile on an arbitrary machine with an up-to-date \TeX{} dis
 
     \item If biber emits any other warnings, you must address them, even if doing so appears to have no visible effect.
     \rationale{Ensure true warnings are not masked. Improve citation portability and longevity.}
+
+    Common errors include:
+    \begin{enumerate}
+      \item Specifying a publisher for a \lstinline!@TechReport! or \lstinline!@Article!
+      \item Failing to specify the institution field for a \lstinline!@TechReport!.
+      \item Specifying ISBNs, ISSNs, etc when these are not appropriate.
+    \end{enumerate}
 \end{enumerate}
 
 \subsection{No missing cross-references}
@@ -2474,6 +2490,20 @@ A NOTE may appear even when \lstinline!\CenturyFootnote! has been correctly plac
 If the column containing the 100th footnote looks good (\ie~the number and footnote text aren't too cramped, and there are no kinks in the footnote text) and the previous column containing numbered footnotes also looks good (\ie~spacing normal, and no kinks in the footnote text), then the NOTE does not need to be addressed.
 
 \emph{Don't trust Hugh:} This was a bit of a beast to code so please visually check the 100th footnote columns before release and report any errors. 
+
+
+\section{Release notes}
+\subsection{Front page}
+To include the front page proper, use \lstinline!\documentclass[FrontPage]{grattan}!.
+
+To ensure the front page is of a sufficient resolution yet reasonable size, users of Windows and Linux can use Ghostscript.
+(See \Vref{subsec:system-reqs-release-validation} for installation instructions.)
+
+With \texttt{grattanReporter},\fromversion{0.25.0} you can run (from the project's working directory):
+
+<<compress_FrontPage>>=
+compress_FrontPage()
+@
 
 
 \chapter{Travis Continuous Integration}
