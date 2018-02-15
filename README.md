@@ -24,7 +24,7 @@ If **you do not have a ShareLaTeX account**:
   3. Under `Your new repository details` choose `grattan` as the owner.
   4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
   5. Select `Private`.
-  6. Click `Begin Import`. This will take a 2-5 minutes to copy. Grab a cuppa': Github will email you when it's finished. 
+  6. Click `Begin Import`. This will take a few minutes to copy. Grab a cuppa': Github will email you when it's finished. 
   7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in ShareLaTeX.
 
 ### Part 2: Open the template in ShareLaTeX
