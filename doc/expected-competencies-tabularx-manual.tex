@@ -1,0 +1,96 @@
+%!TEX root=./grattexDocumentation.Rnw
+\newcolumntype{Q}{>{\centering\arraybackslash}m{1.8cm}}
+\newcommand*{\Tick}{\parbox[c]{2cm}{\centering\CheckmarkBold}}
+
+\begin{longtable}{@{}c>{\raggedright\hangindent=1em}p{0.55\textwidth}cQQQ}
+\caption{List of competencies} \\
+\toprule
+& Competency & Page ref.	 & PD\,/ Fellow\,/ Editor & Associate & \LaTeX{}nician\\
+\midrule
+\endfirsthead
+\toprule
+& Competency & Page ref. & PD\,/ Fellow\,/ Editor & Associate & \LaTeX{}nician\\
+\midrule
+\endhead
+\bottomrule
+\multicolumn{6}{r}{\strut\footnotesize\emph{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\multicolumn{3}{l}{\large\textbf{Initial report stage/conversion/general}}\\
+& Draft so that conversion is efficient                                                         &                                            & \Tick & \Tick & \Tick\\
+& Create new Share\LaTeX{} doc, connected to GitHub and Travis                                  & \pageref{sec:getting-started}              &       & \Tick & \Tick\\
+& Train new associates                                                                          &                                            &       &       & \Tick\\
+& Can install and maintain a \TeX{} distribution locally (\ie~not be reliant on Share\LaTeX)    &                                            &       &       & \Tick\\
+& Detect non-ASCII characters from conversion and correct                                       &                                            &       &       & \Tick\\
+& Run \texttt{pandoc}                                                                           & \pageref{sec:using-pandoc}                 &       &       & \Tick\\
+& Raise issues with \texttt{.cls} file or \texttt{grattanReporter} on GitHub                              &                                            &       &       & \Tick\\
+& Setup Share\LaTeX{} account for new staff                                                     &                                            &       &       & \Tick\\
+\addlinespace[15pt]
+\multicolumn{3}{l}{{\large\textbf{Writing}}}\\
+& Use all commands in \Cref{tbl:all-cmds}                                                   & \pageref{tbl:all-cmds}                     & \Tick & \Tick & \Tick\\
+& Add caption, subtitle, notes and source                                                   & \pageref{sec:Figures}                      & \Tick & \Tick & \Tick\\
+& Add reference to bibliography                                                             & \pageref{subsec:insert-cite}               & \Tick & \Tick & \Tick\\
+& Add text emphasis (\eg~italics, bold)                                                     & \pageref{subsec:bf-it}                     & \Tick & \Tick & \Tick\\
+& Edit text, including heading structure                                                    & \pageref{sec:main-matter}                  & \Tick & \Tick & \Tick\\
+& Insert big/small box                                                                      & \pageref{sec:boxes}                        & \Tick & \Tick & \Tick\\
+& Insert cross-reference (understand difference between \verb!Cref!, \verb!Vref!)           & \pageref{cross-references}                 & \Tick & \Tick & \Tick\\
+& Insert dot points or numbered items                                                       & \pageref{subsec:lists}                     & \Tick & \Tick & \Tick\\
+& Insert footnote                                                                           & \pageref{subsec:footnote}                  & \Tick & \Tick & \Tick\\
+& Insert footnote containing citations using Share\LaTeX{} search function                  & \pageref{cite-in-sharelatex}               & \Tick & \Tick & \Tick\\
+& Insert new chart                                                                          & \pageref{sec:Figures}                      & \Tick & \Tick & \Tick\\
+& Insert quote                                                                              & \pageref{quotes-dicta}                     & \Tick & \Tick & \Tick\\
+& Insert url using \verb=\url=                                                              &                                            & \Tick & \Tick & \Tick\\
+& Resolve basic compile errors                                                              & \pageref{part:error-messages}              & \Tick & \Tick & \Tick\\
+& Understand basic syntax (\eg~comments, space between paragraphs)                          & \pageref{subsec:para}                      & \Tick & \Tick & \Tick\\
+& Upload PDF containing charts                                                              &                                            & \Tick & \Tick & \Tick\\
+& Use \LaTeX{} special characters correctly (\eg~\$, \%, en-dash)                           & \pageref{tbl:all-cmds}                     & \Tick & \Tick & \Tick\\
+& Use Share\LaTeX{} track changes and comments feature                                      &                                            & \Tick & \Tick & \Tick\\
+& Use commands for common abbreviations (\verb!\eg!, \verb!\ie!, \verb!\etc!, \verb!\dots!) & \pageref{tbl:all-cmds}                     & \Tick & \Tick & \Tick\\
+& Use correct quote marks                                                                   & \pageref{subsec:quotation-marks}           & \Tick & \Tick & \Tick\\
+& Add `draft' or `embargoed' to cover/header                                                & \pageref{cls-opts}                         &       & \Tick & \Tick\\
+& Add `submission' option to \verb!\documentclass! as req.                                  & \pageref{cls-opts}                         &       & \Tick & \Tick\\
+& Create table using Excel2LaTeX                                                            & \pageref{Excel2LaTeX}                      &       & \Tick & \Tick\\
+& Insert appendices                                                                         & \pageref{subsec:appendix}                  &       & \Tick & \Tick\\
+& Insert citations with page numbers, or figure references                                  & \pageref{chap:citations-and-bibliography}  &       & \Tick & \Tick\\
+& Insert complex chart (\eg~whole column, whole page, double column, top of column)         &                                            &       & \Tick & \Tick\\
+& Insert report number                                                                      & \pageref{subsec:Grattan-specific-preamble} &       & \Tick & \Tick\\
+& Invoke non-breaking spaces                                                                & \pageref{subsec:non-breaking-space}        &       & \Tick & \Tick\\
+& Navigate this document and online resources to find answers                               &                                            &       & \Tick & \Tick\\
+& Uses \verb=[H]= to put figures and charts inside boxes                                    & \pageref{figs-in-boxes}                    &       & \Tick & \Tick\\
+& Run \texttt{checkGrattanReport} from R, including pre-release/release                     & \pageref{part:grattanReporter}             &       & \Tick & \Tick\\
+& Understand bibliography entry types and fields, enter authors correctly                   & \pageref{subsec:entering-bib-authors}      &       & \Tick & \Tick\\
+& Understand default formatting in \LaTeX{} and potential bugs                              &                                            &       & \Tick & \Tick\\
+& Use correct cross-references for chapters (\verb!\Chapref!)                               & \pageref{enum:Chapref}                     &       & \Tick & \Tick\\
+& Use efficient coding practices (\eg~sentence/footnotes/footcite on new line)              &                                            &       & \Tick & \Tick\\
+& Add packages to preamble as required                                                      &                                            &       &       & \Tick\\
+& Can change the vertical alignment of cells in a table                                     &                                            &       &       & \Tick\\
+& Compare documents between arbitrary dates                                                 &                                            &       &       & \Tick\\
+& Create table from scratch in \LaTeX{}                                                     &                                            &       &       & \Tick\\
+& Diagnose and resolve complex compile errors                                               &                                            &       &       & \Tick\\
+& Insert a float immediately after chapter title                                            &                                            &       &       & \Tick\\
+& Insert equations                                                                          &                                            &       &       & \Tick\\
+& Modify table formatting in \LaTeX{}                                                       & \pageref{tbl:complex-tbls}                                           &       &       & \Tick\\
+& Navigate through code from prior reports to work out complex formatting                   &                                            &       &       & \Tick\\
+& Respond to queries from other associates                                                  &                                            &       &       & \Tick\\
+& Run \texttt{pdflatex} and \texttt{biber} binaries from the command line                   &                                            &       &       & \Tick\\
+& Understand 'underfull/overfull vbox/hbox' warnings and when to address them               &                                            &       &       & \Tick\\
+& Use \verb!\cmidrule! and understand the \verb!(lr)! option                                &                                            &       &       & \Tick\\
+& Use \verb!\multicolumn!                                                                   &                                            &       &       & \Tick\\
+& Format columns using specifications from the \texttt{array} package,
+ such as \verb=@{}= \verb=>{\RaggedLeft\arraybackslash}=                              &                                            &       &       & \Tick\\
+
+& Use \texttt{longtable} (including continued captions, `continued on the next page' ornaments) &                                            &       &       & \Tick\\
+\addlinespace[15pt]
+\multicolumn{3}{l}{\large\textbf{Publication}}\\
+& Edit authors and acknowledgements                                                             & \pageref{subsec:Grattan-specific-preamble} & \Tick & \Tick & \Tick\\
+& Move charts                                                                                   &                                            &       & \Tick & \Tick\\
+& Suggest rephrasing paragraphs to provide better page breaks and hyphenation                   &                                            &       &       & \Tick\\
+& Use \verb=\pagebreak=, \verb=\clearpage=, \verb=\eject=                                       &                                            &       &       & \Tick\\
+& Correctly place \verb=\CenturyFootnote=                                                       & \pageref{subsec:check-Century}             &       & \Tick & \Tick\\
+& Ensure report meets final check                                                               & \pageref{part:grattanReporter}             &       & \Tick & \Tick\\
+& Insert report number                                                                          &                                            &       & \Tick & \Tick\\
+& Perform complex formatting requests                                                           &                                            &       &       & \Tick\\
+& Make judicious changes to the margins (\verb!\captionsetup!, width=1.05\verb!\linewidth!)     & \pageref{captionsetup}                     &       &       & \Tick\\
+& Can clone a repository and checkout a local branch                                            &                                            &       &       & \Tick
+\end{longtable} 
