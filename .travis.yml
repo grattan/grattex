@@ -1,5 +1,5 @@
 language: r
-
+pandoc: false
 sudo: true
 cache: 
   - packages
@@ -54,7 +54,7 @@ r_github_packages:
 before_install:
   - source ./travis/texlive.sh
   - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; tlmgr install tgpagella.sty; fi
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then tlmgr install tgpagella eulervm bold-extra fancyvrb realboxes manfnt; fi
   - tlmgr update --all
   - sudo apt-get update
   - sudo apt-get install texlive-bibtex-extra
@@ -80,7 +80,6 @@ script:
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
   - cd doc
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; tlmgr install tgpagella.sty; fi
   - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript checkDocumentation.R; fi
 
 notifications:
