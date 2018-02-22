@@ -1,12 +1,15 @@
 
 if (!file.exists("grattexDocumentationMD5") ||
     tools::md5sum("grattexDocumentation.Rnw") != readLines("grattexDocumentationMD5")[[1]]) {
+  if (requireNamespace("knitr", quietly = TRUE)) install.packages("knitr")
+  if (requireNamespace("kableExtra", quietly = TRUE)) install.packages("kableExtra")
+
   knitr::knit("grattexDocumentation.Rnw")
   res <- 
     if (toupper(.Platform$OS.type) == "WINDOWS") {
-      shell("pdflatex grattexDocumentation.tex")
+      shell("pdflatex -halt-on-error grattexDocumentation.tex")
     } else {
-      system("pdflatex grattexDocumentation.tex")
+      system("pdflatex -halt-on-error grattexDocumentation.tex")
     }
   
   if (!res) {
