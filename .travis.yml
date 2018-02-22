@@ -67,10 +67,9 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
+    - sudo apt-get install -y r-cran-rcpp r-cran-stringi r-cran-hunspell
     - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (!requireNamespace("fastmatch", quietly = TRUE)) install.packages(c("fastmatch", "knitr"))'
-    - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("data.table"))'
-    - Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"))'
+    - Rscript -e 'if (!requireNamespace("TeXCheckR", quietly = TRUE)) install.packages("TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
@@ -79,7 +78,8 @@ script:
   - set -e
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
-  - Rscript doc/checkDocumentation.R
+  - cd doc
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript checkDocumentation.R; fi
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG

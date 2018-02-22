@@ -730,6 +730,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{table}
   %
 
+\section{Share\LaTeX{}}
+\subsection{Miscellaneous}
+\begin{enumerate}
+  \item By default, the browser will display misspellings using the en-US dictionary. 
+  To change this, go to Menu, and next to Spelling change the language.
+\end{enumerate}
 
 
 
@@ -806,7 +812,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \end{enumerate}
   \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}
 \caption{Report infrastructure schematic}
 \tikzset{every loop/.style={min distance=10mm,in=-45,out=-135,looseness=7}}
 \begin{tikzpicture}
