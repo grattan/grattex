@@ -54,6 +54,7 @@ r_github_packages:
 before_install:
   - source ./travis/texlive.sh
   - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; tlmgr install tgpagella.sty; fi
   - tlmgr update --all
   - sudo apt-get update
   - sudo apt-get install texlive-bibtex-extra
@@ -69,7 +70,7 @@ before_script:
     - tlmgr update biber
     - sudo apt-get install -y r-cran-rcpp r-cran-stringi r-cran-hunspell
     - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-    - Rscript -e 'if (!requireNamespace("TeXCheckR", quietly = TRUE)) install.packages("TeXCheckR")'
+    - Rscript -e 'install.packages("TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
@@ -79,6 +80,7 @@ script:
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
   - cd doc
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; tlmgr install tgpagella.sty; fi
   - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript checkDocumentation.R; fi
 
 notifications:
