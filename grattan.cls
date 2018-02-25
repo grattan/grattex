@@ -702,15 +702,17 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{16pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Google 
 
   Medibank Private
+
+  Susan McKinnon Foundation
   
-  \vspace{16pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
@@ -724,7 +726,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{16pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 

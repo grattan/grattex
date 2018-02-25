@@ -2,11 +2,19 @@
 
 <<knitrOpts, echo=FALSE>>=
 library(knitr)
+library(data.table)
+library(magrittr)
+library(kableExtra)
+library(hutils)
+library(TeXCheckR)
 opts_chunk$set(echo = TRUE, eval = FALSE)
 @
 
 \let\oldLaTeX\LaTeX
+\let\oldTeX\TeX
 \renewcommand{\LaTeX}{\textrm{\oldLaTeX}}
+\renewcommand{\TeX}{\textrm{\oldTeX}}
+
 
 \usepackage{adjustbox}
 \usepackage{scrhack}
@@ -23,6 +31,8 @@ opts_chunk$set(echo = TRUE, eval = FALSE)
 % Font:
 \usepackage{tgpagella,eulervm}
 \usepackage{tabularx}
+  \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+  
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage{xcolor}
@@ -131,23 +141,7 @@ escapechar={\^*}{*}
 %\captionsetup[table]{belowskip=6pt}
 \captionsetup[figure]{belowskip=5pt}
 
-% \usepackage{titlesec}     % for customizing sections
-% % customize section
-% \titleformat{\section}%
-%   {\Large\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
-% \titleformat{\subsection}%
-%   {\large\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesubsection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
-% \titleformat{\subsubsection}%
-%   {\sffamily\bfseries}% format
-%   {\makebox[0pt][r]{\thesubsubsection\hspace{12pt}}}% label
-%   {0pt}% horizontal sep
-%   {}% title
+
 \renewcommand\sectionlinesformat[4]{%
   \makebox[0pt][r]{#3}#4%
 }
@@ -283,9 +277,59 @@ update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat
   \item If your report was started before February 2017---run \lstinline{library(grattanReporter); checkGrattanReport('@@<path/to/your/project>@@', compile = TRUE, pre_release = TRUE, release = TRUE, embed = @@<TRUE|FALSE>@@)} and then deploy the file written in the \texttt{RELEASE} subdirectory.
   \item If your report was started after February 2017---click download in ShareLaTeX.
 \end{enumerate} 
-\newgeometry{left=0.125cm,right=0.25cm}
+\clearpage
+
+<<expected-competencies, results='asis', echo=FALSE, eval=FALSE>>=
+Expected_Competency <-
+  fread("expected-competencies.tsv", showProgress = FALSE) %>%
+  .[, big_group := factor(big_group, 
+                          levels = c("Initial report stage/conversion/general",
+                                     "Editing stage",
+                                     "Final stage/publication"),
+                          ordered = TRUE)] %>%
+  # Won't be santized:
+  .[, Competency := gsub("(?<!(?:\\\\verb.))\\\\((?!verb)\\w+)\\b", "\\\\verb!\\\\\\1!", Competency, perl = TRUE)] %>%
+  setorderv(c("big_group", "PD/Fellow/Editor", "Associate", "LaTeX guru"),
+            order = c(1, -1, -1, -1)) %>%
+  .[, lapply(.SD, function(x) if (is.integer(x) && uniqueN(x) <= 2L) as.logical(x) else x)] %>%
+  # str
+  .[, lapply(.SD, if_else, "\\parbox[c]{2cm}{\\centering\\CheckmarkBold}", ""), by = c("big_group", "Competency")]
+
+first_groups <-
+  copy(Expected_Competency)[, I := .I][, .(R = range(I)), keyby = "big_group"]
+
+res <- 
+  kable(Expected_Competency[, big_group := NULL],
+        format = "latex",
+        align = c("p{0.5\\linewidth}", "R", "R", "R"),
+        escape = FALSE,
+        booktabs = TRUE) %>%
+  kable_styling() %>%
+  group_rows(first_groups[["big_group"]][1],
+             first_groups[["R"]][1],
+             first_groups[["R"]][2]) %>%
+  group_rows(first_groups[["big_group"]][3],
+             first_groups[["R"]][3],
+             first_groups[["R"]][4]) %>%
+  group_rows(first_groups[["big_group"]][5],
+             first_groups[["R"]][5],
+             first_groups[["R"]][6])
+
+cat(c(as.character(res), "\n"), file = "expected-competencies-tabularx.tex")
+@
+
+\newgeometry{left=0.25cm,right=0.25cm}
+\addsec{Expected \LaTeX{} competencies}
+% kable not perfect, needs to be modified
+\input{expected-competencies-tabularx-manual}
+
+\clearpage
 \begin{longtable}{@{\texttt{\textbackslash}}>{\ttfamily}l>{\raggedright}p{0.55\textwidth}l}
-\caption{List of all commands} \\
+\caption{List of all commands}\label{tbl:all-cmds} \\
+    \toprule
+    \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
+    \midrule
+    \endfirsthead
     \toprule
     \textbf{Command} & \textbf{Comment} & \textbf{Group} \\
     \midrule
@@ -686,6 +730,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{table}
   %
 
+\section{Share\LaTeX{}}
+\subsection{Miscellaneous}
+\begin{enumerate}
+  \item By default, the browser will display misspellings using the en-US dictionary. 
+  To change this, go to Menu, and next to Spelling change the language.
+\end{enumerate}
 
 
 
@@ -713,15 +763,24 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The contributors can be changed after the report is set up. 
   But the repo name cannot. 
   Accordingly, it is important that you choose a name that is evocative of the project, unique, and will have a long shelf-life.
-  This can be difficult, and a naming convention has not yet been established; however, names like `HigherEd-report' or `Inquiry-submission' will be rejected---or purged if they slip through.
+
+  Experience has shown that it can be difficult to predict the final title or even publication \emph{year}, it's best to refer to the subject of the report rather than a quippy title.
+  Use the following repository naming convention: 
+  \begin{quote}
+  \lstinline!@@<Program>@@-@@<Start year>@@-@@<Report subject>@@!
+  \end{quote}
+
+  Archived reports should use the prefix \lstinline!zzz!.
+
   \item They will perform the following steps:
     \begin{enumerate}
       \item Visit \url{https://travis-ci.org/HughParsonage/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
       If it shows another image (or no image), please do not proceed (as the report template is broken) and contact Hugh Parsonage as the repository owner. 
-      \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and `publisher@grattan.edu.au' at \href{https://sharelatex.com}{sharelatex.com}.
+      \item Ensure you have been added to the \url{https://github.com/grattan} organizational account.
       \item Copy \verb=https://github.com/HughParsonage/grattex= to your clipboard
       \item Visit \url{https://github.com/new/import}
       \item Paste \verb=https://github.com/HughParsonage/grattex= into the \textbf{Your old repository's clone URL} field.
+      \item Change \textbf{Owner} to \texttt{grattan}.
       \item Choose an evocative name for your repository under \textbf{Name}
       \item Select \textbf{Private}
       \item Click \textbf{Begin Import}.
@@ -747,12 +806,13 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
       \item At the top right, click \verb=Share=.
       \item Add collaborators as desired. 
-      \item Go to \url{https://travis-ci.com/profile/grattaninstitute/}. 
+      \item Go to \url{https://travis-ci.com/profile/grattan/}. 
       Find the repository you just added and flick the switch on. 
+      \item Return to Share\LaTeX{}, comment out the \lstinline!\nocite{*}! and sync to GitHub.
     \end{enumerate}
   \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}
 \caption{Report infrastructure schematic}
 \tikzset{every loop/.style={min distance=10mm,in=-45,out=-135,looseness=7}}
 \begin{tikzpicture}
@@ -769,6 +829,14 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 \draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 180]  (grattex-GitHub-future);
 \end{tikzpicture}
 \end{figure}
+
+\section{Using \texttt{pandoc}}\label{sec:using-pandoc}
+\texttt{pandoc} comes installed with RStudio.
+To convert \texttt{orig.docx} to \texttt{new.tex}, run from the directory containing \texttt{orig.docx}.
+\begin{lstlisting}[language=bash]
+pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
+\end{lstlisting}
+
 
 
   \section{The preamble}
@@ -794,7 +862,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 
 
 
-  \subsection{Grattan-specific preamble}
+  \subsection{Grattan-specific preamble}\label{subsec:Grattan-specific-preamble}
   So that reports look alike, a particular preamble is required that loads the Grattan style.
   If you imported the package from GitHub using the instructions \vpageref{sec:getting-started} your report already meets the requirements described below.
 
@@ -827,7 +895,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \item For almost all reports, you will need to have a \texttt{.bib} file. The grattex repository comes with a \texttt{Grattan-Master-Bibliography.bib} file in the \texttt{bib} subdirectory, containing most extant works previously cited in reports. 
   \end{enumerate}
 
-  \subsection{Class options}
+  \subsection{Class options}\label{cls-opts}
   You can invoke one of the following options by writing 
   \begin{lstlisting}
   \documentclass[@@<options>@@]{grattan}
@@ -903,7 +971,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{lstlisting}
   after \lstinline!\contentspage! to insert the lists as desired.
   
-  \section{Main matter}
+  \section{Main matter}\label{sec:main-matter}
   \subsection{Chapters, section, subsections}
   To start a new chapter, write \index{chapter} \index{section}
   \begin{lstlisting}
@@ -918,12 +986,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Title commands increment as expected, except for \lstinline!\subsubsection! which has no counter (\ie~it is printed without a number).
   
   \section{Miscellaneous text elements and font}
-  \subsection{Boldface, italics}
+  \subsection{Boldface, italics}\label{subsec:bf-it}
   In general, you should write what you \emph{mean}, not what you want displayed. So avoid directly instructing \LaTeX\ to bold or italicize test. Instead, write macros explaining \emph{why} you are using a different font.
   
   That said, you can use \lstinline!\textbf{@@<text>@@}! to make \lstinline!@@<text>@@! boldface and \lstinline!\textit{@@<text>@@}! to make \lstinline!@@<text>@@! italic. You can also use \lstinline!\emph! to \emph{emphasize} text. 
   
-  \subsection{Paragraphs}
+  \subsection{Paragraphs}\label{subsec:para}
   Use a blank line to mark a new paragraph. For example
   \begin{center}
   \begin{minipage}{\textwidth}
@@ -937,15 +1005,19 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{center}
   In the above example, \emph{Proposals to extend} will begin on a new paragraph. 
 
-  \subsection{Non-breaking spaces}
+  \subsection{Non-breaking spaces}\label{subsec:non-breaking-space}\index{non-breaking space}
   Use \lstinline!~! for a non-breaking space: \lstinline!\$40~million!. 
 
-  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!. 
+  Use \Code{\\nobreakdash-} for a non-breaking hyphen: \lstinline!2013\nobreakdash-14!.
+
+  \subsection{Footnotes}\label{subsec:footnote}\index{footnote}
+  Use \lstinline!\\footnote{@@<text>@@}! to insert \lstinline!@@<text>@@! into a footnote.
+
 
 
 
   
-  \subsection{Numbered / bulleted lists}
+  \subsection{Numbered / bulleted lists}\label{subsec:lists}\index{itemize}\index{enumerate}\index{lists}\index{bullets}
   Use \verb=enumerate= (for numbered lists) and \verb=itemize= (for bulleted lists) \index{enumerate}\index{itemize}
   \begin{lstlisting}
    \begin{enumerate}
@@ -966,8 +1038,27 @@ It may have mandatory or optional arguments, which occur immediately after \verb
    \end{itemize}
   \end{lstlisting}
 
+  \subsection{Quotes and dicta}\label{quotes-dicta}
+  To insert an extended quote, use the \lstinline!quote! environment.
+
+  \begin{lstlisting}
+  \begin{quote}
+    One of the reasons that clinicians struggle to form
+    partnerships with patients and consumers is that 
+    there is inadequate information for proper informed
+    consent. The numbers that are collected don't filter
+    through to clinicians dealing with the patient, and
+    certainly not to the patient themselves. I encourage
+    people to ask doctors three questions: `What are my
+    options?', `What are the treatment outcomes -- both
+    benefits and risks?', and `How likely are those
+    outcomes to happen to me?'.  Doctors though say `We
+    just don't have that information'.
+  \end{quote}
+  \end{lstlisting}
+
   \section{Back matter}
-  \subsection{Appendices}
+  \subsection{Appendices}\label{subsec:appendix}
   To start an appendix, type \fcolorbox{gray!10}{gray!10}{\lstinline!\\appendix!}.
 
   \begin{lstlisting}
@@ -1012,8 +1103,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{document}
   \end{lstlisting}
 
-  \chapter{Floats: figures, tables and boxes}
-  \section{Figures}
+  \chapter{Floats: figures, tables and boxes}\label{chap:floats}
+  \section{Figures}\label{sec:Figures}\index{figures}\index{charts}
   Before you insert a figure, you need to create your image (say in PowerPoint).
   Your file should be saved as a pdf, though almost all image types are supported. 
   If you are using PowerPoint to create your charts, ensure the pdf has the fonts embedded.
@@ -1094,7 +1185,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   The \lstinline!@@<alignment parameters>@@! determine the alignment of the columns,
 
 \begin{table}[h]
-\caption{Alignment parameters and their meanings}
+\caption{Alignment parameters and their meanings}\label{tbl:complex-tbls}
 \begin{adjustbox}{center}
   \begin{tabular}{r>{\raggedright\arraybackslash}p{10cm}}
   \toprule 
@@ -1114,7 +1205,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   Inside the tabular, use the ampersand \verb=&= to move to the next column and the double-backslash \verb=\\= to move to the next row. 
   Use \verb=\toprule= before the first row, \verb=\bottomrule= after the last row, and \verb=\midrule= to separate the headers from the rest of the table.
 
-\subsection{From Excel}
+\subsection{From Excel}\label{Excel2LaTeX}
     Most authors would be well-advised to quickly write their tables in Excel and then use Excel2LaTeX.
 
     To start using Excel2LaTeX:
@@ -1156,6 +1247,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \toprule
   \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
   \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \lstinline!\begin{tabular}{m{2cm}b{2cm}p{2cm}}! starts a table with 3 columns vertical aligned to the middle, bottom, and top. \\
   \bottomrule
   \end{tabular}%
   %}%
@@ -1179,7 +1271,8 @@ It may have mandatory or optional arguments, which occur immediately after \verb
     \end{enumerate} 
     \item If a column should be in a particular font, use the array specifier, rather than manually specifying the column. 
     \item Numeric columns should be written in math mode (\ie~should be in tabular, lining font). In particular, digits should align vertically. 
-    \item 
+    \item Use \verb=p= cells for the body, \verb=b= cells for the headings.
+    \item Don't push tables too far.
     \begin{lstlisting}
 % Wrong:
 \begin{tabularx}{Xl}
@@ -1226,7 +1319,7 @@ Tas   & Low
 
 
 
-  \section{Boxes}
+  \section{Boxes}\label{sec:boxes}
   \subsection{\texttt{smallbox}}\index{smallbox}\index{boxes!smallbox}
   Use \verb=\begin{smallbox}= to insert a box intended to fit on one column. There are two mandatory arguments. 
 
@@ -1251,7 +1344,7 @@ Tas   & Low
   \subsection{\texttt{bigbox*}} \index{bigbox*}\index{boxes!bigbox*}
   Use \verb=\begin{bigbox*}= to denote a big box.\footnote{The \texttt{*} reflects a convention in \LaTeX\ for a two-column float in an environment name.} The text will flow around the box. 
 
-  \subsubsection*{Figures in boxes must use [H]}
+  \subsubsection*{Figures in boxes must use [H]}\label{figs-in-boxes}
   When you have a figure in a big box, you must use 
   \begin{lstlisting}
    \begin{figure}[H] 
@@ -1306,7 +1399,7 @@ Tas   & Low
   \begin{enumerate}
     \item \lstinline!\Cref! for a reference to the counter and the counter type (\eg~Figure 1.1)
     \item \lstinline!\Vref! for \lstinline!\Cref! plus a phrase indicating the location of the counter if it occurs on a different page (\eg~Figure 1.1 on the following page)
-    \item \lstinline!\Chapref! same as \lstinline!\Cref! but mandatory for references to chapters
+    \item \lstinline!\Chapref! same as \lstinline!\Cref! but mandatory for references to chapters \index{Chapref}\label{enum:Chapref}
     \item \lstinline!\vpageref! for a page reference only -- without the counter (\eg~`on the following page'). 
     Whereas \lstinline!\Vref! will suppress the page reference phrase if the target occurs on the same page, \lstinline!\vpageref! will expand to `on this page'.
 
@@ -1402,11 +1495,11 @@ Tas   & Low
   \end{enumerate}
 
   \section{\texttt{bibliography.bib}}
-  In \LaTeX, The database is a text file, with file extension \lstinline!.bib!, containing entries for each work to be cited:
+  In \LaTeX, The database is a text file, customarily having file extension \lstinline!.bib!, containing entries for each work to be cited:
   \begin{lstlisting}[language=BibTeX]
   @@<@type>@@{@@<key>@@,
-    @@<field 1>@@={@@<field 1 value>@@},
-    @@<field 2>@@={@@<field 2 value>@@},
+    @@<field 1>@@ = {@@<field 1 value>@@},
+    @@<field 2>@@ = {@@<field 2 value>@@},
   }
   \end{lstlisting}
   For example,
@@ -1423,7 +1516,7 @@ Tas   & Low
 The \texttt{grattex} repository ships with a file \texttt{bib/Grattan-Master-Bibliography.bib}, containing nearly 3000 prepared entries.
 Simply add new entries to this file as required.
 
-\subsection{Entering authors}
+\subsection{Entering authors}\label{subsec:entering-bib-authors}
 \begin{enumerate}
   \item To enter multiple authors, separate each name with \lstinline! and ! (as above)
   \item You can enter the authors in \lstinline!Forename Surname! or \lstinline!Surname, Forename! form (even within the same entry). 
@@ -1512,7 +1605,7 @@ Enter the date if possible; the year if not. If you only have the month and year
 
 
   \section{Citations}\index{citations}\index{footcite}\index{footcites}
-  \subsection{\LaTeX{} commands to insert a citation}
+  \subsection{\LaTeX{} commands to insert a citation}\label{subsec:insert-cite}
   Use \lstinline!\footcite{@@<key>@@}! to cite an entry in the database if you want the citation to appear in a footnote. Use \lstinline!\footcites{@@<key1>@@}{@@<key2>@@}! to cite multiple entries in the same footnote.
   
   Use \lstinline!\footcite[][18--24]{@@<key>@@}! to add a page reference (in this case, pages 18--24) as a postnote the citation. Use \lstinline!\footcites{key1}[][44]{@@<key2>@@}! to cite \lstinline!key1! and page~44 from \lstinline!key2!.
@@ -1520,12 +1613,34 @@ Enter the date if possible; the year if not. If you only have the month and year
   Use \lstinline!\textcite{@@<key>@@}! to cite a reference if the reference should not be footnoted. \index{textcite}\index{textcites}
   Similarly \verb=\textcites= and \lstinline!\textcite[][18--24]{@@<key>@@}! as with footcite. 
 
-  \subsection{ShareLaTeX}
+  \subsection{ShareLaTeX}\label{cite-in-sharelatex}
   You should harness the bibliography search function in ShareLaTeX, rather than switching back and forth between your \texttt{.bib} file and your source file.
   To enliven the search function type \lstinline!\textcite{! or \lstinline!\footcite{! (as the case may be), then click Ctrl + Space or Cmd + Space on a mac (or as directed). 
   In the search box that appears, start typing words from the document you want to cite.
 
   Using the search box is not only more convenient, it also makes it more likely you will find an existing entry before adding a duplicate.
+
+  \section{Troubleshooting}
+  Troubleshooting referencing errors are more difficult than pure \LaTeX{} errors, because the process involves a different program and this process occurs behind the scenes in Share\LaTeX{}.
+  
+  If you encounter error messages that include words like `malformed', most likely these problems can be fixed by rebuilding the cache.%
+    \footnote{Such errors can occur if you interrupt a compile.} 
+  In Share\LaTeX{}, click the button next to \textbf{Compile} with the orange number (or red number if there are errors), scroll to the bottom, hit the trash button, read the prompt and clear the cache.
+  If you're compiling locally, you can achieve the same result by deleting all the auxiliary files in your project directory (\emph{viz.}~all the files with the same name as your \texttt{Report.tex} file, 
+  but with extensions like \texttt{.aux}, \texttt{.blg}).
+
+  If you get an error about ``too many commas'', you have probably entered an author or editor field with commas separating the authors, instead of \texttt{ and }. 
+  That is, you've written 
+  \begin{lstlisting}[language=BibTeX]
+  % Wrong
+  author = {John Daley, Danielle Wood, and Hugh Parsonage},
+  \end{lstlisting}
+  instead of 
+  \begin{lstlisting}[language=BibTeX]
+  author = {John Daley and Danielle Wood and Hugh Parsonage},
+  \end{lstlisting}
+
+  
 
 
 
@@ -1618,6 +1733,17 @@ The package \texttt{soul} provides the commend \lstinline!\hl! which highlights 
   \item \lstinline!\enlargethispage{@@<n>@@\baselineskip}! or \lstinline!\enlargethispage*{@@<n>@@\baselineskip}! where \lstinline!@@<n>@@! is an integer multiple of $1/4$. 
   \end{enumerate}
 
+  \section{Avoiding a linebreak}
+  To avoid a linebreak, you should first revisit the paragraph or paragraphs prior to see if any of the text can be modified. 
+  (Remember that removing words may on rare occasions \emph{increase} the number of lines the paragraph occupies.)
+  If you cannot reword the paragraph, you can use non-breaking spaces \eg~\lstinline!no~break! or use \lstinline!\mbox{no break}! which creates an unbreakable box.
+
+  \subsection{In captions}\label{captionsetup}
+  If a caption is slightly too long to fit on one line (say by one word), it is acceptable (indeed preferable) to modify the margins to allow the word to overflow into the margins.
+  Use \lstinline!\captionsetup{oneside, margin={0em,@@<x>@@em}}!\index{captionsetup} for a suitable choice of \lstinline!@@<x>@@!, which equals the extra width in units of em-dashes by which the caption will expand.
+
+
+
   \chapter{Excessive whitespace between paragraphs}
   This occurs when there is insufficient text to fill a page (the page is \emph{underfull}) but moving text onto another page is not possible because:
   \begin{itemize}
@@ -1706,8 +1832,7 @@ The package \texttt{soul} provides the commend \lstinline!\hl! which highlights 
 
 
 
-
-\part{Style requirement: {\bfseries\texttt{grattanReporter}}}
+\part{Style requirement: {\bfseries\texttt{grattanReporter}}}\label{part:grattanReporter}
 
 \chapter{User guide}
 \section{Synopsis}
@@ -1759,7 +1884,21 @@ A rationale prefixed by `Technical:' or stating `Easier to code' are weak -- the
 \begin{enumerate}
 \item R and the package \texttt{grattanReporter}, installable via my drat repository:
 <<install-grattanReporter>>=
+if ("grattanReporter" %in% loadedNamespaces()) {
+  stop("Restart R: packages currently loaded will need to be updated.")
+}
+
+myLibrary <- .libPaths()[1]
+# If the library is on an UNC server \\uom.. it is not writeable:
+if (identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- .libPaths()[2]
+}
+if (!is.na(myLibrary) && identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- tempdir()  # guaranteed to be writeable, if it is possible to install anything
+}
+install.packages("TeXCheckR", lib = myLibrary)
 install.packages("grattanReporter",
+                  lib = myLibrary,
                   repos = "https://hughparsonage.github.io/drat",
                   type = "source")
 @
@@ -1985,7 +2124,7 @@ This is a dash --- but an em-dash, which is a bit much.
 
 
 
-\subsection{Quote marks}
+\subsection{Quote marks}\label{subsec:quotation-marks}\index{quotation marks}\index{inverted commas}
 \begin{enumerate}
 \item Closing quotes must not be used to open a quote:
 \begin{lstlisting}
@@ -2126,7 +2265,7 @@ See \Vref{chap:intro}.
 
 
 
-\subsection{Cross-references}
+\subsection{Cross-references}\label{cross-references}
 \begin{enumerate}
   \item All cross-references must be encoded in a macro 
   (\lstinline!\Vref! and \lstinline!\Cref!, 
@@ -2469,7 +2608,7 @@ if the vertical position of the caption exceeds 166,160,000 nanometres from the 
 (\ie~if the caption is set higher than the bottom of the space allocated for the chapter title).\fromversion{0.21.0}
 
 
-\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
+\subsection{Checking placement of \texttt{\textbackslash CenturyFootnote}}\label{subsec:check-Century} \index{CenturyFootnote@\texttt{CenturyFootnote}}\index{footnotes!100th}
 Our footnote style provides ample space between the number and the text in the footnote for the first 99 footnotes.
 At the 100th footnote, there is not enough space, so the format must be redefined. 
 The reformat cannot necessarily take place simply between the 99th footnote and 100th footnote, because this would 
@@ -2768,7 +2907,7 @@ WHO                               & World Health Organisation \\
 
 
 \appendix
-\part{Error messages}
+\part{Error messages}\label{part:error-messages}
 \chapter{Common \LaTeX{} Errors}
 \label{cha:common-errors}
 
@@ -3080,7 +3219,7 @@ verbatim environment.
 This can either mean:
 
 \begin{enumerate}
-\item You have forgotten to use \lstinline!\end{figure}! (or table etc) for a particular float; or
+\item You have forgotten to use \lstinline!\end{figure}! (or table \etc) for a particular float; or
 \item You have put a float inside another float. For example, you have put a todonote inside a figure, or you have put a figure inside a footnote, or you have put a figure (without using the \lstinline![H]!) inside a box.
 \end{enumerate}
 
