@@ -953,8 +953,11 @@ numbers=noenddot,
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\boolfalse{cbx:parens}}
   {\usebibmacro{citeindex}%
-  % \ifciteibid{\usebibmacro{cite:ibid}}{%  % for ibidem
-  \ifciteibid{Ibid.}{%  % for ibidem
+  % https://github.com/grattaninstitute/AP-Housing-affordability-2017/commit/55757ed2c625d4e18ada5a71edfdb5fbd88f56d1
+  % Ibid. -> Ibid\adddot
+  % Otherwise the . in Ibid. is interprted as the end of a sentence
+  % which means the first letter in a postnote will be uppercase
+  \ifciteibid{Ibid\adddot}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
      {\stepcounter{textcitetotal}%
