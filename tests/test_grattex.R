@@ -10,5 +10,6 @@ if (nzchar(Sys.which("pdftotext")) && file.exists("Report.pdf")) {
   Ibid_lines <- Report.pdf[grepl("Ibid. (P", pdf_lines, fixed = TRUE)]
   if (nrow(Ibid_lines)) {
     stop("Ibid contains a page reference with uppercase P.")
-  }
+  } 
+  cat("OK\n")
 }
