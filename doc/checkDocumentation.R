@@ -9,10 +9,10 @@ if (!file.exists("grattexDocumentationMD5") ||
     if (toupper(.Platform$OS.type) == "WINDOWS") {
       shell("pdflatex -halt-on-error grattexDocumentation.tex")
     } else {
-      system("pdflatex -halt-on-error grattexDocumentation.tex")
+      system("pdflatex -halt-on-error -interaction=scrollmode grattexDocumentation.tex > /dev/null")
     }
   
-  if (!res) {
+  if (res) {
     stop("Nonzero exit status from pdflatex.")
   }
   

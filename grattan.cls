@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/11/03 v1.3.2 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2018-02-26 v1.3.3 Reports of the Grattan Institute, Melbourne]
 % >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
 % for png files
 \LoadClass[%
@@ -953,7 +953,11 @@ numbers=noenddot,
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\boolfalse{cbx:parens}}
   {\usebibmacro{citeindex}%
-  \ifciteibid{Ibid.}{%  % for ibidem
+  % https://github.com/grattaninstitute/AP-Housing-affordability-2017/commit/55757ed2c625d4e18ada5a71edfdb5fbd88f56d1
+  % Ibid. -> Ibid\adddot
+  % Otherwise the . in Ibid. is interprted as the end of a sentence
+  % which means the first letter in a postnote will be uppercase
+  \ifciteibid{Ibid\adddot}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
      {\stepcounter{textcitetotal}%
