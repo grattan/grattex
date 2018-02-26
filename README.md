@@ -37,6 +37,10 @@ If **you do not have a ShareLaTeX account**:
 
 ## Changelog
 
+### 2018-02-26
+* Fix issue #102 which manifested on TeX Live distributions (like Travis-CI) where `Ibid. (<page ref>)`
+  resulted in the `p` being uppercase (PR #114). Thanks to JD for filing.
+
 ### 2017-09-01
 * Increase hyphenation penalties. Closes #85
 
