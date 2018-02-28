@@ -17,7 +17,7 @@ if (!file.exists("grattexDocumentationMD5") ||
   }
   
   overfull_hboxes <-
-    grep("Overfull \\hbox (", readLines("grattexDocumentation.log"), value = TRUE)
+    grep("Overfull \\hbox (", readLines("grattexDocumentation.log"), value = TRUE, fixed = TRUE)
   
   # Just choose 100pts for ease of regex -- seems about right anyway
   if (any(grepl("[0-9]{3}\\.[0-9]+pt too wide", overfull_hboxes))) {
