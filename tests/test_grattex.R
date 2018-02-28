@@ -1,6 +1,7 @@
 if (nzchar(Sys.which("pdftotext")) && file.exists("Report.pdf")) {
   system("pdftotext -layout Report.pdf")
   library(data.table)
+  library(magrittr)
   
   Report.pdf <-
     data.table(pdf_lines = readLines("Report.txt", warn = FALSE, encoding = "UTF-8"))
