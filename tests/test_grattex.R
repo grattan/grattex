@@ -19,7 +19,7 @@ if (nzchar(Sys.which("pdftotext")) && file.exists("Report.pdf")) {
     system("pdflatex -interaction=batchmode -halt-on-error Issue118.tex")
     system("biber -q Issue118")
     system("pdflatex -interaction=batchmode -halt-on-error Issue118.tex")
-    system("pdftotext -layout Issue-118.pdf")
+    system("pdftotext -layout Issue118.pdf")
     Issue118 <- readLines("Issue118.txt", warn = FALSE, encoding = "UTF-8")
     Issue118_bib <- Issue118[seq_along(Issue118) > grep("^Bibliography", Issue118)]
     year_labels <-
