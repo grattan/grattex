@@ -1894,8 +1894,12 @@ myLibrary <- .libPaths()[1]
 if (identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
   myLibrary <- .libPaths()[2]
 }
-if (!is.na(myLibrary) && identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
-  myLibrary <- tempdir()  # guaranteed to be writeable, if it is possible to install anything
+if (!is.na(myLibrary) && 
+    #
+    # i.e. \\uom...
+    identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- tempdir()  # guaranteed to be writeable,
+                          # if it's possible to install anything
 }
 install.packages("TeXCheckR", lib = myLibrary)
 install.packages("grattanReporter",
