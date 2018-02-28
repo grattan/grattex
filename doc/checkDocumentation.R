@@ -16,6 +16,18 @@ if (!file.exists("grattexDocumentationMD5") ||
     stop("Nonzero exit status from pdflatex.")
   }
   
+  overfull_hboxes <-
+    grep("Overfull \\hbox (", readLines("grattexDocumentation.log"), value = TRUE)
+  
+  # Just choose 100pts for ease of regex -- seems about right anyway
+  if (any(grepl("[0-9]{3}\\.[0-9]+pt too wide", overfull_hboxes))) {
+    cat(utils::head(grep("[0-9]{3}\\.[0-9]+pt too wide", overfull_hboxes, value = TRUE)), sep = "\n")
+    stop("Overfull hboxes exceeded allowed threshold. Ensure that the paragraphs do not overflow the page.")
+  }
+  
+  
+  
+  
   if (requireNamespace("crayon", quietly = TRUE)) {
     cat(crayon::green(as.character(tools::md5sum("grattexDocumentation.Rnw"))), "\n")
   } else {
