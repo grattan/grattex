@@ -1241,16 +1241,17 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
   
   \subsection*{More advanced} 
   \begin{table}[H]
-  \centering
+  \begin{adjustbox}{center}
   %\makebox[\textwidth]{%
-  \begin{tabular}{rp{9.5cm}}
+  \begin{tabular}{r>{\raggedright\arraybackslash}p{10cm}}
   \toprule
   \lstinline!\cmidrule(lr){@@<m-n>@@}! & to denote a horizontal rule between the $m$th and $n$th columns. The \verb=(lr)= specifies that the horizontal rule should stop just short of the edges of the columns, to ensure adjacent \verb=\cmidrule=s have a visual breath between them. \\[5pt]
-  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & Puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
-  \lstinline!\begin{tabular}{m{2cm}b{2cm}p{2cm}}! starts a table with 3 columns vertical aligned to the middle, bottom, and top. \\
+  \lstinline!\multicolumn{@@<n>@@}{@@<al.>@@}{@@<text>@@}! & puts the \lstinline!@@<text>@@! in a `merged' cell from the current cell across \lstinline!@@<n>@@! columns with horizontal alignment \lstinline!@@<al.>@@! \\
+  \lstinline!\begin{tabular}{m{2cm}b{2cm}p{2cm}}! & starts a table with 3 columns vertical aligned to the middle, bottom, and top. \\
   \bottomrule
   \end{tabular}%
   %}%
+  \end{adjustbox}
   \end{table}
 
   \subsection{Table styles}
@@ -1893,8 +1894,12 @@ myLibrary <- .libPaths()[1]
 if (identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
   myLibrary <- .libPaths()[2]
 }
-if (!is.na(myLibrary) && identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
-  myLibrary <- tempdir()  # guaranteed to be writeable, if it is possible to install anything
+if (!is.na(myLibrary) && 
+    #
+    # i.e. \\uom...
+    identical(substr(myLibrary, 0, 2), c("\\", "\\"))) {
+  myLibrary <- tempdir()  # guaranteed to be writeable,
+                          # if it's possible to install anything
 }
 install.packages("TeXCheckR", lib = myLibrary)
 install.packages("grattanReporter",
