@@ -799,7 +799,7 @@ numbers=noenddot,
 % Maintain backwards-compatibility between these dates
   \@ifpackagelater{biblatex}{2017/11/04}{
     \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \DeclareSortingTemplate{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}\sort{\field{author}}}
     \ExecuteBibliographyOptions{sorting=gratt}
 
     \newtoggle{bbx:dowehavemorenames}
