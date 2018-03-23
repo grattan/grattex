@@ -709,8 +709,6 @@ numbers=noenddot,
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
-  Google 
-
   Medibank Private
 
   Susan McKinnon Foundation
@@ -718,6 +716,8 @@ numbers=noenddot,
   \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
+ 
+  Google 
 
   Maddocks
 
