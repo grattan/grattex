@@ -1400,7 +1400,20 @@ Tas   & Low
   \begin{enumerate}
     \item \lstinline!\Cref! for a reference to the counter and the counter type (\eg~Figure 1.1)
     \item \lstinline!\Vref! for \lstinline!\Cref! plus a phrase indicating the location of the counter if it occurs on a different page (\eg~Figure 1.1 on the following page)
-    \item \lstinline!\Chapref! same as \lstinline!\Cref! but mandatory for references to chapters \index{Chapref}\label{enum:Chapref}
+    \item \lstinline!\Chapref! (and variants) same as \lstinline!\Cref! but mandatory for references to chapters \index{Chapref}\label{enum:Chapref}
+
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Command} & \textbf{Prints as} \\
+    \midrule
+    \lstinline!\Chapref{chap:intro}! & Chapter 1 \\
+    \lstinline!\Chapsref{chap:intro}! & Chapters 1 \\
+    \lstinline!\topref{chap:chap3}! & 3 \\
+    \lstinline!\Chaprefrange{chap:intro}{chap:chap3}! & Chapters 1 to 3 \\
+    \lstinline!\Chaprefand{chap:intro}{chap:chap3}! & Chapters 1 and 3 \\
+    \bottomrule
+    \end{tabular}
+
     \item \lstinline!\vpageref! for a page reference only -- without the counter (\eg~`on the following page'). 
     Whereas \lstinline!\Vref! will suppress the page reference phrase if the target occurs on the same page, \lstinline!\vpageref! will expand to `on this page'.
 
