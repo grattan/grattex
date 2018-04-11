@@ -138,6 +138,7 @@ numbers=noenddot,
 \newcommand*{\Chapref}[1]{\nameCref{#1}~\topref{#1}}
 \newcommand*{\Chapsref}[1]{\nameCrefs{#1}~\topref{#1}}
 \newcommand*{\Chaprefrange}[2]{\nameCrefs{#1}~\topref{#1} to~\topref{#2}}
+\newcommand*{\Chaprefand}[2]{\nameCrefs{#1}~\topref{#1} and~\topref{#2}}
 
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
