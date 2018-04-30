@@ -14,9 +14,10 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
-\@ifpackagelater{scrreprt}{2018/03/29}{%
+\@ifpackagelater{scrreprt}{2018/03/20}{%
     \let\counterwithout\relax
     \let\counterwithin\relax
+    \RequirePackage{chngcntr}
   }{
     \RequirePackage{chngcntr}
   }
