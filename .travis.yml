@@ -37,7 +37,7 @@ before_script:
     - export PATH=$PATH:$PWD
     - tlmgr update biber chngcntr
     # - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
-    - Rscript -e 'install.packages(c("devtools", "stringi"), quiet = TRUE)'
+    - Rscript -e 'install.packages(c("devtools"), quiet = TRUE)'
     - Rscript -e 'devtools::install_github("Rdatatable/data.table", quiet = TRUE)'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
