@@ -63,8 +63,9 @@ install: echo Installation step #do not remove this line!
 #     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
 
 script: 
-  - set -e
   - pdflatex -interaction=nonstopmode -halt-on-error latex2018.tex
+  - set -e
+  - Rscript -e 'readLines("latex2018.log");stop(".....")' 
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i ; done
   #- for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
