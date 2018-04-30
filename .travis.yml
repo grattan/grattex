@@ -7,26 +7,6 @@ cache:
   - /$HOME/.texlive
 warnings_are_errors: false
 
-# Switch to binary later for faster compilation
-r_packages:
-  - devtools
-  - data.table
-  - magrittr
-  - fastmatch
-  - stringi
-  - Rcpp
-  - tibble
-  - hms
-  - R6
-  - BH
-  - rlang
-  - readr  
-  - zoo
-
-r_packages: 
-  - clisymbols
-  - crayon
-
 addons:
   apt:
     packages:
