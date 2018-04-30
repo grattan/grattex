@@ -14,12 +14,10 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
-\@ifpackagelater{scrreprt}{2018/03/20}{%
-    \let\counterwithout\relax
-    \let\counterwithin\relax
+\@ifundefined{counterwithout}{%
     \RequirePackage{chngcntr}
   }{
-    \RequirePackage{chngcntr}
+    \typeout{not loading chngcntr: already defined}
   }
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}

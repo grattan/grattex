@@ -2,7 +2,13 @@
 % Comments are deployed by the % sign; everything after % is ignored by the compiler.
 % Please do not put comments before \documentclass as these are reserved for TeX directives.
 % add_to_dictionary: SSBs? roman
-
+\makeatletter
+\@ifundefined{counterwithout}{%
+    \RequirePackage{chngcntr}
+  }{
+    \typeout{not loading chngcntr: already defined}
+  }
+\makeatother
 \addbibresource{bib/put-new-refs-here.bib}
 
 \author{John Daley}
