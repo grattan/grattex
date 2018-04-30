@@ -9,6 +9,7 @@ warnings_are_errors: false
 
 # Switch to binary later for faster compilation
 r_packages:
+  - devtools
   - data.table
   - magrittr
   - fastmatch
@@ -56,7 +57,7 @@ before_script:
     - export PATH=$PATH:$PWD
     - tlmgr update biber
     #- Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-devtools r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
-    - Rscript -e 'install.packages("TeXCheckR")'
+    - Rscript -e 'install.packages("devtools")'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
