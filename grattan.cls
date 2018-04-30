@@ -14,7 +14,12 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
-\RequirePackage{chngcntr}
+\@ifpackagelater{scrreprt}{2018/03/29}{%
+    \let\counterwithout\relax
+    \let\counterwithin\relax
+  }{
+    \RequirePackage{chngcntr}
+  }
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
@@ -34,7 +39,6 @@ numbers=noenddot,
 \exhyphenpenalty=900
 \hyphenpenalty=800
 \brokenpenalty=3000
-
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
