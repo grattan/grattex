@@ -7,7 +7,8 @@ cache:
   - /$HOME/.texlive
 warnings_are_errors: false
 
-r_binary_packages:
+# Switch to binary later for faster compilation
+r_packages:
   - data.table
   - magrittr
   - fastmatch
@@ -30,22 +31,6 @@ addons:
     packages:
       - libhunspell-dev
       # - hunspell-en-au Wait :-)
-
-r_binary_packages:
-  - magrittr
-  - data.table
-  - hunspell
-  - fastmatch
-  - testthat
-  - devtools
-  - readr
-  - zoo
-  - crayon
-  - stringi
-  - hutils
-
-r_packages:
-  - clisymbols
   
 r_github_packages:
   - HughParsonage/TeXCheckR
@@ -70,7 +55,7 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber
-    - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-devtools r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
+    #- Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-devtools r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
     - Rscript -e 'install.packages("TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
