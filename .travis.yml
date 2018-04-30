@@ -55,9 +55,9 @@ before_script:
     - wget http://mirrors.ctan.org/biblio/biber/binaries/Linux/biber-linux_x86_64.tar.gz
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
-    - tlmgr update biber
+    - tlmgr update biber chngcntr
     #- Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-devtools r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
-    - Rscript -e 'install.packages("devtools")'
+    - Rscript -e 'install.packages(c("devtools", "hutils"), quiet = TRUE)'
     - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
