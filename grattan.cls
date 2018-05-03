@@ -14,7 +14,9 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
+\@ifundefined{counterwithout}{
 \RequirePackage{chngcntr}
+}{}
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
