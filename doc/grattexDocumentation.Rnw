@@ -878,7 +878,7 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
    
    \addbibresource{bibliography.bib}
   \end{lstlisting}
-  You can also have a subtitle\index{subtitle} which you invoke using \lstinline!\subtitle!.
+  You can also have a subtitle\index{subtitle} which you invoke using \lstinline!\subtitle!. The subtitle does not appear in the running headers.
 
   \subsection{Other requirements}
   The \verb=.tex= file must be in a directory containing:
