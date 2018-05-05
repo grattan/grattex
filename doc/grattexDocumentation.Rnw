@@ -169,7 +169,7 @@ escapechar={\^*}{*}
 <<update_grattanReporter, echo=FALSE>>=
 update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat")
 @
-\subtitle{Manual for \texttt{grattex} v1.3.2 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
+\subtitle{Manual for \texttt{grattex} v1.3.3 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -878,6 +878,8 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
    
    \addbibresource{bibliography.bib}
   \end{lstlisting}
+  You can also have a subtitle\index{subtitle} which you invoke using \lstinline!\subtitle!. The subtitle does not appear in the running headers.
+
   \subsection{Other requirements}
   The \verb=.tex= file must be in a directory containing:
   \begin{enumerate}

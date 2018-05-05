@@ -613,7 +613,8 @@ numbers=noenddot,
 \IfFileExists{GrattanSVGLogo.pdf}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{./logos/GrattanSVGLogo}}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
-{\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
+{\bfseries\textcolor{Orange}{\fontsize{30}{35}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
+{\bfseries\fontsize{18}{35}\selectfont \textcolor{Orange}{\mysubtitle}}\\[\baselineskip]
 
 {\LARGE \myauthor}
 
@@ -1044,6 +1045,7 @@ numbers=noenddot,
 \AtBeginDocument{%
   \pagestyle{empty}
   \let\mytitle\@title
+  \let\mysubtitle\@subtitle
   \let\myauthor\@author
   
   % TitlePage
