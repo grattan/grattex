@@ -3246,6 +3246,22 @@ This can either mean:
 This is a difficult problem to debug. 
 The line of output given by the error message is the first place where \LaTeX\ noticed something went wrong. (So the offending code is before that -- though unfortunately not always immediately before that.) 
 
+\section[\texttt{\textbackslash pdfendlink} ended up in different nesting level than \texttt{\textbackslash pdfstartlink}]{\mbox{\texttt{\textbackslash pdfendlink} ended up in different nesting level than \texttt{\textbackslash pdfstartlink}}}\index{pdfendlink}\index{pdfstartlink}
+This error occurs when a hyperlink straddles a page boundary. 
+When you get this error, you need to track down the page that this occurs on. 
+Obviously if you've compiled recently, this will occur near the place you last edited, but may not be. 
+Look for cross-references, citations, and URLs.
+
+Reword the text.
+Typically only a very minor adjustment to the wording is required.
+However, if that proves too difficult, or if the error frequently reappears, you can set
+\begin{lstlisting}
+\hypersetup{draft}
+\end{lstlisting}
+to disable hyperlinks entirely. 
+Note that this is only a temporary solution: before release you should unset this option; only rewording is appropriate.
+
+
 
 \chapter{Graphics Errors}
 \label{sec:graphics-errors}
