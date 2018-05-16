@@ -166,10 +166,14 @@ escapechar={\^*}{*}
 \makeatother
 
 \title{{\textrm{Using \LaTeX\ in reports at Grattan}}}
-<<update_grattanReporter, echo=FALSE>>=
+<<update_grattanReporter, echo=FALSE, eval=TRUE>>=
 update.packages("grattanReporter", repos = "https://hughparsonage.github.io/drat")
+grattex_version <- 
+  readLines("~/grattex/grattan.cls") %>%
+  grep(pattern = "\\ProvidesClass{grattan}", fixed = TRUE, value = TRUE) %>%
+  sub(x = ., pattern = "^.* (v[1-9]\\.[0-9]+\\.[0-9]+) .*$", "\\1")
 @
-\subtitle{Manual for \texttt{grattex} v1.3.3 and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
+\subtitle{Manual for \texttt{grattex} \Sexpr{grattex_version} and \texttt{grattanReporter} v\Sexpr{packageVersion("grattanReporter")}}
 \author{Cameron Chisholm \and Hugh Parsonage}
 
 \newcommand{\defi}[1]{\textbf{\textsf{#1}}}
@@ -1058,6 +1062,34 @@ pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
     just don't have that information'.
   \end{quote}
   \end{lstlisting}
+
+  \subsection{URLs}\label{subsec:URLs}
+  In general, prefer URLs in the bibliography to the main text. 
+  However, URLs can be inserted using \lstinline!\url{@@<url>@@}!. \index{URLs}
+
+  Note that you should \emph{not} escape special characters inside \lstinline!\url!:
+
+\begin{lstlisting}
+% Bad (not a real URL):
+\url{https://en.wikipedia.org/wiki/Grattan\_Institute}
+
+% Correct
+\url{https://en.wikipedia.org/wiki/Grattan_Institute}
+\end{lstlisting}
+  There is one exception: if the URL contains \%, you need to define it in the preamble using \lstinline!\urldef!.
+
+  \index{URLs!if contains \%}
+\begin{lstlisting}
+\documentclass{grattan}
+%...
+\urldef\myURL{https://example.com/%20a}
+
+\begin{document}
+The URL will be printed: \myURL.
+\end{document}
+\end{lstlisting}
+
+
 
   \section{Back matter}
   \subsection{Appendices}\label{subsec:appendix}
