@@ -32,7 +32,7 @@ If **you do not have a ShareLaTeX account**:
   9. Click `New Project > Import from GitHub`.
   10. Locate the file you just created, and click `Import to ShareLaTeX`.
   11. If ShareLaTeX initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
-  12. At the top right, click `Share` and add collaborators via their email address.
+  12. At the top right, click `Share` and add collaborators via their email address. *Please add all the LaTeXnicians (Carmela, Hugh, Kate, Lucy, and Will)* as well as the members of your team.
   13. And that's it. You've now created a new report on Github and ShareLaTeX. 
 
 ## Changelog
