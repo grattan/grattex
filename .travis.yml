@@ -38,16 +38,16 @@ before_script:
     - tlmgr update biber chngcntr
     # - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
     - Rscript -e 'install.packages(c("devtools"), quiet = TRUE)'
-    - Rscript -e 'devtools::install_github("Rdatatable/data.table", quiet = TRUE)'
-    - Rscript -e 'devtools::install_github("hughparsonage/hutils")'
-    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
-    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'devtools::install_github("Rdatatable/data.table", quiet = TRUE, quick = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/hutils", quick = TRUE, quiet = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR", quick = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", quick = TRUE)'
     - Rscript -e 'devtools::session_info()'
 
 script: 
   - set -e
   # - for i in *.tex; do pdflatex -interaction=nonstopmode $i ; done
-  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = F, pre_release = F, .proceed_after_rerun = 3)'
+  - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
   - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript tests/test_grattex.R; fi
   - cd doc
@@ -55,4 +55,4 @@ script:
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
-  on_success: change
+  on_success: never
