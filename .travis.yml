@@ -4,14 +4,8 @@ sudo: true
 cache: 
   - packages
   - /tmp/texlive
-  - /$HOME/.texlive
+  - /$HOME/texlive
 warnings_are_errors: false
-
-addons:
-  apt:
-    packages:
-      - libhunspell-dev
-      # - hunspell-en-au Wait :-)
   
 r_github_packages:
   - HughParsonage/TeXCheckR
@@ -37,16 +31,15 @@ before_script:
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
     - tlmgr update biber chngcntr
-    # - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell")'
-    - Rscript -e 'install.packages(c("devtools"), quiet = TRUE)'
-    - Rscript -e 'devtools::install_github("Rdatatable/data.table", quiet = TRUE, quick = TRUE)'
-    - Rscript -e 'devtools::install_github("hughparsonage/hutils", quick = TRUE, quiet = TRUE)'
+    - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) try(system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell"), TRUE)'
+    - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) install.packages("hunspell")'
+    - Rscript -e 'install.packages(c("devtools", "TeXCheckR"), quiet = TRUE)'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR", quick = TRUE)'
     - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", quick = TRUE)'
     - Rscript -e 'devtools::session_info()'
 
 script: 
-  #- set -e
+  - set -e
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i ; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
@@ -57,3 +50,9 @@ script:
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
   on_success: never
+
+
+# sharelatex branches never work
+branches:
+  except:
+    - /^sharelatex.*$/

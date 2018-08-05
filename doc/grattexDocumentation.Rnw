@@ -270,12 +270,11 @@ grattex_version <-
 \addchap{Quick-reference}
 \addsec{Releasing a report}
 \begin{enumerate}
+  \item Add the following line to your preamble:
+  \begin{lstlisting}
+% release: true
+  \end{lstlisting}
   \item Push any outstanding changes to GitHub.
-  \item Verify the build is passing on Travis.
-  \item Go to your GitHub repository. 
-  \item Click the \texttt{.travis.yml} file and edit it as follows
-
-  \makebox[\textwidth]{\includegraphics[width=0.95\paperwidth]{figure/Edit-travis-for-release.PNG}}\par
   \item Commit it to the master branch 
   \item Push any fixes from ShareLaTeX to GitHub until the build passes on Travis.
   \item If your report was started before February 2017---run \lstinline{library(grattanReporter); checkGrattanReport('@@<path/to/your/project>@@', compile = TRUE, pre_release = TRUE, release = TRUE, embed = @@<TRUE|FALSE>@@)} and then deploy the file written in the \texttt{RELEASE} subdirectory.
