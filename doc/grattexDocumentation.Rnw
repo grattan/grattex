@@ -848,7 +848,7 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item Turn off numbering in all headers. Do this by selecting a \texttt{Heading 1}, removing the numbering, right-clicking on \texttt{Heading 1} in the \texttt{Style Pane} and selecting "Update Heading 1 to Match Selection". Repeat for Headings 2 and 3.
       \item Turn off all hyperlinks. On Mac: select all, then \texttt{cmd+6}. On Windows: select all, then \texttt{ctrl+shift+F9}. Note that you will have to repeat this step for the footnotes (click on any footnote, select all, \dots).
       \item Set the whole document to be single-column.
-      \item Save the Word document without spaces, \eg~\verb|mapping_converted.docx|.
+      \item Save the Word document using a filename without spaces, \eg~\verb|mapping_converted.docx|.
     \end{enumerate}
 
   \subsection{Running \texttt{pandoc}}
@@ -894,7 +894,7 @@ After making these changes, compile your document. Correct any errors preventing
 
 From here: 
 \begin{enumerate}
-  \item   Add your graphics (see \vref{sec:Figures}})
+  \item   Add your graphics (see \vref{sec:Figures})
   \item   Add your references (see \vref{chap:citations-and-bibliography})
   \item   Add your tables (see \vref{sec:tables})
 \end{enumerate}
