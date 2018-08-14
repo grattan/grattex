@@ -833,17 +833,76 @@ It may have mandatory or optional arguments, which occur immediately after \verb
 \end{tikzpicture}
 \end{figure}
 
-\section{Using \texttt{pandoc}}\label{sec:using-pandoc}
-\texttt{pandoc} comes installed with RStudio.
-To convert \texttt{orig.docx} to \texttt{new.tex}, run from the directory containing \texttt{orig.docx}.
-\begin{lstlisting}[language=bash]
-pandoc -s orig.docx -s --wrap=none --top-level-division=chapter -o new.tex
-\end{lstlisting}
 
 
+\section{Word document conversion using \texttt{pandoc}}\label{sec:using-pandoc}
 
-  \section{The preamble}
-  The \defi{preamble} is everything outside the \verb=document= environment. (\ie~everything before \verb=\begin{document}=. 
+  You can use \texttt{pandoc} to convert Word documents to \LaTeX\ documents. It comes installed with RStudio and can be run from \texttt{terminal} (on Mac) or \texttt{cmd} (on Windows). If it hasn't been installed, you can install it at \url{https://pandoc.org/installing.html}. It requires a local version of \TeX. Converting a Word document to \LaTeX\ is a breezy three-part process.
+
+  \subsection{Preparing Word document}
+  There are some things \texttt{pandoc} should ignore (\eg~the Word Table of Contents, which will be automatically generated in \LaTeX), and some things it's not very good at (\eg~converting cross-references). To make the post-conversion tidying easier, prepare your Word document for conversion. Make a \textbf{copy} of your report, and:
+
+    \begin{enumerate}
+      \item Turn track changes off.
+      \item Remove the cover-page, table of contents, list of figures and bibliography.
+      \item Turn off numbering in all headers. Do this by selecting a \texttt{Heading 1}, removing the numbering, right-clicking on \texttt{Heading 1} in the \texttt{Style Pane} and selecting "Update Heading 1 to Match Selection". Repeat for Headings 2 and 3.
+      \item Turn off all hyperlinks. On Mac: select all, then \texttt{cmd+6}. On Windows: select all, then \texttt{ctrl+shift+F9}. Note that you will have to repeat this step for the footnotes (click on any footnote, select all, \dots).
+      \item Set the whole document to be single-column.
+      \item Save the Word document without spaces, \eg~\verb|mapping_converted.docx|.
+    \end{enumerate}
+
+  \subsection{Running \texttt{pandoc}}
+      Next, convert the \texttt{.docx} to a \texttt{.tex} file using \texttt{pandoc}. Open \texttt{terminal} (Mac) or \texttt{cmd} (Windows) and set the working directory to the location of your \texttt{.docx} document by:
+      
+         \begin{lstlisting}
+      cd @@<path to folder containing document>@@
+         \end{lstlisting}
+      \eg 
+         \begin{lstlisting}
+      cd /Users/mackeyw/Documents/convert
+         \end{lstlisting}
+
+      Now that you have told \texttt{terminal}/\texttt{cmd} where to look, you can run \texttt{pandoc} using the following command. Replace \texttt{report} with the title of your document.
+      \begin{lstlisting}
+      pandoc -s @@<name>@@.docx -s --wrap=none --top-level-division=chapter 
+      -o @@<name>@@.tex
+      \end{lstlisting}
+    
+      \eg 
+      \begin{lstlisting}[language=bash]
+      pandoc -s mapping_converted.docx -s --wrap=none --top-level-division=chapter -o mapping_converted.tex
+      \end{lstlisting}
+
+    This will create a \texttt{.tex} file in your folder. 
+
+  \subsection{Initial compile of \texttt{.tex} file}
+
+    The final step is to get the \texttt{.tex} file to compile before you bring it into ShareLaTeX. This involves `commenting out' a few things that \texttt{pandoc} can't do well (\eg~tables) and some that we haven't given it the information to do at all (\eg~figures/charts).
+    
+    \begin{enumerate}
+        \item   Open the \texttt{.tex} in your local \TeX~program. 
+        \item   Using find-replace, search \verb|\includegraphics| and replace with \verb|%%\includegraphics|. This will comment out all figures in the document.
+        \item   Using find, search \verb|\begin{longtable}| and comment out everything between and including \verb|\begin{longtable}| and \verb|\end{longtable}|. Note that boxes will have been converted to \verb|longtable| environments, which also need to be commented out.
+        \item   \texttt{pandoc} will sometimes add an unnecessary \verb|\hypertarget{}| around chapter/section names. You can manually remove these, or replace using \texttt{regex}:
+          \begin{itemize}
+                \item Find:     \verb|\\hypertarget{((\w*.*)[\r\n](\w*.*))}|
+                \item Replace:  \verb|$3|
+          \end{itemize}
+  \end{enumerate}
+
+After making these changes, compile your document. Correct any errors preventing the compile (if there are any). When it compiles---yay---you can move the \texttt{.tex} code into your Share\LaTeX~document, starting with the text after \verb|\begin{document}|, ignoring the preamble (see following subsection).
+
+From here: 
+\begin{enumerate}
+  \item   Add your graphics (see \vref{sec:Figures}})
+  \item   Add your references (see \vref{chap:citations-and-bibliography})
+  \item   Add your tables (see \vref{sec:tables})
+\end{enumerate}
+  
+
+
+  \section{The preamble}\label{sec:the-preamble}
+  The \defi{preamble} is everything outside the \verb=document= environment, \ie~everything before \verb=\begin{document}=. 
   
   In every \LaTeX\ document, you must have 
   \begin{enumerate}
@@ -1187,7 +1246,7 @@ The URL will be printed: \myURL.
   Note that you do not use the \lstinline!figure! environment in this command. 
   (The figure environment is part of the command definition.)
 
-  \section{Tables}
+  \section{Tables}\label{sec:tables}
   To construct a table, use the \lstinline!table! and \lstinline!tabularx! environments.
 
     \begin{lstlisting}
