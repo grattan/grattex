@@ -36,13 +36,14 @@ If **you do not have a ShareLaTeX account**:
     a. add collaborators via their email address. *Please add all the LaTeXnicians (Carmela, Hugh, Kate, Lucy, and Will)* as well as the members of your team.
     b. copy the `Anyone with this link can edit the project` link and paste it
     just under `\documentclass{grattan}` as a comment, *i.e.*
-    ```latex
+    
+```latex
     \documentclass{grattan}
     % Anyone with this link can edit the project:
     % https://www.sharelatex.com/abcdefghi12345
-    ```
-    
-    so that your coauthors can also invite people to edit the document in your absence
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so that your coauthors can also invite people to edit the document in your absence
     
   13. And that's it. You've now created a new report on Github and ShareLaTeX. 
 
