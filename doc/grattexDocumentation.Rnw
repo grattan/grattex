@@ -733,12 +733,36 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   \end{table}
   %
 
+
 \section{Share\LaTeX{}}
 \subsection{Miscellaneous}
 \begin{enumerate}
   \item By default, the browser will display misspellings using the en-US dictionary. 
   To change this, go to Menu, and next to Spelling change the language.
 \end{enumerate}
+
+
+
+\section{Installation}\label{sec:installation-of-latex}
+Share\LaTeX{} is available through a browser; \ie~no `local' installation is required.
+However, if you require a local installation visit 
+
+\begin{quote}
+\url{https://miktex.org/download}
+\end{quote}
+
+and follow the instructions at 
+
+\begin{quote}
+\url{https://miktex.org/howto/install-miktex}
+\end{quote}
+
+It's also important that it be kept up-to-date. See the following link for up-to-date instructions on updating your distributions.
+
+\begin{quote}
+\url{https://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution}
+\end{quote}
+
 
 
 
