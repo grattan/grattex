@@ -808,7 +808,19 @@ It may have mandatory or optional arguments, which occur immediately after \verb
       \item Locate the repository you just created, and click \verb=Import to ShareLaTeX=. 
       \item If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
       \item At the top right, click \verb=Share=.
-      \item Add collaborators as desired. 
+      \item Add collaborators as desired. In particular:
+      \begin{enumerate}
+        \item add the \LaTeX nicians (Carmela, Hugh, Kate, Lucy, and Will); and
+        \item copy the \texttt{Anyone with this link can edit the project} link and paste it
+              just under \verb=\documentclass{grattan}= as a comment, \textit{i.e.}
+              \begin{lstlisting}
+              \documentclass{grattan}
+              % Anyone with this link can edit the project:
+              % https://www.sharelatex.com/abcdefghi12345
+              \end{lstlisting}
+    
+            so that your coauthors can also invite people to edit the document in your absence.
+      \end{enumerate}
       \item Go to \url{https://travis-ci.com/profile/grattan/}. 
       Find the repository you just added and flick the switch on. 
       \item Return to Share\LaTeX{}, comment out the \lstinline!\nocite{*}! and sync to GitHub.
