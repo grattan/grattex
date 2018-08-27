@@ -1,8 +1,12 @@
 
 if (!file.exists("grattexDocumentationMD5") ||
     tools::md5sum("grattexDocumentation.Rnw") != readLines("grattexDocumentationMD5")[[1]]) {
-  install.packages("knitr")
-  install.packages("kableExtra")
+  if (!requireNamespace("hutils", quietly = TRUE)) {
+    install.packages("hutils")
+  }
+  library(hutils)
+  RQ(knitr, install.packages("knitr"))
+  RQ(kableExtra, install.packages("kableExtra"))
 
   knitr::knit("grattexDocumentation.Rnw")
   res <- 

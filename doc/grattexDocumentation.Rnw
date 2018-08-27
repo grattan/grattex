@@ -759,9 +759,7 @@ and follow the instructions at
 
 It's also important that it be kept up-to-date. See the following link for up-to-date instructions on updating your distributions.
 
-\begin{quote}
 \url{https://tex.stackexchange.com/questions/55437/how-do-i-update-my-tex-distribution}
-\end{quote}
 
 
 
