@@ -33,8 +33,15 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=2200
-\hyphenpenalty=2000
+\IfFileExists{logos/grattex-2018-09-07.tex}{
+  \exhyphenpenalty=2200
+  \hyphenpenalty=2000
+}{
+  % Defaults pre 2018-09-07: retain for backwards compatibility
+  \exhyphenpenalty=900
+  \hyphenpenalty=800
+}
+
 \brokenpenalty=3000
 
 \RequirePackage{cmap}
