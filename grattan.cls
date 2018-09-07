@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2018-02-26 v1.3.3 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2018-09-07 v1.4.0 Reports of the Grattan Institute, Melbourne]
 % >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
 % for png files
 \LoadClass[%
@@ -33,8 +33,15 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=900
-\hyphenpenalty=800
+\IfFileExists{logos/grattex-2018-09-07.tex}{
+  \exhyphenpenalty=2200
+  \hyphenpenalty=2000
+}{
+  % Defaults pre 2018-09-07: retain for backwards compatibility
+  \exhyphenpenalty=900
+  \hyphenpenalty=800
+}
+
 \brokenpenalty=3000
 
 \RequirePackage{cmap}
