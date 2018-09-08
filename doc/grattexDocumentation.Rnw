@@ -1939,6 +1939,16 @@ The package \texttt{soul} provides the commend \lstinline!\hl! which highlights 
   \chapter{Balancing text across columns}
   Use \lstinline!\oneraggedpage\eject\addtolength{\parskip}{@@<extra-para-stretch>@@}! N.B. in many instances (such as where the page contains a section title) it is not possible to balance columns. 
 
+  \chapter{Front matter}
+  \section{List of figures}
+  \subsection{Figure numbers exceed 4 digits and overlap captions}
+  The parameter \lstinline!\cftfignumwidth! (defined the \texttt{tocbasic} package)\footnote{See the \texttt{scrguien.pdf} documentation for further details.}
+  is the amount of space reserved for the figure number in the list of figures. 
+  If the figure number reaches 10.10, the width may overlap the captions, so you will need to increase this parameter:
+
+  \begin{lstlisting}
+  \addtolength{\cftfignumwidth}{0.7em}
+  \end{lstlisting}
 
 
 
