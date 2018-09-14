@@ -740,6 +740,8 @@ numbers=noenddot,
 
   Wesfarmers
 
+  Westpac
+
   \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
@@ -748,15 +750,11 @@ numbers=noenddot,
 
   Corrs
 
-  Deloitte
-
   GE ANZ
 
   Jemena
 
   Urbis
-
-  Westpac
 
   Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
