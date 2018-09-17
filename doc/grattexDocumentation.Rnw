@@ -2571,6 +2571,25 @@ if you use \lstinline!\input! to import sections of text, \lstinline!% stop_if_p
 By contrast, the scope of \lstinline!% add_to_dictionary: ! is only the current \lstinline!.tex! file. 
 This is by design: to enable the case where a word should only be permitted in a particular section of text, 
 and to avoid inadvertent additions to the dictionary.
+\item \textbf{\texttt{ignore\_spelling\_in\_file:}} You may use the \lstinline!% ignore_spelling_in_file: ! directive followed by the path/name of a \texttt{.tex} file to ignore spelling of that entire file. This should be used with caution. For example, ignoring all spelling in Appendix~A but checking spelling in Chapters 1 and 2:
+\begin{lstlisting}
+\documentclass{grattan}
+
+\newcommand*{\hl}[1]{\textcolor{red}{#1}}
+% ignore_spelling_in_file: chapters/appendixA.tex
+% add_to_dictionary: skillset
+
+\begin{document}
+
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+\input{chapters/appendixA}
+
+
+\end{document}
+\end{lstlisting} 
+
+
 \item \textbf{\texttt{ignore\_spelling\_in:}} You may use the \lstinline!% ignore_spelling_in: ! directive to ignore spelling within
 the first argument of the given commands. For example, the following document will pass (the spell check):
 \begin{lstlisting}
