@@ -2568,7 +2568,8 @@ Many teachers rely on many skill sets, but there is one skillset that is the bes
 \end{lstlisting}
 In addition, \lstinline!% stop_if_present: ! in the document preamble has global scope; 
 if you use \lstinline!\input! to import sections of text, \lstinline!% stop_if_present: ! applies to those sections too. 
-By contrast, the scope of \lstinline!% add_to_dictionary: ! is only the current \lstinline!.tex! file. 
+By contrast, the scope of \lstinline!% add_to_dictionary: ! is only the current \lstinline!.tex! file
+(and any files inserted via \lstinline!\input! or \lstinline!\include! within that file). 
 This is by design: to enable the case where a word should only be permitted in a particular section of text, 
 and to avoid inadvertent additions to the dictionary.
 \item \textbf{\texttt{ignore\_spelling\_in\_file:}} You may use the \lstinline!% ignore_spelling_in_file: ! directive\fromversion{0.28.0}
