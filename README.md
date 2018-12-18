@@ -6,17 +6,17 @@ This is the repository containing the configuration files for reports in the sty
 See https://github.com/HughParsonage/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
 
 ## Starting a new report
-Staff starting a new report need to "clone the `grattex` repository on Github" (copy the report template) and "import the repository to edit in ShareLaTeX" (open the template in ShareLaTeX). This can be done using the following steps.
+Staff starting a new report need to "clone the `grattex` repository on Github" (copy the report template) and "import the repository to edit in Overleaf" (open the template in Overleaf). This can be done using the following steps.
 
-### [Once only]: Create your Github and ShareLaTeX accounts
+### [Once only]: Create your Github and Overleaf accounts
 If **you do not have a Github account** that is connected to the Grattan organisation:
 
   * Create a Github account at [github.com](https://github.com) using your @grattaninstitute email address and a username that makes it easy to identify yourself (and remember). *[Skip if you already have a Github account]*
   * Ask a LaTeXnician to add you to the Grattan Github organisation.
 
-If **you do not have a ShareLaTeX account**:
+If **you do not have an Overleaf account**:
 
-  * Create a ShareLaTeX account at [sharelatex.com](https://sharelatex.com) using your @grattaninstitute email address.
+  * Create an Overleaf account at [overleaf.com](https://overleaf.com) using your `@grattaninstitute` email address.
 
 ### Part 1: Copy the template using Github
   1. Logged into your github account, go to https://github.com/new/import.
@@ -24,14 +24,14 @@ If **you do not have a ShareLaTeX account**:
   3. Under `Your new repository details` choose `grattan` as the owner.
   4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
   5. Select `Private`.
-  6. Click `Begin Import`. This will take a few minutes to copy. Grab a cuppa': Github will email you when it's finished. 
-  7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in ShareLaTeX.
+  6. Click `Begin Import`. This will take a few minutes to copy. Grab a cuppa' or a coffee from AO: Github will email you when it's finished. 
+  7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in Overleaf.
 
-### Part 2: Open the template in ShareLaTeX
-  8. Log into your account at [sharelatex.com](https://sharelatex.com).
+### Part 2: Open the template in Overleaf
+  8. Log into your account at at [overleaf.com](https://overleaf.com).
   9. Click `New Project > Import from GitHub`.
-  10. Locate the file you just created, and click `Import to ShareLaTeX`.
-  11. If ShareLaTeX initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
+  10. Locate the file you just created, and click `Import to Overleaf`.
+  11. Once imported the document will open and attempt to compile. If it initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
   12. At the top right, click `Share` and:
     a. add collaborators via their email address. *Please add all the LaTeXnicians (Carmela, Hugh, Kate, Lucy, and Will)* as well as the members of your team.
     b. copy the `Anyone with this link can edit the project` link and paste it
@@ -40,12 +40,12 @@ If **you do not have a ShareLaTeX account**:
 ```latex
     \documentclass{grattan}
     % Anyone with this link can edit the project:
-    % https://www.sharelatex.com/abcdefghi12345
+    % https://www.overleaf.com/abcdefghi12345
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so that your coauthors can also invite people to edit the document in your absence
     
-  13. And that's it. You've now created a new report on Github and ShareLaTeX. 
+  13. And that's it. You've now created a new report on Github and Overleaf. 
 
 ## Changelog
 
