@@ -860,7 +860,7 @@ It's also important that it be kept up-to-date. See the following link for up-to
 \draw[thick, -latex] (User2) edge[out = 45, in = -45] (ShareLaTeX);
 \node (GitHub) [decision, right of = ShareLaTeX, node distance = 6cm, text width = 4cm]{GitHub report repository (\url{https://github.com/grattaninstitute/} \lstinline!@@<repo-name>@@!)};
 \draw[thick, latex-latex] (ShareLaTeX) --node[anchor=south, inner sep = 1ex]{push-pull} (GitHub);
-\node (grattex-GitHub) [decision, above of = GitHub, node distance = 6cm, text width = 5cm]{\url{https://github.com/hughparsonage/grattex} Template elements and configuration files};
+\node (grattex-GitHub) [decision, above of = GitHub, node distance = 6cm, text width = 5cm]{\url{https://github.com/grattan/grattex} Template elements and configuration files};
 \node (grattex-GitHub-future) [decision, right = 5cm of {$(grattex-GitHub)!0.5!(GitHub)$}, node distance = 3.5cm, fill = black!10]{\textcolor{black!50}{subsequent changes}};
 \draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 90] node[anchor = east, text width = 4cm, text ragged left, inner sep = 1em]{GitHub Import (\url{import.github.com})} (GitHub);
 \draw[thick, -latex] (grattex-GitHub) edge[out = -90, in = 180]  (grattex-GitHub-future);
