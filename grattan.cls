@@ -13,6 +13,8 @@ twocolumn,
 numbers=noenddot,
 ]{scrreprt}
 
+\def\fps@figure{H}
+
 % Continuous numbering
 \@ifundefined{counterwithout}{
 \RequirePackage{chngcntr}

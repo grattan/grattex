@@ -976,6 +976,8 @@ From here:
   \end{lstlisting}
   You can also have a subtitle\index{subtitle} which you invoke using \lstinline!\subtitle!. The subtitle does not appear in the running headers.
 
+  If you wish to use another type of report (like `Background Paper'), you can simply use \lstinline!\ReportOrWorkingPaper{@@<type>@@}!.\index{\texttt{ReportOrWorkingPaper}}
+
   \subsection{Other requirements}
   The \verb=.tex= file must be in a directory containing:
   \begin{enumerate}
