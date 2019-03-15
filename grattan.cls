@@ -725,6 +725,8 @@ numbers=noenddot,
   Medibank Private
 
   Susan McKinnon Foundation
+
+  Veitch Lister Consulting
   
   \vspace{15pt}
 
