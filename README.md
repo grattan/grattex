@@ -1,9 +1,9 @@
-[![Travis-CI Build Status](https://travis-ci.org/HughParsonage/grattex.svg?branch=master)](https://travis-ci.org/HughParsonage/grattex)
+[![Travis-CI Build Status](https://travis-ci.org/grattan/grattex.svg?branch=master)](https://travis-ci.org/grattan/grattex)
 
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
 
-See https://github.com/HughParsonage/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
+See https://github.com/grattan/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
 
 ## Starting a new report
 Staff starting a new report need to "clone the `grattex` repository on Github" (copy the report template) and "import the repository to edit in Overleaf" (open the template in Overleaf). This can be done using the following steps.
@@ -20,7 +20,7 @@ If **you do not have an Overleaf account**:
 
 ### Part 1: Copy the template using Github
   1. Logged into your github account, go to https://github.com/new/import.
-  2. Copy `https://github.com/HughParsonage/grattex` and paste under `Your old repository’s clone URL`.
+  2. Copy `https://github.com/grattan/grattex` and paste under `Your old repository’s clone URL`.
   3. Under `Your new repository details` choose `grattan` as the owner.
   4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
   5. Select `Private`.
