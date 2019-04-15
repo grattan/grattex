@@ -716,7 +716,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{15pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -726,25 +726,31 @@ numbers=noenddot,
 
   Veitch Lister Consulting
   
-  \vspace{15pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
+  Cuffe Family Foundation
+
   Google 
 
   Maddocks
-
-  PwC
   
   McKinsey \& Company
 
-  The Scanlon Foundation
+  The Myer Foundation
+
+  PwC
+
+  Scanlon Foundation
+
+  Trawalla Foundation
 
   Wesfarmers
 
   Westpac
 
-  \vspace{15pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -752,9 +758,9 @@ numbers=noenddot,
 
   Corrs
 
-  GE ANZ
-
   Jemena
+
+  Silver Chain
 
   Urbis
 

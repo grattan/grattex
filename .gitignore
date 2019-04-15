@@ -61,3 +61,5 @@ grattex.sublime-project
 *.sublime-workspace
 *.log2
 .httr-oauth
+*.fdb_latexmk
+*.fls
