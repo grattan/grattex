@@ -1,25 +1,55 @@
 \documentclass[embargoed]{grattan}
-% Comments are deployed by the % sign; everything after % is ignored by the compiler.
-% Please do not put comments before \documentclass as these are reserved for TeX directives.
-% For final publication of a report replace [embargoed] with [FrontPage] and remove \EmbargoText: \documentclass[FrontPage]{grattan}
-% For final publication of a working paper remove [embargoed] and \EmbargoText: \documentclass{grattan}
+% Note: please do not put comments before \documentclass as these are reserved for TeX directives.
 
-% To add words to the spellcheck dictionary, list them after %add_to_dictionary:
+% Summary of alternative options for \documentclass[]------------------
+
+% 	Final publication: 
+% 		-	\documentclass[FrontPage]{grattan}
+% 		-	Remove \EmbargoText{}
+
+% 	Working paper: 
+% 		-	\documentclass{grattan}
+% 		-	Remove \EmbargoText{} line
+% 		-	Change \ReportOrWorkingPaper{Working Paper}
+% 		- 	Change \acknowledgements to read 'This working paper was written by...'
+
+% 	Submission:  
+% 		-	\documentclass[submission]{grattan}
+% 		-	Remove \EmbargoText{} line
+% 		-	Remove \acknowledgements{} section
+% 		-	Remove GrattanReportNumber{} line
+% 		-	Add the MONTH and YEAR to \subtitle{}, eg \subtitle{July 2019}
+
+
+
+% Document details ----------------------------------------------------
+% Set Report or Working Paper; report number; and month of release:
+\ReportOrWorkingPaper{Report}
+\GrattanReportNumber{2019-00}
+\MONTH{July}
+
+% Set embargo text when \documentclass[embargoed]{grattan}
+\EmbargoText{Embargoed until 9pm DAY MONTH YEAR}
+
+
+
+% Add words to spellcheck dictionary ----------------------------------
+	% To add words to the spellcheck dictionary, list them after %add_to_dictionary (including the comment symbol %)
+
 % add_to_dictionary: SSBs? roman Grattan OECD GDP GFC
 
+
+
+% Point to bib file(s) ------------------------------------------------
 \addbibresource{bib/put-new-refs-here.bib}
+
+
+
+% Start report --------------------------------------------------------
 
 % Title and author (you can add a \subtitle{} if required)
 \title{1 Orange Balloon}
 \author{John Daley}
-
-% Get report number and month of release:
-\GrattanReportNumber{2019-00}
-\MONTH{July}
-
-% Set embargo text: 
-\EmbargoText{Embargoed until 9pm DAY MONTH YEAR}
-
 
 
 \acknowledgements{%
