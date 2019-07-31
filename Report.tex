@@ -1,14 +1,26 @@
-\documentclass{grattan}
+\documentclass[embargoed]{grattan}
 % Comments are deployed by the % sign; everything after % is ignored by the compiler.
 % Please do not put comments before \documentclass as these are reserved for TeX directives.
-% add_to_dictionary: SSBs? roman
+% For final publication of a report replace [embargoed] with [FrontPage] and remove \EmbargoText: \documentclass[FrontPage]{grattan}
+% For final publication of a working paper remove [embargoed] and \EmbargoText: \documentclass{grattan}
+
+% To add words to the spellcheck dictionary, list them after %add_to_dictionary:
+% add_to_dictionary: SSBs? roman Grattan OECD GDP GFC
+
 \addbibresource{bib/put-new-refs-here.bib}
 
-\author{John Daley}
+% Title and author (you can add a \subtitle{} if required)
 \title{1 Orange Balloon}
-\subtitle{Hielten sich fuer schlaue Leute und fühlten sich gleich angemacht}
+\author{John Daley}
 
+% Get report number and month of release:
 \GrattanReportNumber{2019-00}
+\MONTH{July}
+
+% Set embargo text: 
+\EmbargoText{Embargoed until 9pm DAY MONTH YEAR}
+
+
 
 \acknowledgements{%
 This report was written by Peter Goss, Julie Sonnemann, and Kate Griffiths.
