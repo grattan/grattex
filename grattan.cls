@@ -716,7 +716,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{8pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -726,13 +726,11 @@ numbers=noenddot,
 
   Veitch Lister Consulting
   
-  \vspace{8pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
   Cuffe Family Foundation
-
-  Google 
 
   Maddocks
   
@@ -750,13 +748,17 @@ numbers=noenddot,
 
   Westpac
 
-  \vspace{8pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
+
+  Allens
 
   Ashurst
 
   Corrs
+
+  Flagstaff Partners
 
   Jemena
 
