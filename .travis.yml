@@ -5,26 +5,6 @@ sudo: true
 cache: 
   - packages
   - /travis/grattanReport
-  - /tmp/texlive
-  - /$HOME/.texlive
-  - /$HOME/travis/texlive/
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/acronym
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/bigfoot
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/blindtext
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/chngcntr
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/cmap
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/nowidow
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/mdframed
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/navigator
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/needspace
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/tablefootnote
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/tocloft
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/xpatch
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/multirow
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/bbding
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/mathastext
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/isomath
-  - /$HOME/travis/texlive/texmf-dist/tex/latex/relsize
 warnings_are_errors: false
 
 services:
@@ -36,55 +16,57 @@ addons:
       - libhunspell-dev
       # - hunspell-en-au Wait :-)
 
-r_binary_packages:
-  - data.table
-  - magrittr
-  - fastmatch
-  - hutils
-  - stringi
-  - Rcpp
-  - tibble
-  - hms
-  - R6
-  - BH
-  - rlang
-  - readr  
-  - zoo
 
-r_packages:
-  - clisymbols
+  - /$HOME/texlive
+warnings_are_errors: false
   
 r_github_packages:
   - HughParsonage/TeXCheckR
   - HughParsonage/grattanReporter
 
-# Do not omit this step or travis will think you're checking a package
-install: echo Installation step
+before_install:
+  - source ./travis/texlive.sh
+  - tlmgr update --self
+  - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize niceframe-type1
+  - tlmgr install l3backend 
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then tlmgr install tex-gyre eulervm bold-extra fancyvrb realboxes manfnt lstaddons; fi
+  # pdftotext
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then sudo apt-get install poppler-utils; fi
+  - tlmgr update --all
+  - sudo apt-get update
+  - sudo apt-get install texlive-bibtex-extra
+
+install: echo Installation step #do not remove this line!
 
 before_script:
     # as somehow no biber package is available for ubuntu 12.04 via apt, let's just download it directly
-    # old : - wget "http://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/0.9.9/binaries/Linux/biber-linux_x86_64.tar.gz"
-    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
-    #- Rscript -e 'grattanReporter::setup_travis()'
-    - docker pull blang/latex
-    - ./travis/dockercmd.sh kpsewhich chngcntr.sty
-    - wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"
+    # - wget "http://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/0.9.9/binaries/Linux/biber-linux_x86_64.tar.gz"
+    - wget http://mirrors.ctan.org/biblio/biber/binaries/Linux/biber-linux_x86_64.tar.gz
     - tar xzf biber-linux_x86_64.tar.gz
     - export PATH=$PATH:$PWD
-    #- tlmgr update biber
-
-# Not that important but will be quicker
-# Disadvantage: queued jobs won't interrupt running builds
-git:
-  depth: 3
+    - tlmgr update biber chngcntr
+    - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) try(system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell"), TRUE)'
+    - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) install.packages("hunspell")'
+    - Rscript -e 'install.packages(c("devtools", "TeXCheckR"), quiet = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR", quick = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", quick = TRUE)'
+    - Rscript -e 'devtools::session_info()'
 
 script: 
   - set -e
-  - Rscript -e 'Sys.which("pdflatex")'
-  # - for i in *.tex; do pdflatex -interaction=nonstopmode $i; done
-  - for i in *.tex; do ./travis/dockercmd.sh pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i ; done
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
+  - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript tests/test_grattex.R; fi
+  - cd doc
+  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript checkDocumentation.R; fi
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
-  on_success: change
+  on_success: never
+
+
+# sharelatex branches never work
+branches:
+  except:
+    - /^sharelatex.*$/

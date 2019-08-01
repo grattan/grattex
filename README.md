@@ -1,34 +1,63 @@
-[![Travis-CI Build Status](https://travis-ci.org/HughParsonage/grattex.svg?branch=master)](https://travis-ci.org/HughParsonage/grattex)
+[![Travis-CI Build Status](https://travis-ci.org/grattan/grattex.svg?branch=master)](https://travis-ci.org/grattan/grattex)
 
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
 
-See https://github.com/HughParsonage/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
+See https://github.com/grattan/grattex/blob/master/doc/grattexDocumentation.pdf for the documentation.
 
-Staff starting a new report should do the following:
+## Starting a new report
+Staff starting a new report need to "clone the `grattex` repository on Github" (copy the report template) and "import the repository to edit in Overleaf" (open the template in Overleaf). This can be done using the following steps.
 
-  1. Login as the `grattaninstitute` super user in [github.com](https://github.com) and [sharelatex.com](https://sharelatex.com).
-  2. Copy `https://github.com/HughParsonage/grattex` to your clipboard
-  2. Visit https://github.com/new/import
-  3. Paste `https://github.com/HughParsonage/grattex` into the `Your old repository’s clone URL`.
-  3. Choose an evocative name for your repository under `Name`
-  4. Select Private
-  5. Click `Begin Import`.
-  6. After the import is complete, follow the link to the report.
-  6. Click the Settings Tab.
-  6. On the left, click `Collaborators`. 
-  6. Add `HughParsonage` and any other authors as desired.
-  7. Visit [sharelatex.com](https://sharelatex.com).
-  7. Click `New Project > Import from GitHub`.
-  7. Locate the repository you just created, and click `Import to ShareLaTeX`. 
-  7. If ShareLaTeX fails to compile, this is a bug. Otherwise, proceed. (The first compilation should take several minutes, resulting in a document around 150 pages.)
-  7. At the top right, click `Share`.
-  7. Add collaborators as desired. 
+### [Once only]: Create your Github and Overleaf accounts
+If **you do not have a Github account** that is connected to the Grattan organisation:
+
+  * Create a Github account at [github.com](https://github.com) using your @grattaninstitute email address and a username that makes it easy to identify yourself (and remember). *[Skip if you already have a Github account]*
+  * Ask a LaTeXnician to add you to the Grattan Github organisation.
+
+If **you do not have an Overleaf account**:
+
+  * Create an Overleaf account at [overleaf.com](https://overleaf.com) using your `@grattaninstitute` email address.
+
+### Part 1: Copy the template using Github
+  1. Logged into your github account, go to https://github.com/new/import.
+  2. Copy `https://github.com/grattan/grattex` and paste under `Your old repository’s clone URL`.
+  3. Under `Your new repository details` choose `grattan` as the owner.
+  4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
+  5. Select `Private`.
+  6. Click `Begin Import`. This will take a few minutes to copy. Grab a cuppa' or a coffee from AO: Github will email you when it's finished. 
+  7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in Overleaf.
+
+### Part 2: Open the template in Overleaf
+  8. Log into your account at at [overleaf.com](https://overleaf.com).
+  9. Click `New Project > Import from GitHub`.
+  10. Locate the file you just created, and click `Import to Overleaf`.
+  11. Once imported the document will open and attempt to compile. If it initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
+  12. At the top right, click `Share` and:
+    a. add collaborators via their email address. *Please add all the LaTeXnicians (Carmela, Hugh, Kate, Lucy, and Will)* as well as the members of your team.
+    b. copy the `Anyone with this link can edit the project` link and paste it
+    just under `\documentclass{grattan}` as a comment, *i.e.*
+    
+```latex
+    \documentclass{grattan}
+    % Anyone with this link can edit the project:
+    % https://www.overleaf.com/abcdefghi12345
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so that your coauthors can also invite people to edit the document in your absence
+    
+  13. And that's it. You've now created a new report on Github and Overleaf. 
 
 ## Changelog
 
+### 2018-09-07
+* Penalties for hyphenation increased
+
+### 2018-02-26
+* Fix issue #102 which manifested on TeX Live distributions (like Travis-CI) where `Ibid. (<page ref>)`
+  resulted in the `p` being uppercase (PR #114). Thanks to JD for filing.
+
 ### 2017-09-01
-* Increase hyphenation penalties (Closes #85)
+* Increase hyphenation penalties. Closes #85
 
 ### 2017-08-22
 * Add `\note(s)withsource(s)` permutations. Closes #81
@@ -66,5 +95,3 @@ New features:
 * Glue component of space between footnote area and text has been reduced to 14pt (which is closer to the current leading). aec03a693b0aad85daa03ceef16316ef855b5b4a
 * Manual specification of `\textfloatsep` has now been dropped in favour of the default
 * Allow citations in acknowledgements #37
-
-
