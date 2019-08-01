@@ -21,7 +21,6 @@ numbers=noenddot,
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
 \RequirePackage{zref-savepos}
-\RequirePackage{longtable}
 
 % Record number and page of footnote:
 % http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
