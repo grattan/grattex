@@ -1,22 +1,9 @@
 language: r
 pandoc: false
-
 sudo: true
 cache: 
   - packages
-  - /travis/grattanReport
-warnings_are_errors: false
-
-services:
-  - docker
-
-addons:
-  apt:
-    packages:
-      - libhunspell-dev
-      # - hunspell-en-au Wait :-)
-
-
+  - /tmp/texlive
   - /$HOME/texlive
 warnings_are_errors: false
   
