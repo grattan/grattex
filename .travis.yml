@@ -40,7 +40,7 @@ before_script:
     - Rscript -e 'devtools::session_info()'
 
 script: 
-  - set -e
+  # - set -e
   # - for i in *.tex; do pdflatex -interaction=nonstopmode $i ; done
   # Debug this:
   - pdflatex -interaction=nonstopmode Report.tex > Report.log3
