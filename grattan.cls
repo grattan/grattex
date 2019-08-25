@@ -1155,9 +1155,9 @@ numbers=noenddot,
 
 
 % Discretionary commands for consistent treatment of common abbreviations
-\newcommand*{\eg}{\emph{e.g.}}
-\newcommand*{\ie}{\emph{i.e.}}
-\newcommand*{\etc}{\emph{etc.}}
+\newcommand*{\eg}{e.g.}
+\newcommand*{\ie}{i.e.}
+\newcommand*{\etc}{etc.}
 
 % Helpful for determining which labels are causing infinite reruns.
 % https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
