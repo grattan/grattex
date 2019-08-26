@@ -971,6 +971,12 @@ numbers=noenddot,
     \restorebibmacro{textcite}%
     \usebibmacro{textcite}}}
 
+% Remove dot from ibid
+\DefineBibliographyStrings{english}{
+  ibidem = {ibid},
+}
+
+
 % The following lines give the correct footcite Author (Year) but make the ibid erroneous
 % Author (ibid) % use ifciteibid
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
@@ -980,7 +986,7 @@ numbers=noenddot,
   % Ibid. -> Ibid\adddot
   % Otherwise the . in Ibid. is interprted as the end of a sentence
   % which means the first letter in a postnote will be uppercase
-  \ifciteibid{Ibid\adddot}{%  % for ibidem
+  \ifciteibid{Ibid}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
      {\stepcounter{textcitetotal}%
@@ -996,7 +1002,8 @@ numbers=noenddot,
 %\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
 %\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
 \DefineBibliographyStrings{british}
-   {andothers = {et al.\hskip 0pt}}
+   {andothers = {et al\hskip 0pt}}
+
 
 % biblatex ShareLaTeX version control
 % 2016/09/17
