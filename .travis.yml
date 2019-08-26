@@ -16,9 +16,9 @@ before_install:
   - tlmgr update --self
   - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize niceframe-type1
   - tlmgr install l3backend ms ragged2e
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then tlmgr install tex-gyre eulervm bold-extra fancyvrb realboxes manfnt lstaddons; fi
+  - if [ $TRAVIS_REPO_SLUG == "grattan/grattex" ]; then tlmgr install tex-gyre eulervm bold-extra fancyvrb realboxes manfnt lstaddons; fi
   # pdftotext
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then sudo apt-get install poppler-utils; fi
+  - if [ $TRAVIS_REPO_SLUG == "grattan/grattex" ]; then sudo apt-get install poppler-utils; fi
   - tlmgr update --all
   - sudo apt-get update
   - sudo apt-get install texlive-bibtex-extra
@@ -48,9 +48,9 @@ script:
   # End Debug
   - Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE, .proceed_after_rerun = 3)'
   - for i in *.tex; do pdflatex -interaction=nonstopmode $i > /dev/null 2>&1; done
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript tests/test_grattex.R; fi
+  - if [ $TRAVIS_REPO_SLUG == "grattan/grattex" ]; then Rscript tests/test_grattex.R; fi
   - cd doc
-  - if [ $TRAVIS_REPO_SLUG == "HughParsonage/grattex" ]; then Rscript checkDocumentation.R; fi
+  - if [ $TRAVIS_REPO_SLUG == "grattan/grattex" ]; then Rscript checkDocumentation.R; fi
 
 notifications:
   slack: grattex:7yiVyM6NvMmCE49ccxaUX2QG
