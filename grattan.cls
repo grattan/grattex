@@ -971,10 +971,6 @@ numbers=noenddot,
     \restorebibmacro{textcite}%
     \usebibmacro{textcite}}}
 
-% Remove dot from ibid
-\DefineBibliographyStrings{english}{
-  ibidem = {ibid},
-}
 
 
 % The following lines give the correct footcite Author (Year) but make the ibid erroneous
@@ -1001,8 +997,10 @@ numbers=noenddot,
 % removes intersentence space after et al.
 %\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
 %\xpatchcmd\textcite{\begingroup}{\begingroup\aftergroup\@}{}{}
-\DefineBibliographyStrings{british}
-   {andothers = {et al\hskip 0pt}}
+\DefineBibliographyStrings{british}{
+  ibidem = {ibid},
+  andothers = {et al\hskip 0pt}
+}
 
 
 % biblatex ShareLaTeX version control
