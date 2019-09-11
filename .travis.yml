@@ -9,7 +9,7 @@ warnings_are_errors: false
   
 r_github_packages:
   - HughParsonage/TeXCheckR
-  - HughParsonage/grattanReporter
+  - grattan/grattanReporter
 
 before_install:
   - source ./travis/texlive.sh
@@ -36,7 +36,7 @@ before_script:
     - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) install.packages("hunspell", quiet = TRUE)'
     - Rscript -e 'install.packages(c("devtools", "TeXCheckR"), quiet = TRUE)'
     - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
-    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+    - Rscript -e 'devtools::install_github("grattan/grattanReporter")'
     - Rscript -e 'devtools::session_info()'
 
 script: 
