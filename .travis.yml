@@ -35,8 +35,8 @@ before_script:
     - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) try(system("sudo apt-get install -y r-cran-rcpp r-cran-bh r-cran-stringi r-cran-hunspell"), TRUE)'
     - Rscript -e 'if (!requireNamespace("hunspell", quietly = TRUE)) install.packages("hunspell", quiet = TRUE)'
     - Rscript -e 'install.packages(c("devtools", "TeXCheckR"), quiet = TRUE)'
-    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR", quick = TRUE)'
-    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", quick = TRUE)'
+    - Rscript -e 'devtools::install_github("hughparsonage/TeXCheckR")'
+    - Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
     - Rscript -e 'devtools::session_info()'
 
 script: 
