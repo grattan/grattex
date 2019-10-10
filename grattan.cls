@@ -734,8 +734,6 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Maddocks
-  
-  McKinsey \& Company
 
   The Myer Foundation
 
@@ -762,6 +760,8 @@ numbers=noenddot,
   Flagstaff Partners
 
   Jemena
+
+  McKinsey \& Company
 
   Silver Chain
 
