@@ -33,8 +33,8 @@ If **you do not have an Overleaf account**:
   10. Locate the file you just created, and click `Import to Overleaf`.
   11. Once imported the document will open and attempt to compile. If it initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
   12. At the top right, click `Share` and:
-    a. add collaborators via their email address. *Please add all the LaTeXnicians (Carmela, Hugh, Kate, Lucy, and Will)* as well as the members of your team.
-    b. copy the `Anyone with this link can edit the project` link and paste it
+       + add collaborators via their email address. *Please add all the LaTeXnicians (Will, Kate, James and Hugh)* as well as the members of your team, and Paul and Kat.
+       + copy the `Anyone with this link can edit the project` link and paste it
     just under `\documentclass{grattan}` as a comment, *i.e.*
     
 ```latex
@@ -47,6 +47,24 @@ If **you do not have an Overleaf account**:
     
   13. And that's it. You've now created a new report on Github and Overleaf. 
 
+***
+## Working with \( \LaTeX \) 
+You can get a long way in Latex using Overleaf's 'Rich Text' editor. When you open an Overleaf project and select a file ending in `.tex` from the left sidebar, code will appear in the centre panel of the screen. At the top left of the code is a toggle button, allowing you to see the file as 'Source' code (which looks code-ish) or 'Rich Text' (which looks a bit more like Microsoft Word, including buttons you can click for section heading or bold text).
+
+Now you can write almost as easily as you would in more user-friendly text editors like Word.
+
+For anything more advanced (footnotes, referencing, tables, figures and other miscellaneous troubleshooting), there are three resources that might help.
+
+  1. __Using LaTeX in reports at Grattan__ is a more-than-one-hundred page document that should contain the answer. It lives in the Grattan Dropbox under `Grattan Team > Templates > LaTeX > grattexDocumentation.pdf`. While super helpful and comprehensive, the document is very long --- the best strategy is to `ctrl+F` for whatever you need assistance with.
+  2. The __latexShowcase__ project in Overleaf contains many examples of code that you might find useful, including how to use boxes and complex tables. Ask Will Mackey to invite you to this project if you didn't already receive the invite during your induction.
+  3. Your colleagues have probably encountered any issues you might have. Breaking a Latex document can be unnerving and frustrating, but the fix usually takes only a few seconds. Ask around! __Will, James and Kate__ are the designated 'Latexnicians' as of November 2019, and are more than happy to help.
+
+***
+## Publishing a Grattan report: what to do in the final week
+Content coming soon.
+
+
+***
 ## Changelog
 
 ### 2018-09-07
