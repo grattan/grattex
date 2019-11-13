@@ -48,7 +48,7 @@ If **you do not have an Overleaf account**:
   13. And that's it. You've now created a new report on Github and Overleaf. 
 
 ***
-## Working with \( \LaTeX \) 
+## Working with LaTeX
 You can get a long way in Latex using Overleaf's 'Rich Text' editor. When you open an Overleaf project and select a file ending in `.tex` from the left sidebar, code will appear in the centre panel of the screen. At the top left of the code is a toggle button, allowing you to see the file as 'Source' code (which looks code-ish) or 'Rich Text' (which looks a bit more like Microsoft Word, including buttons you can click for section heading or bold text).
 
 Now you can write almost as easily as you would in more user-friendly text editors like Word.
