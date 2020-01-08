@@ -28,7 +28,7 @@ If **you do not have an Overleaf account**:
   7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in Overleaf.
 
 ### Part 2: Open the template in Overleaf
-  8. Log into your account at at [overleaf.com](https://overleaf.com).
+  8. Log into your account at at [overleaf.com](https://overleaf.com). Under 'Account Settings', ensure your account is linked to both Dropbox and Github. If Overleaf tries to tell you that you need a subscription, add your `@grattan.edu.au` email address to your account.
   9. Click `New Project > Import from GitHub`.
   10. Locate the file you just created, and click `Import to Overleaf`.
   11. Once imported the document will open and attempt to compile. If it initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
