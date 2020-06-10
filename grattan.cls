@@ -18,7 +18,7 @@ numbers=noenddot,
 \RequirePackage{chngcntr}
 }{}
 \RequirePackage{etoolbox}
-\RequirePackage{footmisc}
+\RequirePackage[bottom]{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
 \RequirePackage{zref-savepos}
 \RequirePackage{longtable}
@@ -721,11 +721,7 @@ numbers=noenddot,
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
-  Medibank Private
-
   Susan McKinnon Foundation
-
-  Veitch Lister Consulting
   
   \vspace{5pt}
 
@@ -734,6 +730,8 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Maddocks
+
+  Medibank Private
 
   The Myer Foundation
 
