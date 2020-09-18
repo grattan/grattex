@@ -896,7 +896,7 @@ numbers=noenddot,
 % separating entries
 \setlength\bibitemsep{1.5\itemsep}
 % format bibliography
-\renewcommand*{\bibfont}{\small\raggedright}
+\renewcommand*{\bibfont}{\footnotesize\raggedright}
 
 % Allow URLs to break on any character
   % Increase penalty for page-breaks within entry from 5000 to 10,000 (infinity)
