@@ -755,8 +755,6 @@ numbers=noenddot,
 
   Corrs
 
-  Flagstaff Partners
-
   McKinsey \& Company
 
   Silver Chain
