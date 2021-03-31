@@ -1,5 +1,3 @@
-[![Travis-CI Build Status](https://travis-ci.org/grattan/grattex.svg?branch=master)](https://travis-ci.org/grattan/grattex)
-
 # grattex
 This is the repository containing the configuration files for reports in the style of the [Grattan Institute, Melbourne](https://grattan.edu.au/).
 
