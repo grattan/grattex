@@ -721,6 +721,10 @@ numbers=noenddot,
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
+  Ecstra Foundation
+  
+  Origin Energy Foundation
+
   Susan McKinnon Foundation
   
   \vspace{5pt}
