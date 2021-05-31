@@ -605,6 +605,20 @@ numbers=noenddot,
   \end{figure*}
 }
 
+\newcommand{\talldoublecolumnfigure}[2]{
+  \begin{figure*}
+    \begin{minipage}[t][\textheight]{\columnwidth}
+      \vspace{0mm}
+      #1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t][\textheight]{\columnwidth}
+      \vspace{0mm}
+      #2
+    \end{minipage}
+  \end{figure*}
+}
+
 % Ensure pdfs are used first
 \DeclareGraphicsExtensions{%
     .pdf,.PDF,%
@@ -678,8 +692,13 @@ numbers=noenddot,
   \counterwithout{table}{chapter}
 }
 
+\newcommand{\Vshiftacknowledgements}{-5mm}
+\newcommand{\Hshiftacknowledgements}{-10mm}
+
 \newcommand*{\@pagetwo}{%
-  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
+  \onecolumn
+  \begin{minipage}[t][0.85\textheight][t]{0.55\textwidth + \Hshiftacknowledgements}
+  \vspace{\Vshiftacknowledgements}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
   \setlength{\parskip}{4pt plus 8pt minus 5pt}
@@ -717,7 +736,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{5pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -727,7 +746,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
   
-  \vspace{5pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
@@ -747,7 +766,7 @@ numbers=noenddot,
 
   Westpac
 
-  \vspace{5pt}
+  \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -768,8 +787,9 @@ numbers=noenddot,
   Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
-  \eject \normalsize
-  \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
+  \normalsize
+  \begin{minipage}[t][0.85\textheight][t]{0.45\textwidth - \Hshiftacknowledgements}
+  \vspace{\Vshiftacknowledgements}
     \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
     \setlength{\parskip}{5.5pt plus 2pt}
     \raggedright\@acknowledgements

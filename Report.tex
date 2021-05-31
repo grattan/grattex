@@ -53,6 +53,18 @@
 \addbibresource{bib/put-new-refs-here.bib}
 
 
+% Back-end settings ---------------------------------------------------
+% Adjust vertical alignment of Table of Contents title
+\setlength{\cftbeforetoctitleskip}{4em}
+% \setlength{\cftbeforeloftitleskip}{4em}
+% \setlength{\cftbeforelottitleskip}{4em}
+
+% Shift acknowledgements page up to allow for more text:
+% (more negative shifts the titles up, creating more space)
+\renewcommand{\Vshiftacknowledgements}{0mm}
+\renewcommand{\Hshiftacknowledgements}{0mm}
+
+
 
 % Start report --------------------------------------------------------
 
@@ -193,6 +205,8 @@ Sometimes you want two figures on the same page, use the code in \Vrefrange{fig:
 Other times you want a small box on one page (such as at the end of a chapter when the text ends on the right column).
 See the code for \Vref{box:centred-box}.
 
+Sometimes when you have tall figures and detailed notes, you might want space for your \texttt{doublecolumnfigures}. You can use \verb|\talldoublecolumnfigure|.
+
 \doublecolumnfigure{
 \caption{Figure caption\label{fig:dbl-example-figure-A}}
 \units{Figure units}
@@ -204,6 +218,7 @@ See the code for \Vref{box:centred-box}.
 \includegraphics{logos/GrattanSVGLogo.pdf}
 \source{Source}
 }
+
 
 \begin{centredsmallbox}{A centred small box}{box:centred-box}
 A centred small box.
@@ -370,126 +385,6 @@ You should remove this line before compiling.
 
 Some two-author citations: \textcite{Norton2014Doubtfuldebtrising}.\footcites{DuckettBreadon-2014-Unlocking-skills}{Duckett-2016-Premium-policy-getting-more-from-PBS}{Norton2015Universityfeeswhat}{Norton2015cashnexushow}
 
-\chapter{Testing suite 1 (this chapter title may need to span two columns)}\label{chap:test-1}
-The box on the right (\Cref{box:test-two-line-caption}) should have a top-aligned caption (Issue \#80):
-
-\section{Blind section}
-A small river named Carlton flows by their place and supplies it with the necessary regalia.
-It is a paradise country, in which roasted parts of sentences fly into your mouth.
-
-Even the all-powerful pointing has no control about the blind texts it is an almost non-orthographic life One day however a small line of blind text by the name of  decided to leave for the far World of Grammar.
-
-The Big Ox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semi, but the Little Blind Text didn't listen.
-She packed her seven verse, put her initial into the belt and made herself on the way.
-
-When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her home-town Bookmarks grove, the headline of Alphabet Village and the sub-line of her own road, the Line Lane.
-Pitiful a rhetoric question ran over her cheek, then she continued her way.
-
-On her way she met a copy.
-The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word ``and" and the Little Blind Text should turn around and return to its own, safe country.
-But nothing the copy said could convince her and so it didn't take long until a few insidious Copy Writers ambushed her, made her drunk with Long Tongue and Parole and dragged her into their agency, where they abused her for their pleasure.
-
-\begin{verysmallbox}[p]{This is a long long caption which may be over more than one line}{box:test-two-line-caption}
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-\end{verysmallbox}
-
-In addition to personal costs, obese people, on average, receive more healthcare than other people, with taxpayers funding most of the costs of those services.
-Obese people also have lower rates of employment, receive more social services payments, and contribute less income tax than people in the normal weight range.
-Together, this foregone tax and additional health and welfare expenses mean that taxpayers are about \$5.3~billion worse off each year. 
-
-This report calls for a tax on sugar-sweetened beverages.
-We recommend an excise tax of 40 cents per 100 grams of sugar on non-alcoholic, water-based beverages that contain added sugar.
-This will increase the price of a two-litre bottle of soft drink by about 80 cents.
-This tax would raise about \$500~million a year, generate a drop of about 15 per cent in consumption of SSBs and likely result in a small decrease in obesity rates, as people switch to water and other drinks not subject to the tax. 
-
-\chapter{Testing suite 2}\label{chap:test-2}
-The box on the right (\Cref{box:test-one-line-caption}) should have a top-aligned caption (re \#80):
-
-\begin{smallbox}{This is a short caption}{box:test-one-line-caption}
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box. 
-Some other text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some text in a small box. 
-Some other text in a small box.  
-\end{smallbox}
-
-\chapter{Testing suite 3}\label{chap:ibid-postnote}
-First use of the citation.\footnote{Some text: \textcite{PC-2014-Childcareearlychildhood}.}
-
-The post-notes in the footnotes should be lower-case.\footcite[][14-15]{PC-2014-Childcareearlychildhood}
-
-Here, the roman numerals are fine, but not the abbreviation for `page'.\footcite[][XXV]{PC-2014-Childcareearlychildhood}
-
-Between 2011 and 2016, half of all jobs growth was  within the city centres and inner suburbs in both Melbourne and Sydney.%
-	\footnote{Melbourne residents in suburbs more than 20 kilometres from the CBD have fewer than three jobs nearby for every 10 residents, while those close to the city centre have access to nine jobs for every 10 residents, \citetitle{KellyDonegan2015-City-limits}.}
-Knowledge-intensive businesses -- which tend to be the most productive, and which are growing fastest -- particularly benefit from clustering together in the centres of large cities.%
-	\footcite[][23-29]{KellyDonegan2015-City-limits}
-
-
 
 \appendix
 
@@ -498,7 +393,7 @@ To start the appendix area, just invoke \verb=\appendix= as above.
 There's nothing else special about it.
 Elements such as glossaries and indexes are not supported by this class file, though can be implemented.
 
-The bibliography is not an appendix, but appears after the appendix. 
+The bibliography appears after the appendix. 
 
 
 \printbibliography
