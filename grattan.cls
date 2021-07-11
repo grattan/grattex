@@ -782,9 +782,7 @@ numbers=noenddot,
 
   Silver Chain
 
-  Urbis
-
-  Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Urbis\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \normalsize
