@@ -758,8 +758,6 @@ numbers=noenddot,
 
   The Myer Foundation
 
-  Scanlon Foundation
-
   Trawalla Foundation
 
   Wesfarmers
@@ -779,6 +777,8 @@ numbers=noenddot,
   Corrs
 
   McKinsey \& Company
+  
+  Scanlon Foundation
 
   Silver Chain
 
