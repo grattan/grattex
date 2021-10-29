@@ -1179,6 +1179,7 @@ numbers=noenddot,
 \newcommand*{\eg}{e.g.}
 \newcommand*{\ie}{i.e.}
 \newcommand*{\etc}{etc.}
+\newcommand*{\Eg}{E.g.}
 
 % Helpful for determining which labels are causing infinite reruns.
 % https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
