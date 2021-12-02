@@ -10,30 +10,31 @@ Staff starting a new report need to "clone the `grattex` repository on Github" (
 If **you do not have a Github account** that is connected to the Grattan organisation:
 
   * Create a Github account at [github.com](https://github.com) using your @grattaninstitute email address and a username that makes it easy to identify yourself (and remember). *[Skip if you already have a Github account]*
-  * Ask a LaTeXnician to add you to the Grattan Github organisation.
+  * Ask Will to add you to the Grattan Github organisation.
 
 If **you do not have an Overleaf account**:
 
-  * Create an Overleaf account at [overleaf.com](https://overleaf.com) using your `@grattaninstitute` email address. Ask Will Mackey to add you to the Grattan Institute premium account.
+  * Create an Overleaf account at [overleaf.com](https://overleaf.com) using your `@grattaninstitute` email address. 
+  * Ask Will to add you to the Grattan Institute premium account.
+  * Under 'Account Settings', ensure your account is linked to both Dropbox and Github.
+
 
 ### Part 1: Copy the template using Github
-  1. Logged into your github account, go to https://github.com/new/import.
-  2. Copy `https://github.com/grattan/grattex` and paste under `Your old repository’s clone URL`.
-  3. Under `Your new repository details` choose `grattan` as the owner.
-  4. Under `Name` add a name to your project that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `he-report`.
-  5. Select `Private`.
-  6. Click `Begin Import`. This will take a few minutes to copy. Grab a cuppa' or a coffee from AO: Github will email you when it's finished. 
-  7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). Now it's time to open and edit it in Overleaf.
+  1. Logged into your github account, go to `https://github.com/grattan/grattex`
+  2. Click on `Use this template` (the green button on the top-right of the panel)
+  3. Change the Owner to `grattan`. Give your new repository a name that will clearly identify the project now and in the future. A **good** example is `Energy-2018-stranded-assets`. A **bad** example is `health-report`.
+  5. Select `Private`, and make sure the `Include all branches` is **unchecked**.
+  6. Click `Create repository from template`. This will take a minute to copy.
+  7. Once it has finished, you have successfully cloned the `grattex` repository (copied the report template). You can find it at `https://github.com/grattan/[your-repository-name]`. Now it's time to open and edit it in Overleaf.
 
 ### Part 2: Open the template in Overleaf
-  8. Log into your account at at [overleaf.com](https://overleaf.com). Under 'Account Settings', ensure your account is linked to both Dropbox and Github. If Overleaf tries to tell you that you need a subscription, talk to Will Mackey.
+  8. Log into your account at at [overleaf.com](https://overleaf.com). 
   9. Click `New Project > Import from GitHub`.
-  10. Locate the file you just created, and click `Import to Overleaf`.
-  11. Once imported the document will open and attempt to compile. If it initially fails to compile, search for and delete `\nocite{*}` from `Report.tex`.
+  10. Locate the repository you just created, and click `Import to Overleaf`.
+  11. Once imported the document will open and attempt to compile.
   12. At the top right, click `Share` and:
-       + add collaborators via their email address. *Please add all the LaTeXnicians (Will, Kate, James and Hugh)* as well as the members of your team, and Paul and Kat.
-       + copy the `Anyone with this link can edit the project` link and paste it
-    just under `\documentclass{grattan}` as a comment, *i.e.*
+       + add collaborators via their email address. *Please add all the LaTeXnicians (Will, Owain and Ingrid)*, as well as the members of your team, plus Paul and Kat.
+       + copy the `Anyone with this link can edit the project` link and paste it just under `\documentclass{grattan}` as a comment, *i.e.:*
     
 ```latex
     \documentclass{grattan}
