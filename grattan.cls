@@ -745,6 +745,8 @@ numbers=noenddot,
   Origin Energy Foundation
 
   Susan McKinnon Foundation
+
+  Third Link Growth Fund
   
   \vspace{8pt}
 
@@ -755,8 +757,6 @@ numbers=noenddot,
   Maddocks
 
   Medibank Private
-
-  The Myer Foundation
 
   Trawalla Foundation
 
