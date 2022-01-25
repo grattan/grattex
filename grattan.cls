@@ -762,8 +762,6 @@ numbers=noenddot,
 
   Wesfarmers
 
-  Westpac
-
   \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
@@ -782,7 +780,9 @@ numbers=noenddot,
 
   Silver Chain
 
-  Urbis\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Urbis
+  
+  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \normalsize
