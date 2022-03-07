@@ -906,7 +906,7 @@ numbers=noenddot,
 {}
 
 \DeclareLanguageMapping{english}{british-apa}
-\DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
+\DeclareNameAlias{author}{family-given} % for last name, first name in bibliography
 \DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
 \renewbibmacro{in:}{} % suppress In:
 \renewbibmacro{bbx:editor}{} % suppress Ed:
