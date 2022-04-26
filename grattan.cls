@@ -757,6 +757,8 @@ numbers=noenddot,
   Maddocks
 
   Medibank Private
+  
+  Scanlon Foundation
 
   Trawalla Foundation
 
@@ -776,8 +778,6 @@ numbers=noenddot,
 
   McKinsey \& Company
   
-  Scanlon Foundation
-
   Silver Chain
 
   Urbis
