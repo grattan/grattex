@@ -733,16 +733,18 @@ numbers=noenddot,
   The Myer Foundation
 
   National Australia Bank
+  
+  Scanlon Foundation
 
   Susan McKinnon Foundation
 
   \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
-
-  Ecstra Foundation
   
   Origin Energy Foundation
+
+  Scanlon Foundation
 
   Susan McKinnon Foundation
 
@@ -758,8 +760,6 @@ numbers=noenddot,
 
   Medibank Private
   
-  Scanlon Foundation
-
   Trawalla Foundation
 
   Wesfarmers
@@ -780,9 +780,7 @@ numbers=noenddot,
   
   Silver Chain
 
-  Urbis
-  
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Urbis\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \normalsize
