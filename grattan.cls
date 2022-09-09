@@ -756,7 +756,6 @@ numbers=noenddot,
  
   Cuffe Family Foundation
 
-  Maddocks
 
   Medibank Private
   
@@ -777,6 +776,8 @@ numbers=noenddot,
   Corrs
   
   Generation Life
+  
+  Maddocks
 
   McKinsey \& Company
   
