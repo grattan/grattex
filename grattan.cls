@@ -733,9 +733,9 @@ numbers=noenddot,
   The Myer Foundation
 
   National Australia Bank
-  
-  Scanlon Foundation
 
+  Scanlon Foundation
+  
   Susan McKinnon Foundation
 
   \vspace{8pt}
@@ -756,9 +756,8 @@ numbers=noenddot,
  
   Cuffe Family Foundation
 
-
   Medibank Private
-  
+
   Trawalla Foundation
 
   Wesfarmers
@@ -771,21 +770,23 @@ numbers=noenddot,
 
   Ashurst
 
+  Boston Consulting Group
+
   The Caponero Grant
 
   Corrs
-  
+
   Generation Life
-  
+
   Maddocks
 
   McKinsey \& Company
-  
-  PEXA
-  
-  Silver Chain
 
-  Urbis\rule[-1.5ex]{0pt}{0pt} % for BHp
+  PEXA
+
+  Urbis
+  
+  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \normalsize
