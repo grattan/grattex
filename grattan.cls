@@ -702,7 +702,7 @@ numbers=noenddot,
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
   \setlength{\parskip}{4pt plus 8pt minus 5pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
+  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par
   \vspace{-40pt} 
   {\centering  
   
