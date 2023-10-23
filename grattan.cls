@@ -726,6 +726,7 @@ numbers=noenddot,
     {\includegraphics[width=3.25cm]{./logos/Bhp}}%
   % par is necessary to centre the last logo
   \par}
+  \vspace{2cm}  
   \columnbreak\par
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
