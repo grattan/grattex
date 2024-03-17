@@ -703,7 +703,7 @@ numbers=noenddot,
   \begin{multicols}{2}
   \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par
-  \vspace{-40pt} 
+  % \vspace{-40pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -736,18 +736,14 @@ numbers=noenddot,
   National Australia Bank
 
   Scanlon Foundation
-  
+
+  Summer Foundation 
+
   Susan McKinnon Foundation
 
   \vspace{8pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
-  
-  Origin Energy Foundation
-
-  Scanlon Foundation
-
-  Susan McKinnon Foundation
 
   Third Link Growth Fund
   
@@ -758,6 +754,8 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Medibank Private
+
+  Origin Energy Foundation
 
   Trawalla Foundation
 
