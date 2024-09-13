@@ -745,6 +745,8 @@ numbers=noenddot,
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
+  Origin Energy Foundation
+  
   Third Link Growth Fund
   
   \vspace{8pt}
@@ -754,10 +756,6 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Medibank Private
-
-  Origin Energy Foundation
-
-  Trawalla Foundation
 
   Wesfarmers
 
@@ -774,8 +772,6 @@ numbers=noenddot,
   Maddocks
 
   McKinsey \& Company
-
-  PEXA
 
   Urbis
   
