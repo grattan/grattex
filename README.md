@@ -33,7 +33,7 @@ If **you do not have an Overleaf account**:
   10. Locate the repository you just created, and click `Import to Overleaf`.
   11. Once imported the document will open and attempt to compile.
   12. At the top right, click `Share` and:
-       + add collaborators via their email address. *Please add all the LaTeXnicians (Will, Owain and Ingrid)*, as well as the members of your team, plus Paul and Kat.
+       + add collaborators via their email address. *Please add all the LaTeXnicians (Nick)*, as well as the members of your team, plus Paul and Kat.
        + copy the `Anyone with this link can edit the project` link and paste it just under `\documentclass{grattan}` as a comment, *i.e.:*
     
 ```latex
@@ -56,7 +56,7 @@ For anything more advanced (footnotes, referencing, tables, figures and other mi
 
   1. __*Using LaTeX in reports at Grattan*__ is a more-than-one-hundred page document that should contain the answer. It lives in the Grattan Dropbox under `Grattan Team > Templates > LaTeX > grattexDocumentation.pdf`. While super helpful and comprehensive, the document is very long -- the best strategy is to `ctrl+F` for whatever you need assistance with.
   2. The __latexShowcase__ project in Overleaf contains many examples of code that you might find useful, including how to use boxes and complex tables. Ask Will Mackey to invite you to this project if you didn't already receive the invite during your induction.
-  3. Your colleagues have probably encountered any issues you might have. Breaking a Latex document can be unnerving and frustrating, but the fix usually takes only a few seconds. Ask around! __Will, James and Kate__ are the designated 'Latexnicians' as of November 2019, and are more than happy to help.
+  3. Your colleagues have probably encountered any issues you might have. Breaking a Latex document can be unnerving and frustrating, but the fix usually takes only a few seconds. Ask around! __Nick__ is the designated 'Latexnician' as of September 2023, and is more than happy to help.
 
 ***
 ## Publishing a Grattan report: what to do in the final week
@@ -124,6 +124,9 @@ And if something goes badly wrong -- you can't get `checkGrattanReport()` to mak
 
 ***
 ## Changelog
+
+## 2024-09-13
+* Changed affiliates page.
 
 ### 2018-09-07
 * Penalties for hyphenation increased
