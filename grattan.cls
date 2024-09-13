@@ -45,6 +45,7 @@ numbers=noenddot,
 
 \brokenpenalty=3000
 
+\RequirePackage[document]{ragged2e}
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
@@ -699,11 +700,11 @@ numbers=noenddot,
   \onecolumn
   \begin{minipage}[t][0.85\textheight][t]{0.55\textwidth + \Hshiftacknowledgements}
   \vspace{\Vshiftacknowledgements}
-  \subsection*{Grattan Institute Support}  
+  \subsection*{Grattan Institute Support}
+  \setlength{\columnsep}{0.75cm}
   \begin{multicols}{2}
-  \setlength{\parskip}{4pt plus 8pt minus 5pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par
-  % \vspace{-40pt} 
+  \setlength{\parskip}{3.5pt plus 6pt minus 4pt}
+  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009}}\hfill\par} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -730,6 +731,7 @@ numbers=noenddot,
   \columnbreak\par
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+  \vspace{10pt}
 
   The Myer Foundation
 
@@ -741,23 +743,21 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{8pt}
+  \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
+  Origin Energy Foundation
+  
   Third Link Growth Fund
   
-  \vspace{8pt}
+  \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
   Cuffe Family Foundation
 
   Medibank Private
-
-  Origin Energy Foundation
-
-  Trawalla Foundation
 
   Wesfarmers
 
@@ -774,8 +774,6 @@ numbers=noenddot,
   Maddocks
 
   McKinsey \& Company
-
-  PEXA
 
   Urbis
   
@@ -810,7 +808,7 @@ numbers=noenddot,
 \ProcessOptions\relax
 
 % Bibliography
-\RequirePackage[english]{babel}
+\RequirePackage[UKenglish]{babel}
 \RequirePackage{csquotes}
 \RequirePackage[
   backend=biber,
@@ -907,6 +905,7 @@ numbers=noenddot,
 \DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
 \renewbibmacro{in:}{} % suppress In:
 \renewbibmacro{bbx:editor}{} % suppress Ed:
+\DefineBibliographyExtras{UKenglish}{\def\finalandcomma{\addcomma}}
 
 
 %% Bibliography formatting
@@ -1006,6 +1005,10 @@ numbers=noenddot,
      {\bibcloseparen\global\boolfalse{cbx:parens}}
      {}}
   {\usebibmacro{textcite:postnote}}
+
+% Update separator for multiple citations to use a comma
+\renewcommand*{\multicitedelim}{\addcomma\space}
+
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 % removes intersentence space after et al.
 %\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
