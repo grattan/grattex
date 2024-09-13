@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2018-09-07 v1.4.0 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2024-09-13 v1.5.0 Reports of the Grattan Institute, Melbourne]
 % >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
 % for png files
 \LoadClass[%
@@ -704,7 +704,7 @@ numbers=noenddot,
   \setlength{\columnsep}{0.75cm}
   \begin{multicols}{2}
   \setlength{\parskip}{3.5pt plus 6pt minus 4pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009}}\hfill\par} 
+  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -731,8 +731,8 @@ numbers=noenddot,
   \columnbreak\par
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
-  \vspace{10pt}
-
+  \vspace{4pt}
+  
   The Myer Foundation
 
   National Australia Bank
@@ -746,6 +746,7 @@ numbers=noenddot,
   \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
+  \vspace{4pt}
 
   Origin Energy Foundation
   
@@ -754,16 +755,18 @@ numbers=noenddot,
   \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
- 
+  \vspace{4pt}
+
   Cuffe Family Foundation
 
   Medibank Private
 
   Wesfarmers
 
-  \vspace{8pt}
+  \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
+  \vspace{4pt}
 
   Allens
 
@@ -1007,8 +1010,11 @@ numbers=noenddot,
   {\usebibmacro{textcite:postnote}}
 
 % Update separator for multiple citations to use a comma
-\renewcommand*{\multicitedelim}{\addcomma\space}
-
+\renewcommand*{\multicitedelim}{%
+  \iflastcitekey
+    {\addspace\bibstring{and}}
+    {\finalandcomma}}
+  
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 % removes intersentence space after et al.
 %\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
