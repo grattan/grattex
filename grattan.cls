@@ -45,6 +45,7 @@ numbers=noenddot,
 
 \brokenpenalty=3000
 
+\RequirePackage[document]{ragged2e}
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
@@ -699,11 +700,11 @@ numbers=noenddot,
   \onecolumn
   \begin{minipage}[t][0.85\textheight][t]{0.55\textwidth + \Hshiftacknowledgements}
   \vspace{\Vshiftacknowledgements}
-  \subsection*{Grattan Institute Support}  
+  \subsection*{Grattan Institute Support}
+  \setlength{\columnsep}{0.75cm}
   \begin{multicols}{2}
-  \setlength{\parskip}{4pt plus 8pt minus 5pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par
-  % \vspace{-40pt} 
+  \setlength{\parskip}{3.5pt plus 6pt minus 4pt}
+  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009}}\hfill\par} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -730,6 +731,7 @@ numbers=noenddot,
   \columnbreak\par
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+  \vspace{10pt}
 
   The Myer Foundation
 
@@ -741,7 +743,7 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{8pt}
+  \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
@@ -749,7 +751,7 @@ numbers=noenddot,
   
   Third Link Growth Fund
   
-  \vspace{8pt}
+  \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
