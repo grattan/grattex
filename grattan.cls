@@ -808,7 +808,7 @@ numbers=noenddot,
 \ProcessOptions\relax
 
 % Bibliography
-\RequirePackage[english]{babel}
+\RequirePackage[UKenglish]{babel}
 \RequirePackage{csquotes}
 \RequirePackage[
   backend=biber,
@@ -905,6 +905,7 @@ numbers=noenddot,
 \DeclareFieldFormat{type}{\unskip\space} % suppress Tech Rep
 \renewbibmacro{in:}{} % suppress In:
 \renewbibmacro{bbx:editor}{} % suppress Ed:
+\DefineBibliographyExtras{UKenglish}{\def\finalandcomma{\addcomma}}
 
 
 %% Bibliography formatting
@@ -1004,6 +1005,10 @@ numbers=noenddot,
      {\bibcloseparen\global\boolfalse{cbx:parens}}
      {}}
   {\usebibmacro{textcite:postnote}}
+
+% Update separator for multiple citations to use a comma
+\renewcommand*{\multicitedelim}{\addcomma\space}
+
 \newcommand{\gcite}[1]{{\citeauthor{#1} (\citedate{#1})}}
 % removes intersentence space after et al.
 %\xpatchcmd\citeauthor{\begingroup}{\begingroup\aftergroup\@}{}{}
