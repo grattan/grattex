@@ -772,11 +772,7 @@ numbers=noenddot,
 
   Ashurst
 
-  Boston Consulting Group
-
   Maddocks
-
-  McKinsey \& Company
 
   Urbis
   
