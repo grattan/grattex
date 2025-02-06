@@ -748,10 +748,10 @@ numbers=noenddot,
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \vspace{4pt}
 
-  Origin Energy Foundation
-  
   Third Link Growth Fund
-  
+ 
+  Origin Energy Foundation
+    
   \vspace{10pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
@@ -760,6 +760,8 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Medibank Private
+
+  University of Technology Sydney
 
   Wesfarmers
 
