@@ -751,6 +751,8 @@ numbers=noenddot,
   Third Link Growth Fund
  
   Origin Energy Foundation
+
+  UTS
     
   \vspace{10pt}
 
@@ -760,8 +762,6 @@ numbers=noenddot,
   Cuffe Family Foundation
 
   Medibank Private
-
-  University of Technology Sydney
 
   Wesfarmers
 
