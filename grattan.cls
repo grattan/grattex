@@ -732,6 +732,8 @@ numbers=noenddot,
   \footnotesize 
   \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
   \vspace{4pt}
+
+  McKinnon
   
   The Myer Foundation
 
@@ -740,8 +742,6 @@ numbers=noenddot,
   Scanlon Foundation
 
   Summer Foundation 
-
-  Susan McKinnon Foundation
 
   \vspace{10pt}
 
