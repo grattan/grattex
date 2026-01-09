@@ -693,9 +693,6 @@ numbers=noenddot,
   \counterwithout{table}{chapter}
 }
 
-\newcommand{\Vshiftacknowledgements}{-5mm}
-\newcommand{\Hshiftacknowledgements}{-10mm}
-
 \newcommand*{\@pagetwo}{%
   \clearpage
   \begingroup
