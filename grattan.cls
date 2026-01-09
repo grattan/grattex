@@ -651,14 +651,14 @@ numbers=noenddot,
 
 % Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
 \DeclareOption{FrontPage}{
-  \IfFileExists{./FrontPage/FrontPage.pdf}{%
-      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+  \IfFileExists{./FrontPages/FrontPage.pdf}{%
+      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPages/FrontPage}%
     }{
       \ClassError{grattan}{%
-      './FrontPage/FrontPage.pdf' does not exist
+      './FrontPages/FrontPage.pdf' does not exist
       }{%
       You have asked for a fullpicture option, but we can't find 
-      a file at './FrontPage/FrontPage.pdf'. Try placing the image
+      a file at './FrontPages/FrontPage.pdf'. Try placing the image
       there or not using the fullpicture option.
     }
     }
@@ -668,14 +668,14 @@ numbers=noenddot,
     \vfill
     \centering
     % Amend
-    \IfFileExists{./FrontPage/FrontPage.pdf}{%
-      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+    \IfFileExists{./FrontPages/FrontPage.pdf}{%
+      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPages/FrontPage.pdf}%
     }{
       \ClassError{grattan}{%
-        './FrontPage/FrontPage' does not exist
+        './FrontPages/FrontPage' does not exist
       }{%
         You have asked for a fullpicture option, but we can't find 
-        a file at './FrontPage/FrontPage'. Try placing the image
+        a file at './FrontPages/FrontPage'. Try placing the image
         there or not using the fullpicture option.
       }
     }
@@ -700,7 +700,7 @@ numbers=noenddot,
     \thispagestyle{scrheadings}%
     \begin{center}
       \vspace*{-2em}
-      \includegraphics[width=0.825\paperwidth,height=0.825\paperheight,keepaspectratio]{AffiliatesPage.png}%
+      \includegraphics[width=0.825\paperwidth,height=0.825\paperheight,keepaspectratio]{FrontPages/AffiliatesPage.png}%
     \end{center}
   \endgroup
   \twocolumn
@@ -1113,6 +1113,9 @@ numbers=noenddot,
    \end{minipage}%
    \twocolumn
    }
+
+\newcommand{\Vshiftacknowledgements}{-5mm}
+\newcommand{\Hshiftacknowledgements}{-10mm}
 
 \def\@testdef #1#2#3{%
   \def\reserved@a{#3}\expandafter \ifx \csname #1@#2\endcsname
