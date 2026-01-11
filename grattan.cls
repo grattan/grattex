@@ -651,14 +651,14 @@ numbers=noenddot,
 
 % Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
 \DeclareOption{FrontPage}{
-  \IfFileExists{./FrontPage/FrontPage.pdf}{%
-      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+  \IfFileExists{./FrontPages/FrontPage.pdf}{%
+      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPages/FrontPage}%
     }{
       \ClassError{grattan}{%
-      './FrontPage/FrontPage.pdf' does not exist
+      './FrontPages/FrontPage.pdf' does not exist
       }{%
       You have asked for a fullpicture option, but we can't find 
-      a file at './FrontPage/FrontPage.pdf'. Try placing the image
+      a file at './FrontPages/FrontPage.pdf'. Try placing the image
       there or not using the fullpicture option.
     }
     }
@@ -668,14 +668,14 @@ numbers=noenddot,
     \vfill
     \centering
     % Amend
-    \IfFileExists{./FrontPage/FrontPage.pdf}{%
-      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+    \IfFileExists{./FrontPages/FrontPage.pdf}{%
+      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPages/FrontPage.pdf}%
     }{
       \ClassError{grattan}{%
-        './FrontPage/FrontPage' does not exist
+        './FrontPages/FrontPage' does not exist
       }{%
         You have asked for a fullpicture option, but we can't find 
-        a file at './FrontPage/FrontPage'. Try placing the image
+        a file at './FrontPages/FrontPage'. Try placing the image
         there or not using the fullpicture option.
       }
     }
@@ -693,101 +693,16 @@ numbers=noenddot,
   \counterwithout{table}{chapter}
 }
 
-\newcommand{\Vshiftacknowledgements}{-5mm}
-\newcommand{\Hshiftacknowledgements}{-10mm}
-
 \newcommand*{\@pagetwo}{%
-  \onecolumn
-  \begin{minipage}[t][0.85\textheight][t]{0.55\textwidth + \Hshiftacknowledgements}
-  \vspace{\Vshiftacknowledgements}
-  \subsection*{Grattan Institute Support}
-  \setlength{\columnsep}{0.75cm}
-  \begin{multicols}{2}
-  \setlength{\parskip}{3.5pt plus 6pt minus 4pt}
-  \textbf{\textcolor{theGrey}{\normalsize Founding members (2009)}}\hfill\par 
-  {\centering  
-  
-  \IfFileExists{aus-gov-logo-stacked-black.pdf}%
-    {\includegraphics[width=3.75cm]{aus-gov-logo-stacked-black}}%
-    {\includegraphics[width=3.75cm]{./logos/aus-gov-logo-stacked-black}}
-  
-  \IfFileExists{Vic_Gov_Logo-2016.pdf}%
-    {\includegraphics[width=3.25cm]{Vic_Gov_Logo-2016}}%
-    {\includegraphics[width=3.25cm]{./logos/Vic_Gov_Logo-2016}}
-  
-  \IfFileExists{UOM-Pos_S_PMS.pdf}%
-    % Too much whitespace on top:
-    % l t r b
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{UOM-Pos_S_PMS}}%
-    {\includegraphics[trim = {0 2cm 0 2cm}, clip, width=3.5cm]{./logos/UOM-Pos_S_PMS}}%
-
-  
-  \IfFileExists{Bhp.pdf}%
-    {\includegraphics[width=3.25cm]{Bhp}}%
-    {\includegraphics[width=3.25cm]{./logos/Bhp}}%
-  % par is necessary to centre the last logo
-  \par}
-  \vspace{2cm}  
-  \columnbreak\par
-  \footnotesize 
-  \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
-  \vspace{4pt}
-
-  McKinnon
-  
-  The Myer Foundation
-
-  National Australia Bank
-
-  Scanlon Foundation
-
-  Summer Foundation 
-
-  \vspace{10pt}
-
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
-  \vspace{4pt}
-
-  Third Link Growth Fund
- 
-  Origin Energy Foundation
-
-  UTS
-    
-  \vspace{10pt}
-
-  \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
-  \vspace{4pt}
-
-  Cuffe Family Foundation
-
-  Medibank Private
-
-  Wesfarmers
-
-  \vspace{10pt}
-
-  \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
-  \vspace{4pt}
-
-  Allens
-
-  Ashurst
-
-  Maddocks
-
-  Urbis
-  
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
-  \end{multicols}
-  \end{minipage} 
-  \normalsize
-  \begin{minipage}[t][0.85\textheight][t]{0.45\textwidth - \Hshiftacknowledgements}
-  \vspace{\Vshiftacknowledgements}
-    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
-    \setlength{\parskip}{5.5pt plus 2pt}
-    \raggedright\@acknowledgements
-  \end{minipage}
+  \clearpage
+  \begingroup
+    \onecolumn
+    \thispagestyle{scrheadings}%
+    \begin{center}
+      \vspace*{-2em}
+      \includegraphics[width=0.825\paperwidth,height=0.825\paperheight,keepaspectratio]{FrontPages/AffiliatesPage.png}%
+    \end{center}
+  \endgroup
   \twocolumn
 }
 
@@ -1187,6 +1102,20 @@ numbers=noenddot,
 
 % Helpful for determining which labels are causing infinite reruns.
 % https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
+
+\newcommand{\acknowledgementspage}{%
+\onecolumn
+  \begin{minipage}[t][0.85\textheight][t] {0.45\textwidth - {-10mm}}
+  \vspace{\Vshiftacknowledgements}
+    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+    \setlength{\parskip}{5.5pt plus 2pt}
+    \raggedright\@acknowledgements
+   \end{minipage}%
+   \twocolumn
+   }
+
+\newcommand{\Vshiftacknowledgements}{-5mm}
+\newcommand{\Hshiftacknowledgements}{-10mm}
 
 \def\@testdef #1#2#3{%
   \def\reserved@a{#3}\expandafter \ifx \csname #1@#2\endcsname
