@@ -22,6 +22,7 @@ numbers=noenddot,
 \RequirePackage{tablefootnote} % for footnotes within tables
 \RequirePackage{zref-savepos}
 \RequirePackage{longtable}
+\RequirePackage{soul}
 
 % Record number and page of footnote:
 % http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
@@ -89,7 +90,16 @@ numbers=noenddot,
 \definecolor{theGrey}{RGB}{106,115,123}
 \definecolor{AuthorPage}{RGB}{160,34,38}
 \definecolor{AuthorGrey}{RGB}{174,174,174}
-
+\definecolor{Yellow}{RGB}{62,14,57}
+\definecolor{DarkYellow}{RGB}{245,181,12}
+\definecolor{Red}{RGB}{161,37,62}
+\definecolor{DarkRed}{RGB}{97,22,51}
+\definecolor{Blue}{RGB}{106,153,196}
+\definecolor{DarkBlue}{RGB}{67,113,161}
+\definecolor{LightYellow}{RGB}{62,14,57}
+\definecolor{LightOrange}{RGB}{239,121,0}
+\definecolor{DarkOrange}{RGB}{212,88,42}
+\definecolor{LightRed}{RGB}{161,37,62}
 
 % Bullets and numbered items
 \RequirePackage{enumitem}
@@ -156,14 +166,21 @@ numbers=noenddot,
 \deffootnote{2.0em}{1.5em}{\makebox[2.0em][l]{\thefootnotemark.\ }}
 \addtokomafont{footnotereference}{\small}
 
-% Detect the footnote immediately prior to CenturyFootnote
-\newwrite\fnC
-\immediate\openout\fnC=\jobname.fn100
+% Automatically widen the footnote number box once triple digits are reached (this replaces manually adding Century Footnote)
+\newif\ifCenturySwitched
+\CenturySwitchedfalse
 \let\oldfootnote\footnote
-\renewcommand{\footnote}[1]{\oldfootnote{#1}\immediate\write\fnC{\thefootnote}}
-% Placed just before footnote exceeds 100. 
-\newcommand*{\CenturyFootnote}{\label{@CenturyFootnote@@@\thefootnote}\zsavepos{@CenturyFootnote@z}\immediate\closeout\fnC\deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}}
-
+\renewcommand{\footnote}[1]{%
+  \ifnum\value{footnote}>98
+    \ifCenturySwitched\else
+      \label{@CenturyFootnote@@@\thefootnote}%
+      \zsavepos{@CenturyFootnote@z}%
+      \deffootnote{2.4em}{1.9em}{\makebox[2.4em][r]{\thefootnotemark.\ \ }}%
+      \CenturySwitchedtrue
+    \fi
+  \fi
+  \oldfootnote{#1}%
+}
 
 % Make url formatting the same
 \urlstyle{same}
@@ -452,10 +469,14 @@ numbers=noenddot,
 
 % Named appendix: Appendix A not just 'A'
 \providecommand*\appendixmore{}
+\crefname{appendixchap}{appendix}{appendices}
+\Crefname{appendixchap}{Appendix}{Appendices}
+
 \renewcommand*\appendixmore{%
     \renewcommand*{\chapterformat}{%
       \mbox{\appendixname~\thechapter\autodot:\enskip}%
     }%
+    \crefalias{chapter}{appendixchap}%
 }
 
   
@@ -705,6 +726,12 @@ numbers=noenddot,
   \endgroup
   \twocolumn
 }
+
+% Commands to make it possible to directly call the report publication details inside Report.tex without having to use @
+\newcommand*{\TheReportType}{\@Report}
+\newcommand*{\TheGrattanReportNumber}{\@GrattanReportNumber}
+\newcommand*{\TheMONTH}{\@MONTH}
+\newcommand*{\TheYEAR}{\@YEAR}
 
 \newcommand*{\@checkGrattanReportNumberdefined}{
   \ifdefempty{\@GrattanReportNumber}%
@@ -1104,14 +1131,9 @@ numbers=noenddot,
 % https://tex.stackexchange.com/questions/154594/how-to-diagnose-a-permanent-labels-may-have-changed-warning?noredirect=1&lq=1
 
 \newcommand{\acknowledgementspage}{%
-\onecolumn
-  \begin{minipage}[t][0.85\textheight][t] {0.45\textwidth - {-10mm}}
-  \vspace{\Vshiftacknowledgements}
-    \subsection*{Grattan Institute \@Report\ No. \@GrattanReportNumber, \@MONTH\ \@YEAR}
+\addchap*{Acknowledgements}
     \setlength{\parskip}{5.5pt plus 2pt}
     \raggedright\@acknowledgements
-   \end{minipage}%
-   \twocolumn
    }
 
 \newcommand{\Vshiftacknowledgements}{-5mm}
