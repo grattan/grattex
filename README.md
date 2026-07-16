@@ -105,27 +105,18 @@ Releasing a report involves adding the front cover, updating the logos/affiliate
 
   1. To add the front cover, ensure that there is a folder in the Overleaf project called `FrontPages`, which must contain the front cover as a PDF with the name `FrontPage.pdf`. In `Report.tex`, change the first line of code from `\documentclass[embargoed]{grattan}` to  `\documentclass[FrontPage]{grattan}`.
   2. Check with Central Services what ISBN and report number your report should have, and ask for a png of the current Affiliates page. Replace whatever ISBN/report number is currently in `Report.tex` with the correct one. Save the affiliates page in the folder `Frontpages` with the file name `AffiliatesPage.png`.
-  3. Check that `\CenturyFootnote` is between the 99th and 100th footnote (this will fix the spacing on subsequent footnotes, making sure three-digit footnotes still have a space between the full stop and the footnote content.)
-  Now download your Overleaf project again -- just as you did one week ago, it's time to run `checkGrattanReport()`, ensuring that your team is not trying to make any final changes to the document.
-  <!-- 4. This time, however, we're going to add some extra arguments to `checkGrattanReport()`. These extra arguments will check that `\CenturyFootnote` is used correctly (see `grattexDocumentation.pdf`), and will build the final PDF for us. 
-  ```R
-  # To update affiliates/logos, you need to update the 'classfile'. Here's how:
-  checkGrattanReport(update_grattan.cls = TRUE)
-  
-  # Final release checks are included with the following argument
-  checkGrattanReport(compile = TRUE, pre_release = TRUE)
-  
-  # And a publication-ready pdf will be built with the following:
-  checkGrattanReport(compile = TRUE, pre_release = TRUE, release = TRUE)
-  ```
-  5. A new folder will be created called `RELEASE`, and inside will be a PDF of your report. This is what you will send to Central Services so that they can upload it to the Grattan website in time for its 9pm publication.
-  6. Copy the offline files back into the Overleaf folder on Dropbox to update them.
-  7. Breathe a small sigh of relief. It's almost over! But inevitably, on a final read-through, you or a team member will pick up on something you need changed (hopefully just typographical at this stage). If so, you'll need to make the change and repeat this process, sending a new, updated PDF to Central Services in time for release.
-<!-- 
-And if something goes badly wrong -- you can't get `checkGrattanReport()` to make you a PDF, and no Latexnician is available -- rest assured that you can always use the PDF that Overleaf compiles as a workaround. However, it may not have the updated affiliates, and there's a greater risk of bugs in the document if it hasn't passed `checkGrattanReport()`. But at least you'll have a usable document, and you can talk to a Latexnician on Monday to fix anything outstanding. --> -->
+  3. Check the error log in Overleaf, and work through them to either resolve them or make sure they're inconsequential. Ideally, you shouldn't have any red errors left when you release.
+  4. Download the PDF and check it looks correct!
 
 ***
 ## Changelog
+
+## 2026-07-16
+* Changed location and layout of acknowledgements page
+* Fixed appendix referencing and report name/month/year printing bugs
+* Automated \CenturyFootnote
+* Added more colours to mimic the ones in grattantheme
+* Cleaned up default .bib files
 
 ## 2026-01-09
 * Updated documentation to reflect current processes, including new affiliates page process
