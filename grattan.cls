@@ -144,11 +144,11 @@ numbers=noenddot,
 ]{hyperref}
 \RequirePackage{cleveref}
 
-% For previous page for 'varioref'
-% space after second -2 is important here.
-\patchcmd\cref@old@@vpageref
-{\advance\@tempcnta-2}
-{\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
+% % For previous page for 'varioref'
+% % space after second -2 is important here.
+% \patchcmd\cref@old@@vpageref
+% {\advance\@tempcnta-2}
+% {\advance\@tempcnta-2 }{\typeout{patch ok}}{\ERRORpatchFaild}
 
 % Hack for Chapter references
 % This ensures that chapter hyperlinks hit the page
