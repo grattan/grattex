@@ -7,8 +7,8 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: Report.tex
           texlive_version: "2026"
-          pre_compile: "tlmgr update --self && tlmgr update hyperref"
+          pre_compile: "tlmgr update --self && tlmgr update hyperref && tlmgr show hyperref"
