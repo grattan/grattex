@@ -1,0 +1,15 @@
+name: Minimal varioref+babel repro (temporary diagnostic)
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile minimal test
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: minimal_varioref_test.tex
+          texlive_version: "2026"
+          compiler: latexmk
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
