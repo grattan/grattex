@@ -23,6 +23,8 @@ numbers=noenddot,
 \RequirePackage{zref-savepos}
 \RequirePackage{longtable}
 \RequirePackage{soul}
+\RequirePackage[UKenglish]{babel}
+\RequirePackage{csquotes}
 
 % Record number and page of footnote:
 % http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
@@ -136,12 +138,13 @@ numbers=noenddot,
 \RequirePackage{newfloat}
 \RequirePackage{caption}
 % Cross references.
-\RequirePackage{varioref}
+
 \PassOptionsToPackage{hyphens}{url}
 \RequirePackage[
   hypertexnames=false, 
   hidelinks
 ]{hyperref}
+\RequirePackage{varioref}
 \RequirePackage{cleveref}
 
 % % For previous page for 'varioref'
@@ -751,8 +754,6 @@ numbers=noenddot,
 \ProcessOptions\relax
 
 % Bibliography
-\RequirePackage[UKenglish]{babel}
-\RequirePackage{csquotes}
 \RequirePackage[
   backend=biber,
   singletitle,
