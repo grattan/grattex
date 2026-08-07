@@ -10,5 +10,5 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: Report.tex
-          texlive_version: "2026"
+          texlive_version: "2025"
           pre_compile: "tlmgr update --self && tlmgr update hyperref && tlmgr show hyperref"
