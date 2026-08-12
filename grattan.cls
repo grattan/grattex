@@ -78,28 +78,16 @@ numbers=noenddot,
 \RequirePackage[document]{ragged2e}
 % ------
 % Grattan colors
-\definecolor{Orange}{RGB}{243,144,29}
+\definecolor{Orange}{RGB}{239,121,0}
 \definecolor{DarkOrange}{RGB}{212,88,42}
-\definecolor{OrangeBackground}{RGB}{254,240,222}  % for boxes
-\definecolor{Color1}{RGB}{255,224,127}
-\definecolor{Color2}{RGB}{255,195,90}
-\definecolor{Color3}{RGB}{246,139,51}
-\definecolor{Color4}{RGB}{212,88,42}
-\definecolor{Color5}{RGB}{160,34,38}
-\definecolor{Color6}{RGB}{98,18,20}
-\definecolor{theGrey}{RGB}{106,115,123}
-\definecolor{AuthorPage}{RGB}{160,34,38}
-\definecolor{AuthorGrey}{RGB}{174,174,174}
-\definecolor{Yellow}{RGB}{62,14,57}
-\definecolor{DarkYellow}{RGB}{245,181,12}
+\definecolor{OrangeBackground}{RGB}{255,243,230}  % for boxes
+\definecolor{Yellow}{RGB}{245,181,12}
 \definecolor{Red}{RGB}{161,37,62}
 \definecolor{DarkRed}{RGB}{97,22,51}
+\definecolor{theGrey}{RGB}{96,103,106}
+\definecolor{PaleGrey}{RGB}{242,242,242}
 \definecolor{Blue}{RGB}{106,153,196}
 \definecolor{DarkBlue}{RGB}{67,113,161}
-\definecolor{LightYellow}{RGB}{62,14,57}
-\definecolor{LightOrange}{RGB}{239,121,0}
-\definecolor{DarkOrange}{RGB}{212,88,42}
-\definecolor{LightRed}{RGB}{161,37,62}
 
 % Bullets and numbered items
 \RequirePackage{enumitem}
