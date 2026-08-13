@@ -26,6 +26,7 @@
 % 		-	\documentclass[submission]{grattan}
 % 		-	Remove \EmbargoText{} line
 % 		-	Remove \acknowledgements{} section
+% 		-	Remove \acknowledgementspage command
 % 		-	Remove \GrattanReportNumber{} line
 % 		-	Add the MONTH and YEAR to \subtitle{}, eg \subtitle{July 2022}
 
@@ -40,6 +41,10 @@
 % Set embargo text when \documentclass[embargoed]{grattan}
 \EmbargoText{Embargoed until 9pm DAY MONTH YEAR}
 
+% Add a draft watermark for extra assurance when sending externally
+% \usepackage{draftwatermark} #uncomment these lines to toggle the watermark on/off
+%\SetWatermarkText{DRAFT} #uncomment these lines to toggle the watermark on/off
+%\SetWatermarkScale{0.5} #uncomment these lines to toggle the watermark on/off
 
 
 % Add words to spellcheck dictionary ----------------------------------
@@ -94,6 +99,10 @@ We aim to improve policy by engaging with decision makers and the broader commun
 We acknowledge and celebrate the First Nations people on whose traditional lands we meet and work, and whose cultures are among the oldest in human history.
 
 For further information on Grattan's programs, or to join our mailing list, please go to: \textcolor{blue}{\url{www.grattan.edu.au}}. You can donate to support future Grattan reports here: \textcolor{blue}{\url{www.grattan.edu.au/donate}}.
+
+\newpage
+
+\subsection*{Grattan Institute \TheReportType\ No. \TheGrattanReportNumber, \TheMONTH\ \TheYEAR}
 
 {\footnotesize
 This report may be cited as:
@@ -395,11 +404,10 @@ To start the appendix area, just invoke \verb=\appendix= as above.
 There's nothing else special about it.
 Elements such as glossaries and indexes are not supported by this class file, though can be implemented.
 
-The bibliography appears after the appendix. 
-
-
-\printbibliography
+The acknowledgements page appears after the appendix, followed by the bibliography. 
 
 \acknowledgementspage
+
+\printbibliography
 
 \end{document}
