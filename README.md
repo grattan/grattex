@@ -4,6 +4,8 @@ This is the repository containing the configuration files for reports in the sty
 
 See <https://github.com/grattan/grattex/blob/master/doc/grattexDocumentation.pdf> for the documentation.
 
+------------------------------------------------------------------------
+
 ## Starting a new report
 
 Staff starting a new report need to "clone the `grattex` repository on Github" (copy the report template) and "import the repository to edit in Overleaf" (open the template in Overleaf). This can be done using the following steps.
@@ -64,54 +66,6 @@ For anything more advanced (footnotes, referencing, tables, figures and other mi
 2.  The **latexShowcase** project in Overleaf contains many examples of code that you might find useful, including how to use boxes and complex tables. Ask Mia to invite you to this project if you didn't already receive the invite during your induction.
 3.  Your colleagues have probably encountered any issues you might have. Breaking a Latex document can be unnerving and frustrating, but the fix usually takes only a few seconds. Ask around! **Mia** is the designated 'Latexnician' as of January 2026, and is more than happy to help.
 
-------------------------------------------------------------------------
-
-<!-- ## Publishing a Grattan report: what to do in the final week -->
-
-```{=html}
-<!-- The purpose of using LaTeX is to improve the quality of our final publications. One of the main ways this happens is by running the document through a series of checks. Here's how it works:
-
-  1. A week before publication, an associate will need to download the Overleaf project and run some R code (details below) that checks the project.
-      + These checks will make sure we have all the punctuation, capital letters, cross-references and many, many other features that make a document clean and precise.
-      + The bibliography will also be scoured, identifying duplicate entries and some other errors.
-  2. The process is very stop-start. Each time R finds an error, it must be manually corrected for the process to continue. R will __not__ give you a list of errors to fix. The associate will fix the error in the offline version of the project that they downloaded, then run the check again.
-  3. The rest of the team __must not__ be working on the Overleaf project when this process is carried out. That's because the final step is...
-  4. ... the associate will copy their offline version of the project into the Dropbox folder where the online Overleaf project lives, replacing all duplicate files. That means any changes made to the Overleaf project will be overwritten.
-  5. To release a report, there are a few additional steps (also outlined below). -->
-```
-
-```{=html}
-<!-- ### One week out
-For associates, _once you've told your team that you're going to check the report_ (so that they stop editing it), the process of checking the document is as follows:
-
-  1. Ensure that your computer has both R and RStudio installed. Details on how to do this [can be found here](https://grattan.github.io/R_at_Grattan/introduction-to-r.html). This guide will also explain how to run code in R.
-  2. Install the `grattanReporter` package by running the following code:
-  ```R
-  install.packages('devtools') # Only if you don't already have the devtools package
-  devtools::install_github('grattan/grattanReporter')
-  library(grattanReporter)
-  ```
-  3. Download your project from Overleaf. Head to `https://www.overleaf.com/project`, find your project in the list, and click on the download button on the right side of the screen.
-  4. Most likely, a `.zip` file will appear in your `Downloads` folder. Open the file (it will unzip into a folder).
-  5. There are multiple ways of telling R where to look for files. You can start an R project, remember the path to your file, or set your 'working directory' to the folder you just downloaded. For now, we'll stick to the latter: `setwd('/Users/myusername/Downloads/MyUnzippedOverleafProject')`. On a PC, your path may look different.
-  6. Now you can start running checks. The command is `checkGrattanReport()`. This will kick off a series of tests and will run until it encounters an error. The checks include:
-      + The report's authors match the recommended citation
-      + Dashes are used correctly
-      + Quote marks are used correctly
-      + Footnotes end in full stops
-      + Sentences ending in a capital letter (_e.g._ I went to the USA.) include `\@.` in LaTeX (_i.e._ `I went to the USA\@.`)
-      + There aren't any obviously missing parentheses
-      + The bibliography looks healthy and doesn't contain obvious duplicates
-      + There aren't obvious typos -- words that fail the spellcheck can be added to a custom dictionary in `Report.tex`
-      + Figures, tables and boxes have labels
-      + All figures and tables have a cross-reference in the text (this can be manually overwritten by including the following command on a new line after the dictionary: `% may_be_left_unreferenced: fig:label_of_thing_i_dont_want_referenced`)
-  7. Expect to get an error. This means that `checkGrattanReport()` has found something for you to fix. It should say what the error is, the file where it occurred, the line where it happened, and possibly even what you should do to fix it. In the folder you downloaded, make the necessary change, save it, and run the check again. If you're not sure how to resolve an error, consult `grattexDocumentation.pdf` or chat to a Latexnician.
-  8. Repeat until there's no further issues. Then run `checkGrattanReport(compile = TRUE)` until there are no further issues (this performs some additional checks, like making sure your references aren't broken/missing).
-  9. Copy the contents of the downloaded folder into the Overleaf project folder in Dropbox (assuming you've linked Overleaf and Dropbox; if not, see a Latexnician). Replace all of the duplicated files.
-  10. Wait a minute, open Overleaf, compile the document and check that everything looks as it should. If not, now is the perfect time to seek out a Latexnician.
-   -->
-```
-
 ### To release a report
 
 Releasing a report involves adding the front cover, updating the logos/affiliates on page 2, and adding the ISBN and report number <!-- , and running the report through `checkGrattanReport` again -- but this time with some extra checks. -->
@@ -120,10 +74,6 @@ Releasing a report involves adding the front cover, updating the logos/affiliate
 2.  Check with Central Services what ISBN and report number your report should have, and ask for a png of the current Affiliates page. Replace whatever ISBN/report number is currently in `Report.tex` with the correct one. Save the affiliates page in the folder `Frontpages` with the file name `AffiliatesPage.png`.
 3.  Check the error log in Overleaf, and work through them to either resolve them or make sure they're inconsequential. Ideally, you shouldn't have any red errors left when you release.
 4.  Download the PDF and check it looks correct!
-
-### Guide to the colour presets:
-
-![](images/clipboard-3684689795.png)
 
 ------------------------------------------------------------------------
 
